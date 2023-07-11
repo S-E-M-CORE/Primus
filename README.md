@@ -1,6 +1,6 @@
-# Midway
+# Primus
 
-Midway is a full-stack-development school project. 
+Primus is a full-stack-development school project. 
 
 ## Installation
 
