@@ -12,4 +12,8 @@ Das Ziel dieses Dev-Diarys ist es, einen professionellen und strukturierten Einb
 
 ![[2023.11.28]]
 
+![[ObsidianMD/Projectmanagement/Dev-Diaries/Sascha/2023/2023.11.29]]
+
+
+
 

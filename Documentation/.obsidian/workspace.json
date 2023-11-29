@@ -11,8 +11,12 @@
             "id": "35861a0b976599e9",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {}
+              "type": "markdown",
+              "state": {
+                "file": "ObsidianMD/Projectmanagement/Dev-Diaries/Sascha/Sascha.md",
+                "mode": "preview",
+                "source": false
+              }
             }
           }
         ]
@@ -81,6 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "ObsidianMD/Projectmanagement/Dev-Diaries/Sascha/Sascha.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -97,6 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "ObsidianMD/Projectmanagement/Dev-Diaries/Sascha/Sascha.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -118,7 +124,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "ObsidianMD/Projectmanagement/Dev-Diaries/Sascha/Sascha.md"
+              }
             }
           }
         ]
@@ -141,6 +149,7 @@
   "active": "35861a0b976599e9",
   "lastOpenFiles": [
     "ObsidianMD/Projectmanagement/Dev-Diaries/Sascha/2023/2023.11.29.md",
+    "ObsidianMD/Projectmanagement/Dev-Diaries/Sascha/Sascha.md",
     "ObsidianMD/Projectmanagement/Dev-Diaries/Sascha/2023/2023.11.28.md",
     "Project Primus.md"
   ]
