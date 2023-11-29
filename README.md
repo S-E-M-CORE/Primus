@@ -42,9 +42,6 @@
 
 ## Über das Projekt
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
-
-
 "Primus" ist der Codename für unser erstes umfassendes Fullstack-Projekt, das im Rahmen des Lernfelds 8 (Datenbanken) an der Berufsschule durchgeführt wird. Alle relevanten Informationen, einschließlich der Auftragsklärungen und sämtlicher verwendeter Ressourcen, sind in diesem Dokument festgehalten
 
 ### Verwendete Frameworks
