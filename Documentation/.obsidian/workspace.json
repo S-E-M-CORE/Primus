@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "ObsidianMD/Projectmanagement/Dev-Diaries/Sascha/Sascha.md",
+                "file": "ObsidianMD/German/Resources/Image Resources.md",
                 "mode": "preview",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "ObsidianMD/Projectmanagement/Dev-Diaries/Sascha/Sascha.md",
+                "file": "ObsidianMD/German/Resources/Image Resources.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "ObsidianMD/Projectmanagement/Dev-Diaries/Sascha/Sascha.md",
+                "file": "ObsidianMD/German/Resources/Image Resources.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "ObsidianMD/Projectmanagement/Dev-Diaries/Sascha/Sascha.md"
+                "file": "ObsidianMD/German/Resources/Image Resources.md"
               }
             }
           }
@@ -148,8 +148,9 @@
   },
   "active": "35861a0b976599e9",
   "lastOpenFiles": [
-    "ObsidianMD/Projectmanagement/Dev-Diaries/Sascha/2023/2023.11.29.md",
+    "ObsidianMD/German/Resources/Auftragsklärungen.md",
     "ObsidianMD/Projectmanagement/Dev-Diaries/Sascha/Sascha.md",
+    "ObsidianMD/Projectmanagement/Dev-Diaries/Sascha/2023/2023.11.29.md",
     "ObsidianMD/Projectmanagement/Dev-Diaries/Sascha/2023/2023.11.28.md",
     "Project Primus.md"
   ]
