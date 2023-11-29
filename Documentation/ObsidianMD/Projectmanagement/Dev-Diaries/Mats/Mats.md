@@ -7,4 +7,7 @@ Dabei wird hier auf die Notizen verlinkt. Weiter Infomation werden mit einer kle
 
 1. [2023.11.28.md](2023.11.28)
 2. [2023.11.29.md](2023.11.29)
-
+3. [WIP]()
+4. [WIP]()
+5. [WIP]()
+6. [WIP]()
