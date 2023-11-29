@@ -4,19 +4,15 @@
     "type": "split",
     "children": [
       {
-        "id": "65ce43bf911f51b4",
+        "id": "b633b1d86025bb7a",
         "type": "tabs",
         "children": [
           {
-            "id": "35861a0b976599e9",
+            "id": "e7e033556e16bcb6",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "ObsidianMD/German/Resources/Image Resources.md",
-                "mode": "preview",
-                "source": false
-              }
+              "type": "empty",
+              "state": {}
             }
           }
         ]
@@ -85,7 +81,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "ObsidianMD/German/Resources/Image Resources.md",
+                "file": "ObsidianMD/Projectmanagement/Dev-Diaries/Sascha/2023/2023.11.29.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +98,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "ObsidianMD/German/Resources/Image Resources.md",
+                "file": "ObsidianMD/Projectmanagement/Dev-Diaries/Sascha/2023/2023.11.29.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +121,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "ObsidianMD/German/Resources/Image Resources.md"
+                "file": "ObsidianMD/Projectmanagement/Dev-Diaries/Sascha/2023/2023.11.29.md"
               }
             }
           }
@@ -146,8 +142,11 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "35861a0b976599e9",
+  "active": "177e555d8abd275a",
   "lastOpenFiles": [
+    "ObsidianMD/Projectmanagement/Meetings/2023.11.29.md",
+    "ObsidianMD/Projectmanagement/Arbeitsstunden pro Monat.md",
+    "ObsidianMD/German/Resources/Image Resources.md",
     "ObsidianMD/German/Resources/Auftragsklärungen.md",
     "ObsidianMD/Projectmanagement/Dev-Diaries/Sascha/Sascha.md",
     "ObsidianMD/Projectmanagement/Dev-Diaries/Sascha/2023/2023.11.29.md",
