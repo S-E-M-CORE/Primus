@@ -12,7 +12,7 @@
     <a href="Documentation/Project Primus.md"><strong>Projekt-Dokumentation »</strong></a>
     <br />
     <br />
-		<a href="https://github.com/othneildrew/Best-README-Template/issues">Bug gefunden?</a>
+		<a href="https://github.com/theSaschaM/BSFI22D_Primus/issues">Bug gefunden?</a>
   </p>
 </div>
 
