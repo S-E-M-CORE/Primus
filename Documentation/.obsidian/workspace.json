@@ -11,9 +11,33 @@
             "id": "e7e033556e16bcb6",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {}
-            }
+              "type": "markdown",
+              "state": {
+                "file": "ObsidianMD/Projectmanagement/Meetings/2023.11.30.md",
+                "mode": "source",
+                "source": false
+              }
+            },
+            "group": "e02173140b93e8da"
+          }
+        ]
+      },
+      {
+        "id": "dedef769a6fa975e",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "c47e46e1302255ee",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "ObsidianMD/Projectmanagement/Meetings/2023.11.30.md",
+                "mode": "preview",
+                "source": false
+              }
+            },
+            "group": "e02173140b93e8da"
           }
         ]
       }
@@ -81,7 +105,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "ObsidianMD/Projectmanagement/Dev-Diaries/Sascha/2023/2023.11.29.md",
+                "file": "ObsidianMD/Projectmanagement/Meetings/2023.11.30.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -98,7 +122,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "ObsidianMD/Projectmanagement/Dev-Diaries/Sascha/2023/2023.11.29.md",
+                "file": "ObsidianMD/Projectmanagement/Meetings/2023.11.30.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -121,7 +145,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "ObsidianMD/Projectmanagement/Dev-Diaries/Sascha/2023/2023.11.29.md"
+                "file": "ObsidianMD/Projectmanagement/Meetings/2023.11.30.md"
               }
             }
           }
@@ -142,15 +166,22 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "177e555d8abd275a",
+  "active": "c47e46e1302255ee",
   "lastOpenFiles": [
-    "ObsidianMD/Projectmanagement/Meetings/2023.11.29.md",
     "ObsidianMD/Projectmanagement/Arbeitsstunden pro Monat.md",
-    "ObsidianMD/German/Resources/Image Resources.md",
+    "www.youtube.com.md",
+    "ObsidianMD/Projectmanagement/Meetings/2023.11.30.md",
+    "ObsidianMD/Projectmanagement/Meetings/2023.11.29.md",
+    "Pasted image 20231130154652.png",
+    "Pasted image 20231130154649.png",
+    "ObsidianMD/Projectmanagement/Dev-Diaries/Dev-Diarys.md",
     "ObsidianMD/German/Resources/Auftragsklärungen.md",
+    "ObsidianMD/assets/RDBMs_v2.2.pdf",
     "ObsidianMD/Projectmanagement/Dev-Diaries/Sascha/Sascha.md",
     "ObsidianMD/Projectmanagement/Dev-Diaries/Sascha/2023/2023.11.29.md",
     "ObsidianMD/Projectmanagement/Dev-Diaries/Sascha/2023/2023.11.28.md",
-    "Project Primus.md"
+    "ObsidianMD/Projectmanagement/Dev-Diaries/Mats/Mats.md",
+    "Project Primus.md",
+    "ObsidianMD/German/Resources/Image Resources.md"
   ]
 }
