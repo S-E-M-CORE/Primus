@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "ObsidianMD/Projectmanagement/Meetings/2023.11.30.md",
+                "file": "ObsidianMD/Projectmanagement/Arbeitsstunden pro Monat.md",
                 "mode": "source",
                 "source": false
               }
@@ -32,8 +32,8 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "ObsidianMD/Projectmanagement/Meetings/2023.11.30.md",
-                "mode": "preview",
+                "file": "ObsidianMD/Projectmanagement/Arbeitsstunden pro Monat.md",
+                "mode": "source",
                 "source": false
               }
             },
@@ -105,7 +105,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "ObsidianMD/Projectmanagement/Meetings/2023.11.30.md",
+                "file": "ObsidianMD/Projectmanagement/Arbeitsstunden pro Monat.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -122,7 +122,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "ObsidianMD/Projectmanagement/Meetings/2023.11.30.md",
+                "file": "ObsidianMD/Projectmanagement/Arbeitsstunden pro Monat.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -145,7 +145,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "ObsidianMD/Projectmanagement/Meetings/2023.11.30.md"
+                "file": "ObsidianMD/Projectmanagement/Arbeitsstunden pro Monat.md"
               }
             }
           }
@@ -166,20 +166,21 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "c47e46e1302255ee",
+  "active": "e7e033556e16bcb6",
   "lastOpenFiles": [
+    "ObsidianMD/Projectmanagement/Dev-Diaries/Dev-Diarys.md",
+    "ObsidianMD/Projectmanagement/Dev-Diaries/Sascha/2023/2023.11.30.md",
+    "ObsidianMD/Projectmanagement/Dev-Diaries/Sascha/2023/2023.11.29.md",
+    "ObsidianMD/Projectmanagement/Dev-Diaries/Sascha/2023/2023.11.28.md",
+    "ObsidianMD/Projectmanagement/Meetings/2023.11.30.md",
     "ObsidianMD/Projectmanagement/Arbeitsstunden pro Monat.md",
     "www.youtube.com.md",
-    "ObsidianMD/Projectmanagement/Meetings/2023.11.30.md",
     "ObsidianMD/Projectmanagement/Meetings/2023.11.29.md",
     "Pasted image 20231130154652.png",
     "Pasted image 20231130154649.png",
-    "ObsidianMD/Projectmanagement/Dev-Diaries/Dev-Diarys.md",
     "ObsidianMD/German/Resources/Auftragsklärungen.md",
     "ObsidianMD/assets/RDBMs_v2.2.pdf",
     "ObsidianMD/Projectmanagement/Dev-Diaries/Sascha/Sascha.md",
-    "ObsidianMD/Projectmanagement/Dev-Diaries/Sascha/2023/2023.11.29.md",
-    "ObsidianMD/Projectmanagement/Dev-Diaries/Sascha/2023/2023.11.28.md",
     "ObsidianMD/Projectmanagement/Dev-Diaries/Mats/Mats.md",
     "Project Primus.md",
     "ObsidianMD/German/Resources/Image Resources.md"
