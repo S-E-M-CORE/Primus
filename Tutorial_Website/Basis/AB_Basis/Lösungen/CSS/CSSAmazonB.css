@@ -1,0 +1,62 @@
+
+.A_Request_B {
+    background-Color: rgb(255, 216, 20);
+    color: black;
+
+    font-size: 15px;      
+    font-weight: bold;
+
+
+    border: none;
+    border-radius: 15px;        /* so höher die Zahl so Runder ist unser Button*/
+
+     /*Indere Abstand*/
+    padding-right:  10px;  
+    padding-left:   10px;
+    padding-top:    10px;
+    padding-bottom: 10px;
+
+    /*Abstand zu anderen Objekten*/
+    margin-right:   5px; 
+    margin-left:    5px; 
+    margin-top:     5px; 
+    margin-bottom:  5px;
+
+
+    transition: background-color 0.15s,
+                color 0.15s;
+    transition: box-shadow 0.20s;
+    
+
+    cursor: pointer;
+
+}
+
+ /*Wenn wir über den Button drüber gehen*/
+.A_Request_B:hover {
+    opacity: 0.7;
+
+    background-color: rgb(226, 203, 98);
+    color: rgb(0,0,0);
+
+    border: none;
+    border-radius: 15px;
+    border-style: solid;
+    border-width: 0px;
+
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.20);
+  }
+
+
+  /*Wenn wir den Button klicken*/
+  .A_Request_B:active 
+  {
+    opacity: 0.5;
+    background-color: rgb(226, 203, 98);
+    color: rgb(0,0,0);
+
+    border: none;
+    border-radius: 15px;
+    border-style: solid;
+    border-width: 1px;
+  }
