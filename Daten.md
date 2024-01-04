@@ -1,0 +1,24 @@
+Schützenverein
+- Abteilungen
+	- Bogen 8€/Monat
+	- Luftgewehr 15€/Monat
+	- Feuerwaffen 20€/Monat
+- Mitglieder
+	- Id
+	- Vorname
+	- Nachname
+	- Geburtsdatum
+		- Alter(immer neu berechnen lassen. )
+	- Adresse
+		- Poz
+		- Straße
+		- Hausnummer
+	- Kontaktinfomation
+		- Telefon
+		- E-Mail
+		- Message-Services
+	- Mitgliedschaft
+		- Abteilungen(array)(Du bist in dieser Abteilung z.B. Bogen mit 8€/Monat)
+-  Teilnahme/Befugnis
+	- Name
+	- Datum

@@ -1,0 +1,30 @@
+{
+	"nodes":[
+		{"id":"e88db91025b0cd3e","x":280,"y":-1000,"width":655,"height":440,"color":"5","type":"group","label":"Adresse"},
+		{"id":"f3bac3d6fa1a07e4","x":-960,"y":-40,"width":900,"height":100,"color":"3","type":"group","label":"Basis Info"},
+		{"id":"90b903cf353b65d5","x":280,"y":-340,"width":290,"height":300,"color":"4","type":"group","label":"Kontaktinfomationen"},
+		{"id":"3fe0c49bc0cd4036","x":-940,"y":-20,"width":250,"height":60,"type":"text","text":"Vorname"},
+		{"id":"c92c578f1ef5af95","x":-635,"y":-20,"width":250,"height":60,"type":"text","text":"Nachname"},
+		{"id":"010f76d1bf934c30","x":-330,"y":-20,"width":250,"height":60,"type":"text","text":"Geburtsdatum"},
+		{"id":"cf2776986a1a3255","x":300,"y":-820,"width":250,"height":60,"type":"text","text":"Adresse"},
+		{"id":"a62361640b76f30d","x":665,"y":-980,"width":250,"height":60,"type":"text","text":"POZ"},
+		{"id":"ba92a7f8ad74e085","x":665,"y":-820,"width":250,"height":60,"type":"text","text":"Straße"},
+		{"id":"d4b0f610bc9bbf46","x":665,"y":-640,"width":250,"height":60,"type":"text","text":"Hausnummer"},
+		{"id":"99921e66a90aa81b","x":300,"y":-320,"width":250,"height":60,"type":"text","text":"Telefon"},
+		{"id":"f4ec33f3babd66ae","x":300,"y":-220,"width":250,"height":60,"type":"text","text":"E-Mail"},
+		{"id":"727211599e8fe6b7","x":300,"y":-120,"width":250,"height":60,"type":"text","text":"Message-Services"},
+		{"id":"c55f0319aa02c309","type":"text","text":"# Mitglieder","x":-510,"y":-750,"width":360,"height":110}
+	],
+	"edges":[
+		{"id":"8674c2d5bb5a43ab","fromNode":"c55f0319aa02c309","fromSide":"right","toNode":"cf2776986a1a3255","toSide":"left"},
+		{"id":"691f0e72720bf47e","fromNode":"c55f0319aa02c309","fromSide":"right","toNode":"010f76d1bf934c30","toSide":"top"},
+		{"id":"39dd0239450232d5","fromNode":"c55f0319aa02c309","fromSide":"bottom","toNode":"c92c578f1ef5af95","toSide":"top"},
+		{"id":"1561ed65c5c19223","fromNode":"c55f0319aa02c309","fromSide":"left","toNode":"3fe0c49bc0cd4036","toSide":"top"},
+		{"id":"f8f1ff337f6d1800","fromNode":"cf2776986a1a3255","fromSide":"right","toNode":"d4b0f610bc9bbf46","toSide":"left"},
+		{"id":"e5554a7c32c0538d","fromNode":"cf2776986a1a3255","fromSide":"right","toNode":"ba92a7f8ad74e085","toSide":"left"},
+		{"id":"ce6325d32db461d0","fromNode":"cf2776986a1a3255","fromSide":"right","toNode":"a62361640b76f30d","toSide":"left"},
+		{"id":"e07bc5381df23ee4","fromNode":"c55f0319aa02c309","fromSide":"right","toNode":"99921e66a90aa81b","toSide":"left"},
+		{"id":"bc17be9387470ab6","fromNode":"c55f0319aa02c309","fromSide":"right","toNode":"f4ec33f3babd66ae","toSide":"left"},
+		{"id":"42925351384d3d86","fromNode":"c55f0319aa02c309","fromSide":"right","toNode":"727211599e8fe6b7","toSide":"left"}
+	]
+}
