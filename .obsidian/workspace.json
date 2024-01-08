@@ -20,21 +20,6 @@
             }
           },
           {
-            "id": "8327dbe35da34299",
-            "type": "leaf",
-            "state": {
-              "type": "canvas",
-              "state": {
-                "file": "Datenmodell.canvas",
-                "viewState": {
-                  "x": 423.2657072439958,
-                  "y": -512.2413215487335,
-                  "zoom": -1.3555596929291918
-                }
-              }
-            }
-          },
-          {
             "id": "88129f29330b1868",
             "type": "leaf",
             "state": {
@@ -47,17 +32,42 @@
             }
           },
           {
+            "id": "d6ee53dfddf0aea2",
+            "type": "leaf",
+            "state": {
+              "type": "excalidraw",
+              "state": {
+                "file": "Excalidraw/WebsiteDesign.excalidraw.md"
+              }
+            }
+          },
+          {
+            "id": "9e5c8ce801d9ad3f",
+            "type": "leaf",
+            "state": {
+              "type": "canvas",
+              "state": {
+                "file": "Datenmodell.canvas",
+                "viewState": {
+                  "x": -12.5,
+                  "y": -470,
+                  "zoom": -0.690095302114464
+                }
+              }
+            }
+          },
+          {
             "id": "834bd0644248f78e",
             "type": "leaf",
             "state": {
-              "type": "image",
+              "type": "excalidraw",
               "state": {
-                "file": "Excalidraw/ER_Model_Primus.excalidraw.png"
+                "file": "Excalidraw/ER_Model_Primus.excalidraw.md"
               }
             }
           }
         ],
-        "currentTab": 3
+        "currentTab": 4
       }
     ],
     "direction": "vertical"
@@ -107,7 +117,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 242.5
   },
   "right": {
     "id": "0d577fbcabdacbd9",
@@ -123,7 +133,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Excalidraw/ER_Model_Primus.excalidraw.png",
+                "file": "Excalidraw/ER_Model_Primus.excalidraw.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -140,7 +150,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Excalidraw/ER_Model_Primus.excalidraw.png",
+                "file": "Excalidraw/ER_Model_Primus.excalidraw.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -163,7 +173,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Excalidraw/ER_Model_Primus.excalidraw.png"
+                "file": "Excalidraw/ER_Model_Primus.excalidraw.md"
               }
             }
           }
@@ -187,11 +197,13 @@
   },
   "active": "834bd0644248f78e",
   "lastOpenFiles": [
+    "Excalidraw/WebsiteDesign.excalidraw.md",
+    "Datenmodell.canvas",
     "Excalidraw/ER_Model_Primus.excalidraw.md",
+    "Kardinalität.md",
+    "Untitled.md",
     "Excalidraw/ER_Model_Primus.excalidraw.png",
     "schriftliche Darstellung des ER-Modells.md",
-    "Datenmodell.canvas",
-    "Kardinalität.md",
     "Documentation/ObsidianMD/German/Resources/Resource-Pages/Bootstrap (Framework).md",
     "Excalidraw/Drawing 2024-01-04 09.49.39.excalidraw.md",
     "Excalidraw",
@@ -230,8 +242,6 @@
     "Assets/bootstrap-5.3.2/site/content/docs/5.3/utilities/z-index.md",
     "Assets/bootstrap-5.3.2/site/content/docs/5.3/utilities/visibility.md",
     "Assets/bootstrap-5.3.2/site/content/docs/5.3/utilities/vertical-align.md",
-    "Assets/bootstrap-5.3.2/site/content/docs/5.3/utilities/text.md",
-    "Assets/bootstrap-5.3.2/site/content/docs/5.3/utilities/spacing.md",
-    "Assets/bootstrap-5.3.2/site/content/docs/5.3/utilities/sizing.md"
+    "Assets/bootstrap-5.3.2/site/content/docs/5.3/utilities/text.md"
   ]
 }
