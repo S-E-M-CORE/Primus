@@ -1,0 +1,193 @@
+{
+  "main": {
+    "id": "512f2e3f38dfae56",
+    "type": "split",
+    "children": [
+      {
+        "id": "b633b1d86025bb7a",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "e7e033556e16bcb6",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "ObsidianMD/Projectmanagement/Dev-Diaries/Sascha/2024/2024.01.08.md",
+                "mode": "source",
+                "source": false
+              }
+            },
+            "group": "e02173140b93e8da"
+          }
+        ]
+      },
+      {
+        "id": "dedef769a6fa975e",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "c47e46e1302255ee",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "ObsidianMD/Projectmanagement/Dev-Diaries/Sascha/2024/2024.01.08.md",
+                "mode": "source",
+                "source": false
+              }
+            },
+            "group": "e02173140b93e8da"
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "95f34ce483c11bc0",
+    "type": "split",
+    "children": [
+      {
+        "id": "6609f5cd5cbebba1",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "177e555d8abd275a",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "3bcc5b926dd191bd",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "6e88001956b4df93",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "b52e2b69699346ae",
+    "type": "split",
+    "children": [
+      {
+        "id": "f8c1d75b2a8d247a",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "b24fea81211fa8ec",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "ObsidianMD/Projectmanagement/Dev-Diaries/Sascha/2024/2024.01.08.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "40edad50756d0f4a",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "ObsidianMD/Projectmanagement/Dev-Diaries/Sascha/2024/2024.01.08.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "22e6b3069f54a64b",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "d4e15ff545d69ccc",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "ObsidianMD/Projectmanagement/Dev-Diaries/Sascha/2024/2024.01.08.md"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false
+    }
+  },
+  "active": "e7e033556e16bcb6",
+  "lastOpenFiles": [
+    "ObsidianMD/Projectmanagement/Dev-Diaries/Sascha/2023/2023.11.29.md",
+    "ObsidianMD/Projectmanagement/Dev-Diaries/Sascha/2024/2024.01.08.md",
+    "ObsidianMD/Projectmanagement/Dev-Diaries/Sascha/2023/2023.11.28.md",
+    "ObsidianMD/Projectmanagement/Arbeitsstunden pro Monat.md",
+    "ObsidianMD/Projectmanagement/Dev-Diaries/Sascha/2024",
+    "ObsidianMD/Projectmanagement/Meetings/2024.01.08.md",
+    "ObsidianMD/Projectmanagement/Meetings/Meeting_Template.md",
+    "ObsidianMD/Projectmanagement/Meetings/2023.11.30.md",
+    "ObsidianMD/German/Project Primus - German.md",
+    "ObsidianMD/Projectmanagement/Dev-Diaries/Dev-Diarys.md",
+    "ObsidianMD/Projectmanagement/Dev-Diaries/Sascha/2023/2023.11.30.md",
+    "www.youtube.com.md",
+    "ObsidianMD/Projectmanagement/Meetings/2023.11.29.md",
+    "Pasted image 20231130154652.png",
+    "Pasted image 20231130154649.png",
+    "ObsidianMD/German/Resources/Auftragsklärungen.md",
+    "ObsidianMD/assets/RDBMs_v2.2.pdf",
+    "ObsidianMD/Projectmanagement/Dev-Diaries/Sascha/Sascha.md",
+    "ObsidianMD/Projectmanagement/Dev-Diaries/Mats/Mats.md",
+    "Project Primus.md",
+    "ObsidianMD/German/Resources/Image Resources.md"
+  ]
+}
