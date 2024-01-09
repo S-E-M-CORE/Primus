@@ -10,18 +10,345 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
 
+    <!--Muss noch bearbeitet werden-->
+    <header>
+        <div class="collapse bg-dark" id="navbarHeader">
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-8 col-md-7 py-4">
+                <h4 class="text-white">About</h4>
+                <p class="text-muted">Add some information about the album below, the author, or any other background context. 
+                    Make it a few sentences long so folks can pick up some informative tidbits. Then, 
+                    link them off to some social networking sites or contact information.
+                </p>
+              </div>
+              <div class="col-sm-4 offset-md-1 py-4">
+                <h4 class="text-white">Contact</h4>
+                <ul class="list-unstyled">
+                  <li><a href="#" class="text-white">Follow on Twitter</a></li>
+                  <li><a href="#" class="text-white">Like on Facebook</a></li>
+                  <li><a href="#" class="text-white">Email me</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="navbar navbar-dark bg-dark shadow-sm">
+          <div class="container">
+            <a href="#" class="navbar-brand d-flex align-items-center">  
+                <strong>Logo</strong>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          </div>
+        </div>
+      </header>
+
+
+        <!--Hier öffnen wir die Side bar on the right Side-->
+        <a href="#" class="navbar-brand d-flex align-items-center">
+            <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">Enable both scrolling & backdrop</button>
+        </a>
+
+
+        <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Backdrop with scrolling</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <p>Try scrolling the rest of the page to see this option in action.</p>
+        </div>
+        </div>
+
+
+
 <main>
-
     <div>
-        
+        <section class="py-5 text-center container">
+            <div class="row py-lg-5">
+            <div class="col-lg-6 col-md-8 mx-auto">
+                <h1 class="fw-light">Start Seite des glühendes Colts</h1>
+                <p class="lead text-muted">
+                    Auf der dieser Seite finden Sie einen kleinen Überblick über alle wichtigen Informationen.
+                    Dazu werden nicht nur wichtige Informationen angezeigt sondern es werden auch sehr oft wiederholte Informationen angezeigt.
+                    Aber auch Favoriten werden angezeigt, die vom Benutzer markiert wurden.
+                    </p>
+                <p>
+                <!--
+                    <a href="#" class="btn btn-primary my-2">Mitgliedertabelle</a>
+                    <a href="#" class="btn btn-secondary my-2">Angestelltentabelle</a>
+                -->
+                </p>
+            </div>
+            </div>
+        </section>
+    </div>    
+    <div class="album py-5 bg-light">
+        <div class="container">
 
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 
-    </div>
+            <!-- Erste Mitgliederkarte -->
+            <div class="col">
+                <div class="card shadow-sm">
+                <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/>
+                    <text x="50%" y="50%" fill="#eceeef" dy=".3em">Mitglied 1</text>
+                </svg>
+                <div class="card-body">
+                    <p class="card-text"> 
+                        <table>
+                            <tr>
+                                <ul>Vorname: </ul>
+                                <ul>Nachname: </ul>
+                                <ul>Geburtstag: </ul>
+                            </tr>
+                        </table>
+                
+                    </p>
+                    <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-sm btn-outline-secondary">anschauen</button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary">Bearbeiten</button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary">Anwesend</button>
+                    </div>
+                    <small class="text-muted">9 mins</small>
+                    </div>
+                </div>
+                </div>
+            </div>
+
+            <!-- Zweite Mitgliederkarte -->
+            <div class="col">
+                <div class="card shadow-sm">
+                <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/>
+                    <text x="50%" y="50%" fill="#eceeef" dy=".3em">Mitglied 2</text></svg>
+
+                <div class="card-body">
+                    <p class="card-text"> 
+                        <table>
+                            <tr>
+                                <ul>Vorname: </ul>
+                                <ul>Nachname: </ul>
+                                <ul>Geburtstag: </ul>
+                            </tr>
+                        </table>
+                
+                    </p>
+                    <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-sm btn-outline-secondary">anschauen</button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary">Bearbeiten</button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary">Anwesend</button>
+                    </div>
+                    <small class="text-muted">9 mins</small>
+                    </div>
+                </div>
+                </div>
+            </div>
+
+            <!-- dritte Mitgliederkarte -->
+            <div class="col">
+                <div class="card shadow-sm">
+                <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+
+                <div class="card-body">
+                    <p class="card-text"> 
+                        <table>
+                            <tr>
+                                <ul>Vorname: </ul>
+                                <ul>Nachname: </ul>
+                                <ul>Geburtstag: </ul>
+                            </tr>
+                        </table>
+                
+                    </p>
+                    <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-sm btn-outline-secondary">anschauen</button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary">Bearbeiten</button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary">Anwesend</button>
+                    </div>
+                    <small class="text-muted">9 mins</small>
+                    </div>
+                </div>
+                </div>
+            </div>
+
+            <!-- Vierte Mitgliederkarte -->
+            <div class="col">
+                <div class="card shadow-sm">
+                <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+
+                <div class="card-body">
+                    <p class="card-text"> 
+                        <table>
+                            <tr>
+                                <ul>Vorname: </ul>
+                                <ul>Nachname: </ul>
+                                <ul>Geburtstag: </ul>
+                            </tr>
+                        </table>
+                
+                    </p>
+                    <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-sm btn-outline-secondary">anschauen</button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary">Bearbeiten</button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary">Anwesend</button>
+                    </div>
+                    <small class="text-muted">9 mins</small>
+                    </div>
+                </div>
+                </div>
+            </div>
+
+            <!-- Fünfte Mitgliederkarte -->
+            <div class="col">
+                <div class="card shadow-sm">
+                <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+
+                <div class="card-body">
+                    <p class="card-text"> 
+                        <table>
+                            <tr>
+                                <ul>Vorname: </ul>
+                                <ul>Nachname: </ul>
+                                <ul>Geburtstag: </ul>
+                            </tr>
+                        </table>
+                
+                    </p>
+                    <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-sm btn-outline-secondary">anschauen</button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary">Bearbeiten</button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary">Anwesend</button>
+                    </div>
+                    <small class="text-muted">9 mins</small>
+                    </div>
+                </div>
+                </div>
+            </div>
+
+            <!-- Sechste Mitgliederkarte -->
+            <div class="col">
+                <div class="card shadow-sm">
+                <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+
+                <div class="card-body">
+                    <p class="card-text"> 
+                        <table>
+                            <tr>
+                                <ul>Vorname: </ul>
+                                <ul>Nachname: </ul>
+                                <ul>Geburtstag: </ul>
+                            </tr>
+                        </table>
+                
+                    </p>
+                    <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-sm btn-outline-secondary">anschauen</button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary">Bearbeiten</button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary">Anwesend</button>
+                    </div>
+                    <small class="text-muted">9 mins</small>
+                    </div>
+                </div>
+                </div>
+            </div>
+
+            <!-- Siebte Mitgliederkarte -->
+            <div class="col">
+                <div class="card shadow-sm">
+                <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+
+                <div class="card-body">
+                    <p class="card-text"> 
+                        <table>
+                            <tr>
+                                <ul>Vorname: </ul>
+                                <ul>Nachname: </ul>
+                                <ul>Geburtstag: </ul>
+                            </tr>
+                        </table>
+                
+                    </p>
+                    <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-sm btn-outline-secondary">anschauen</button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary">Bearbeiten</button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary">Anwesend</button>
+                    </div>
+                    <small class="text-muted">9 mins</small>
+                    </div>
+                </div>
+                </div>
+            </div>
+
+            <!-- Achte Mitgliederkarte -->
+            <div class="col">
+                <div class="card shadow-sm">
+                <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+
+                    <div class="card-body">
+                        <p class="card-text"> 
+                            <table>
+                                <tr>
+                                    <ul>Vorname: </ul>
+                                    <ul>Nachname: </ul>
+                                    <ul>Geburtstag: </ul>
+                                </tr>
+                            </table>
+                    
+                        </p>
+                        <div class="d-flex justify-content-between align-items-center">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-sm btn-outline-secondary">anschauen</button>
+                            <button type="button" class="btn btn-sm btn-outline-secondary">Bearbeiten</button>
+                            <button type="button" class="btn btn-sm btn-outline-secondary">Anwesend</button>
+                        </div>
+                        <small class="text-muted">9 mins</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- neunte Mitgliederkarte -->
+            <div class="col">
+                <div class="card shadow-sm">
+                <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+
+                <div class="card-body">
+                    <p class="card-text"> 
+                        <table>
+                            <tr>
+                                <ul>Vorname: </ul>
+                                <ul>Nachname: </ul>
+                                <ul>Geburtstag: </ul>
+                            </tr>
+                        </table>
+                
+                    </p>
+                    <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-sm btn-outline-secondary">anschauen</button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary">Bearbeiten</button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary">Anwesend</button>
+                    </div>
+                    <small class="text-muted">9 mins</small>
+                    </div>
+                </div>
+                </div>
+            </div>
+
+            </div>
+        </div>
+    </div>    
 
 </main>
-
-
-
 
 
 
