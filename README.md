@@ -11,59 +11,57 @@ Primus is a modern membership management system developed as a school project. I
 
 Note: Primus is a work in progress and solely created for educational purposes. The scenario described is fictional.
     <br />
-    <a href="Documentation/Project Primus.md"><strong>Projekt-Dokumentation »</strong></a>
+    <a href="Documentation/Project Primus.md"><strong>Project Documentation »</strong></a>
     <br />
     <br />
-		<a href="https://github.com/theSaschaM/BSFI22D_Primus/issues">Bug gefunden?</a>
+		<a href="https://github.com/theSaschaM/BSFI22D_Primus/issues">Found a bug?</a>
   </p>
 </div>
 
-
-
 <details>
-  <summary>Inhaltsverzeichnis</summary>
+  <summary>Table of Contents</summary>
   <ol>
     <li>
-      <a href="#about-the-project">Über das Projekt</a>
+      <a href="#about-the-project">About the Project</a>
       <ul>
-        <li><a href="#built-with">Verwendete Frameworks</a></li>
+        <li><a href="#built-with">Built With</a></li>
       </ul>
     </li>
     <li>
-      <a href="#getting-started">Erste Schritte</a>
+      <a href="#getting-started">Getting Started</a>
       <ul>
-        <li><a href="#prerequisites">Voraussetzungen</a></li>
+        <li><a href="#prerequisites">Prerequisites</a></li>
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Verwendung</a></li>
+    <li><a href="#usage">Usage</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
   </ol>
 </details>
 
-## Über das Projekt
+## About the Project
 
-"Primus" ist der Codename für unser erstes umfassendes Fullstack-Projekt, das im Rahmen des Lernfelds 8 (Datenbanken) an der Berufsschule durchgeführt wird. Alle relevanten Informationen, einschließlich der Auftragsklärungen und sämtlicher verwendeter Ressourcen, sind in diesem Dokument festgehalten
+"Primus" is the codename for our first comprehensive full-stack project carried out as part of Learning Field 8 (Databases) at vocational school. All relevant information, including project clarifications and all used resources, are documented in this file.
 
-### Verwendete Frameworks
+### Built With
 
 * [Bootstrap](https://getbootstrap.com/)
 
-## Erste Schritte
+## Getting Started
 
-Da es noch keine richtige Version der Anwendung gibt, wird dieser Abschnitt in nachfolgenden Versionen ergänzt.
+As there is no proper version of the application yet, this section will be updated in subsequent versions.
 
-### Voraussetzungen
+### Prerequisites
 
 
 ### Installation
 
 
 <!-- USAGE EXAMPLES -->
-## Verwendung
+## Usage
 
-Da es noch keine richtige Version der Anwendung gibt, wird dieser Abschnitt in nachfolgenden Versionen ergänzt.
+As there is no proper version of the application yet, this section will be updated in subsequent versions.
 
 ## License
 
