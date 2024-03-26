@@ -3,23 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="sidebars.css">
+    
     <title>Neues mit Glieder erstellen</title>
 </head>
 <body>
     
-    <h1>
-        Noitz an mich selber zum Design
+    <div class="container">
+        <div class="row">
 
-    </h1>
+            <!-- 
+                Erzeugt das default Bild. 
+                (Zukunft)Ändert sich aber durch JS zur dem vom Nutzer ausgewählen Bild
+            -->
+            <div class="form-group">
+                <img src="BSFI22D_Primus_Version_1.0.1\5. Assets\General\blank_Profile_Image.png" alt="Blank Profile Image">
+                
+            <!-- 
+                Sollte das Bild geklickt werden soll das hier ausgeführt werden.
+                <input type="file" placeholder="Ein Bild von dir.">
+            -->
+              </div>
 
-    <p>
-        1.0.0 Das Bild auf der linken Seite soll hochgeladen werden in die Datenbank.
-            1.1.0   Der Benutzer klickt auf das auf der linken Seite stehende Example Bild um in der Lage zu sein.
-                    Das Bild des neuem Mitglied hinzu zufügen. 
-            1.2.0   Da durch soll automatisch ein Fenster öffnen,(nicht von uns sondern von Windows)
-                    das dem Benutzer es ermöglicht eine Bild in der Form eines png auf seinem Rechner auszuwählen. 
+        </div>
 
-    </p>
+    </div>
+
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col-2">
+                <label>Vorname:</label>
+                <input type="text"  placeholder="Max">
+                <br><br>
+            </div>
+
+            <div class="col-2">
+                <label>Nachname:</label>
+                <input type="text" placeholder="Mustermann">
+                <br><br>
+
+            </div>
+
+
+            <!--
+                Anstatt eines Text-Input string könnte man auch ein Combobox erstellen die von 1 Jahr alt bis 150 Jahre alt geht.  
+            -->
+            <div class="col-2">
+                <label>Alter</label>
+                <input type="text" placeholder="z.B 18, 25, 38 oder 50">
+                <br><br>
+            </div>
+
+
+
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <label >Email address</label>
+                <input type="email" class="form-control" placeholder="max.Mustermann@t-online.de">
+                <small> We'll never share your email with anyone else.</small>
+            </div>
+        </div>
+
+    </div>
 
 
 
