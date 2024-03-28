@@ -1,24 +1,10 @@
-#ifndef DTOs_hpp
-#define DTOs_hpp
+#ifndef DTOs_HPP
+#define DTOs_HPP
 
-#include "oatpp/core/macro/codegen.hpp"
-#include "oatpp/core/Types.hpp"
+#include "databaseDTOs/DatabaseDTOs.hpp"
 
-#include OATPP_CODEGEN_BEGIN(DTO)
+#include "PageDTO.hpp"
+#include "StatusDTO.hpp"
 
-/**
- *  Data Transfer Object. Object containing fields only.
- *  Used in API for serialization/deserialization and validation
- */
-class MyDto : public oatpp::DTO {
-  
-  DTO_INIT(MyDto, DTO)
-  
-  DTO_FIELD(Int32, statusCode);
-  DTO_FIELD(String, message);
-  
-};
+#endif // DTOs_HPP
 
-#include OATPP_CODEGEN_END(DTO)
-
-#endif /* DTOs_hpp */

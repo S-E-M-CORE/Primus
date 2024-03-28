@@ -15,29 +15,3 @@ Postprocess upscale by: 5, Postprocess upscaler: ESRGAN_4x
 
 #### extras
 Postprocess upscale by: 5, Postprocess upscaler: ESRGAN_4x
-
-### Bearbeitungsschritte
-#### 2023.11.28
-Verwendung von [Photopea](https://www.photopea.com/).
-- Manuelle Überarbeitung des unteren Bereichs des Logos
-- Entfernen der Texte
-- Einfügen von neuen Text mit Schriftart [Old English Text MT R...](https://www.download-free-fonts.com/details/70399/old-english-text-mt)
-- Text hat selbe Farbe wie voriger Text (R: 252, G: 216, B: 94)
-- Speicherung der Photoshop-Datei in Projektordner unter "assets/general" mit Bezeichnung "Logo - Der glühende Colt", sowie einer gleichnamigen JPEG
-
-Ergebnis: [[Logo - Der glühende Colt V1.jpg]]
-
-
-## Bootstrap Logo
-![[Bootstrap Logo.png]]
-[Quelle](https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo-shadow.png)
-
-
-## Electron Logo
-
-![[Electron Logo.png]]
-[Quelle](https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Electron_Software_Framework_Logo.svg/256px-Electron_Software_Framework_Logo.svg.png)
-
-## Profil-Bilder für Dev-Diaries
-Die Bilder, welche in den Dev-Diaries des Entwicklers implementiert sind, sind selbsterklärend freiwillig eingetragen worden und stammen von den jeweiligen Personen, welche auf dem Bild gezeigt werden.
-

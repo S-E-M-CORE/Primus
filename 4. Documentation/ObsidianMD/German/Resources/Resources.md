@@ -16,10 +16,8 @@
 
 ## Frameworks
 
+- Bootstrap (CSS)
+- Oatpp (C++)
+
 ### CSS
-![[Bootstrap (Framework)]]
-
-![[Electron (Framework)]]
-
-
 ![[Image Resources]]

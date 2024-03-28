@@ -1,13 +1,15 @@
 
-#include "MyControllerTest.hpp"
+#include "StaticControllerTest.hpp"
 
 #include <iostream>
 
-void runTests() {
-  OATPP_RUN_TEST(MyControllerTest);
+void runTests()
+{
+  OATPP_RUN_TEST(StaticControllerTest);
 }
 
-int main() {
+int main()
+{
 
   oatpp::base::Environment::init();
 
