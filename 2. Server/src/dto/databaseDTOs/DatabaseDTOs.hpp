@@ -46,6 +46,14 @@ class MemberMembershipRelDTO : public oatpp::DTO
 	DTO_FIELD(Int64, membershipID);
 };
 
+class MembershipDepartmentRelDTO : public oatpp::DTO
+{
+	DTO_INIT(MembershipDepartmentRelDTO, DTO /* extends */);
+
+	DTO_FIELD(Int64, membershipID);
+	DTO_FIELD(Int64, departmentID);
+};
+
 class MemberTrainingRelDTO : public oatpp::DTO
 {
 	DTO_INIT(MemberTrainingRelDTO, DTO /* extends */);

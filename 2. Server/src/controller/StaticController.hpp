@@ -14,9 +14,6 @@
 #include "oatpp/core/macro/codegen.hpp"
 #include "oatpp/core/macro/component.hpp"
 
-// App includes
-#include "dto/DTOs.hpp"
-
 #include OATPP_CODEGEN_BEGIN(ApiController) //<-- Begin Codegen
 
 class StaticController : public oatpp::web::server::api::ApiController {
@@ -25,16 +22,21 @@ public:
     : oatpp::web::server::api::ApiController(objectMapper)
   {}
 public:
-  
-  // ENDPOINT("GET", "/", root) {
-  //   auto dto = MyDto::createShared();
-  //   dto->statusCode = 200;
-  //   dto->message = "Hello World!";
-  //   return createDtoResponse(Status::CODE_200, dto);
-  // }
-  
-  // TODO Insert Your endpoints here !!!
-  
+    ENDPOINT("GET", "/", root) {
+        const char* html =
+            "<html lang='en'>"
+            "  <head>"
+            "    <meta charset=utf-8/>"
+            "  </head>"
+            "  <body>"
+            "    <p>Hello CRUD example project!</p>"
+            "    <a href='swagger/ui'>Checkout Swagger-UI page</a>"
+            "  </body>"
+            "</html>";
+        auto response = createResponse(Status::CODE_200, html);
+        response->putHeader(Header::CONTENT_TYPE, "text/html");
+        return response;
+    }
 };
 
 #include OATPP_CODEGEN_END(ApiController) //<-- End Codegen

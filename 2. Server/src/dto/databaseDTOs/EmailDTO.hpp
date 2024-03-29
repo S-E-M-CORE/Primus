@@ -10,7 +10,7 @@ class EmailDTO : public oatpp::DTO
 {
 	DTO_INIT(EmailDTO, DTO /* extends */)
 
-	DTO_FIELD(Int64, emailID); // Unique identifier for each email
+	DTO_FIELD(Int64, id);		// Unique identifier for each email
 	DTO_FIELD(String, email);  // Email address
 };
 

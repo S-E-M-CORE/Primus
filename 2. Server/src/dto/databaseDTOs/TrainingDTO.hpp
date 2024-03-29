@@ -10,7 +10,7 @@ class TrainingDTO : public oatpp::DTO
 {
 	DTO_INIT(TrainingDTO, DTO /* extends */)
 
-	DTO_FIELD(Int64 , trainingID);		// Unique identifier for each training
+	DTO_FIELD(Int64 , id);		// Unique identifier for each training
 	DTO_FIELD(String, date);			// Date when the training took place
 	DTO_FIELD(String, startTime);		// Start time of the training
 	DTO_FIELD(String, room);			// Room where the training took place

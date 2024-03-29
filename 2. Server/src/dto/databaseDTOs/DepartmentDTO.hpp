@@ -10,9 +10,8 @@ class DepartmentDTO : public oatpp::DTO
 {
 	DTO_INIT(DepartmentDTO, DTO /* extends */)
 
-	DTO_FIELD(Int64	 , departmentID);	// Unique identifier for each department
+	DTO_FIELD(Int64	 , id);				// Unique identifier for each department
 	DTO_FIELD(String , name);			// Name of the department
-	DTO_FIELD(Float32, monthlyFee);		// Monthly fee for the department
 	DTO_FIELD(Boolean, active);			// Whether or not the department is active
 };
 

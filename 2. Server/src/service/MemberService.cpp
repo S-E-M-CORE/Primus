@@ -1,29 +1,30 @@
-#include "MemberController.hpp"
+#include "MemberService.hpp"
 
-oatpp::Object<MemberDTO> UserService::createUser(const oatpp::Object<MemberDTO>& dto) {
-
-    auto dbResult = m_database->createUser(dto);
+oatpp::Object<MemberDTO> MemberService::createMember(const oatpp::Object<MemberDTO>& DTO)
+{
+    auto dbResult = m_database->createMember(DTO);
     OATPP_ASSERT_HTTP(dbResult->isSuccess(), Status::CODE_500, dbResult->getErrorMessage());
 
-    auto userId = oatpp::sqlite::Utils::getLastInsertRowId(dbResult->getConnection());
+    auto MemberId = oatpp::sqlite::Utils::getLastInsertRowId(dbResult->getConnection());
 
-    return getUserById((v_int32)userId);
+    return getMemberById((v_int64)MemberId);
 
 }
 
-oatpp::Object<MemberDTO> UserService::updateUser(const oatpp::Object<MemberDTO>& dto) {
+oatpp::Object<MemberDTO> MemberService::updateMember(const oatpp::Object<MemberDTO>& DTO)
+{
 
-    auto dbResult = m_database->updateUser(dto);
+    auto dbResult = m_database->updateMember(DTO);
     OATPP_ASSERT_HTTP(dbResult->isSuccess(), Status::CODE_500, dbResult->getErrorMessage());
-    return getUserById(dto->id);
+    return getMemberById(DTO->id);
 
 }
 
-oatpp::Object<MemberDTO> UserService::getUserById(const oatpp::Int32& id, const oatpp::provider::ResourceHandle<oatpp::orm::Connection>& connection) {
-
-    auto dbResult = m_database->getUserById(id, connection);
+oatpp::Object<MemberDTO> MemberService::getMemberById(const oatpp::Int64& id, const oatpp::provider::ResourceHandle<oatpp::orm::Connection>& connection)
+{
+    auto dbResult = m_database->getMemberById(id, connection);
     OATPP_ASSERT_HTTP(dbResult->isSuccess(), Status::CODE_500, dbResult->getErrorMessage());
-    OATPP_ASSERT_HTTP(dbResult->hasMoreToFetch(), Status::CODE_404, "User not found");
+    OATPP_ASSERT_HTTP(dbResult->hasMoreToFetch(), Status::CODE_404, "Member not found");
 
     auto result = dbResult->fetch<oatpp::Vector<oatpp::Object<MemberDTO>>>();
     OATPP_ASSERT_HTTP(result->size() == 1, Status::CODE_500, "Unknown error");
@@ -31,8 +32,8 @@ oatpp::Object<MemberDTO> UserService::getUserById(const oatpp::Int32& id, const 
     return result[0];
 
 }
-
-oatpp::Object<PageDto<oatpp::Object<MemberDTO>>> UserService::getAllUsers(const oatpp::UInt32& offset, const oatpp::UInt32& limit) {
+oatpp::Object<PageDTO<oatpp::Object<MemberDTO>>> MemberService::getAllMembers(const oatpp::UInt32& offset, const oatpp::UInt32& limit)
+{
 
     oatpp::UInt32 countToFetch = limit;
 
@@ -40,12 +41,12 @@ oatpp::Object<PageDto<oatpp::Object<MemberDTO>>> UserService::getAllUsers(const 
         countToFetch = 10;
     }
 
-    auto dbResult = m_database->getAllUsers(offset, countToFetch);
+    auto dbResult = m_database->getAllMembers(offset, countToFetch);
     OATPP_ASSERT_HTTP(dbResult->isSuccess(), Status::CODE_500, dbResult->getErrorMessage());
 
     auto items = dbResult->fetch<oatpp::Vector<oatpp::Object<MemberDTO>>>();
 
-    auto page = PageDto<oatpp::Object<MemberDTO>>::createShared();
+    auto page = PageDTO<oatpp::Object<MemberDTO>>::createShared();
     page->offset = offset;
     page->limit = countToFetch;
     page->count = items->size();
@@ -54,13 +55,13 @@ oatpp::Object<PageDto<oatpp::Object<MemberDTO>>> UserService::getAllUsers(const 
     return page;
 
 }
-
-oatpp::Object<StatusDto> UserService::deleteUserById(const oatpp::Int32& userId) {
-    auto dbResult = m_database->deleteUserById(userId);
+oatpp::Object<StatusDTO> MemberService::deleteMemberById(const oatpp::Int64& id)
+{
+    auto dbResult = m_database->deleteMemberById(id);
     OATPP_ASSERT_HTTP(dbResult->isSuccess(), Status::CODE_500, dbResult->getErrorMessage());
-    auto status = StatusDto::createShared();
+    auto status = StatusDTO::createShared();
     status->status = "OK";
     status->code = 200;
-    status->message = "User was successfully deleted";
+    status->message = "Member was successfully deleted";
     return status;
 }

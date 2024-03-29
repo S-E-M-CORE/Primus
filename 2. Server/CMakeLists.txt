@@ -7,10 +7,24 @@ project(${project_name})
 set(CMAKE_CXX_STANDARD 11)
 
 add_library(${project_name}-lib
+        src/sqlite/DatabaseComponent.hpp
+        src/swagger-ui/SwaggerComponent.hpp
         src/AppComponent.hpp
-        src/controller/Controllers.cpp
-        src/controller/Controllers.hpp
-        src/dto/DTOs.hpp
+        src/controller/StaticController.hpp
+        src/controller/MemberController.hpp
+        src/sqlite/DatabaseClient.hpp
+        src/dto/PageDTO.hpp
+        src/dto/StatusDTO.hpp
+        src/dto/databaseDTOs/AdressDTO.hpp
+        src/dto/databaseDTOs/DatabaseDTOs.hpp
+        src/dto/databaseDTOs/DepartmentDTO.hpp
+        src/dto/databaseDTOs/EmailDTO.hpp
+        src/dto/databaseDTOs/MemberDTO.hpp
+        src/dto/databaseDTOs/MembershipDTO.hpp
+        src/dto/databaseDTOs/PhoneNumberDTO.hpp
+        src/dto/databaseDTOs/TrainingDTO.hpp
+        src/service/MemberService.cpp
+        src/service/MemberService.hpp
 )
 
 ## link libs
@@ -29,7 +43,21 @@ target_link_libraries(${project_name}-lib
 add_definitions(
         ## define path to swagger-ui static resources folder
         -DOATPP_SWAGGER_RES_PATH="${oatpp-swagger_INCLUDE_DIRS}/../bin/oatpp-swagger/res"
+
+        ## SQLite database file
+        -DDATABASE_FILE="${CMAKE_CURRENT_SOURCE_DIR}/database.sqlite"
+
+        ## SQLite database test file
+        -DTESTDATABASE_FILE="${CMAKE_CURRENT_SOURCE_DIR}/test-db.sqlite"
+
+        ## Path to database migration scripts
+        -DDATABASE_MIGRATIONS="${CMAKE_CURRENT_SOURCE_DIR}/sql"
 )
+
+if(CMAKE_SYSTEM_NAME MATCHES Linux)
+    find_package(Threads REQUIRED)
+    target_link_libraries(crud-lib INTERFACE Threads::Threads ${CMAKE_DL_LIBS})
+endif()
 
 target_include_directories(${project_name}-lib PUBLIC src)
 

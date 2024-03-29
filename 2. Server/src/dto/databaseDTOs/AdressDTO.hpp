@@ -10,7 +10,7 @@ class AddressDTO : public oatpp::DTO
 {
 	DTO_INIT(AddressDTO, DTO /* extends */);
 
-	DTO_FIELD(Int64, adressID);		 // Unique identifier
+	DTO_FIELD(Int64,  id);		 // Unique identifier
 	DTO_FIELD(String, zipCode);		 // ZIP code of the address
 	DTO_FIELD(String, city);		 // City of the address
 	DTO_FIELD(String, state);		 // State of the address

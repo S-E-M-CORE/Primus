@@ -3,65 +3,61 @@
 
 // Oatpp headers
 #include "oatpp/web/server/HttpConnectionHandler.hpp"
+#include "oatpp/web/server/HttpRouter.hpp"
 #include "oatpp/network/tcp/server/ConnectionProvider.hpp"
 #include "oatpp/parser/json/mapping/ObjectMapper.hpp"
 #include "oatpp/core/macro/component.hpp"
-#include "oatpp-sqlite/orm.hpp"
 
 // App specific headers
-#include "sqlite/DatabaseClient.hpp"
+#include "sqlite/DatabaseComponent.hpp"
+#include "swagger-ui/SwaggerComponent.hpp"
 
 /**
  *  Class which creates and holds Application components and registers components in oatpp::base::Environment
  *  Order of components initialization is from top to bottom
  */
-class AppComponent {
+class AppComponent
+{
 public:
+    /**
+     * Database component
+     */
+    DatabaseComponent databaseComponent;
 
-	/**
-	 * Create DbClient component.
-	 */
-	OATPP_CREATE_COMPONENT(std::shared_ptr<DatabaseClient>, DBClient)([] {
+    /**
+    *  Swagger component
+    */
+    SwaggerComponent swaggerComponent;
 
-		/* Create database-specific ConnectionProvider */
-		auto connectionProvider = std::make_shared<oatpp::sqlite::ConnectionProvider>("PrimusDatabase.sqlite");
+    /**
+     *  Create ConnectionProvider component which listens on the port
+     */
+    OATPP_CREATE_COMPONENT(std::shared_ptr<oatpp::network::ServerConnectionProvider>, serverConnectionProvider)([] {
+        return oatpp::network::tcp::server::ConnectionProvider::createShared({ "0.0.0.0", 8000, oatpp::network::Address::IP_4 });
+        }());
 
-		/* Create database-specific Executor */
-		auto executor = std::make_shared<oatpp::sqlite::Executor>(connectionProvider);
+    /**
+     *  Create Router component
+     */
+    OATPP_CREATE_COMPONENT(std::shared_ptr<oatpp::web::server::HttpRouter>, httpRouter)([] {
+        return oatpp::web::server::HttpRouter::createShared();
+        }());
 
-		/* Create MyClient database client */
-		return std::make_shared<DatabaseClient>(executor);
+    /**
+     *  Create ConnectionHandler component which uses Router component to route requests
+     */
+    OATPP_CREATE_COMPONENT(std::shared_ptr<oatpp::network::ConnectionHandler>, serverConnectionHandler)([] {
+        OATPP_COMPONENT(std::shared_ptr<oatpp::web::server::HttpRouter>, router); // get Router component
+        return oatpp::web::server::HttpConnectionHandler::createShared(router);
+        }());
 
-		}());
+    /**
+     *  Create ObjectMapper component to serialize/deserialize DTOs in Contoller's API
+     */
+    OATPP_CREATE_COMPONENT(std::shared_ptr<oatpp::data::mapping::ObjectMapper>, apiObjectMapper)([] {
+        return oatpp::parser::json::mapping::ObjectMapper::createShared();
+        }());
 
-	/**
-	 *  Create ConnectionProvider component which listens on the port
-	 */
-	OATPP_CREATE_COMPONENT(std::shared_ptr<oatpp::network::ServerConnectionProvider>, serverConnectionProvider)([] {
-		return oatpp::network::tcp::server::ConnectionProvider::createShared({ "0.0.0.0", 8000, oatpp::network::Address::IP_4 });
-		}());
-
-	/**
-	 *  Create Router component
-	 */
-	OATPP_CREATE_COMPONENT(std::shared_ptr<oatpp::web::server::HttpRouter>, httpRouter)([]{
-		return oatpp::web::server::HttpRouter::createShared();
-		}());
-
-	/**
-	 *  Create ConnectionHandler component which uses Router component to route requests
-	 */
-	OATPP_CREATE_COMPONENT(std::shared_ptr<oatpp::network::ConnectionHandler>, serverConnectionHandler)([] {
-		OATPP_COMPONENT(std::shared_ptr<oatpp::web::server::HttpRouter>, router); // get Router component
-		return oatpp::web::server::HttpConnectionHandler::createShared(router);
-		}());
-
-	/**
-	 *  Create ObjectMapper component to serialize/deserialize DTOs in Contoller's API
-	 */
-	OATPP_CREATE_COMPONENT(std::shared_ptr<oatpp::data::mapping::ObjectMapper>, apiObjectMapper)([] {
-		return oatpp::parser::json::mapping::ObjectMapper::createShared();
-		}());
 
 };
 

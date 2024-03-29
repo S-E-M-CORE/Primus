@@ -6,11 +6,10 @@
 
 #include OATPP_CODEGEN_BEGIN(DTO)
 
-class MembershipDto : public oatpp::DTO {
-	DTO_INIT(MembershipDto, DTO /* extends */);
+class MembershipDTO : public oatpp::DTO {
+	DTO_INIT(MembershipDTO, DTO /* extends */);
 
-	DTO_FIELD(Int64  , membershipID);	// Unique identifier for each membership
-	DTO_FIELD(Int64  , departmentId);	// Reference to the department (foreign key)
+	DTO_FIELD(Int64  , id);	// Unique identifier for each membership
 	DTO_FIELD(Float32, membershipFee);  // Membership fee for the membership
 	DTO_FIELD(Boolean, active);			// Whether or not the membership is active
 };

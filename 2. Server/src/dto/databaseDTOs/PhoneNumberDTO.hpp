@@ -10,8 +10,8 @@ class PhoneNumberDTO : public oatpp::DTO
 {
 	DTO_INIT(PhoneNumberDTO, DTO /* extends */);
 
-	DTO_FIELD(Int64, phoneNumberID); // Unique identifier for each phone number
-	DTO_FIELD(String, phoneNumber);  // Phone number
+	DTO_FIELD(Int64,  id); // Unique identifier for each phone number
+	DTO_FIELD(String, number);  // Phone number
 };
 
 

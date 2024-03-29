@@ -10,12 +10,12 @@ class MemberDTO : public oatpp::DTO
 {
 	DTO_INIT(MemberDTO, DTO /* extends */)
 
-	DTO_FIELD(Int64  , memberID);	// Unique identifier for each member
-	DTO_FIELD(String , firstName);	// First name of the member
-	DTO_FIELD(String , lastName);	// Last name of the member
-	DTO_FIELD(String , birthDate);	// Birth date of the member
-	DTO_FIELD(String , joinDate);	// Date when the member joined the organization
-	DTO_FIELD(Boolean, active);		// Whether or not the member is active
+	DTO_FIELD(oatpp::Int64  , id);	// Unique identifier for each member
+	DTO_FIELD(oatpp::String , firstName);	// First name of the member
+	DTO_FIELD(oatpp::String , lastName);	// Last name of the member
+	DTO_FIELD(oatpp::String , birthDate);	// Birth date of the member
+	DTO_FIELD(oatpp::String , joinDate);	// Date when the member joined the organization
+	DTO_FIELD(oatpp::Boolean, active);		// Whether or not the member is active
 };
 
 #include OATPP_CODEGEN_END(DTO)

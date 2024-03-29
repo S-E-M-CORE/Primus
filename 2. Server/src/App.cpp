@@ -1,5 +1,9 @@
-#include "./controller/StaticController.hpp"
-#include "./AppComponent.hpp"
+#include "AppComponent.hpp"
+
+#include "controller/MemberController.hpp"
+#include "controller/StaticController.hpp"
+
+#include "oatpp-swagger/Controller.hpp"
 
 #include "oatpp/network/Server.hpp"
 
@@ -15,6 +19,14 @@ void run(void) {
 
   /* Create StaticController and add all of its endpoints to router */
   router->addController(std::make_shared<StaticController>());
+
+  /* Create MemberController and add all of its endpoints to router */
+  router->addController(std::make_shared<MemberController>());
+
+  /* Swagger UI Endpoint documentation */
+  oatpp::web::server::api::Endpoints docEndpoints;
+  docEndpoints.append(router->addController(MemberController::createShared())->getEndpoints());
+  router->addController(oatpp::swagger::Controller::createShared(docEndpoints));
 
   /* Get connection handler component */
   OATPP_COMPONENT(std::shared_ptr<oatpp::network::ConnectionHandler>, connectionHandler);
@@ -36,8 +48,8 @@ void run(void) {
 /**
  *  main
  */
-int main(int argc, const char * argv[]) {
-
+int main(int argc, const char * argv[])
+{
   oatpp::base::Environment::init();
 
   run();

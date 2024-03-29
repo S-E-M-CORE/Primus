@@ -9,9 +9,9 @@
     "",
     "\\src",
     "\\src\\controller",
+    "\\src\\dto",
     "\\src\\service",
     "\\src\\sqlite"
   ],
-  "SelectedNode": "\\src\\dto",
   "PreviewInSolutionExplorer": false
 }
