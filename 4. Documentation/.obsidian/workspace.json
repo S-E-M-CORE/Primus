@@ -1,0 +1,167 @@
+{
+  "main": {
+    "id": "7f1dfadcb7b818dd",
+    "type": "split",
+    "children": [
+      {
+        "id": "1906cfa667ec52cf",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "7887019871f2bce1",
+            "type": "leaf",
+            "state": {
+              "type": "image",
+              "state": {
+                "file": "ER_Model_Primus_PNG.excalidraw.png"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "d471e0ff192b2bc4",
+    "type": "split",
+    "children": [
+      {
+        "id": "4c3b20c3361e0dc5",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "7c6d87cd16accbac",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "2d116efe2da065a1",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "7efad4a6536121cd",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "4b05c1c213932655",
+    "type": "split",
+    "children": [
+      {
+        "id": "f1960dea9cb993c1",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "e4552e56ee61e853",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "ER_Model_Primus_PNG.excalidraw.png",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "f9847c444ae822a6",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "ER_Model_Primus_PNG.excalidraw.png",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "2d22c827f8179237",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "e74b8f98cff6ba38",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "ER_Model_Primus_PNG.excalidraw.png"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false
+    }
+  },
+  "active": "7887019871f2bce1",
+  "lastOpenFiles": [
+    "ObsidianMD/Projectmanagement/Datenmodell.canvas",
+    "ER_Model_Primus_PNG.excalidraw.png",
+    "Project Primus.md",
+    "ObsidianMD/Kardinalität.md",
+    "ObsidianMD/Projectmanagement/Arbeitsstunden pro Monat.md",
+    "ObsidianMD/Projectmanagement/Dev-Diaries/Mats/2023.11.29.md",
+    "ObsidianMD/Projectmanagement/Dev-Diaries/Mats/2023.11.30.md",
+    "ObsidianMD/Projectmanagement/Dev-Diaries/Mats/Mats.md",
+    "ObsidianMD/German/Project Primus - German.md",
+    "ObsidianMD/German/Resources/Resources.md",
+    "ObsidianMD/German/Resources/Image Resources.md",
+    "ObsidianMD/German/Resources/Auftragsklärungen.md",
+    "ObsidianMD/German/Anleitungen/Handbuch.md",
+    "ObsidianMD/German/Anleitungen/Installation.md",
+    "Electron (Framework).md",
+    "ObsidianMD/German/Resources/Resource-Pages/Bootstrap (Framework).md",
+    "ObsidianMD/German/Resources/Resource-Pages/Electron (Framework).md"
+  ]
+}
