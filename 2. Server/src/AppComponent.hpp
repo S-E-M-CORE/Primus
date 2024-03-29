@@ -24,7 +24,7 @@ public:
 	OATPP_CREATE_COMPONENT(std::shared_ptr<DatabaseClient>, DBClient)([] {
 
 		/* Create database-specific ConnectionProvider */
-		auto connectionProvider = std::make_shared<oatpp::sqlite::ConnectionProvider>("sqlite/PrimusDatabase.sqlite");
+		auto connectionProvider = std::make_shared<oatpp::sqlite::ConnectionProvider>("PrimusDatabase.sqlite");
 
 		/* Create database-specific Executor */
 		auto executor = std::make_shared<oatpp::sqlite::Executor>(connectionProvider);

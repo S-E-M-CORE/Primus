@@ -7,8 +7,11 @@
   },
   "ExpandedNodes": [
     "",
-    "\\src"
+    "\\src",
+    "\\src\\controller",
+    "\\src\\service",
+    "\\src\\sqlite"
   ],
-  "SelectedNode": "\\src\\App.cpp",
+  "SelectedNode": "\\CMakeLists.txt",
   "PreviewInSolutionExplorer": false
 }
