@@ -17,11 +17,11 @@
 #include "oatpp/web/server/api/ApiController.hpp"
 #include "oatpp/core/macro/codegen.hpp"
 #include "oatpp/core/macro/component.hpp"
-#include "sqlite/DatabaseClient.hpp"
+#include "database/DatabaseClient.hpp"
 
 // App includes
 #include "service/MemberService.hpp"
-#include "dto/databaseDTOs/MemberDTO.hpp"
+#include "dto/database/MemberDTO.hpp"
 #include "dto/StatusDTO.hpp"
 
 #include OATPP_CODEGEN_BEGIN(ApiController) // Begin API Controller codegen

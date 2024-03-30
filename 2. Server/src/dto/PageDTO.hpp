@@ -1,7 +1,7 @@
 #ifndef PAGEDTO_HPP
 #define PAGEDTO_HPP
 
-#include "databaseDTOs/MemberDTO.hpp"
+#include "database/MemberDTO.hpp"
 
 #include OATPP_CODEGEN_BEGIN(DTO)
 

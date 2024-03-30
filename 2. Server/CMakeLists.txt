@@ -7,25 +7,29 @@ project(${project_name})
 set(CMAKE_CXX_STANDARD 11)
 
 add_library(${project_name}-lib
-        src/sqlite/DatabaseComponent.hpp
+        src/database/DatabaseComponent.hpp
         src/swagger-ui/SwaggerComponent.hpp
         src/AppComponent.hpp
         src/controller/StaticController.hpp
         src/controller/MemberController.hpp
-        src/sqlite/DatabaseClient.hpp
+        src/database/DatabaseClient.hpp
         src/dto/PageDTO.hpp
         src/dto/StatusDTO.hpp
-        src/dto/databaseDTOs/AdressDTO.hpp
-        src/dto/databaseDTOs/DatabaseDTOs.hpp
-        src/dto/databaseDTOs/DepartmentDTO.hpp
-        src/dto/databaseDTOs/EmailDTO.hpp
-        src/dto/databaseDTOs/MemberDTO.hpp
-        src/dto/databaseDTOs/MembershipDTO.hpp
-        src/dto/databaseDTOs/PhoneNumberDTO.hpp
-        src/dto/databaseDTOs/TrainingDTO.hpp
+        src/dto/database/AdressDTO.hpp
+        src/dto/database/DatabaseDTOs.hpp
+        src/dto/database/DepartmentDTO.hpp
+        src/dto/database/EmailDTO.hpp
+        src/dto/database/MemberDTO.hpp
+        src/dto/database/MembershipDTO.hpp
+        src/dto/database/PhoneNumberDTO.hpp
+        src/dto/database/TrainingDTO.hpp
         src/service/MemberService.cpp
         src/service/MemberService.hpp
-)
+ "src/service/AdressService.cpp"
+ "src/service/DepartmentService.cpp"
+ "src/service/EmailService.cpp"
+ "src/service/MembershipService.cpp"
+ "src/service/PhoneNumberService.cpp")
 
 ## link libs
 
@@ -63,7 +67,7 @@ target_include_directories(${project_name}-lib PUBLIC src)
 
 ## add executables
 
-add_executable(${project_name}-exe src/App.cpp)
+add_executable(${project_name}-exe src/App.cpp "src/service/AdressService.cpp" "src/service/DepartmentService.cpp" "src/service/EmailService.cpp" "src/service/MembershipService.cpp" "src/service/PhoneNumberService.cpp")
 
 target_link_libraries(${project_name}-exe ${project_name}-lib)
 add_dependencies(${project_name}-exe ${project_name}-lib)
@@ -74,7 +78,7 @@ add_executable(${project_name}-test
         test/app/MyApiTestClient.hpp
         "test/StaticControllerTest.cpp"
         test/StaticControllerTest.hpp
-)
+ "src/service/AdressService.cpp" "src/service/DepartmentService.cpp" "src/service/EmailService.cpp" "src/service/MembershipService.cpp" "src/service/PhoneNumberService.cpp")
 
 target_link_libraries(${project_name}-test ${project_name}-lib)
 add_dependencies(${project_name}-test ${project_name}-lib)

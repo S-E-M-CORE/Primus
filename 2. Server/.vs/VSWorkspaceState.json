@@ -7,11 +7,14 @@
   },
   "ExpandedNodes": [
     "",
+    "\\sql",
     "\\src",
-    "\\src\\controller",
     "\\src\\dto",
+    "\\src\\dto\\databaseDTOs",
     "\\src\\service",
-    "\\src\\sqlite"
+    "\\src\\sqlite",
+    "\\src\\swagger-ui"
   ],
+  "SelectedNode": "\\src\\sqlite\\DatabaseClient.hpp",
   "PreviewInSolutionExplorer": false
 }
