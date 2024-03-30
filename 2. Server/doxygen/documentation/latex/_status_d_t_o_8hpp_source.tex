@@ -1,0 +1,38 @@
+\doxysection{Status\+DTO.\+hpp}
+\hypertarget{_status_d_t_o_8hpp_source}{}\label{_status_d_t_o_8hpp_source}\index{F:/Programming/School/repos/BSFI22D\_Primus/2. Server/src/dto/StatusDTO.hpp@{F:/Programming/School/repos/BSFI22D\_Primus/2. Server/src/dto/StatusDTO.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ STATUSDTO\_HPP}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ STATUSDTO\_HPP}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}oatpp/core/macro/codegen.hpp"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}oatpp/core/Types.hpp"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ OATPP\_CODEGEN\_BEGIN(DTO)}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_status_d_t_o}{StatusDTO}}\ :\ \textcolor{keyword}{public}\ oatpp::DTO\ \{}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \ \ \ \ DTO\_INIT(\mbox{\hyperlink{class_status_d_t_o}{StatusDTO}},\ DTO)}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \ \ \ \ DTO\_FIELD\_INFO(status)\ \{}
+\DoxyCodeLine{00014\ \ \ \ \ info-\/>description\ =\ \textcolor{stringliteral}{"{}Short\ status\ text"{}};}
+\DoxyCodeLine{00015\ \ \ \ \ \}}
+\DoxyCodeLine{00016\ \ \ \ \ DTO\_FIELD(String,\ status);}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \ \ \ \ DTO\_FIELD\_INFO(code)\ \{}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ info-\/>description\ =\ \textcolor{stringliteral}{"{}Status\ code"{}};}
+\DoxyCodeLine{00020\ \ \ \ \ \}}
+\DoxyCodeLine{00021\ \ \ \ \ DTO\_FIELD(Int32,\ code);}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ \ \ DTO\_FIELD\_INFO(message)\ \{}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ info-\/>description\ =\ \textcolor{stringliteral}{"{}Verbose\ message"{}};}
+\DoxyCodeLine{00025\ \ \ \ \ \}}
+\DoxyCodeLine{00026\ \ \ \ \ DTO\_FIELD(String,\ message);}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \};}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#include\ OATPP\_CODEGEN\_END(DTO)}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ STATUSDTO\_HPP}}
+
+\end{DoxyCode}

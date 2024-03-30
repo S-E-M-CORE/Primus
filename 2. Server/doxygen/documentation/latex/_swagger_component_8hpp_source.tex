@@ -1,0 +1,46 @@
+\doxysection{Swagger\+Component.\+hpp}
+\hypertarget{_swagger_component_8hpp_source}{}\label{_swagger_component_8hpp_source}\index{F:/Programming/School/repos/BSFI22D\_Primus/2. Server/src/swagger-\/ui/SwaggerComponent.hpp@{F:/Programming/School/repos/BSFI22D\_Primus/2. Server/src/swagger-\/ui/SwaggerComponent.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#ifndef\ SwaggerComponent\_hpp}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#define\ SwaggerComponent\_hpp}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}oatpp-\/swagger/Model.hpp"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}oatpp-\/swagger/Resources.hpp"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}oatpp/core/macro/component.hpp"{}}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_swagger_component}{SwaggerComponent}}\ \{}
+\DoxyCodeLine{00014\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00019\ \ \ \ \ \mbox{\hyperlink{class_swagger_component_a0b6e7036bdb5ee3808e8171fb13fecd0}{OATPP\_CREATE\_COMPONENT}}(std::shared\_ptr<oatpp::swagger::DocumentInfo>,\ swaggerDocumentInfo)([]\ \{}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ oatpp::swagger::DocumentInfo::Builder\ builder;}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ builder}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \ \ \ \ .setTitle(\textcolor{stringliteral}{"{}Member\ entity\ service"{}})}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ \ \ .setDescription(\textcolor{stringliteral}{"{}"{}})}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \ \ \ \ .setVersion(\textcolor{stringliteral}{"{}1.0"{}})}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \ .setContactName(\textcolor{stringliteral}{"{}Sascha\ Meissner"{}})}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ .setContactUrl(\textcolor{stringliteral}{"{}https://thesascham.github.io/Website/"{}})}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ .setLicenseName(\textcolor{stringliteral}{"{}Apache\ License,\ Version\ 2.0"{}})}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ .setLicenseUrl(\textcolor{stringliteral}{"{}http://www.apache.org/licenses/LICENSE-\/2.0"{}})}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ .addServer(\textcolor{stringliteral}{"{}http://localhost:8000"{}},\ \textcolor{stringliteral}{"{}server\ on\ localhost"{}});}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ builder.build();}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \}());}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00043\ \ \ \ \ \mbox{\hyperlink{class_swagger_component_ab31a43ec22f00f1ec11cec4650b68414}{OATPP\_CREATE\_COMPONENT}}(std::shared\_ptr<oatpp::swagger::Resources>,\ swaggerResources)([]\ \{}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Make\ sure\ to\ specify\ correct\ full\ path\ to\ oatpp-\/swagger/res\ folder\ !!!}}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ oatpp::swagger::Resources::loadResources(OATPP\_SWAGGER\_RES\_PATH);}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \}());}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \};}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ SwaggerComponent\_hpp\ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

@@ -7,12 +7,12 @@
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\service\\PhoneNumberService.hpp||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|F:\\Programming\\School\\repos\\BSFI22D_Primus\\2. Server\\src\\service\\MembershipService.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\service\\MembershipService.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|F:\\Programming\\School\\repos\\BSFI22D_Primus\\2. Server\\src\\service\\PhoneNumberService.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\service\\PhoneNumberService.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|F:\\Programming\\School\\repos\\BSFI22D_Primus\\2. Server\\src\\service\\MembershipService.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\service\\MembershipService.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|F:\\Programming\\School\\repos\\BSFI22D_Primus\\2. Server\\src\\service\\MembershipService.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
@@ -68,14 +68,14 @@
               "RelativeDocumentMoniker": "src\\service\\PhoneNumberService.hpp",
               "ToolTip": "F:\\Programming\\School\\repos\\BSFI22D_Primus\\2. Server\\src\\service\\PhoneNumberService.hpp",
               "RelativeToolTip": "src\\service\\PhoneNumberService.hpp",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAmAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABUAAAAdAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2024-03-30T12:07:18.833Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "MembershipService.hpp",
               "DocumentMoniker": "F:\\Programming\\School\\repos\\BSFI22D_Primus\\2. Server\\src\\service\\MembershipService.hpp",
               "RelativeDocumentMoniker": "src\\service\\MembershipService.hpp",
@@ -211,13 +211,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "PhoneNumberService.cpp",
               "DocumentMoniker": "F:\\Programming\\School\\repos\\BSFI22D_Primus\\2. Server\\src\\service\\PhoneNumberService.cpp",
               "RelativeDocumentMoniker": "src\\service\\PhoneNumberService.cpp",
               "ToolTip": "F:\\Programming\\School\\repos\\BSFI22D_Primus\\2. Server\\src\\service\\PhoneNumberService.cpp",
               "RelativeToolTip": "src\\service\\PhoneNumberService.cpp",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAADoAAAAAAAAA",
+              "ViewState": "AQIAABgAAAAAAAAAAAAhwCsAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2024-03-30T12:07:34.692Z",
               "EditorCaption": ""

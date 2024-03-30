@@ -9,12 +9,12 @@
     "",
     "\\sql",
     "\\src",
+    "\\src\\database",
     "\\src\\dto",
-    "\\src\\dto\\databaseDTOs",
+    "\\src\\dto\\database",
     "\\src\\service",
-    "\\src\\sqlite",
     "\\src\\swagger-ui"
   ],
-  "SelectedNode": "\\src\\sqlite\\DatabaseClient.hpp",
+  "SelectedNode": "\\src\\service",
   "PreviewInSolutionExplorer": false
 }

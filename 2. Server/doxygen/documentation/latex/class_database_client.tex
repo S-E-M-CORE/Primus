@@ -1,0 +1,1513 @@
+\doxysection{Database\+Client Class Reference}
+\hypertarget{class_database_client}{}\label{class_database_client}\index{DatabaseClient@{DatabaseClient}}
+
+
+\doxylink{class_database_client}{Database\+Client} class represents a client to interact with the database. End code-\/gen section.  
+
+
+
+
+{\ttfamily \#include $<$Database\+Client.\+hpp$>$}
+
+Inheritance diagram for Database\+Client\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_database_client}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_database_client_ae933243027ca261d1db2263164c2a261}{Database\+Client}} (const std\+::shared\+\_\+ptr$<$ oatpp\+::orm\+::\+Executor $>$ \&executor)
+\item 
+\mbox{\hyperlink{class_database_client_afe1f22199cdf681a00dacfe9183258bb}{QUERY}} (create\+Member, "{}INSERT INTO Member "{} "{}(first\+Name, last\+Name, birth\+Date, join\+Date, active) "{} "{}VALUES (\+:member.\+first\+Name, \+:member.\+last\+Name, \+:member.\+birth\+Date, \+:member.\+join\+Date, \+:member.\+active);"{}, PARAM(oatpp\+::\+Object$<$ \mbox{\hyperlink{class_member_d_t_o}{Member\+DTO}} $>$, member))
+\begin{DoxyCompactList}\small\item\em Creates a new member entry in the database. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_database_client_ac57821f5faa2cfbd4af4bb1273636c1e}{QUERY}} (update\+Member, "{}UPDATE Member "{} "{}SET "{} "{}first\+Name=\+:member.\+first\+Name, "{} "{}last\+Name=\+:member.\+last\+Name, "{} "{}birth\+Date=\+:member.\+birth\+Date, "{} "{}join\+Date=\+:member.\+join\+Date, "{} "{}active=\+:member.\+active "{} "{}WHERE "{} "{}id=\+:member.\+id;"{}, PARAM(oatpp\+::\+Object$<$ \mbox{\hyperlink{class_member_d_t_o}{Member\+DTO}} $>$, member))
+\begin{DoxyCompactList}\small\item\em Updates an existing member entry in the database. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_database_client_a412d06f87e36d497b10a50c2f5ae5abd}{QUERY}} (get\+Member\+By\+Id, "{}SELECT \texorpdfstring{$\ast$}{*} FROM Member WHERE id=\+:id;"{}, PARAM(oatpp\+::\+Int64, id))
+\begin{DoxyCompactList}\small\item\em Retrieves a member entry from the database by ID. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_database_client_a3d0160178d3d1ff606673cfb9ff1f9dc}{QUERY}} (get\+Active\+Members, "{}SELECT \texorpdfstring{$\ast$}{*} FROM Member WHERE active=1 LIMIT \+:limit OFFSET \+:offset;"{}, PARAM(oatpp\+::\+UInt32, offset), PARAM(oatpp\+::\+UInt32, limit))
+\begin{DoxyCompactList}\small\item\em Retrieves active member entries from the database. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_database_client_a8eece536921abe01f97d7cb17fa98aed}{QUERY}} (get\+Inactive\+Members, "{}SELECT \texorpdfstring{$\ast$}{*} FROM Member WHERE active=0 LIMIT \+:limit OFFSET \+:offset;"{}, PARAM(oatpp\+::\+UInt32, offset), PARAM(oatpp\+::\+UInt32, limit))
+\begin{DoxyCompactList}\small\item\em Retrieves inactive member entries from the database. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_database_client_a77780f563cf580b021293fb51ba40a95}{QUERY}} (delete\+Member\+By\+Id, "{}DELETE FROM Member WHERE id=\+:id;"{}, PARAM(oatpp\+::\+Int64, id))
+\begin{DoxyCompactList}\small\item\em Deletes a member entry from the database by ID. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_database_client_a67d694bebb97188e00769903a217971b}{QUERY}} (deactivate\+Member, "{}UPDATE Member SET active=0 WHERE id=\+:id;"{}, PARAM(oatpp\+::\+Int64, id))
+\begin{DoxyCompactList}\small\item\em Deactivates a member entry in the database by ID. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_database_client_acdcdf5ae4fe4a3f65e80e97854fecee3}{QUERY}} (activate\+Member, "{}UPDATE Member SET active=1 WHERE id=\+:id;"{}, PARAM(oatpp\+::\+Int64, id))
+\begin{DoxyCompactList}\small\item\em Activates a member entry in the database by ID. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_database_client_a4cbfdcc5e5f90286bf63bf6a17de1b85}{QUERY}} (create\+Address, "{}INSERT INTO Address (zip\+Code, city, state, house\+Number, street) "{} "{}VALUES (\+:address.\+zip\+Code, \+:address.\+city, \+:address.\+state, \+:address.\+house\+Number, \+:address.\+street);"{}, PARAM(oatpp\+::\+Object$<$ \mbox{\hyperlink{class_address_d_t_o}{Address\+DTO}} $>$, address))
+\begin{DoxyCompactList}\small\item\em Creates a new address entry in the database. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_database_client_a3b220e94698182e70613cf51e7c5604e}{QUERY}} (update\+Address, "{}UPDATE Address "{} "{}SET "{} "{}zip\+Code=\+:address.\+zip\+Code, "{} "{}city=\+:address.\+city, "{} "{}state=\+:address.\+state, "{} "{}house\+Number=\+:address.\+house\+Number, "{} "{}street=\+:address.\+street "{} "{}WHERE "{} "{}id=\+:address.\+id;"{}, PARAM(oatpp\+::\+Object$<$ \mbox{\hyperlink{class_address_d_t_o}{Address\+DTO}} $>$, address))
+\begin{DoxyCompactList}\small\item\em Updates an existing address entry in the database. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_database_client_a2178805f9fa6c8faf08d21feb047cfa8}{QUERY}} (get\+Address\+By\+Id, "{}SELECT \texorpdfstring{$\ast$}{*} FROM Address WHERE id=\+:id;"{}, PARAM(oatpp\+::\+Int64, id))
+\begin{DoxyCompactList}\small\item\em Retrieves an address entry from the database by ID. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_database_client_a57bbfff98e2332c8baf54ca43c318de0}{QUERY}} (get\+All\+Addresses, "{}SELECT \texorpdfstring{$\ast$}{*} FROM Address LIMIT \+:limit OFFSET \+:offset;"{}, PARAM(oatpp\+::\+UInt32, offset), PARAM(oatpp\+::\+UInt32, limit))
+\begin{DoxyCompactList}\small\item\em Retrieves all address entries from the database. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_database_client_a3737434de14c23f1280a4f2170e3b122}{QUERY}} (delete\+Address\+By\+Id, "{}DELETE FROM Address WHERE id=\+:id;"{}, PARAM(oatpp\+::\+Int64, id))
+\begin{DoxyCompactList}\small\item\em Deletes an address entry from the database by ID. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_database_client_a905990d1176b0ea91bba3763f3cac62e}{QUERY}} (create\+Phone\+Number, "{}INSERT INTO Phone\+Number (number) "{} "{}VALUES (\+:phone\+Number.\+number);"{}, PARAM(oatpp\+::\+Object$<$ \mbox{\hyperlink{class_phone_number_d_t_o}{Phone\+Number\+DTO}} $>$, phone\+Number))
+\begin{DoxyCompactList}\small\item\em Creates a new phone number entry in the database. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_database_client_ada452377da20013094e51e0e01ddf08c}{QUERY}} (update\+Phone\+Number, "{}UPDATE Phone\+Number "{} "{}SET "{} "{}number=\+:phone\+Number.\+number "{} "{}WHERE "{} "{}id=\+:phone\+Number.\+id;"{}, PARAM(oatpp\+::\+Object$<$ \mbox{\hyperlink{class_phone_number_d_t_o}{Phone\+Number\+DTO}} $>$, phone\+Number))
+\begin{DoxyCompactList}\small\item\em Updates an existing phone number entry in the database. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_database_client_aca17da479a499174fe2ca7c6d8fe4841}{QUERY}} (get\+Phone\+Number\+By\+Id, "{}SELECT \texorpdfstring{$\ast$}{*} FROM Phone\+Number WHERE id=\+:id;"{}, PARAM(oatpp\+::\+Int64, id))
+\begin{DoxyCompactList}\small\item\em Retrieves a phone number entry from the database by ID. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_database_client_a92f438900b3a1447fa878bff47322e8e}{QUERY}} (get\+All\+Phone\+Numbers, "{}SELECT \texorpdfstring{$\ast$}{*} FROM Phone\+Number LIMIT \+:limit OFFSET \+:offset;"{}, PARAM(oatpp\+::\+UInt32, offset), PARAM(oatpp\+::\+UInt32, limit))
+\begin{DoxyCompactList}\small\item\em Retrieves all phone number entries from the database. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_database_client_a419874f5cd88b8667342273d12d59be1}{QUERY}} (delete\+Phone\+Number\+By\+Id, "{}DELETE FROM Phone\+Number WHERE id=\+:id;"{}, PARAM(oatpp\+::\+Int64, id))
+\begin{DoxyCompactList}\small\item\em Deletes a phone number entry from the database by ID. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_database_client_a55def4ab9ff5ad81259982604f85e33a}{QUERY}} (create\+Email, "{}INSERT INTO Email (email) "{} "{}VALUES (\+:email.\+email);"{}, PARAM(oatpp\+::\+Object$<$ \mbox{\hyperlink{class_email_d_t_o}{Email\+DTO}} $>$, email))
+\begin{DoxyCompactList}\small\item\em Creates a new email entry in the database. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_database_client_a4d992fafbea0475b605fe8a79ec85590}{QUERY}} (update\+Email, "{}UPDATE Email "{} "{}SET "{} "{}email=\+:email.\+email "{} "{}WHERE "{} "{}id=\+:email.\+id;"{}, PARAM(oatpp\+::\+Object$<$ \mbox{\hyperlink{class_email_d_t_o}{Email\+DTO}} $>$, email))
+\begin{DoxyCompactList}\small\item\em Updates an existing email entry in the database. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_database_client_a8750c9a0ff111363321fe3e3ed41d9ef}{QUERY}} (get\+Email\+By\+Id, "{}SELECT \texorpdfstring{$\ast$}{*} FROM Email WHERE id=\+:id;"{}, PARAM(oatpp\+::\+Int64, id))
+\begin{DoxyCompactList}\small\item\em Retrieves an email entry from the database by ID. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_database_client_af2c27cd58bc518cdceb866899a63557b}{QUERY}} (get\+All\+Emails, "{}SELECT \texorpdfstring{$\ast$}{*} FROM Email LIMIT \+:limit OFFSET \+:offset;"{}, PARAM(oatpp\+::\+UInt32, offset), PARAM(oatpp\+::\+UInt32, limit))
+\begin{DoxyCompactList}\small\item\em Retrieves all email entries from the database. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_database_client_a941c81e9e86811a0e93c4d1ef2ec539c}{QUERY}} (delete\+Email\+By\+Id, "{}DELETE FROM Email WHERE id=\+:id;"{}, PARAM(oatpp\+::\+Int64, id))
+\begin{DoxyCompactList}\small\item\em Deletes an email entry from the database by ID. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_database_client_aef48cae4674f4e68482aaa5a666ef213}{QUERY}} (get\+Email\+Id\+By\+Email, "{}SELECT id FROM Email WHERE email=\+:email;"{}, PARAM(oatpp\+::\+String, email))
+\begin{DoxyCompactList}\small\item\em Retrieves the ID of an email entry from the database by email address. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_database_client_aff71bd5dd07359da14112d4bb0ada116}{QUERY}} (create\+Membership, "{}INSERT INTO Membership (membership\+Fee, active) "{} "{}VALUES (\+:membership.\+membership\+Fee, 1);"{}, PARAM(oatpp\+::\+Object$<$ \mbox{\hyperlink{class_membership_d_t_o}{Membership\+DTO}} $>$, membership))
+\begin{DoxyCompactList}\small\item\em Creates a new membership entry in the database. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_database_client_af2f14584871fe6274b1cf9c4ff257bf3}{QUERY}} (update\+Membership, "{}UPDATE Membership "{} "{}SET "{} "{}membership\+Fee=\+:membership.\+membership\+Fee, "{} "{}active=\+:membership.\+active "{} "{}WHERE "{} "{}id=\+:membership.\+id;"{}, PARAM(oatpp\+::\+Object$<$ \mbox{\hyperlink{class_membership_d_t_o}{Membership\+DTO}} $>$, membership))
+\begin{DoxyCompactList}\small\item\em Updates an existing membership entry in the database. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_database_client_ae122142d77d28af6060eabf1e6b3f3ae}{QUERY}} (get\+Membership\+By\+Id, "{}SELECT \texorpdfstring{$\ast$}{*} FROM Membership WHERE id=\+:id;"{}, PARAM(oatpp\+::\+Int64, id))
+\begin{DoxyCompactList}\small\item\em Retrieves a membership entry from the database by ID. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_database_client_a53817ee816f1c9e8711c92f02c905087}{QUERY}} (get\+All\+Memberships, "{}SELECT \texorpdfstring{$\ast$}{*} FROM Membership LIMIT \+:limit OFFSET \+:offset;"{}, PARAM(oatpp\+::\+UInt32, offset), PARAM(oatpp\+::\+UInt32, limit))
+\begin{DoxyCompactList}\small\item\em Retrieves all membership entries from the database. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_database_client_a93c1fd8597aa9ed17ab72fc25f0e24d8}{QUERY}} (delete\+Membership\+By\+Id, "{}DELETE FROM Membership WHERE id=\+:id;"{}, PARAM(oatpp\+::\+Int64, id))
+\begin{DoxyCompactList}\small\item\em Deletes a membership entry from the database by ID. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_database_client_ae0c02990d5e6103c17c05bb3cab0c114}{QUERY}} (deactivate\+Membership, "{}UPDATE Membership SET active=0 WHERE id=\+:id;"{}, PARAM(oatpp\+::\+Int64, id))
+\begin{DoxyCompactList}\small\item\em Deactivates a membership entry in the database by ID. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_database_client_a408c1ba251e29d1b593e19d63786b5e4}{QUERY}} (activate\+Membership, "{}UPDATE Membership SET active=1 WHERE id=\+:id;"{}, PARAM(oatpp\+::\+Int64, id))
+\begin{DoxyCompactList}\small\item\em Activates a membership entry in the database by ID. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_database_client_a5b3968f563a5618df476303426407949}{QUERY}} (create\+Department, "{}INSERT INTO Department (name, active) "{} "{}VALUES (\+:department.\+name, 1);"{}, PARAM(oatpp\+::\+Object$<$ \mbox{\hyperlink{class_department_d_t_o}{Department\+DTO}} $>$, department))
+\begin{DoxyCompactList}\small\item\em Creates a new department entry in the database. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_database_client_aaa4f3d1db254a53bd74d76912baea178}{QUERY}} (update\+Department, "{}UPDATE Department "{} "{}SET "{} "{}name=\+:department.\+name, "{} "{}active=\+:department.\+active "{} "{}WHERE "{} "{}id=\+:department.\+id;"{}, PARAM(oatpp\+::\+Object$<$ \mbox{\hyperlink{class_department_d_t_o}{Department\+DTO}} $>$, department))
+\begin{DoxyCompactList}\small\item\em Updates an existing department entry in the database. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_database_client_a5479f1a1d3e431495bb096fd25e1ec0e}{QUERY}} (get\+Department\+By\+Id, "{}SELECT \texorpdfstring{$\ast$}{*} FROM Department WHERE id=\+:id;"{}, PARAM(oatpp\+::\+Int64, id))
+\begin{DoxyCompactList}\small\item\em Retrieves a department entry from the database by ID. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_database_client_a4f907bc0da808e523e7c339f8acf76c0}{QUERY}} (get\+All\+Departments, "{}SELECT \texorpdfstring{$\ast$}{*} FROM Department WHERE active=1 LIMIT \+:limit OFFSET \+:offset;"{}, PARAM(oatpp\+::\+UInt32, offset), PARAM(oatpp\+::\+UInt32, limit))
+\begin{DoxyCompactList}\small\item\em Retrieves all active department entries from the database. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_database_client_a18f8a2b9e93b1666b568161ba7c5369f}{QUERY}} (get\+Inactive\+Departments, "{}SELECT \texorpdfstring{$\ast$}{*} FROM Department WHERE active=0 LIMIT \+:limit OFFSET \+:offset;"{}, PARAM(oatpp\+::\+UInt32, offset), PARAM(oatpp\+::\+UInt32, limit))
+\begin{DoxyCompactList}\small\item\em Retrieves all inactive department entries from the database. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_database_client_a7a9c71aedff5d45780a85be70a4d544e}{QUERY}} (delete\+Department\+By\+Id, "{}DELETE FROM Department WHERE id=\+:id;"{}, PARAM(oatpp\+::\+Int64, id))
+\begin{DoxyCompactList}\small\item\em Deletes a department entry from the database by ID. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_database_client_ad18397c80180dedc1d0275bfddf63a9c}{QUERY}} (deactivate\+Department, "{}UPDATE Department SET active=0 WHERE id=\+:id;"{}, PARAM(oatpp\+::\+Int64, id))
+\begin{DoxyCompactList}\small\item\em Deactivates a department entry in the database by ID. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_database_client_a992b5d6ab2cf0303f6055ad13bbd31d1}{QUERY}} (activate\+Department, "{}UPDATE Department SET active=1 WHERE id=\+:id;"{}, PARAM(oatpp\+::\+Int64, id))
+\begin{DoxyCompactList}\small\item\em Activates a department entry in the database by ID. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_database_client_aaa882bf28c14e87f2bcf4f1d22847109}{QUERY}} (create\+Training, "{}INSERT INTO Training (date, start\+Time, room, notes) "{} "{}VALUES (\+:training.\+date, \+:training.\+start\+Time, \+:training.\+room, \+:training.\+notes);"{}, PARAM(oatpp\+::\+Object$<$ \mbox{\hyperlink{class_training_d_t_o}{Training\+DTO}} $>$, training))
+\begin{DoxyCompactList}\small\item\em Creates a new training entry in the database. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_database_client_a004f1fb0222fc25b666326212d09d08a}{QUERY}} (update\+Training, "{}UPDATE Training "{} "{}SET "{} "{}date=\+:training.\+date, "{} "{}start\+Time=\+:training.\+start\+Time, "{} "{}room=\+:training.\+room, "{} "{}notes=\+:training.\+notes "{} "{}WHERE "{} "{}id=\+:training.\+id;"{}, PARAM(oatpp\+::\+Object$<$ \mbox{\hyperlink{class_training_d_t_o}{Training\+DTO}} $>$, training))
+\begin{DoxyCompactList}\small\item\em Updates an existing training entry in the database. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_database_client_af8bdc1b25e0ce2ced6e268bd3fa5712a}{QUERY}} (get\+Training\+By\+Id, "{}SELECT \texorpdfstring{$\ast$}{*} FROM Training WHERE id=\+:id;"{}, PARAM(oatpp\+::\+Int64, id))
+\begin{DoxyCompactList}\small\item\em Retrieves a training entry from the database by ID. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_database_client_acb57aa6773007471f04506a228fa1491}{QUERY}} (get\+All\+Trainings, "{}SELECT \texorpdfstring{$\ast$}{*} FROM Training LIMIT \+:limit OFFSET \+:offset;"{}, PARAM(oatpp\+::\+UInt32, offset), PARAM(oatpp\+::\+UInt32, limit))
+\begin{DoxyCompactList}\small\item\em Retrieves all training entries from the database. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_database_client_a51478bc73a6ddf5a4f66def7f73e330e}{QUERY}} (delete\+Training\+By\+Id, "{}DELETE FROM Training WHERE id=\+:id;"{}, PARAM(oatpp\+::\+Int64, id))
+\begin{DoxyCompactList}\small\item\em Deletes a training entry from the database by ID. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_database_client_af7be1451463215f3b3a5d4a33d0251fa}{QUERY}} (create\+Member\+Address\+Rel, "{}INSERT INTO Member\+Address\+Rel (member\+ID, address\+ID) "{} "{}VALUES (\+:rel.\+member\+ID, \+:rel.\+address\+ID);"{}, PARAM(oatpp\+::\+Object$<$ \mbox{\hyperlink{class_member_adress_rel_d_t_o}{Member\+Adress\+Rel\+DTO}} $>$, rel))
+\begin{DoxyCompactList}\small\item\em Creates a new relationship between a member and an address in the database. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_database_client_a9d817bb8b5b2df6e56e0035621eee1e4}{QUERY}} (get\+Address\+Ids\+By\+Member\+Id, "{}SELECT address\+ID FROM Member\+Address\+Rel WHERE member\+ID=\+:member\+ID;"{}, PARAM(oatpp\+::\+Int64, member\+ID))
+\begin{DoxyCompactList}\small\item\em Retrieves the address IDs associated with a member ID from the database. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_database_client_a7161fad54e00fb378dfc35d465e43a07}{QUERY}} (get\+Member\+Ids\+By\+Address\+Id, "{}SELECT member\+ID FROM Member\+Address\+Rel WHERE address\+ID=\+:address\+ID;"{}, PARAM(oatpp\+::\+Int64, address\+ID))
+\begin{DoxyCompactList}\small\item\em Retrieves the member IDs associated with an address ID from the database. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_database_client_a2527583c8522053d4df3c604994d781b}{QUERY}} (delete\+Member\+Address\+Rel, "{}DELETE FROM Member\+Address\+Rel WHERE member\+ID=\+:member\+ID AND address\+ID=\+:address\+ID;"{}, PARAM(oatpp\+::\+Int64, member\+ID), PARAM(oatpp\+::\+Int64, address\+ID))
+\begin{DoxyCompactList}\small\item\em Deletes a member-\/address relationship from the database. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_database_client_a5f84f7ae530acebc029c83a216625fd1}{QUERY}} (create\+Member\+Email\+Rel, "{}INSERT INTO Member\+Email\+Rel (member\+ID, email\+ID) "{} "{}VALUES (\+:rel.\+member\+ID, \+:rel.\+email\+ID);"{}, PARAM(oatpp\+::\+Object$<$ \mbox{\hyperlink{class_member_email_rel_d_t_o}{Member\+Email\+Rel\+DTO}} $>$, rel))
+\begin{DoxyCompactList}\small\item\em Creates a new relationship between a member and an email in the database. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_database_client_ae0ae1c608dfe8a250a6523ce23426ed6}{QUERY}} (get\+Email\+Ids\+By\+Member\+Id, "{}SELECT email\+ID FROM Member\+Email\+Rel WHERE member\+ID=\+:member\+ID;"{}, PARAM(oatpp\+::\+Int64, member\+ID))
+\begin{DoxyCompactList}\small\item\em Retrieves the email IDs associated with a member ID from the database. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_database_client_a89c3cc2b045f5a2f8927c0382b987b86}{QUERY}} (get\+Member\+Ids\+By\+Email\+Id, "{}SELECT member\+ID FROM Member\+Email\+Rel WHERE email\+ID=\+:email\+ID;"{}, PARAM(oatpp\+::\+Int64, email\+ID))
+\begin{DoxyCompactList}\small\item\em Retrieves the member IDs associated with an email ID from the database. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_database_client_aa0095660cde5b73491d4afa86db080c5}{QUERY}} (delete\+Member\+Email\+Rel, "{}DELETE FROM Member\+Email\+Rel WHERE member\+ID=\+:member\+ID AND email\+ID=\+:email\+ID;"{}, PARAM(oatpp\+::\+Int64, member\+ID), PARAM(oatpp\+::\+Int64, email\+ID))
+\begin{DoxyCompactList}\small\item\em Deletes a member-\/email relationship from the database. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_database_client_af3a13bb6d47f8b40155347075a4bb171}{QUERY}} (create\+Member\+Phone\+Number\+Rel, "{}INSERT INTO Member\+Phone\+Number\+Rel (member\+ID, phone\+Number\+ID) "{} "{}VALUES (\+:rel.\+member\+ID, \+:rel.\+phone\+Number\+ID);"{}, PARAM(oatpp\+::\+Object$<$ \mbox{\hyperlink{class_member_phonenumber_rel_d_t_o}{Member\+Phonenumber\+Rel\+DTO}} $>$, rel))
+\begin{DoxyCompactList}\small\item\em Creates a new relationship between a member and a phone number in the database. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_database_client_abfcb8d37a3208e82ea0dd5f83e680cba}{QUERY}} (get\+Phone\+Number\+Ids\+By\+Member\+Id, "{}SELECT phone\+Number\+ID FROM Member\+Phone\+Number\+Rel WHERE member\+ID=\+:member\+ID;"{}, PARAM(oatpp\+::\+Int64, member\+ID))
+\begin{DoxyCompactList}\small\item\em Retrieves the phone number IDs associated with a member ID from the database. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_database_client_ad9cc089426c89caddad5008746b4a88b}{QUERY}} (get\+Member\+Ids\+By\+Phone\+Number\+Id, "{}SELECT member\+ID FROM Member\+Phone\+Number\+Rel WHERE phone\+Number\+ID=\+:phone\+Number\+ID;"{}, PARAM(oatpp\+::\+Int64, phone\+Number\+ID))
+\begin{DoxyCompactList}\small\item\em Retrieves the member IDs associated with a phone number ID from the database. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_database_client_ae53fd15dd18868ef5cb3c4ba4f4fb71b}{QUERY}} (delete\+Member\+Phone\+Number\+Rel, "{}DELETE FROM Member\+Phone\+Number\+Rel WHERE member\+ID=\+:member\+ID AND phone\+Number\+ID=\+:phone\+Number\+ID;"{}, PARAM(oatpp\+::\+Int64, member\+ID), PARAM(oatpp\+::\+Int64, phone\+Number\+ID))
+\begin{DoxyCompactList}\small\item\em Deletes a member-\/phone number relationship from the database. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_database_client_acf1c1f6697c49afc2ee5919182236e4b}{QUERY}} (create\+Member\+Membership\+Rel, "{}INSERT INTO Member\+Membership\+Rel (member\+ID, membership\+ID) "{} "{}VALUES (\+:rel.\+member\+ID, \+:rel.\+membership\+ID);"{}, PARAM(oatpp\+::\+Object$<$ \mbox{\hyperlink{class_member_membership_rel_d_t_o}{Member\+Membership\+Rel\+DTO}} $>$, rel))
+\begin{DoxyCompactList}\small\item\em Creates a new relationship between a member and a membership in the database. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_database_client_ae2ee47a7fbe0647b74b6d29c35cface5}{QUERY}} (get\+Membership\+Ids\+By\+Member\+Id, "{}SELECT membership\+ID FROM Member\+Membership\+Rel WHERE member\+ID=\+:member\+ID;"{}, PARAM(oatpp\+::\+Int64, member\+ID))
+\begin{DoxyCompactList}\small\item\em Retrieves the membership IDs associated with a member ID from the database. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_database_client_a4495b4393ef397a4e17cabfc272adc58}{QUERY}} (get\+Member\+Ids\+By\+Membership\+Id, "{}SELECT member\+ID FROM Member\+Membership\+Rel WHERE membership\+ID=\+:membership\+ID;"{}, PARAM(oatpp\+::\+Int64, membership\+ID))
+\begin{DoxyCompactList}\small\item\em Retrieves the member IDs associated with a membership ID from the database. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_database_client_a72ce0a740b00e09c2103e1357efa8178}{QUERY}} (delete\+Member\+Membership\+Rel, "{}DELETE FROM Member\+Membership\+Rel WHERE member\+ID=\+:member\+ID AND membership\+ID=\+:membership\+ID;"{}, PARAM(oatpp\+::\+Int64, member\+ID), PARAM(oatpp\+::\+Int64, membership\+ID))
+\begin{DoxyCompactList}\small\item\em Deletes a member-\/membership relationship from the database. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_database_client_a5e3e6b0d6520d1e7c82bb81a1407356f}{QUERY}} (create\+Member\+Training\+Rel, "{}INSERT INTO Member\+Training\+Rel (member\+ID, training\+ID) "{} "{}VALUES (\+:rel.\+member\+ID, \+:rel.\+training\+ID);"{}, PARAM(oatpp\+::\+Object$<$ \mbox{\hyperlink{class_member_training_rel_d_t_o}{Member\+Training\+Rel\+DTO}} $>$, rel))
+\begin{DoxyCompactList}\small\item\em Creates a new relationship between a member and a training in the database. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_database_client_ac1d66d395a3f319fa826ab1be0caf56c}{QUERY}} (get\+Training\+Ids\+By\+Member\+Id, "{}SELECT training\+ID FROM Member\+Training\+Rel WHERE member\+ID=\+:member\+ID;"{}, PARAM(oatpp\+::\+Int64, member\+ID))
+\begin{DoxyCompactList}\small\item\em Retrieves the training IDs associated with a member ID from the database. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_database_client_a5e6a19e1f2175948b5e3ad2ec5b02742}{QUERY}} (get\+Member\+Ids\+By\+Training\+Id, "{}SELECT member\+ID FROM Member\+Training\+Rel WHERE training\+ID=\+:training\+ID;"{}, PARAM(oatpp\+::\+Int64, training\+ID))
+\begin{DoxyCompactList}\small\item\em Retrieves the member IDs associated with a training ID from the database. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_database_client_a1a310b16aa04ef96029f4b2dd6f6b1d5}{QUERY}} (delete\+Member\+Training\+Rel, "{}DELETE FROM Member\+Training\+Rel WHERE member\+ID=\+:member\+ID AND training\+ID=\+:training\+ID;"{}, PARAM(oatpp\+::\+Int64, member\+ID), PARAM(oatpp\+::\+Int64, training\+ID))
+\begin{DoxyCompactList}\small\item\em Deletes a member-\/training relationship from the database. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_database_client_a90b13acdae7720d8010eee2b3b93e8af}{QUERY}} (create\+Department\+Training\+Rel, "{}INSERT INTO Department\+Training\+Rel (department\+ID, training\+ID) "{} "{}VALUES (\+:rel.\+department\+ID, \+:rel.\+training\+ID);"{}, PARAM(oatpp\+::\+Object$<$ \mbox{\hyperlink{class_department_training_rel_d_t_o}{Department\+Training\+Rel\+DTO}} $>$, rel))
+\begin{DoxyCompactList}\small\item\em Creates a new relationship between a department and a training in the database. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_database_client_ad08bb9cfe8cd43500da2434e141ef402}{QUERY}} (get\+Training\+Ids\+By\+Department\+Id, "{}SELECT training\+ID FROM Department\+Training\+Rel WHERE department\+ID=\+:department\+ID;"{}, PARAM(oatpp\+::\+Int64, department\+ID))
+\begin{DoxyCompactList}\small\item\em Retrieves the training IDs associated with a department ID from the database. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_database_client_af1814852909e48acbbf981142d16af39}{QUERY}} (get\+Department\+Ids\+By\+Training\+Id, "{}SELECT department\+ID FROM Department\+Training\+Rel WHERE training\+ID=\+:training\+ID;"{}, PARAM(oatpp\+::\+Int64, training\+ID))
+\begin{DoxyCompactList}\small\item\em Retrieves the department IDs associated with a training ID from the database. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_database_client_a99a0f0f39a21a10d6a115b046056285c}{QUERY}} (delete\+Department\+Training\+Rel, "{}DELETE FROM Department\+Training\+Rel WHERE department\+ID=\+:department\+ID AND training\+ID=\+:training\+ID;"{}, PARAM(oatpp\+::\+Int64, department\+ID), PARAM(oatpp\+::\+Int64, training\+ID))
+\begin{DoxyCompactList}\small\item\em Deletes a department-\/training relationship from the database. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_database_client_a0fae4b049bbb0c01751a0a9333a50b18}{QUERY}} (get\+Trainings\+By\+Member\+Id, "{}SELECT Training.\texorpdfstring{$\ast$}{*} FROM Training "{} "{}JOIN Member\+Training\+Rel ON Training.\+id = Member\+Training\+Rel.\+training\+ID "{} "{}WHERE Member\+Training\+Rel.\+member\+ID=\+:member\+ID;"{}, PARAM(oatpp\+::\+Int64, member\+ID))
+\begin{DoxyCompactList}\small\item\em Retrieves trainings associated with a member ID from the database. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_database_client_a6504a90c8bb870a64d67764c1044f169}{QUERY}} (get\+Memberships\+By\+Member\+Id, "{}SELECT Membership.\texorpdfstring{$\ast$}{*} FROM Membership "{} "{}JOIN Member\+Membership\+Rel ON Membership.\+id = Member\+Membership\+Rel.\+membership\+ID "{} "{}WHERE Member\+Membership\+Rel.\+member\+ID=\+:member\+ID;"{}, PARAM(oatpp\+::\+Int64, member\+ID))
+\begin{DoxyCompactList}\small\item\em Retrieves memberships associated with a member ID from the database. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_database_client_a94fbb649eecbf1e3d190c5a61489e0f9}{QUERY}} (get\+Members\+By\+Department\+Id, "{}SELECT Member.\texorpdfstring{$\ast$}{*} FROM Member "{} "{}JOIN Member\+Department\+Rel ON Member.\+id = Member\+Department\+Rel.\+member\+ID "{} "{}WHERE Member\+Department\+Rel.\+department\+ID=\+:department\+ID;"{}, PARAM(oatpp\+::\+Int64, department\+ID))
+\begin{DoxyCompactList}\small\item\em Retrieves members associated with a department ID from the database. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_database_client_aed2521fe29bf8a764f85b01e44254370}{QUERY}} (get\+Trainings\+By\+Department\+Id, "{}SELECT Training.\texorpdfstring{$\ast$}{*} FROM Training "{} "{}JOIN Department\+Training\+Rel ON Training.\+id = Department\+Training\+Rel.\+training\+ID "{} "{}WHERE Department\+Training\+Rel.\+department\+ID=\+:department\+ID;"{}, PARAM(oatpp\+::\+Int64, department\+ID))
+\begin{DoxyCompactList}\small\item\em Retrieves trainings associated with a department ID from the database. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_database_client_a51dc0d2cfef6f6171065bce9fafb5b4d}{QUERY}} (get\+Trainings\+By\+Member\+Id\+And\+Time\+Range, "{}SELECT Training.\texorpdfstring{$\ast$}{*} FROM Training "{} "{}JOIN Member\+Training\+Rel ON Training.\+id = Member\+Training\+Rel.\+training\+ID "{} "{}WHERE Member\+Training\+Rel.\+member\+ID=\+:member\+ID AND Training.\+date BETWEEN \+:start\+Date AND \+:end\+Date;"{}, PARAM(oatpp\+::\+Int64, member\+ID), PARAM(oatpp\+::\+String, start\+Date), PARAM(oatpp\+::\+String, end\+Date))
+\begin{DoxyCompactList}\small\item\em Retrieves trainings associated with a member ID within a specified time range from the database. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_database_client_a2ffd6740753300a65eea1af6841ecd96}{QUERY}} (get\+Members\+By\+Training\+Id\+And\+Min\+Age, "{}SELECT Member.\texorpdfstring{$\ast$}{*} FROM Member "{} "{}JOIN Member\+Training\+Rel ON Member.\+id = Member\+Training\+Rel.\+member\+ID "{} "{}WHERE Member\+Training\+Rel.\+training\+ID=\+:training\+ID AND (CURRENT\+\_\+\+DATE -\/ Member.\+birth\+Date) $>$= \+:min\+Age;"{}, PARAM(oatpp\+::\+Int64, training\+ID), PARAM(oatpp\+::\+Int64, min\+Age))
+\begin{DoxyCompactList}\small\item\em Retrieves members associated with a training ID and above a minimum age from the database. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_database_client_a0585a690181a86fda091127707900f81}{QUERY}} (get\+Members\+With\+Yearly\+Attendance, "{}SELECT Member.\texorpdfstring{$\ast$}{*}, COUNT(Training.\+id) AS attendance\+\_\+count "{} "{}FROM Member "{} "{}JOIN Member\+Training\+Rel ON Member.\+id = Member\+Training\+Rel.\+member\+ID "{} "{}JOIN Training ON Member\+Training\+Rel.\+training\+ID = Training.\+id "{} "{}GROUP BY Member.\+id "{} "{}HAVING attendance\+\_\+count $>$= 18;"{})
+\begin{DoxyCompactList}\small\item\em Retrieves members with yearly attendance count from the database. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_database_client_a301a7f813d00fe7d6493c20a0f308bd2}{QUERY}} (get\+Members\+With\+Monthly\+Attendance, "{}SELECT Member.\texorpdfstring{$\ast$}{*}, "{} "{}COUNT(DISTINCT STRFTIME(\textquotesingle{}\%Y-\/\%m\textquotesingle{}, Training.\+date)) AS unique\+\_\+month\+\_\+count "{} "{}FROM Member "{} "{}JOIN Member\+Training\+Rel ON Member.\+id = Member\+Training\+Rel.\+member\+ID "{} "{}JOIN Training ON Member\+Training\+Rel.\+training\+ID = Training.\+id "{} "{}GROUP BY Member.\+id "{} "{}HAVING unique\+\_\+month\+\_\+count $>$= 12;"{})
+\begin{DoxyCompactList}\small\item\em Retrieves members with monthly attendance count from the database. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\doxylink{class_database_client}{Database\+Client} class represents a client to interact with the database. End code-\/gen section. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_database_client_ae933243027ca261d1db2263164c2a261}\label{class_database_client_ae933243027ca261d1db2263164c2a261} 
+\index{DatabaseClient@{DatabaseClient}!DatabaseClient@{DatabaseClient}}
+\index{DatabaseClient@{DatabaseClient}!DatabaseClient@{DatabaseClient}}
+\doxysubsubsection{\texorpdfstring{DatabaseClient()}{DatabaseClient()}}
+{\footnotesize\ttfamily Database\+Client\+::\+Database\+Client (\begin{DoxyParamCaption}\item[{const std\+::shared\+\_\+ptr$<$ oatpp\+::orm\+::\+Executor $>$ \&}]{executor }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor to initialize the \doxylink{class_database_client}{Database\+Client}. 
+\begin{DoxyParams}{Parameters}
+{\em executor} & -\/ shared pointer to oatpp executor. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_database_client_a992b5d6ab2cf0303f6055ad13bbd31d1}\label{class_database_client_a992b5d6ab2cf0303f6055ad13bbd31d1} 
+\index{DatabaseClient@{DatabaseClient}!QUERY@{QUERY}}
+\index{QUERY@{QUERY}!DatabaseClient@{DatabaseClient}}
+\doxysubsubsection{\texorpdfstring{QUERY()}{QUERY()}\hspace{0.1cm}{\footnotesize\ttfamily [1/76]}}
+{\footnotesize\ttfamily Database\+Client\+::\+QUERY (\begin{DoxyParamCaption}\item[{activate\+Department}]{ }\end{DoxyParamCaption})}
+
+
+
+Activates a department entry in the database by ID. 
+
+Sets the \textquotesingle{}active\textquotesingle{} flag to 1 for the department record in the "{}\+Department"{} table with the specified ID.
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The ID of the department to activate. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_database_client_acdcdf5ae4fe4a3f65e80e97854fecee3}\label{class_database_client_acdcdf5ae4fe4a3f65e80e97854fecee3} 
+\index{DatabaseClient@{DatabaseClient}!QUERY@{QUERY}}
+\index{QUERY@{QUERY}!DatabaseClient@{DatabaseClient}}
+\doxysubsubsection{\texorpdfstring{QUERY()}{QUERY()}\hspace{0.1cm}{\footnotesize\ttfamily [2/76]}}
+{\footnotesize\ttfamily Database\+Client\+::\+QUERY (\begin{DoxyParamCaption}\item[{activate\+Member}]{ }\end{DoxyParamCaption})}
+
+
+
+Activates a member entry in the database by ID. 
+
+Sets the \textquotesingle{}active\textquotesingle{} flag to 1 for the member record in the "{}\+Member"{} table with the specified ID.
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The ID of the member to activate. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_database_client_a408c1ba251e29d1b593e19d63786b5e4}\label{class_database_client_a408c1ba251e29d1b593e19d63786b5e4} 
+\index{DatabaseClient@{DatabaseClient}!QUERY@{QUERY}}
+\index{QUERY@{QUERY}!DatabaseClient@{DatabaseClient}}
+\doxysubsubsection{\texorpdfstring{QUERY()}{QUERY()}\hspace{0.1cm}{\footnotesize\ttfamily [3/76]}}
+{\footnotesize\ttfamily Database\+Client\+::\+QUERY (\begin{DoxyParamCaption}\item[{activate\+Membership}]{ }\end{DoxyParamCaption})}
+
+
+
+Activates a membership entry in the database by ID. 
+
+Sets the \textquotesingle{}active\textquotesingle{} flag to 1 for the membership record in the "{}\+Membership"{} table with the specified ID.
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The ID of the membership to activate. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_database_client_a4cbfdcc5e5f90286bf63bf6a17de1b85}\label{class_database_client_a4cbfdcc5e5f90286bf63bf6a17de1b85} 
+\index{DatabaseClient@{DatabaseClient}!QUERY@{QUERY}}
+\index{QUERY@{QUERY}!DatabaseClient@{DatabaseClient}}
+\doxysubsubsection{\texorpdfstring{QUERY()}{QUERY()}\hspace{0.1cm}{\footnotesize\ttfamily [4/76]}}
+{\footnotesize\ttfamily Database\+Client\+::\+QUERY (\begin{DoxyParamCaption}\item[{create\+Address}]{,  }\item[{"{}INSERT INTO Address (zip\+Code, city, state, house\+Number, street) "{} "{}VALUES (\+:address.\+zip\+Code, \+:address.\+city, \+:address.\+state, \+:address.\+house\+Number, \+:address.\+street);"{}}]{,  }\item[{PARAM(oatpp\+::\+Object$<$ \mbox{\hyperlink{class_address_d_t_o}{Address\+DTO}} $>$, address)}]{ }\end{DoxyParamCaption})}
+
+
+
+Creates a new address entry in the database. 
+
+Inserts a new record into the "{}\+Address"{} table with the provided address information.
+
+
+\begin{DoxyParams}{Parameters}
+{\em address} & The address to be created as an \doxylink{class_address_d_t_o}{Address\+DTO} object. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_database_client_a5b3968f563a5618df476303426407949}\label{class_database_client_a5b3968f563a5618df476303426407949} 
+\index{DatabaseClient@{DatabaseClient}!QUERY@{QUERY}}
+\index{QUERY@{QUERY}!DatabaseClient@{DatabaseClient}}
+\doxysubsubsection{\texorpdfstring{QUERY()}{QUERY()}\hspace{0.1cm}{\footnotesize\ttfamily [5/76]}}
+{\footnotesize\ttfamily Database\+Client\+::\+QUERY (\begin{DoxyParamCaption}\item[{create\+Department}]{,  }\item[{"{}INSERT INTO Department (name, active) "{} "{}VALUES (\+:department.\+name, 1);"{}}]{,  }\item[{PARAM(oatpp\+::\+Object$<$ \mbox{\hyperlink{class_department_d_t_o}{Department\+DTO}} $>$, department)}]{ }\end{DoxyParamCaption})}
+
+
+
+Creates a new department entry in the database. 
+
+Inserts a new record into the "{}\+Department"{} table with the provided department name and active status.
+
+
+\begin{DoxyParams}{Parameters}
+{\em department} & The department information to be created as a \doxylink{class_department_d_t_o}{Department\+DTO} object. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_database_client_a90b13acdae7720d8010eee2b3b93e8af}\label{class_database_client_a90b13acdae7720d8010eee2b3b93e8af} 
+\index{DatabaseClient@{DatabaseClient}!QUERY@{QUERY}}
+\index{QUERY@{QUERY}!DatabaseClient@{DatabaseClient}}
+\doxysubsubsection{\texorpdfstring{QUERY()}{QUERY()}\hspace{0.1cm}{\footnotesize\ttfamily [6/76]}}
+{\footnotesize\ttfamily Database\+Client\+::\+QUERY (\begin{DoxyParamCaption}\item[{create\+Department\+Training\+Rel}]{,  }\item[{"{}INSERT INTO Department\+Training\+Rel (department\+ID, training\+ID) "{} "{}VALUES (\+:rel.\+department\+ID, \+:rel.\+training\+ID);"{}}]{,  }\item[{PARAM(oatpp\+::\+Object$<$ \mbox{\hyperlink{class_department_training_rel_d_t_o}{Department\+Training\+Rel\+DTO}} $>$, rel)}]{ }\end{DoxyParamCaption})}
+
+
+
+Creates a new relationship between a department and a training in the database. 
+
+Inserts a new record into the "{}\+Department\+Training\+Rel"{} table with the provided department and training IDs.
+
+
+\begin{DoxyParams}{Parameters}
+{\em rel} & The department-\/training relationship information to be created as a \doxylink{class_department_training_rel_d_t_o}{Department\+Training\+Rel\+DTO} object. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_database_client_a55def4ab9ff5ad81259982604f85e33a}\label{class_database_client_a55def4ab9ff5ad81259982604f85e33a} 
+\index{DatabaseClient@{DatabaseClient}!QUERY@{QUERY}}
+\index{QUERY@{QUERY}!DatabaseClient@{DatabaseClient}}
+\doxysubsubsection{\texorpdfstring{QUERY()}{QUERY()}\hspace{0.1cm}{\footnotesize\ttfamily [7/76]}}
+{\footnotesize\ttfamily Database\+Client\+::\+QUERY (\begin{DoxyParamCaption}\item[{create\+Email}]{,  }\item[{"{}INSERT INTO Email (email) "{} "{}VALUES (\+:email.\+email);"{}}]{,  }\item[{PARAM(oatpp\+::\+Object$<$ \mbox{\hyperlink{class_email_d_t_o}{Email\+DTO}} $>$, email)}]{ }\end{DoxyParamCaption})}
+
+
+
+Creates a new email entry in the database. 
+
+Inserts a new record into the "{}\+Email"{} table with the provided email address.
+
+
+\begin{DoxyParams}{Parameters}
+{\em email} & The email address to be created as an \doxylink{class_email_d_t_o}{Email\+DTO} object. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_database_client_afe1f22199cdf681a00dacfe9183258bb}\label{class_database_client_afe1f22199cdf681a00dacfe9183258bb} 
+\index{DatabaseClient@{DatabaseClient}!QUERY@{QUERY}}
+\index{QUERY@{QUERY}!DatabaseClient@{DatabaseClient}}
+\doxysubsubsection{\texorpdfstring{QUERY()}{QUERY()}\hspace{0.1cm}{\footnotesize\ttfamily [8/76]}}
+{\footnotesize\ttfamily Database\+Client\+::\+QUERY (\begin{DoxyParamCaption}\item[{create\+Member}]{,  }\item[{"{}INSERT INTO Member "{} "{}(first\+Name, last\+Name, birth\+Date, join\+Date, active) "{} "{}VALUES (\+:member.\+first\+Name, \+:member.\+last\+Name, \+:member.\+birth\+Date, \+:member.\+join\+Date, \+:member.\+active);"{}}]{,  }\item[{PARAM(oatpp\+::\+Object$<$ \mbox{\hyperlink{class_member_d_t_o}{Member\+DTO}} $>$, member)}]{ }\end{DoxyParamCaption})}
+
+
+
+Creates a new member entry in the database. 
+
+Inserts a new record into the "{}\+Member"{} table.
+
+
+\begin{DoxyParams}{Parameters}
+{\em member} & The member to be created as a \doxylink{class_member_d_t_o}{Member\+DTO} object. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_database_client_af7be1451463215f3b3a5d4a33d0251fa}\label{class_database_client_af7be1451463215f3b3a5d4a33d0251fa} 
+\index{DatabaseClient@{DatabaseClient}!QUERY@{QUERY}}
+\index{QUERY@{QUERY}!DatabaseClient@{DatabaseClient}}
+\doxysubsubsection{\texorpdfstring{QUERY()}{QUERY()}\hspace{0.1cm}{\footnotesize\ttfamily [9/76]}}
+{\footnotesize\ttfamily Database\+Client\+::\+QUERY (\begin{DoxyParamCaption}\item[{create\+Member\+Address\+Rel}]{,  }\item[{"{}INSERT INTO Member\+Address\+Rel (member\+ID, address\+ID) "{} "{}VALUES (\+:rel.\+member\+ID, \+:rel.\+address\+ID);"{}}]{,  }\item[{PARAM(oatpp\+::\+Object$<$ \mbox{\hyperlink{class_member_adress_rel_d_t_o}{Member\+Adress\+Rel\+DTO}} $>$, rel)}]{ }\end{DoxyParamCaption})}
+
+
+
+Creates a new relationship between a member and an address in the database. 
+
+Inserts a new record into the "{}\+Member\+Address\+Rel"{} table with the provided member and address IDs.
+
+
+\begin{DoxyParams}{Parameters}
+{\em rel} & The member-\/address relationship information to be created as a \doxylink{class_member_adress_rel_d_t_o}{Member\+Adress\+Rel\+DTO} object. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_database_client_a5f84f7ae530acebc029c83a216625fd1}\label{class_database_client_a5f84f7ae530acebc029c83a216625fd1} 
+\index{DatabaseClient@{DatabaseClient}!QUERY@{QUERY}}
+\index{QUERY@{QUERY}!DatabaseClient@{DatabaseClient}}
+\doxysubsubsection{\texorpdfstring{QUERY()}{QUERY()}\hspace{0.1cm}{\footnotesize\ttfamily [10/76]}}
+{\footnotesize\ttfamily Database\+Client\+::\+QUERY (\begin{DoxyParamCaption}\item[{create\+Member\+Email\+Rel}]{,  }\item[{"{}INSERT INTO Member\+Email\+Rel (member\+ID, email\+ID) "{} "{}VALUES (\+:rel.\+member\+ID, \+:rel.\+email\+ID);"{}}]{,  }\item[{PARAM(oatpp\+::\+Object$<$ \mbox{\hyperlink{class_member_email_rel_d_t_o}{Member\+Email\+Rel\+DTO}} $>$, rel)}]{ }\end{DoxyParamCaption})}
+
+
+
+Creates a new relationship between a member and an email in the database. 
+
+Inserts a new record into the "{}\+Member\+Email\+Rel"{} table with the provided member and email IDs.
+
+
+\begin{DoxyParams}{Parameters}
+{\em rel} & The member-\/email relationship information to be created as a \doxylink{class_member_email_rel_d_t_o}{Member\+Email\+Rel\+DTO} object. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_database_client_acf1c1f6697c49afc2ee5919182236e4b}\label{class_database_client_acf1c1f6697c49afc2ee5919182236e4b} 
+\index{DatabaseClient@{DatabaseClient}!QUERY@{QUERY}}
+\index{QUERY@{QUERY}!DatabaseClient@{DatabaseClient}}
+\doxysubsubsection{\texorpdfstring{QUERY()}{QUERY()}\hspace{0.1cm}{\footnotesize\ttfamily [11/76]}}
+{\footnotesize\ttfamily Database\+Client\+::\+QUERY (\begin{DoxyParamCaption}\item[{create\+Member\+Membership\+Rel}]{,  }\item[{"{}INSERT INTO Member\+Membership\+Rel (member\+ID, membership\+ID) "{} "{}VALUES (\+:rel.\+member\+ID, \+:rel.\+membership\+ID);"{}}]{,  }\item[{PARAM(oatpp\+::\+Object$<$ \mbox{\hyperlink{class_member_membership_rel_d_t_o}{Member\+Membership\+Rel\+DTO}} $>$, rel)}]{ }\end{DoxyParamCaption})}
+
+
+
+Creates a new relationship between a member and a membership in the database. 
+
+Inserts a new record into the "{}\+Member\+Membership\+Rel"{} table with the provided member and membership IDs.
+
+
+\begin{DoxyParams}{Parameters}
+{\em rel} & The member-\/membership relationship information to be created as a \doxylink{class_member_membership_rel_d_t_o}{Member\+Membership\+Rel\+DTO} object. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_database_client_af3a13bb6d47f8b40155347075a4bb171}\label{class_database_client_af3a13bb6d47f8b40155347075a4bb171} 
+\index{DatabaseClient@{DatabaseClient}!QUERY@{QUERY}}
+\index{QUERY@{QUERY}!DatabaseClient@{DatabaseClient}}
+\doxysubsubsection{\texorpdfstring{QUERY()}{QUERY()}\hspace{0.1cm}{\footnotesize\ttfamily [12/76]}}
+{\footnotesize\ttfamily Database\+Client\+::\+QUERY (\begin{DoxyParamCaption}\item[{create\+Member\+Phone\+Number\+Rel}]{,  }\item[{"{}INSERT INTO Member\+Phone\+Number\+Rel (member\+ID, phone\+Number\+ID) "{} "{}VALUES (\+:rel.\+member\+ID, \+:rel.\+phone\+Number\+ID);"{}}]{,  }\item[{PARAM(oatpp\+::\+Object$<$ \mbox{\hyperlink{class_member_phonenumber_rel_d_t_o}{Member\+Phonenumber\+Rel\+DTO}} $>$, rel)}]{ }\end{DoxyParamCaption})}
+
+
+
+Creates a new relationship between a member and a phone number in the database. 
+
+Inserts a new record into the "{}\+Member\+Phone\+Number\+Rel"{} table with the provided member and phone number IDs.
+
+
+\begin{DoxyParams}{Parameters}
+{\em rel} & The member-\/phone number relationship information to be created as a \doxylink{class_member_phonenumber_rel_d_t_o}{Member\+Phonenumber\+Rel\+DTO} object. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_database_client_aff71bd5dd07359da14112d4bb0ada116}\label{class_database_client_aff71bd5dd07359da14112d4bb0ada116} 
+\index{DatabaseClient@{DatabaseClient}!QUERY@{QUERY}}
+\index{QUERY@{QUERY}!DatabaseClient@{DatabaseClient}}
+\doxysubsubsection{\texorpdfstring{QUERY()}{QUERY()}\hspace{0.1cm}{\footnotesize\ttfamily [13/76]}}
+{\footnotesize\ttfamily Database\+Client\+::\+QUERY (\begin{DoxyParamCaption}\item[{create\+Membership}]{,  }\item[{"{}INSERT INTO Membership (membership\+Fee, active) "{} "{}VALUES (\+:membership.\+membership\+Fee, 1);"{}}]{,  }\item[{PARAM(oatpp\+::\+Object$<$ \mbox{\hyperlink{class_membership_d_t_o}{Membership\+DTO}} $>$, membership)}]{ }\end{DoxyParamCaption})}
+
+
+
+Creates a new membership entry in the database. 
+
+Inserts a new record into the "{}\+Membership"{} table with the provided membership fee and active status.
+
+
+\begin{DoxyParams}{Parameters}
+{\em membership} & The membership information to be created as a \doxylink{class_membership_d_t_o}{Membership\+DTO} object. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_database_client_a5e3e6b0d6520d1e7c82bb81a1407356f}\label{class_database_client_a5e3e6b0d6520d1e7c82bb81a1407356f} 
+\index{DatabaseClient@{DatabaseClient}!QUERY@{QUERY}}
+\index{QUERY@{QUERY}!DatabaseClient@{DatabaseClient}}
+\doxysubsubsection{\texorpdfstring{QUERY()}{QUERY()}\hspace{0.1cm}{\footnotesize\ttfamily [14/76]}}
+{\footnotesize\ttfamily Database\+Client\+::\+QUERY (\begin{DoxyParamCaption}\item[{create\+Member\+Training\+Rel}]{,  }\item[{"{}INSERT INTO Member\+Training\+Rel (member\+ID, training\+ID) "{} "{}VALUES (\+:rel.\+member\+ID, \+:rel.\+training\+ID);"{}}]{,  }\item[{PARAM(oatpp\+::\+Object$<$ \mbox{\hyperlink{class_member_training_rel_d_t_o}{Member\+Training\+Rel\+DTO}} $>$, rel)}]{ }\end{DoxyParamCaption})}
+
+
+
+Creates a new relationship between a member and a training in the database. 
+
+Inserts a new record into the "{}\+Member\+Training\+Rel"{} table with the provided member and training IDs.
+
+
+\begin{DoxyParams}{Parameters}
+{\em rel} & The member-\/training relationship information to be created as a \doxylink{class_member_training_rel_d_t_o}{Member\+Training\+Rel\+DTO} object. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_database_client_a905990d1176b0ea91bba3763f3cac62e}\label{class_database_client_a905990d1176b0ea91bba3763f3cac62e} 
+\index{DatabaseClient@{DatabaseClient}!QUERY@{QUERY}}
+\index{QUERY@{QUERY}!DatabaseClient@{DatabaseClient}}
+\doxysubsubsection{\texorpdfstring{QUERY()}{QUERY()}\hspace{0.1cm}{\footnotesize\ttfamily [15/76]}}
+{\footnotesize\ttfamily Database\+Client\+::\+QUERY (\begin{DoxyParamCaption}\item[{create\+Phone\+Number}]{,  }\item[{"{}INSERT INTO Phone\+Number (number) "{} "{}VALUES (\+:phone\+Number.\+number);"{}}]{,  }\item[{PARAM(oatpp\+::\+Object$<$ \mbox{\hyperlink{class_phone_number_d_t_o}{Phone\+Number\+DTO}} $>$, phone\+Number)}]{ }\end{DoxyParamCaption})}
+
+
+
+Creates a new phone number entry in the database. 
+
+Inserts a new record into the "{}\+Phone\+Number"{} table with the provided phone number.
+
+
+\begin{DoxyParams}{Parameters}
+{\em phone\+Number} & The phone number to be created as a \doxylink{class_phone_number_d_t_o}{Phone\+Number\+DTO} object. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_database_client_aaa882bf28c14e87f2bcf4f1d22847109}\label{class_database_client_aaa882bf28c14e87f2bcf4f1d22847109} 
+\index{DatabaseClient@{DatabaseClient}!QUERY@{QUERY}}
+\index{QUERY@{QUERY}!DatabaseClient@{DatabaseClient}}
+\doxysubsubsection{\texorpdfstring{QUERY()}{QUERY()}\hspace{0.1cm}{\footnotesize\ttfamily [16/76]}}
+{\footnotesize\ttfamily Database\+Client\+::\+QUERY (\begin{DoxyParamCaption}\item[{create\+Training}]{,  }\item[{"{}INSERT INTO Training (date, start\+Time, room, notes) "{} "{}VALUES (\+:training.\+date, \+:training.\+start\+Time, \+:training.\+room, \+:training.\+notes);"{}}]{,  }\item[{PARAM(oatpp\+::\+Object$<$ \mbox{\hyperlink{class_training_d_t_o}{Training\+DTO}} $>$, training)}]{ }\end{DoxyParamCaption})}
+
+
+
+Creates a new training entry in the database. 
+
+Inserts a new record into the "{}\+Training"{} table with the provided training information.
+
+
+\begin{DoxyParams}{Parameters}
+{\em training} & The training information to be created as a \doxylink{class_training_d_t_o}{Training\+DTO} object. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_database_client_ad18397c80180dedc1d0275bfddf63a9c}\label{class_database_client_ad18397c80180dedc1d0275bfddf63a9c} 
+\index{DatabaseClient@{DatabaseClient}!QUERY@{QUERY}}
+\index{QUERY@{QUERY}!DatabaseClient@{DatabaseClient}}
+\doxysubsubsection{\texorpdfstring{QUERY()}{QUERY()}\hspace{0.1cm}{\footnotesize\ttfamily [17/76]}}
+{\footnotesize\ttfamily Database\+Client\+::\+QUERY (\begin{DoxyParamCaption}\item[{deactivate\+Department}]{ }\end{DoxyParamCaption})}
+
+
+
+Deactivates a department entry in the database by ID. 
+
+Sets the \textquotesingle{}active\textquotesingle{} flag to 0 for the department record in the "{}\+Department"{} table with the specified ID.
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The ID of the department to deactivate. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_database_client_a67d694bebb97188e00769903a217971b}\label{class_database_client_a67d694bebb97188e00769903a217971b} 
+\index{DatabaseClient@{DatabaseClient}!QUERY@{QUERY}}
+\index{QUERY@{QUERY}!DatabaseClient@{DatabaseClient}}
+\doxysubsubsection{\texorpdfstring{QUERY()}{QUERY()}\hspace{0.1cm}{\footnotesize\ttfamily [18/76]}}
+{\footnotesize\ttfamily Database\+Client\+::\+QUERY (\begin{DoxyParamCaption}\item[{deactivate\+Member}]{ }\end{DoxyParamCaption})}
+
+
+
+Deactivates a member entry in the database by ID. 
+
+Sets the \textquotesingle{}active\textquotesingle{} flag to 0 for the member record in the "{}\+Member"{} table with the specified ID.
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The ID of the member to deactivate. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_database_client_ae0c02990d5e6103c17c05bb3cab0c114}\label{class_database_client_ae0c02990d5e6103c17c05bb3cab0c114} 
+\index{DatabaseClient@{DatabaseClient}!QUERY@{QUERY}}
+\index{QUERY@{QUERY}!DatabaseClient@{DatabaseClient}}
+\doxysubsubsection{\texorpdfstring{QUERY()}{QUERY()}\hspace{0.1cm}{\footnotesize\ttfamily [19/76]}}
+{\footnotesize\ttfamily Database\+Client\+::\+QUERY (\begin{DoxyParamCaption}\item[{deactivate\+Membership}]{ }\end{DoxyParamCaption})}
+
+
+
+Deactivates a membership entry in the database by ID. 
+
+Sets the \textquotesingle{}active\textquotesingle{} flag to 0 for the membership record in the "{}\+Membership"{} table with the specified ID.
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The ID of the membership to deactivate. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_database_client_a3737434de14c23f1280a4f2170e3b122}\label{class_database_client_a3737434de14c23f1280a4f2170e3b122} 
+\index{DatabaseClient@{DatabaseClient}!QUERY@{QUERY}}
+\index{QUERY@{QUERY}!DatabaseClient@{DatabaseClient}}
+\doxysubsubsection{\texorpdfstring{QUERY()}{QUERY()}\hspace{0.1cm}{\footnotesize\ttfamily [20/76]}}
+{\footnotesize\ttfamily Database\+Client\+::\+QUERY (\begin{DoxyParamCaption}\item[{delete\+Address\+By\+Id}]{ }\end{DoxyParamCaption})}
+
+
+
+Deletes an address entry from the database by ID. 
+
+Deletes the record from the "{}\+Address"{} table with the specified ID.
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The ID of the address to delete. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_database_client_a7a9c71aedff5d45780a85be70a4d544e}\label{class_database_client_a7a9c71aedff5d45780a85be70a4d544e} 
+\index{DatabaseClient@{DatabaseClient}!QUERY@{QUERY}}
+\index{QUERY@{QUERY}!DatabaseClient@{DatabaseClient}}
+\doxysubsubsection{\texorpdfstring{QUERY()}{QUERY()}\hspace{0.1cm}{\footnotesize\ttfamily [21/76]}}
+{\footnotesize\ttfamily Database\+Client\+::\+QUERY (\begin{DoxyParamCaption}\item[{delete\+Department\+By\+Id}]{ }\end{DoxyParamCaption})}
+
+
+
+Deletes a department entry from the database by ID. 
+
+Deletes the record from the "{}\+Department"{} table with the specified ID.
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The ID of the department to delete. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_database_client_a99a0f0f39a21a10d6a115b046056285c}\label{class_database_client_a99a0f0f39a21a10d6a115b046056285c} 
+\index{DatabaseClient@{DatabaseClient}!QUERY@{QUERY}}
+\index{QUERY@{QUERY}!DatabaseClient@{DatabaseClient}}
+\doxysubsubsection{\texorpdfstring{QUERY()}{QUERY()}\hspace{0.1cm}{\footnotesize\ttfamily [22/76]}}
+{\footnotesize\ttfamily Database\+Client\+::\+QUERY (\begin{DoxyParamCaption}\item[{delete\+Department\+Training\+Rel}]{ }\end{DoxyParamCaption})}
+
+
+
+Deletes a department-\/training relationship from the database. 
+
+Deletes the record from the "{}\+Department\+Training\+Rel"{} table with the specified department and training IDs.
+
+
+\begin{DoxyParams}{Parameters}
+{\em department\+ID} & The ID of the department. \\
+\hline
+{\em training\+ID} & The ID of the training. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_database_client_a941c81e9e86811a0e93c4d1ef2ec539c}\label{class_database_client_a941c81e9e86811a0e93c4d1ef2ec539c} 
+\index{DatabaseClient@{DatabaseClient}!QUERY@{QUERY}}
+\index{QUERY@{QUERY}!DatabaseClient@{DatabaseClient}}
+\doxysubsubsection{\texorpdfstring{QUERY()}{QUERY()}\hspace{0.1cm}{\footnotesize\ttfamily [23/76]}}
+{\footnotesize\ttfamily Database\+Client\+::\+QUERY (\begin{DoxyParamCaption}\item[{delete\+Email\+By\+Id}]{ }\end{DoxyParamCaption})}
+
+
+
+Deletes an email entry from the database by ID. 
+
+Deletes the record from the "{}\+Email"{} table with the specified ID.
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The ID of the email to delete. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_database_client_a2527583c8522053d4df3c604994d781b}\label{class_database_client_a2527583c8522053d4df3c604994d781b} 
+\index{DatabaseClient@{DatabaseClient}!QUERY@{QUERY}}
+\index{QUERY@{QUERY}!DatabaseClient@{DatabaseClient}}
+\doxysubsubsection{\texorpdfstring{QUERY()}{QUERY()}\hspace{0.1cm}{\footnotesize\ttfamily [24/76]}}
+{\footnotesize\ttfamily Database\+Client\+::\+QUERY (\begin{DoxyParamCaption}\item[{delete\+Member\+Address\+Rel}]{ }\end{DoxyParamCaption})}
+
+
+
+Deletes a member-\/address relationship from the database. 
+
+Deletes the record from the "{}\+Member\+Address\+Rel"{} table with the specified member and address IDs.
+
+
+\begin{DoxyParams}{Parameters}
+{\em member\+ID} & The ID of the member. \\
+\hline
+{\em address\+ID} & The ID of the address. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_database_client_a77780f563cf580b021293fb51ba40a95}\label{class_database_client_a77780f563cf580b021293fb51ba40a95} 
+\index{DatabaseClient@{DatabaseClient}!QUERY@{QUERY}}
+\index{QUERY@{QUERY}!DatabaseClient@{DatabaseClient}}
+\doxysubsubsection{\texorpdfstring{QUERY()}{QUERY()}\hspace{0.1cm}{\footnotesize\ttfamily [25/76]}}
+{\footnotesize\ttfamily Database\+Client\+::\+QUERY (\begin{DoxyParamCaption}\item[{delete\+Member\+By\+Id}]{ }\end{DoxyParamCaption})}
+
+
+
+Deletes a member entry from the database by ID. 
+
+Deletes the record from the "{}\+Member"{} table with the specified ID.
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The ID of the member to delete. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_database_client_aa0095660cde5b73491d4afa86db080c5}\label{class_database_client_aa0095660cde5b73491d4afa86db080c5} 
+\index{DatabaseClient@{DatabaseClient}!QUERY@{QUERY}}
+\index{QUERY@{QUERY}!DatabaseClient@{DatabaseClient}}
+\doxysubsubsection{\texorpdfstring{QUERY()}{QUERY()}\hspace{0.1cm}{\footnotesize\ttfamily [26/76]}}
+{\footnotesize\ttfamily Database\+Client\+::\+QUERY (\begin{DoxyParamCaption}\item[{delete\+Member\+Email\+Rel}]{ }\end{DoxyParamCaption})}
+
+
+
+Deletes a member-\/email relationship from the database. 
+
+Deletes the record from the "{}\+Member\+Email\+Rel"{} table with the specified member and email IDs.
+
+
+\begin{DoxyParams}{Parameters}
+{\em member\+ID} & The ID of the member. \\
+\hline
+{\em email\+ID} & The ID of the email. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_database_client_a72ce0a740b00e09c2103e1357efa8178}\label{class_database_client_a72ce0a740b00e09c2103e1357efa8178} 
+\index{DatabaseClient@{DatabaseClient}!QUERY@{QUERY}}
+\index{QUERY@{QUERY}!DatabaseClient@{DatabaseClient}}
+\doxysubsubsection{\texorpdfstring{QUERY()}{QUERY()}\hspace{0.1cm}{\footnotesize\ttfamily [27/76]}}
+{\footnotesize\ttfamily Database\+Client\+::\+QUERY (\begin{DoxyParamCaption}\item[{delete\+Member\+Membership\+Rel}]{ }\end{DoxyParamCaption})}
+
+
+
+Deletes a member-\/membership relationship from the database. 
+
+Deletes the record from the "{}\+Member\+Membership\+Rel"{} table with the specified member and membership IDs.
+
+
+\begin{DoxyParams}{Parameters}
+{\em member\+ID} & The ID of the member. \\
+\hline
+{\em membership\+ID} & The ID of the membership. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_database_client_ae53fd15dd18868ef5cb3c4ba4f4fb71b}\label{class_database_client_ae53fd15dd18868ef5cb3c4ba4f4fb71b} 
+\index{DatabaseClient@{DatabaseClient}!QUERY@{QUERY}}
+\index{QUERY@{QUERY}!DatabaseClient@{DatabaseClient}}
+\doxysubsubsection{\texorpdfstring{QUERY()}{QUERY()}\hspace{0.1cm}{\footnotesize\ttfamily [28/76]}}
+{\footnotesize\ttfamily Database\+Client\+::\+QUERY (\begin{DoxyParamCaption}\item[{delete\+Member\+Phone\+Number\+Rel}]{ }\end{DoxyParamCaption})}
+
+
+
+Deletes a member-\/phone number relationship from the database. 
+
+Deletes the record from the "{}\+Member\+Phone\+Number\+Rel"{} table with the specified member and phone number IDs.
+
+
+\begin{DoxyParams}{Parameters}
+{\em member\+ID} & The ID of the member. \\
+\hline
+{\em phone\+Number\+ID} & The ID of the phone number. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_database_client_a93c1fd8597aa9ed17ab72fc25f0e24d8}\label{class_database_client_a93c1fd8597aa9ed17ab72fc25f0e24d8} 
+\index{DatabaseClient@{DatabaseClient}!QUERY@{QUERY}}
+\index{QUERY@{QUERY}!DatabaseClient@{DatabaseClient}}
+\doxysubsubsection{\texorpdfstring{QUERY()}{QUERY()}\hspace{0.1cm}{\footnotesize\ttfamily [29/76]}}
+{\footnotesize\ttfamily Database\+Client\+::\+QUERY (\begin{DoxyParamCaption}\item[{delete\+Membership\+By\+Id}]{ }\end{DoxyParamCaption})}
+
+
+
+Deletes a membership entry from the database by ID. 
+
+Deletes the record from the "{}\+Membership"{} table with the specified ID.
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The ID of the membership to delete. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_database_client_a1a310b16aa04ef96029f4b2dd6f6b1d5}\label{class_database_client_a1a310b16aa04ef96029f4b2dd6f6b1d5} 
+\index{DatabaseClient@{DatabaseClient}!QUERY@{QUERY}}
+\index{QUERY@{QUERY}!DatabaseClient@{DatabaseClient}}
+\doxysubsubsection{\texorpdfstring{QUERY()}{QUERY()}\hspace{0.1cm}{\footnotesize\ttfamily [30/76]}}
+{\footnotesize\ttfamily Database\+Client\+::\+QUERY (\begin{DoxyParamCaption}\item[{delete\+Member\+Training\+Rel}]{ }\end{DoxyParamCaption})}
+
+
+
+Deletes a member-\/training relationship from the database. 
+
+Deletes the record from the "{}\+Member\+Training\+Rel"{} table with the specified member and training IDs.
+
+
+\begin{DoxyParams}{Parameters}
+{\em member\+ID} & The ID of the member. \\
+\hline
+{\em training\+ID} & The ID of the training. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_database_client_a419874f5cd88b8667342273d12d59be1}\label{class_database_client_a419874f5cd88b8667342273d12d59be1} 
+\index{DatabaseClient@{DatabaseClient}!QUERY@{QUERY}}
+\index{QUERY@{QUERY}!DatabaseClient@{DatabaseClient}}
+\doxysubsubsection{\texorpdfstring{QUERY()}{QUERY()}\hspace{0.1cm}{\footnotesize\ttfamily [31/76]}}
+{\footnotesize\ttfamily Database\+Client\+::\+QUERY (\begin{DoxyParamCaption}\item[{delete\+Phone\+Number\+By\+Id}]{ }\end{DoxyParamCaption})}
+
+
+
+Deletes a phone number entry from the database by ID. 
+
+Deletes the record from the "{}\+Phone\+Number"{} table with the specified ID.
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The ID of the phone number to delete. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_database_client_a51478bc73a6ddf5a4f66def7f73e330e}\label{class_database_client_a51478bc73a6ddf5a4f66def7f73e330e} 
+\index{DatabaseClient@{DatabaseClient}!QUERY@{QUERY}}
+\index{QUERY@{QUERY}!DatabaseClient@{DatabaseClient}}
+\doxysubsubsection{\texorpdfstring{QUERY()}{QUERY()}\hspace{0.1cm}{\footnotesize\ttfamily [32/76]}}
+{\footnotesize\ttfamily Database\+Client\+::\+QUERY (\begin{DoxyParamCaption}\item[{delete\+Training\+By\+Id}]{ }\end{DoxyParamCaption})}
+
+
+
+Deletes a training entry from the database by ID. 
+
+Deletes the record from the "{}\+Training"{} table with the specified ID.
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The ID of the training to delete. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_database_client_a3d0160178d3d1ff606673cfb9ff1f9dc}\label{class_database_client_a3d0160178d3d1ff606673cfb9ff1f9dc} 
+\index{DatabaseClient@{DatabaseClient}!QUERY@{QUERY}}
+\index{QUERY@{QUERY}!DatabaseClient@{DatabaseClient}}
+\doxysubsubsection{\texorpdfstring{QUERY()}{QUERY()}\hspace{0.1cm}{\footnotesize\ttfamily [33/76]}}
+{\footnotesize\ttfamily Database\+Client\+::\+QUERY (\begin{DoxyParamCaption}\item[{get\+Active\+Members}]{ }\end{DoxyParamCaption})}
+
+
+
+Retrieves active member entries from the database. 
+
+Retrieves records from the "{}\+Member"{} table where the \textquotesingle{}active\textquotesingle{} column is set to 1, with a specified limit and offset for pagination.
+
+
+\begin{DoxyParams}{Parameters}
+{\em offset} & The offset for pagination. \\
+\hline
+{\em limit} & The maximum number of records to retrieve. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_database_client_a2178805f9fa6c8faf08d21feb047cfa8}\label{class_database_client_a2178805f9fa6c8faf08d21feb047cfa8} 
+\index{DatabaseClient@{DatabaseClient}!QUERY@{QUERY}}
+\index{QUERY@{QUERY}!DatabaseClient@{DatabaseClient}}
+\doxysubsubsection{\texorpdfstring{QUERY()}{QUERY()}\hspace{0.1cm}{\footnotesize\ttfamily [34/76]}}
+{\footnotesize\ttfamily Database\+Client\+::\+QUERY (\begin{DoxyParamCaption}\item[{get\+Address\+By\+Id}]{ }\end{DoxyParamCaption})}
+
+
+
+Retrieves an address entry from the database by ID. 
+
+Retrieves the record from the "{}\+Address"{} table with the specified ID.
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The ID of the address to retrieve. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_database_client_a9d817bb8b5b2df6e56e0035621eee1e4}\label{class_database_client_a9d817bb8b5b2df6e56e0035621eee1e4} 
+\index{DatabaseClient@{DatabaseClient}!QUERY@{QUERY}}
+\index{QUERY@{QUERY}!DatabaseClient@{DatabaseClient}}
+\doxysubsubsection{\texorpdfstring{QUERY()}{QUERY()}\hspace{0.1cm}{\footnotesize\ttfamily [35/76]}}
+{\footnotesize\ttfamily Database\+Client\+::\+QUERY (\begin{DoxyParamCaption}\item[{get\+Address\+Ids\+By\+Member\+Id}]{ }\end{DoxyParamCaption})}
+
+
+
+Retrieves the address IDs associated with a member ID from the database. 
+
+Retrieves the address IDs from the "{}\+Member\+Address\+Rel"{} table for the specified member ID.
+
+
+\begin{DoxyParams}{Parameters}
+{\em member\+ID} & The ID of the member. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_database_client_a57bbfff98e2332c8baf54ca43c318de0}\label{class_database_client_a57bbfff98e2332c8baf54ca43c318de0} 
+\index{DatabaseClient@{DatabaseClient}!QUERY@{QUERY}}
+\index{QUERY@{QUERY}!DatabaseClient@{DatabaseClient}}
+\doxysubsubsection{\texorpdfstring{QUERY()}{QUERY()}\hspace{0.1cm}{\footnotesize\ttfamily [36/76]}}
+{\footnotesize\ttfamily Database\+Client\+::\+QUERY (\begin{DoxyParamCaption}\item[{get\+All\+Addresses}]{,  }\item[{"{}SELECT \texorpdfstring{$\ast$}{*} FROM Address LIMIT \+:limit OFFSET \+:offset;"{}}]{,  }\item[{PARAM(oatpp\+::\+UInt32, offset)}]{,  }\item[{PARAM(oatpp\+::\+UInt32, limit)}]{ }\end{DoxyParamCaption})}
+
+
+
+Retrieves all address entries from the database. 
+
+Retrieves records from the "{}\+Address"{} table with a specified limit and offset for pagination.
+
+
+\begin{DoxyParams}{Parameters}
+{\em offset} & The offset for pagination. \\
+\hline
+{\em limit} & The maximum number of records to retrieve. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_database_client_a4f907bc0da808e523e7c339f8acf76c0}\label{class_database_client_a4f907bc0da808e523e7c339f8acf76c0} 
+\index{DatabaseClient@{DatabaseClient}!QUERY@{QUERY}}
+\index{QUERY@{QUERY}!DatabaseClient@{DatabaseClient}}
+\doxysubsubsection{\texorpdfstring{QUERY()}{QUERY()}\hspace{0.1cm}{\footnotesize\ttfamily [37/76]}}
+{\footnotesize\ttfamily Database\+Client\+::\+QUERY (\begin{DoxyParamCaption}\item[{get\+All\+Departments}]{ }\end{DoxyParamCaption})}
+
+
+
+Retrieves all active department entries from the database. 
+
+Retrieves records from the "{}\+Department"{} table where the \textquotesingle{}active\textquotesingle{} column is set to 1, with a specified limit and offset for pagination.
+
+
+\begin{DoxyParams}{Parameters}
+{\em offset} & The offset for pagination. \\
+\hline
+{\em limit} & The maximum number of records to retrieve. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_database_client_af2c27cd58bc518cdceb866899a63557b}\label{class_database_client_af2c27cd58bc518cdceb866899a63557b} 
+\index{DatabaseClient@{DatabaseClient}!QUERY@{QUERY}}
+\index{QUERY@{QUERY}!DatabaseClient@{DatabaseClient}}
+\doxysubsubsection{\texorpdfstring{QUERY()}{QUERY()}\hspace{0.1cm}{\footnotesize\ttfamily [38/76]}}
+{\footnotesize\ttfamily Database\+Client\+::\+QUERY (\begin{DoxyParamCaption}\item[{get\+All\+Emails}]{,  }\item[{"{}SELECT \texorpdfstring{$\ast$}{*} FROM Email LIMIT \+:limit OFFSET \+:offset;"{}}]{,  }\item[{PARAM(oatpp\+::\+UInt32, offset)}]{,  }\item[{PARAM(oatpp\+::\+UInt32, limit)}]{ }\end{DoxyParamCaption})}
+
+
+
+Retrieves all email entries from the database. 
+
+Retrieves records from the "{}\+Email"{} table with a specified limit and offset for pagination.
+
+
+\begin{DoxyParams}{Parameters}
+{\em offset} & The offset for pagination. \\
+\hline
+{\em limit} & The maximum number of records to retrieve. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_database_client_a53817ee816f1c9e8711c92f02c905087}\label{class_database_client_a53817ee816f1c9e8711c92f02c905087} 
+\index{DatabaseClient@{DatabaseClient}!QUERY@{QUERY}}
+\index{QUERY@{QUERY}!DatabaseClient@{DatabaseClient}}
+\doxysubsubsection{\texorpdfstring{QUERY()}{QUERY()}\hspace{0.1cm}{\footnotesize\ttfamily [39/76]}}
+{\footnotesize\ttfamily Database\+Client\+::\+QUERY (\begin{DoxyParamCaption}\item[{get\+All\+Memberships}]{,  }\item[{"{}SELECT \texorpdfstring{$\ast$}{*} FROM Membership LIMIT \+:limit OFFSET \+:offset;"{}}]{,  }\item[{PARAM(oatpp\+::\+UInt32, offset)}]{,  }\item[{PARAM(oatpp\+::\+UInt32, limit)}]{ }\end{DoxyParamCaption})}
+
+
+
+Retrieves all membership entries from the database. 
+
+Retrieves records from the "{}\+Membership"{} table with a specified limit and offset for pagination.
+
+
+\begin{DoxyParams}{Parameters}
+{\em offset} & The offset for pagination. \\
+\hline
+{\em limit} & The maximum number of records to retrieve. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_database_client_a92f438900b3a1447fa878bff47322e8e}\label{class_database_client_a92f438900b3a1447fa878bff47322e8e} 
+\index{DatabaseClient@{DatabaseClient}!QUERY@{QUERY}}
+\index{QUERY@{QUERY}!DatabaseClient@{DatabaseClient}}
+\doxysubsubsection{\texorpdfstring{QUERY()}{QUERY()}\hspace{0.1cm}{\footnotesize\ttfamily [40/76]}}
+{\footnotesize\ttfamily Database\+Client\+::\+QUERY (\begin{DoxyParamCaption}\item[{get\+All\+Phone\+Numbers}]{,  }\item[{"{}SELECT \texorpdfstring{$\ast$}{*} FROM Phone\+Number LIMIT \+:limit OFFSET \+:offset;"{}}]{,  }\item[{PARAM(oatpp\+::\+UInt32, offset)}]{,  }\item[{PARAM(oatpp\+::\+UInt32, limit)}]{ }\end{DoxyParamCaption})}
+
+
+
+Retrieves all phone number entries from the database. 
+
+Retrieves records from the "{}\+Phone\+Number"{} table with a specified limit and offset for pagination.
+
+
+\begin{DoxyParams}{Parameters}
+{\em offset} & The offset for pagination. \\
+\hline
+{\em limit} & The maximum number of records to retrieve. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_database_client_acb57aa6773007471f04506a228fa1491}\label{class_database_client_acb57aa6773007471f04506a228fa1491} 
+\index{DatabaseClient@{DatabaseClient}!QUERY@{QUERY}}
+\index{QUERY@{QUERY}!DatabaseClient@{DatabaseClient}}
+\doxysubsubsection{\texorpdfstring{QUERY()}{QUERY()}\hspace{0.1cm}{\footnotesize\ttfamily [41/76]}}
+{\footnotesize\ttfamily Database\+Client\+::\+QUERY (\begin{DoxyParamCaption}\item[{get\+All\+Trainings}]{,  }\item[{"{}SELECT \texorpdfstring{$\ast$}{*} FROM Training LIMIT \+:limit OFFSET \+:offset;"{}}]{,  }\item[{PARAM(oatpp\+::\+UInt32, offset)}]{,  }\item[{PARAM(oatpp\+::\+UInt32, limit)}]{ }\end{DoxyParamCaption})}
+
+
+
+Retrieves all training entries from the database. 
+
+Retrieves records from the "{}\+Training"{} table with a specified limit and offset for pagination.
+
+
+\begin{DoxyParams}{Parameters}
+{\em offset} & The offset for pagination. \\
+\hline
+{\em limit} & The maximum number of records to retrieve. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_database_client_a5479f1a1d3e431495bb096fd25e1ec0e}\label{class_database_client_a5479f1a1d3e431495bb096fd25e1ec0e} 
+\index{DatabaseClient@{DatabaseClient}!QUERY@{QUERY}}
+\index{QUERY@{QUERY}!DatabaseClient@{DatabaseClient}}
+\doxysubsubsection{\texorpdfstring{QUERY()}{QUERY()}\hspace{0.1cm}{\footnotesize\ttfamily [42/76]}}
+{\footnotesize\ttfamily Database\+Client\+::\+QUERY (\begin{DoxyParamCaption}\item[{get\+Department\+By\+Id}]{ }\end{DoxyParamCaption})}
+
+
+
+Retrieves a department entry from the database by ID. 
+
+Retrieves the record from the "{}\+Department"{} table with the specified ID.
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The ID of the department to retrieve. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_database_client_af1814852909e48acbbf981142d16af39}\label{class_database_client_af1814852909e48acbbf981142d16af39} 
+\index{DatabaseClient@{DatabaseClient}!QUERY@{QUERY}}
+\index{QUERY@{QUERY}!DatabaseClient@{DatabaseClient}}
+\doxysubsubsection{\texorpdfstring{QUERY()}{QUERY()}\hspace{0.1cm}{\footnotesize\ttfamily [43/76]}}
+{\footnotesize\ttfamily Database\+Client\+::\+QUERY (\begin{DoxyParamCaption}\item[{get\+Department\+Ids\+By\+Training\+Id}]{ }\end{DoxyParamCaption})}
+
+
+
+Retrieves the department IDs associated with a training ID from the database. 
+
+Retrieves the department IDs from the "{}\+Department\+Training\+Rel"{} table for the specified training ID.
+
+
+\begin{DoxyParams}{Parameters}
+{\em training\+ID} & The ID of the training. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_database_client_a8750c9a0ff111363321fe3e3ed41d9ef}\label{class_database_client_a8750c9a0ff111363321fe3e3ed41d9ef} 
+\index{DatabaseClient@{DatabaseClient}!QUERY@{QUERY}}
+\index{QUERY@{QUERY}!DatabaseClient@{DatabaseClient}}
+\doxysubsubsection{\texorpdfstring{QUERY()}{QUERY()}\hspace{0.1cm}{\footnotesize\ttfamily [44/76]}}
+{\footnotesize\ttfamily Database\+Client\+::\+QUERY (\begin{DoxyParamCaption}\item[{get\+Email\+By\+Id}]{ }\end{DoxyParamCaption})}
+
+
+
+Retrieves an email entry from the database by ID. 
+
+Retrieves the record from the "{}\+Email"{} table with the specified ID.
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The ID of the email to retrieve. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_database_client_aef48cae4674f4e68482aaa5a666ef213}\label{class_database_client_aef48cae4674f4e68482aaa5a666ef213} 
+\index{DatabaseClient@{DatabaseClient}!QUERY@{QUERY}}
+\index{QUERY@{QUERY}!DatabaseClient@{DatabaseClient}}
+\doxysubsubsection{\texorpdfstring{QUERY()}{QUERY()}\hspace{0.1cm}{\footnotesize\ttfamily [45/76]}}
+{\footnotesize\ttfamily Database\+Client\+::\+QUERY (\begin{DoxyParamCaption}\item[{get\+Email\+Id\+By\+Email}]{ }\end{DoxyParamCaption})}
+
+
+
+Retrieves the ID of an email entry from the database by email address. 
+
+Retrieves the ID from the "{}\+Email"{} table for the email address provided.
+
+
+\begin{DoxyParams}{Parameters}
+{\em email} & The email address to search for. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_database_client_ae0ae1c608dfe8a250a6523ce23426ed6}\label{class_database_client_ae0ae1c608dfe8a250a6523ce23426ed6} 
+\index{DatabaseClient@{DatabaseClient}!QUERY@{QUERY}}
+\index{QUERY@{QUERY}!DatabaseClient@{DatabaseClient}}
+\doxysubsubsection{\texorpdfstring{QUERY()}{QUERY()}\hspace{0.1cm}{\footnotesize\ttfamily [46/76]}}
+{\footnotesize\ttfamily Database\+Client\+::\+QUERY (\begin{DoxyParamCaption}\item[{get\+Email\+Ids\+By\+Member\+Id}]{ }\end{DoxyParamCaption})}
+
+
+
+Retrieves the email IDs associated with a member ID from the database. 
+
+Retrieves the email IDs from the "{}\+Member\+Email\+Rel"{} table for the specified member ID.
+
+
+\begin{DoxyParams}{Parameters}
+{\em member\+ID} & The ID of the member. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_database_client_a18f8a2b9e93b1666b568161ba7c5369f}\label{class_database_client_a18f8a2b9e93b1666b568161ba7c5369f} 
+\index{DatabaseClient@{DatabaseClient}!QUERY@{QUERY}}
+\index{QUERY@{QUERY}!DatabaseClient@{DatabaseClient}}
+\doxysubsubsection{\texorpdfstring{QUERY()}{QUERY()}\hspace{0.1cm}{\footnotesize\ttfamily [47/76]}}
+{\footnotesize\ttfamily Database\+Client\+::\+QUERY (\begin{DoxyParamCaption}\item[{get\+Inactive\+Departments}]{ }\end{DoxyParamCaption})}
+
+
+
+Retrieves all inactive department entries from the database. 
+
+Retrieves records from the "{}\+Department"{} table where the \textquotesingle{}active\textquotesingle{} column is set to 0, with a specified limit and offset for pagination.
+
+
+\begin{DoxyParams}{Parameters}
+{\em offset} & The offset for pagination. \\
+\hline
+{\em limit} & The maximum number of records to retrieve. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_database_client_a8eece536921abe01f97d7cb17fa98aed}\label{class_database_client_a8eece536921abe01f97d7cb17fa98aed} 
+\index{DatabaseClient@{DatabaseClient}!QUERY@{QUERY}}
+\index{QUERY@{QUERY}!DatabaseClient@{DatabaseClient}}
+\doxysubsubsection{\texorpdfstring{QUERY()}{QUERY()}\hspace{0.1cm}{\footnotesize\ttfamily [48/76]}}
+{\footnotesize\ttfamily Database\+Client\+::\+QUERY (\begin{DoxyParamCaption}\item[{get\+Inactive\+Members}]{ }\end{DoxyParamCaption})}
+
+
+
+Retrieves inactive member entries from the database. 
+
+Retrieves records from the "{}\+Member"{} table where the \textquotesingle{}active\textquotesingle{} column is set to 0, with a specified limit and offset for pagination.
+
+
+\begin{DoxyParams}{Parameters}
+{\em offset} & The offset for pagination. \\
+\hline
+{\em limit} & The maximum number of records to retrieve. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_database_client_a412d06f87e36d497b10a50c2f5ae5abd}\label{class_database_client_a412d06f87e36d497b10a50c2f5ae5abd} 
+\index{DatabaseClient@{DatabaseClient}!QUERY@{QUERY}}
+\index{QUERY@{QUERY}!DatabaseClient@{DatabaseClient}}
+\doxysubsubsection{\texorpdfstring{QUERY()}{QUERY()}\hspace{0.1cm}{\footnotesize\ttfamily [49/76]}}
+{\footnotesize\ttfamily Database\+Client\+::\+QUERY (\begin{DoxyParamCaption}\item[{get\+Member\+By\+Id}]{ }\end{DoxyParamCaption})}
+
+
+
+Retrieves a member entry from the database by ID. 
+
+Retrieves the record from the "{}\+Member"{} table with the specified ID.
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The ID of the member to retrieve. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_database_client_a7161fad54e00fb378dfc35d465e43a07}\label{class_database_client_a7161fad54e00fb378dfc35d465e43a07} 
+\index{DatabaseClient@{DatabaseClient}!QUERY@{QUERY}}
+\index{QUERY@{QUERY}!DatabaseClient@{DatabaseClient}}
+\doxysubsubsection{\texorpdfstring{QUERY()}{QUERY()}\hspace{0.1cm}{\footnotesize\ttfamily [50/76]}}
+{\footnotesize\ttfamily Database\+Client\+::\+QUERY (\begin{DoxyParamCaption}\item[{get\+Member\+Ids\+By\+Address\+Id}]{ }\end{DoxyParamCaption})}
+
+
+
+Retrieves the member IDs associated with an address ID from the database. 
+
+Retrieves the member IDs from the "{}\+Member\+Address\+Rel"{} table for the specified address ID.
+
+
+\begin{DoxyParams}{Parameters}
+{\em address\+ID} & The ID of the address. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_database_client_a89c3cc2b045f5a2f8927c0382b987b86}\label{class_database_client_a89c3cc2b045f5a2f8927c0382b987b86} 
+\index{DatabaseClient@{DatabaseClient}!QUERY@{QUERY}}
+\index{QUERY@{QUERY}!DatabaseClient@{DatabaseClient}}
+\doxysubsubsection{\texorpdfstring{QUERY()}{QUERY()}\hspace{0.1cm}{\footnotesize\ttfamily [51/76]}}
+{\footnotesize\ttfamily Database\+Client\+::\+QUERY (\begin{DoxyParamCaption}\item[{get\+Member\+Ids\+By\+Email\+Id}]{ }\end{DoxyParamCaption})}
+
+
+
+Retrieves the member IDs associated with an email ID from the database. 
+
+Retrieves the member IDs from the "{}\+Member\+Email\+Rel"{} table for the specified email ID.
+
+
+\begin{DoxyParams}{Parameters}
+{\em email\+ID} & The ID of the email. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_database_client_a4495b4393ef397a4e17cabfc272adc58}\label{class_database_client_a4495b4393ef397a4e17cabfc272adc58} 
+\index{DatabaseClient@{DatabaseClient}!QUERY@{QUERY}}
+\index{QUERY@{QUERY}!DatabaseClient@{DatabaseClient}}
+\doxysubsubsection{\texorpdfstring{QUERY()}{QUERY()}\hspace{0.1cm}{\footnotesize\ttfamily [52/76]}}
+{\footnotesize\ttfamily Database\+Client\+::\+QUERY (\begin{DoxyParamCaption}\item[{get\+Member\+Ids\+By\+Membership\+Id}]{ }\end{DoxyParamCaption})}
+
+
+
+Retrieves the member IDs associated with a membership ID from the database. 
+
+Retrieves the member IDs from the "{}\+Member\+Membership\+Rel"{} table for the specified membership ID.
+
+
+\begin{DoxyParams}{Parameters}
+{\em membership\+ID} & The ID of the membership. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_database_client_ad9cc089426c89caddad5008746b4a88b}\label{class_database_client_ad9cc089426c89caddad5008746b4a88b} 
+\index{DatabaseClient@{DatabaseClient}!QUERY@{QUERY}}
+\index{QUERY@{QUERY}!DatabaseClient@{DatabaseClient}}
+\doxysubsubsection{\texorpdfstring{QUERY()}{QUERY()}\hspace{0.1cm}{\footnotesize\ttfamily [53/76]}}
+{\footnotesize\ttfamily Database\+Client\+::\+QUERY (\begin{DoxyParamCaption}\item[{get\+Member\+Ids\+By\+Phone\+Number\+Id}]{ }\end{DoxyParamCaption})}
+
+
+
+Retrieves the member IDs associated with a phone number ID from the database. 
+
+Retrieves the member IDs from the "{}\+Member\+Phone\+Number\+Rel"{} table for the specified phone number ID.
+
+
+\begin{DoxyParams}{Parameters}
+{\em phone\+Number\+ID} & The ID of the phone number. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_database_client_a5e6a19e1f2175948b5e3ad2ec5b02742}\label{class_database_client_a5e6a19e1f2175948b5e3ad2ec5b02742} 
+\index{DatabaseClient@{DatabaseClient}!QUERY@{QUERY}}
+\index{QUERY@{QUERY}!DatabaseClient@{DatabaseClient}}
+\doxysubsubsection{\texorpdfstring{QUERY()}{QUERY()}\hspace{0.1cm}{\footnotesize\ttfamily [54/76]}}
+{\footnotesize\ttfamily Database\+Client\+::\+QUERY (\begin{DoxyParamCaption}\item[{get\+Member\+Ids\+By\+Training\+Id}]{ }\end{DoxyParamCaption})}
+
+
+
+Retrieves the member IDs associated with a training ID from the database. 
+
+Retrieves the member IDs from the "{}\+Member\+Training\+Rel"{} table for the specified training ID.
+
+
+\begin{DoxyParams}{Parameters}
+{\em training\+ID} & The ID of the training. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_database_client_a94fbb649eecbf1e3d190c5a61489e0f9}\label{class_database_client_a94fbb649eecbf1e3d190c5a61489e0f9} 
+\index{DatabaseClient@{DatabaseClient}!QUERY@{QUERY}}
+\index{QUERY@{QUERY}!DatabaseClient@{DatabaseClient}}
+\doxysubsubsection{\texorpdfstring{QUERY()}{QUERY()}\hspace{0.1cm}{\footnotesize\ttfamily [55/76]}}
+{\footnotesize\ttfamily Database\+Client\+::\+QUERY (\begin{DoxyParamCaption}\item[{get\+Members\+By\+Department\+Id}]{ }\end{DoxyParamCaption})}
+
+
+
+Retrieves members associated with a department ID from the database. 
+
+Retrieves the details of members belonging to the specified department from the "{}\+Member"{} table.
+
+
+\begin{DoxyParams}{Parameters}
+{\em department\+ID} & The ID of the department. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_database_client_a2ffd6740753300a65eea1af6841ecd96}\label{class_database_client_a2ffd6740753300a65eea1af6841ecd96} 
+\index{DatabaseClient@{DatabaseClient}!QUERY@{QUERY}}
+\index{QUERY@{QUERY}!DatabaseClient@{DatabaseClient}}
+\doxysubsubsection{\texorpdfstring{QUERY()}{QUERY()}\hspace{0.1cm}{\footnotesize\ttfamily [56/76]}}
+{\footnotesize\ttfamily Database\+Client\+::\+QUERY (\begin{DoxyParamCaption}\item[{get\+Members\+By\+Training\+Id\+And\+Min\+Age}]{ }\end{DoxyParamCaption})}
+
+
+
+Retrieves members associated with a training ID and above a minimum age from the database. 
+
+Retrieves the details of members attending the specified training and above the specified minimum age from the "{}\+Member"{} table.
+
+
+\begin{DoxyParams}{Parameters}
+{\em training\+ID} & The ID of the training. \\
+\hline
+{\em min\+Age} & The minimum age of the members. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_database_client_ae122142d77d28af6060eabf1e6b3f3ae}\label{class_database_client_ae122142d77d28af6060eabf1e6b3f3ae} 
+\index{DatabaseClient@{DatabaseClient}!QUERY@{QUERY}}
+\index{QUERY@{QUERY}!DatabaseClient@{DatabaseClient}}
+\doxysubsubsection{\texorpdfstring{QUERY()}{QUERY()}\hspace{0.1cm}{\footnotesize\ttfamily [57/76]}}
+{\footnotesize\ttfamily Database\+Client\+::\+QUERY (\begin{DoxyParamCaption}\item[{get\+Membership\+By\+Id}]{ }\end{DoxyParamCaption})}
+
+
+
+Retrieves a membership entry from the database by ID. 
+
+Retrieves the record from the "{}\+Membership"{} table with the specified ID.
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The ID of the membership to retrieve. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_database_client_ae2ee47a7fbe0647b74b6d29c35cface5}\label{class_database_client_ae2ee47a7fbe0647b74b6d29c35cface5} 
+\index{DatabaseClient@{DatabaseClient}!QUERY@{QUERY}}
+\index{QUERY@{QUERY}!DatabaseClient@{DatabaseClient}}
+\doxysubsubsection{\texorpdfstring{QUERY()}{QUERY()}\hspace{0.1cm}{\footnotesize\ttfamily [58/76]}}
+{\footnotesize\ttfamily Database\+Client\+::\+QUERY (\begin{DoxyParamCaption}\item[{get\+Membership\+Ids\+By\+Member\+Id}]{ }\end{DoxyParamCaption})}
+
+
+
+Retrieves the membership IDs associated with a member ID from the database. 
+
+Retrieves the membership IDs from the "{}\+Member\+Membership\+Rel"{} table for the specified member ID.
+
+
+\begin{DoxyParams}{Parameters}
+{\em member\+ID} & The ID of the member. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_database_client_a6504a90c8bb870a64d67764c1044f169}\label{class_database_client_a6504a90c8bb870a64d67764c1044f169} 
+\index{DatabaseClient@{DatabaseClient}!QUERY@{QUERY}}
+\index{QUERY@{QUERY}!DatabaseClient@{DatabaseClient}}
+\doxysubsubsection{\texorpdfstring{QUERY()}{QUERY()}\hspace{0.1cm}{\footnotesize\ttfamily [59/76]}}
+{\footnotesize\ttfamily Database\+Client\+::\+QUERY (\begin{DoxyParamCaption}\item[{get\+Memberships\+By\+Member\+Id}]{ }\end{DoxyParamCaption})}
+
+
+
+Retrieves memberships associated with a member ID from the database. 
+
+Retrieves the details of memberships held by the specified member from the "{}\+Membership"{} table.
+
+
+\begin{DoxyParams}{Parameters}
+{\em member\+ID} & The ID of the member. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_database_client_a301a7f813d00fe7d6493c20a0f308bd2}\label{class_database_client_a301a7f813d00fe7d6493c20a0f308bd2} 
+\index{DatabaseClient@{DatabaseClient}!QUERY@{QUERY}}
+\index{QUERY@{QUERY}!DatabaseClient@{DatabaseClient}}
+\doxysubsubsection{\texorpdfstring{QUERY()}{QUERY()}\hspace{0.1cm}{\footnotesize\ttfamily [60/76]}}
+{\footnotesize\ttfamily Database\+Client\+::\+QUERY (\begin{DoxyParamCaption}\item[{get\+Members\+With\+Monthly\+Attendance}]{,  }\item[{"{}SELECT Member.\texorpdfstring{$\ast$}{*}}]{ }\end{DoxyParamCaption})}
+
+
+
+Retrieves members with monthly attendance count from the database. 
+
+Retrieves the details of members who attended at least 12 distinct months of trainings from the "{}\+Member"{} table. \Hypertarget{class_database_client_a0585a690181a86fda091127707900f81}\label{class_database_client_a0585a690181a86fda091127707900f81} 
+\index{DatabaseClient@{DatabaseClient}!QUERY@{QUERY}}
+\index{QUERY@{QUERY}!DatabaseClient@{DatabaseClient}}
+\doxysubsubsection{\texorpdfstring{QUERY()}{QUERY()}\hspace{0.1cm}{\footnotesize\ttfamily [61/76]}}
+{\footnotesize\ttfamily Database\+Client\+::\+QUERY (\begin{DoxyParamCaption}\item[{get\+Members\+With\+Yearly\+Attendance}]{,  }\item[{"{}SELECT Member.\texorpdfstring{$\ast$}{*}}]{ }\end{DoxyParamCaption})}
+
+
+
+Retrieves members with yearly attendance count from the database. 
+
+Retrieves the details of members who attended at least 18 trainings per year from the "{}\+Member"{} table. \Hypertarget{class_database_client_aca17da479a499174fe2ca7c6d8fe4841}\label{class_database_client_aca17da479a499174fe2ca7c6d8fe4841} 
+\index{DatabaseClient@{DatabaseClient}!QUERY@{QUERY}}
+\index{QUERY@{QUERY}!DatabaseClient@{DatabaseClient}}
+\doxysubsubsection{\texorpdfstring{QUERY()}{QUERY()}\hspace{0.1cm}{\footnotesize\ttfamily [62/76]}}
+{\footnotesize\ttfamily Database\+Client\+::\+QUERY (\begin{DoxyParamCaption}\item[{get\+Phone\+Number\+By\+Id}]{ }\end{DoxyParamCaption})}
+
+
+
+Retrieves a phone number entry from the database by ID. 
+
+Retrieves the record from the "{}\+Phone\+Number"{} table with the specified ID.
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The ID of the phone number to retrieve. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_database_client_abfcb8d37a3208e82ea0dd5f83e680cba}\label{class_database_client_abfcb8d37a3208e82ea0dd5f83e680cba} 
+\index{DatabaseClient@{DatabaseClient}!QUERY@{QUERY}}
+\index{QUERY@{QUERY}!DatabaseClient@{DatabaseClient}}
+\doxysubsubsection{\texorpdfstring{QUERY()}{QUERY()}\hspace{0.1cm}{\footnotesize\ttfamily [63/76]}}
+{\footnotesize\ttfamily Database\+Client\+::\+QUERY (\begin{DoxyParamCaption}\item[{get\+Phone\+Number\+Ids\+By\+Member\+Id}]{ }\end{DoxyParamCaption})}
+
+
+
+Retrieves the phone number IDs associated with a member ID from the database. 
+
+Retrieves the phone number IDs from the "{}\+Member\+Phone\+Number\+Rel"{} table for the specified member ID.
+
+
+\begin{DoxyParams}{Parameters}
+{\em member\+ID} & The ID of the member. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_database_client_af8bdc1b25e0ce2ced6e268bd3fa5712a}\label{class_database_client_af8bdc1b25e0ce2ced6e268bd3fa5712a} 
+\index{DatabaseClient@{DatabaseClient}!QUERY@{QUERY}}
+\index{QUERY@{QUERY}!DatabaseClient@{DatabaseClient}}
+\doxysubsubsection{\texorpdfstring{QUERY()}{QUERY()}\hspace{0.1cm}{\footnotesize\ttfamily [64/76]}}
+{\footnotesize\ttfamily Database\+Client\+::\+QUERY (\begin{DoxyParamCaption}\item[{get\+Training\+By\+Id}]{ }\end{DoxyParamCaption})}
+
+
+
+Retrieves a training entry from the database by ID. 
+
+Retrieves the record from the "{}\+Training"{} table with the specified ID.
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The ID of the training to retrieve. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_database_client_ad08bb9cfe8cd43500da2434e141ef402}\label{class_database_client_ad08bb9cfe8cd43500da2434e141ef402} 
+\index{DatabaseClient@{DatabaseClient}!QUERY@{QUERY}}
+\index{QUERY@{QUERY}!DatabaseClient@{DatabaseClient}}
+\doxysubsubsection{\texorpdfstring{QUERY()}{QUERY()}\hspace{0.1cm}{\footnotesize\ttfamily [65/76]}}
+{\footnotesize\ttfamily Database\+Client\+::\+QUERY (\begin{DoxyParamCaption}\item[{get\+Training\+Ids\+By\+Department\+Id}]{ }\end{DoxyParamCaption})}
+
+
+
+Retrieves the training IDs associated with a department ID from the database. 
+
+Retrieves the training IDs from the "{}\+Department\+Training\+Rel"{} table for the specified department ID.
+
+
+\begin{DoxyParams}{Parameters}
+{\em department\+ID} & The ID of the department. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_database_client_ac1d66d395a3f319fa826ab1be0caf56c}\label{class_database_client_ac1d66d395a3f319fa826ab1be0caf56c} 
+\index{DatabaseClient@{DatabaseClient}!QUERY@{QUERY}}
+\index{QUERY@{QUERY}!DatabaseClient@{DatabaseClient}}
+\doxysubsubsection{\texorpdfstring{QUERY()}{QUERY()}\hspace{0.1cm}{\footnotesize\ttfamily [66/76]}}
+{\footnotesize\ttfamily Database\+Client\+::\+QUERY (\begin{DoxyParamCaption}\item[{get\+Training\+Ids\+By\+Member\+Id}]{ }\end{DoxyParamCaption})}
+
+
+
+Retrieves the training IDs associated with a member ID from the database. 
+
+Retrieves the training IDs from the "{}\+Member\+Training\+Rel"{} table for the specified member ID.
+
+
+\begin{DoxyParams}{Parameters}
+{\em member\+ID} & The ID of the member. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_database_client_aed2521fe29bf8a764f85b01e44254370}\label{class_database_client_aed2521fe29bf8a764f85b01e44254370} 
+\index{DatabaseClient@{DatabaseClient}!QUERY@{QUERY}}
+\index{QUERY@{QUERY}!DatabaseClient@{DatabaseClient}}
+\doxysubsubsection{\texorpdfstring{QUERY()}{QUERY()}\hspace{0.1cm}{\footnotesize\ttfamily [67/76]}}
+{\footnotesize\ttfamily Database\+Client\+::\+QUERY (\begin{DoxyParamCaption}\item[{get\+Trainings\+By\+Department\+Id}]{ }\end{DoxyParamCaption})}
+
+
+
+Retrieves trainings associated with a department ID from the database. 
+
+Retrieves the details of trainings associated with the specified department from the "{}\+Training"{} table.
+
+
+\begin{DoxyParams}{Parameters}
+{\em department\+ID} & The ID of the department. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_database_client_a0fae4b049bbb0c01751a0a9333a50b18}\label{class_database_client_a0fae4b049bbb0c01751a0a9333a50b18} 
+\index{DatabaseClient@{DatabaseClient}!QUERY@{QUERY}}
+\index{QUERY@{QUERY}!DatabaseClient@{DatabaseClient}}
+\doxysubsubsection{\texorpdfstring{QUERY()}{QUERY()}\hspace{0.1cm}{\footnotesize\ttfamily [68/76]}}
+{\footnotesize\ttfamily Database\+Client\+::\+QUERY (\begin{DoxyParamCaption}\item[{get\+Trainings\+By\+Member\+Id}]{ }\end{DoxyParamCaption})}
+
+
+
+Retrieves trainings associated with a member ID from the database. 
+
+Retrieves the details of trainings attended by the specified member from the "{}\+Training"{} table.
+
+
+\begin{DoxyParams}{Parameters}
+{\em member\+ID} & The ID of the member. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_database_client_a51dc0d2cfef6f6171065bce9fafb5b4d}\label{class_database_client_a51dc0d2cfef6f6171065bce9fafb5b4d} 
+\index{DatabaseClient@{DatabaseClient}!QUERY@{QUERY}}
+\index{QUERY@{QUERY}!DatabaseClient@{DatabaseClient}}
+\doxysubsubsection{\texorpdfstring{QUERY()}{QUERY()}\hspace{0.1cm}{\footnotesize\ttfamily [69/76]}}
+{\footnotesize\ttfamily Database\+Client\+::\+QUERY (\begin{DoxyParamCaption}\item[{get\+Trainings\+By\+Member\+Id\+And\+Time\+Range}]{ }\end{DoxyParamCaption})}
+
+
+
+Retrieves trainings associated with a member ID within a specified time range from the database. 
+
+Retrieves the details of trainings attended by the specified member within the specified time range from the "{}\+Training"{} table.
+
+
+\begin{DoxyParams}{Parameters}
+{\em member\+ID} & The ID of the member. \\
+\hline
+{\em start\+Date} & The start date of the time range. \\
+\hline
+{\em end\+Date} & The end date of the time range. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_database_client_a3b220e94698182e70613cf51e7c5604e}\label{class_database_client_a3b220e94698182e70613cf51e7c5604e} 
+\index{DatabaseClient@{DatabaseClient}!QUERY@{QUERY}}
+\index{QUERY@{QUERY}!DatabaseClient@{DatabaseClient}}
+\doxysubsubsection{\texorpdfstring{QUERY()}{QUERY()}\hspace{0.1cm}{\footnotesize\ttfamily [70/76]}}
+{\footnotesize\ttfamily Database\+Client\+::\+QUERY (\begin{DoxyParamCaption}\item[{update\+Address}]{,  }\item[{"{}UPDATE Address "{} "{}SET "{} "{}}]{zip\+Code = {\ttfamily \+:address.zipCode},  }\item[{"{} "{}}]{city = {\ttfamily \+:address.city},  }\item[{"{} "{}}]{state = {\ttfamily \+:address.state},  }\item[{"{} "{}}]{house\+Number = {\ttfamily \+:address.houseNumber} }\end{DoxyParamCaption})}
+
+
+
+Updates an existing address entry in the database. 
+
+Updates the record in the "{}\+Address"{} table with the provided address ID.
+
+
+\begin{DoxyParams}{Parameters}
+{\em address} & The address information to update as an \doxylink{class_address_d_t_o}{Address\+DTO} object. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_database_client_aaa4f3d1db254a53bd74d76912baea178}\label{class_database_client_aaa4f3d1db254a53bd74d76912baea178} 
+\index{DatabaseClient@{DatabaseClient}!QUERY@{QUERY}}
+\index{QUERY@{QUERY}!DatabaseClient@{DatabaseClient}}
+\doxysubsubsection{\texorpdfstring{QUERY()}{QUERY()}\hspace{0.1cm}{\footnotesize\ttfamily [71/76]}}
+{\footnotesize\ttfamily Database\+Client\+::\+QUERY (\begin{DoxyParamCaption}\item[{update\+Department}]{,  }\item[{"{}UPDATE Department "{} "{}SET "{} "{}}]{name = {\ttfamily \+:department.name} }\end{DoxyParamCaption})}
+
+
+
+Updates an existing department entry in the database. 
+
+Updates the record in the "{}\+Department"{} table with the provided department ID.
+
+
+\begin{DoxyParams}{Parameters}
+{\em department} & The department information to update as a \doxylink{class_department_d_t_o}{Department\+DTO} object. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_database_client_a4d992fafbea0475b605fe8a79ec85590}\label{class_database_client_a4d992fafbea0475b605fe8a79ec85590} 
+\index{DatabaseClient@{DatabaseClient}!QUERY@{QUERY}}
+\index{QUERY@{QUERY}!DatabaseClient@{DatabaseClient}}
+\doxysubsubsection{\texorpdfstring{QUERY()}{QUERY()}\hspace{0.1cm}{\footnotesize\ttfamily [72/76]}}
+{\footnotesize\ttfamily Database\+Client\+::\+QUERY (\begin{DoxyParamCaption}\item[{update\+Email}]{ }\end{DoxyParamCaption})}
+
+
+
+Updates an existing email entry in the database. 
+
+Updates the record in the "{}\+Email"{} table with the provided email ID.
+
+
+\begin{DoxyParams}{Parameters}
+{\em email} & The email address information to update as an \doxylink{class_email_d_t_o}{Email\+DTO} object. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_database_client_ac57821f5faa2cfbd4af4bb1273636c1e}\label{class_database_client_ac57821f5faa2cfbd4af4bb1273636c1e} 
+\index{DatabaseClient@{DatabaseClient}!QUERY@{QUERY}}
+\index{QUERY@{QUERY}!DatabaseClient@{DatabaseClient}}
+\doxysubsubsection{\texorpdfstring{QUERY()}{QUERY()}\hspace{0.1cm}{\footnotesize\ttfamily [73/76]}}
+{\footnotesize\ttfamily Database\+Client\+::\+QUERY (\begin{DoxyParamCaption}\item[{update\+Member}]{,  }\item[{"{}UPDATE Member "{} "{}SET "{} "{}}]{first\+Name = {\ttfamily \+:member.firstName},  }\item[{"{} "{}}]{last\+Name = {\ttfamily \+:member.lastName},  }\item[{"{} "{}}]{birth\+Date = {\ttfamily \+:member.birthDate},  }\item[{"{} "{}}]{join\+Date = {\ttfamily \+:member.joinDate} }\end{DoxyParamCaption})}
+
+
+
+Updates an existing member entry in the database. 
+
+Updates the record in the "{}\+Member"{} table with the provided member ID.
+
+
+\begin{DoxyParams}{Parameters}
+{\em member} & The member information to update as a \doxylink{class_member_d_t_o}{Member\+DTO} object. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_database_client_af2f14584871fe6274b1cf9c4ff257bf3}\label{class_database_client_af2f14584871fe6274b1cf9c4ff257bf3} 
+\index{DatabaseClient@{DatabaseClient}!QUERY@{QUERY}}
+\index{QUERY@{QUERY}!DatabaseClient@{DatabaseClient}}
+\doxysubsubsection{\texorpdfstring{QUERY()}{QUERY()}\hspace{0.1cm}{\footnotesize\ttfamily [74/76]}}
+{\footnotesize\ttfamily Database\+Client\+::\+QUERY (\begin{DoxyParamCaption}\item[{update\+Membership}]{,  }\item[{"{}UPDATE Membership "{} "{}SET "{} "{}}]{membership\+Fee = {\ttfamily \+:membership.membershipFee} }\end{DoxyParamCaption})}
+
+
+
+Updates an existing membership entry in the database. 
+
+Updates the record in the "{}\+Membership"{} table with the provided membership ID.
+
+
+\begin{DoxyParams}{Parameters}
+{\em membership} & The membership information to update as a \doxylink{class_membership_d_t_o}{Membership\+DTO} object. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_database_client_ada452377da20013094e51e0e01ddf08c}\label{class_database_client_ada452377da20013094e51e0e01ddf08c} 
+\index{DatabaseClient@{DatabaseClient}!QUERY@{QUERY}}
+\index{QUERY@{QUERY}!DatabaseClient@{DatabaseClient}}
+\doxysubsubsection{\texorpdfstring{QUERY()}{QUERY()}\hspace{0.1cm}{\footnotesize\ttfamily [75/76]}}
+{\footnotesize\ttfamily Database\+Client\+::\+QUERY (\begin{DoxyParamCaption}\item[{update\+Phone\+Number}]{ }\end{DoxyParamCaption})}
+
+
+
+Updates an existing phone number entry in the database. 
+
+Updates the record in the "{}\+Phone\+Number"{} table with the provided phone number ID.
+
+
+\begin{DoxyParams}{Parameters}
+{\em phone\+Number} & The phone number information to update as a \doxylink{class_phone_number_d_t_o}{Phone\+Number\+DTO} object. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_database_client_a004f1fb0222fc25b666326212d09d08a}\label{class_database_client_a004f1fb0222fc25b666326212d09d08a} 
+\index{DatabaseClient@{DatabaseClient}!QUERY@{QUERY}}
+\index{QUERY@{QUERY}!DatabaseClient@{DatabaseClient}}
+\doxysubsubsection{\texorpdfstring{QUERY()}{QUERY()}\hspace{0.1cm}{\footnotesize\ttfamily [76/76]}}
+{\footnotesize\ttfamily Database\+Client\+::\+QUERY (\begin{DoxyParamCaption}\item[{update\+Training}]{,  }\item[{"{}UPDATE Training "{} "{}SET "{} "{}}]{date = {\ttfamily \+:training.date},  }\item[{"{} "{}}]{start\+Time = {\ttfamily \+:training.startTime},  }\item[{"{} "{}}]{room = {\ttfamily \+:training.room} }\end{DoxyParamCaption})}
+
+
+
+Updates an existing training entry in the database. 
+
+Updates the record in the "{}\+Training"{} table with the provided training ID.
+
+
+\begin{DoxyParams}{Parameters}
+{\em training} & The training information to update as a \doxylink{class_training_d_t_o}{Training\+DTO} object. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+F\+:/\+Programming/\+School/repos/\+BSFI22\+D\+\_\+\+Primus/2. Server/src/sqlite/Database\+Client.\+hpp\end{DoxyCompactItemize}

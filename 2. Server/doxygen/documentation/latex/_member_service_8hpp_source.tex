@@ -1,0 +1,39 @@
+\doxysection{Member\+Service.\+hpp}
+\hypertarget{_member_service_8hpp_source}{}\label{_member_service_8hpp_source}\index{F:/Programming/School/repos/BSFI22D\_Primus/2. Server/src/service/MemberService.hpp@{F:/Programming/School/repos/BSFI22D\_Primus/2. Server/src/service/MemberService.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#ifndef\ MEMBER\_SERVICE\_HPP}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#define\ MEMBER\_SERVICE\_HPP}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}oatpp/web/protocol/http/Http.hpp"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}oatpp/core/macro/component.hpp"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}sqlite/DatabaseClient.hpp"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}dto/database/MemberDTO.hpp"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}dto/PageDTO.hpp"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}dto/StatusDTO.hpp"{}}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_member_service}{MemberService}}}
+\DoxyCodeLine{00017\ \{}
+\DoxyCodeLine{00018\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keyword}{typedef}\ oatpp::web::protocol::http::Status\ Status;\ \textcolor{comment}{//\ Define\ a\ type\ alias\ for\ HTTP\ status\ codes}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00022\ \ \ \ \ OATPP\_COMPONENT(std::shared\_ptr<DatabaseClient>,\ m\_database);\ \textcolor{comment}{//\ Inject\ database\ component}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00031\ \ \ \ \ oatpp::Object<MemberDTO>\ \mbox{\hyperlink{class_member_service_a78a206ca71f8ab6804374475f5126e48}{createMember}}(\textcolor{keyword}{const}\ oatpp::Object<MemberDTO>\&\ dto);}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00039\ \ \ \ \ oatpp::Object<MemberDTO>\ \mbox{\hyperlink{class_member_service_aeae7b7ab4759f764513e5eecf24ac275}{updateMember}}(\textcolor{keyword}{const}\ oatpp::Object<MemberDTO>\&\ dto);}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00048\ \ \ \ \ oatpp::Object<MemberDTO>\ \mbox{\hyperlink{class_member_service_ac39ce02f614a7026f5d97c0acd875d74}{getMemberById}}(\textcolor{keyword}{const}\ oatpp::Int64\&\ \textcolor{keywordtype}{id},\ \textcolor{keyword}{const}\ oatpp::provider::ResourceHandle<oatpp::orm::Connection>\&\ connection\ =\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00057\ \ \ \ \ oatpp::Object<PageDTO<oatpp::Object<MemberDTO>>>\ \mbox{\hyperlink{class_member_service_a43de91d1dc513ce190a7dd56be215837}{getAllMembers}}(\textcolor{keyword}{const}\ oatpp::UInt32\&\ offset,\ \textcolor{keyword}{const}\ oatpp::UInt32\&\ limit);}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00065\ \ \ \ \ oatpp::Object<StatusDTO>\ \mbox{\hyperlink{class_member_service_a1336c1b371129a8158505ca15e26e9ee}{deleteMemberById}}(\textcolor{keyword}{const}\ oatpp::Int64\&\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{00066\ \};}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//CRUD\_USERSERVICE\_HPP}}
+
+\end{DoxyCode}

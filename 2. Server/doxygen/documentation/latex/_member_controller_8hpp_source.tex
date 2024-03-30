@@ -1,0 +1,70 @@
+\doxysection{Member\+Controller.\+hpp}
+\hypertarget{_member_controller_8hpp_source}{}\label{_member_controller_8hpp_source}\index{F:/Programming/School/repos/BSFI22D\_Primus/2. Server/src/controller/MemberController.hpp@{F:/Programming/School/repos/BSFI22D\_Primus/2. Server/src/controller/MemberController.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ MEMBERCONTROLLER\_HPP}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ MEMBERCONTROLLER\_HPP}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ \ \_\_\ \ \_\_\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ |\ \ \(\backslash\)/\ \ |\ \_\_\_\ \_\ \_\_\ \_\_\_\ |\ |\_\_\ \ \ \_\_\_\ \_\ \_\_\ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ |\ |\(\backslash\)/|\ |/\ \_\ \(\backslash\)\ '\_\ \`{}\ \_\ \(\backslash\)|\ '\_\ \(\backslash\)\ /\ \_\ \(\backslash\)\ '\_\_|\ \ \ \ \ \ \ }}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ |\ |\ \ |\ |\ \ \_\_/\ |\ |\ |\ |\ |\ |\_)\ |\ \ \_\_/\ |\ \ \ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ |\_|\_\_|\_|\(\backslash\)\_\_\_|\_|\ |\_|\ |\_|\_.\_\_/\ \(\backslash\)\_\_\_|\_|\ \ \ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{00009\ \textcolor{comment}{//\ \ /\ \_\_\_|\_\_\_\ \ \_\ \_\_\ |\ |\_\ \_\ \_\_\ \_\_\_\ |\ |\ |\ \_\_\_\ \_\ \_\_\ }}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ |\ |\ \ \ /\ \_\ \(\backslash\)|\ '\_\ \(\backslash\)|\ \_\_|\ '\_\_/\ \_\ \(\backslash\)|\ |\ |/\ \_\ \(\backslash\)\ '\_\_|}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ |\ |\_\_|\ (\_)\ |\ |\ |\ |\ |\_|\ |\ |\ (\_)\ |\ |\ |\ \ \_\_/\ |\ \ \ }}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ \ \(\backslash\)\_\_\_\_\(\backslash\)\_\_\_/|\_|\ |\_|\(\backslash\)\_\_|\_|\ \ \(\backslash\)\_\_\_/|\_|\_|\(\backslash\)\_\_\_|\_|\ \ \ }}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{comment}{//\ Controller\ to\ handle\ Member\ related\ requests.}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ Oatpp\ includes}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ "{}oatpp/web/server/api/ApiController.hpp"{}}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ "{}oatpp/core/macro/codegen.hpp"{}}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ "{}oatpp/core/macro/component.hpp"{}}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ "{}sqlite/DatabaseClient.hpp"{}}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{comment}{//\ App\ includes}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ "{}service/MemberService.hpp"{}}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ "{}dto/database/MemberDTO.hpp"{}}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ "{}dto/StatusDTO.hpp"{}}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ OATPP\_CODEGEN\_BEGIN(ApiController)\ }\textcolor{comment}{//\ Begin\ API\ Controller\ codegen}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_member_controller}{MemberController}}\ :\ \textcolor{keyword}{public}\ oatpp::web::server::api::ApiController\ \{}
+\DoxyCodeLine{00030\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00031\ \ \ \ \ \mbox{\hyperlink{class_member_service}{MemberService}}\ m\_memberService;}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00034\ \ \ \ \ \mbox{\hyperlink{class_member_controller}{MemberController}}(OATPP\_COMPONENT(std::shared\_ptr<ObjectMapper>,\ objectMapper))}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ :\ oatpp::web::server::api::ApiController(objectMapper)\ \{\}}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keyword}{static}\ std::shared\_ptr<MemberController>\ createShared(}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ OATPP\_COMPONENT(std::shared\_ptr<ObjectMapper>,\ objectMapper)}
+\DoxyCodeLine{00039\ \ \ \ \ )}
+\DoxyCodeLine{00040\ \ \ \ \ \{}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::make\_shared<MemberController>(objectMapper);}
+\DoxyCodeLine{00042\ \ \ \ \ \}}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ ENDPOINT\_INFO(createMember)\ \{}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ info-\/>summary\ =\ \textcolor{stringliteral}{"{}Create\ new\ Member"{}};}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ info-\/>addConsumes<Object<MemberDTO>>(\textcolor{stringliteral}{"{}application/json"{}});}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ info-\/>addResponse<Object<MemberDTO>>(Status::CODE\_200,\ \textcolor{stringliteral}{"{}application/json"{}});}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ info-\/>addResponse<Object<StatusDTO>>(Status::CODE\_404,\ \textcolor{stringliteral}{"{}application/json"{}});}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ info-\/>addResponse<Object<StatusDTO>>(Status::CODE\_500,\ \textcolor{stringliteral}{"{}application/json"{}});}
+\DoxyCodeLine{00052\ \ \ \ \ \}}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ ENDPOINT(\textcolor{stringliteral}{"{}POST"{}},\ \textcolor{stringliteral}{"{}members"{}},\ createMember,}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ BODY\_DTO(Object<MemberDTO>,\ memberDTO))}
+\DoxyCodeLine{00056\ \ \ \ \ \{}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ createDtoResponse(Status::CODE\_200,\ m\_memberService.\mbox{\hyperlink{class_member_service_a78a206ca71f8ab6804374475f5126e48}{createMember}}(memberDTO));}
+\DoxyCodeLine{00058\ \ \ \ \ \}}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \};}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#include\ OATPP\_CODEGEN\_END(ApiController)\ }\textcolor{comment}{//\ End\ API\ Controller\ codegen}}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ MEMBERCONTROLLER\_HPP}}
+
+\end{DoxyCode}

@@ -1,0 +1,29 @@
+\doxysection{Adress\+DTO.\+hpp}
+\hypertarget{_adress_d_t_o_8hpp_source}{}\label{_adress_d_t_o_8hpp_source}\index{F:/Programming/School/repos/BSFI22D\_Primus/2. Server/src/dto/database/AdressDTO.hpp@{F:/Programming/School/repos/BSFI22D\_Primus/2. Server/src/dto/database/AdressDTO.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ ADRESSDTO\_HPP}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ ADRESSDTO\_HPP}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}oatpp/core/Types.hpp"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}oatpp/core/macro/codegen.hpp"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ OATPP\_CODEGEN\_BEGIN(DTO)}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_address_d_t_o}{AddressDTO}}\ :\ \textcolor{keyword}{public}\ oatpp::DTO}
+\DoxyCodeLine{00010\ \{}
+\DoxyCodeLine{00011\ \ \ \ \ DTO\_INIT(\mbox{\hyperlink{class_address_d_t_o}{AddressDTO}},\ DTO\ \textcolor{comment}{/*\ extends\ */});}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \ \ \ \ DTO\_FIELD(Int64,\ \ \textcolor{keywordtype}{id});\ \ \ \ \ \ \ \textcolor{comment}{//\ Unique\ identifier}}
+\DoxyCodeLine{00014\ \ \ \ \ DTO\_FIELD(String,\ zipCode);\ \ \ \ \ \ \textcolor{comment}{//\ ZIP\ code\ of\ the\ address}}
+\DoxyCodeLine{00015\ \ \ \ \ DTO\_FIELD(String,\ city);\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ City\ of\ the\ address}}
+\DoxyCodeLine{00016\ \ \ \ \ DTO\_FIELD(String,\ state);\ \ \ \ \ \ \ \ \textcolor{comment}{//\ State\ of\ the\ address}}
+\DoxyCodeLine{00017\ \ \ \ \ DTO\_FIELD(String,\ houseNumber);\ \ \textcolor{comment}{//\ House\ number\ of\ the\ address}}
+\DoxyCodeLine{00018\ \ \ \ \ DTO\_FIELD(String,\ street);\ \ \ \ \ \ \ \textcolor{comment}{//\ Street\ of\ the\ address}}
+\DoxyCodeLine{00019\ \};}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ OATPP\_CODEGEN\_END(DTO)}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ ADRESSDTO\_HPP}}
+
+\end{DoxyCode}

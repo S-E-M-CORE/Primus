@@ -1,0 +1,26 @@
+\doxysection{Membership\+DTO.\+hpp}
+\hypertarget{_membership_d_t_o_8hpp_source}{}\label{_membership_d_t_o_8hpp_source}\index{F:/Programming/School/repos/BSFI22D\_Primus/2. Server/src/dto/database/MembershipDTO.hpp@{F:/Programming/School/repos/BSFI22D\_Primus/2. Server/src/dto/database/MembershipDTO.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ MEMBERSHIPDTO\_HPP}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ MEMBERSHIPDTO\_HPP}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}oatpp/core/Types.hpp"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}oatpp/core/macro/codegen.hpp"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ OATPP\_CODEGEN\_BEGIN(DTO)}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_membership_d_t_o}{MembershipDTO}}\ :\ \textcolor{keyword}{public}\ oatpp::DTO\ \{}
+\DoxyCodeLine{00010\ \ \ \ \ DTO\_INIT(\mbox{\hyperlink{class_membership_d_t_o}{MembershipDTO}},\ DTO\ \textcolor{comment}{/*\ extends\ */});}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \ \ \ \ DTO\_FIELD(Int64\ \ ,\ \textcolor{keywordtype}{id});\ \textcolor{comment}{//\ Unique\ identifier\ for\ each\ membership}}
+\DoxyCodeLine{00013\ \ \ \ \ DTO\_FIELD(Float32,\ membershipFee);\ \ \textcolor{comment}{//\ Membership\ fee\ for\ the\ membership}}
+\DoxyCodeLine{00014\ \ \ \ \ DTO\_FIELD(Boolean,\ active);\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Whether\ or\ not\ the\ membership\ is\ active}}
+\DoxyCodeLine{00015\ \};}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ OATPP\_CODEGEN\_END(DTO)}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ MEMBERSHIPDTO\_HPP}}
+
+\end{DoxyCode}

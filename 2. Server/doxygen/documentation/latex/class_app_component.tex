@@ -1,0 +1,74 @@
+\doxysection{App\+Component Class Reference}
+\hypertarget{class_app_component}{}\label{class_app_component}\index{AppComponent@{AppComponent}}
+
+
+{\ttfamily \#include $<$App\+Component.\+hpp$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_app_component_a498429c1247775317091b31ede4b8220}{OATPP\+\_\+\+CREATE\+\_\+\+COMPONENT}} (std\+::shared\+\_\+ptr$<$ oatpp\+::network\+::\+Server\+Connection\+Provider $>$, server\+Connection\+Provider)(\mbox{[}$\,$\mbox{]}
+\item 
+\mbox{\hyperlink{class_app_component_a9f15d1d94e6d6b003dbf88cdae255b7f}{OATPP\+\_\+\+CREATE\+\_\+\+COMPONENT}} (std\+::shared\+\_\+ptr$<$ oatpp\+::web\+::server\+::\+Http\+Router $>$, http\+Router)(\mbox{[}$\,$\mbox{]}
+\item 
+\mbox{\hyperlink{class_app_component_aecbdfb2624817aa51cccb42a078979a1}{OATPP\+\_\+\+CREATE\+\_\+\+COMPONENT}} (std\+::shared\+\_\+ptr$<$ oatpp\+::network\+::\+Connection\+Handler $>$, server\+Connection\+Handler)(\mbox{[}$\,$\mbox{]}
+\item 
+\mbox{\hyperlink{class_app_component_a9203c578b40dec997f6b46edd00f7054}{OATPP\+\_\+\+CREATE\+\_\+\+COMPONENT}} (std\+::shared\+\_\+ptr$<$ oatpp\+::data\+::mapping\+::\+Object\+Mapper $>$, api\+Object\+Mapper)(\mbox{[}$\,$\mbox{]}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_database_component}{Database\+Component}} \mbox{\hyperlink{class_app_component_aa4f5bc5a5e3578a56f3ebf8a57bea629}{database\+Component}}
+\item 
+\mbox{\hyperlink{class_swagger_component}{Swagger\+Component}} \mbox{\hyperlink{class_app_component_a44e54915514ef153819f7c79e11dab40}{swagger\+Component}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class which creates and holds Application components and registers components in oatpp\+::base\+::\+Environment Order of components initialization is from top to bottom 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_app_component_a9203c578b40dec997f6b46edd00f7054}\label{class_app_component_a9203c578b40dec997f6b46edd00f7054} 
+\index{AppComponent@{AppComponent}!OATPP\_CREATE\_COMPONENT@{OATPP\_CREATE\_COMPONENT}}
+\index{OATPP\_CREATE\_COMPONENT@{OATPP\_CREATE\_COMPONENT}!AppComponent@{AppComponent}}
+\doxysubsubsection{\texorpdfstring{OATPP\_CREATE\_COMPONENT()}{OATPP\_CREATE\_COMPONENT()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily App\+Component\+::\+OATPP\+\_\+\+CREATE\+\_\+\+COMPONENT (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ oatpp\+::data\+::mapping\+::\+Object\+Mapper $>$}]{,  }\item[{api\+Object\+Mapper}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Create Object\+Mapper component to serialize/deserialize DTOs in Contoller\textquotesingle{}s API \Hypertarget{class_app_component_aecbdfb2624817aa51cccb42a078979a1}\label{class_app_component_aecbdfb2624817aa51cccb42a078979a1} 
+\index{AppComponent@{AppComponent}!OATPP\_CREATE\_COMPONENT@{OATPP\_CREATE\_COMPONENT}}
+\index{OATPP\_CREATE\_COMPONENT@{OATPP\_CREATE\_COMPONENT}!AppComponent@{AppComponent}}
+\doxysubsubsection{\texorpdfstring{OATPP\_CREATE\_COMPONENT()}{OATPP\_CREATE\_COMPONENT()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily App\+Component\+::\+OATPP\+\_\+\+CREATE\+\_\+\+COMPONENT (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ oatpp\+::network\+::\+Connection\+Handler $>$}]{,  }\item[{server\+Connection\+Handler}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Create Connection\+Handler component which uses Router component to route requests \Hypertarget{class_app_component_a498429c1247775317091b31ede4b8220}\label{class_app_component_a498429c1247775317091b31ede4b8220} 
+\index{AppComponent@{AppComponent}!OATPP\_CREATE\_COMPONENT@{OATPP\_CREATE\_COMPONENT}}
+\index{OATPP\_CREATE\_COMPONENT@{OATPP\_CREATE\_COMPONENT}!AppComponent@{AppComponent}}
+\doxysubsubsection{\texorpdfstring{OATPP\_CREATE\_COMPONENT()}{OATPP\_CREATE\_COMPONENT()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily App\+Component\+::\+OATPP\+\_\+\+CREATE\+\_\+\+COMPONENT (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ oatpp\+::network\+::\+Server\+Connection\+Provider $>$}]{,  }\item[{server\+Connection\+Provider}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Create Connection\+Provider component which listens on the port \Hypertarget{class_app_component_a9f15d1d94e6d6b003dbf88cdae255b7f}\label{class_app_component_a9f15d1d94e6d6b003dbf88cdae255b7f} 
+\index{AppComponent@{AppComponent}!OATPP\_CREATE\_COMPONENT@{OATPP\_CREATE\_COMPONENT}}
+\index{OATPP\_CREATE\_COMPONENT@{OATPP\_CREATE\_COMPONENT}!AppComponent@{AppComponent}}
+\doxysubsubsection{\texorpdfstring{OATPP\_CREATE\_COMPONENT()}{OATPP\_CREATE\_COMPONENT()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily App\+Component\+::\+OATPP\+\_\+\+CREATE\+\_\+\+COMPONENT (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ oatpp\+::web\+::server\+::\+Http\+Router $>$}]{,  }\item[{http\+Router}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Create Router component 
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_app_component_aa4f5bc5a5e3578a56f3ebf8a57bea629}\label{class_app_component_aa4f5bc5a5e3578a56f3ebf8a57bea629} 
+\index{AppComponent@{AppComponent}!databaseComponent@{databaseComponent}}
+\index{databaseComponent@{databaseComponent}!AppComponent@{AppComponent}}
+\doxysubsubsection{\texorpdfstring{databaseComponent}{databaseComponent}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_database_component}{Database\+Component}} App\+Component\+::database\+Component}
+
+Database component \Hypertarget{class_app_component_a44e54915514ef153819f7c79e11dab40}\label{class_app_component_a44e54915514ef153819f7c79e11dab40} 
+\index{AppComponent@{AppComponent}!swaggerComponent@{swaggerComponent}}
+\index{swaggerComponent@{swaggerComponent}!AppComponent@{AppComponent}}
+\doxysubsubsection{\texorpdfstring{swaggerComponent}{swaggerComponent}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_swagger_component}{Swagger\+Component}} App\+Component\+::swagger\+Component}
+
+Swagger component 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+F\+:/\+Programming/\+School/repos/\+BSFI22\+D\+\_\+\+Primus/2. Server/src/App\+Component.\+hpp\end{DoxyCompactItemize}

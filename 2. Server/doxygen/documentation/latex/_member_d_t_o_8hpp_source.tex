@@ -1,0 +1,29 @@
+\doxysection{Member\+DTO.\+hpp}
+\hypertarget{_member_d_t_o_8hpp_source}{}\label{_member_d_t_o_8hpp_source}\index{F:/Programming/School/repos/BSFI22D\_Primus/2. Server/src/dto/database/MemberDTO.hpp@{F:/Programming/School/repos/BSFI22D\_Primus/2. Server/src/dto/database/MemberDTO.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ MEMBERDTO\_HPP}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ MEMBERDTO\_HPP}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}oatpp/core/Types.hpp"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}oatpp/core/macro/codegen.hpp"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ OATPP\_CODEGEN\_BEGIN(DTO)}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_member_d_t_o}{MemberDTO}}\ :\ \textcolor{keyword}{public}\ oatpp::DTO}
+\DoxyCodeLine{00010\ \{}
+\DoxyCodeLine{00011\ \ \ \ \ DTO\_INIT(\mbox{\hyperlink{class_member_d_t_o}{MemberDTO}},\ DTO\ \textcolor{comment}{/*\ extends\ */})}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \ \ \ \ DTO\_FIELD(oatpp::Int64\ \ ,\ \textcolor{keywordtype}{id});\ \ \textcolor{comment}{//\ Unique\ identifier\ for\ each\ member}}
+\DoxyCodeLine{00014\ \ \ \ \ DTO\_FIELD(oatpp::String\ ,\ firstName);\ \ \ \textcolor{comment}{//\ First\ name\ of\ the\ member}}
+\DoxyCodeLine{00015\ \ \ \ \ DTO\_FIELD(oatpp::String\ ,\ lastName);\ \ \ \ \textcolor{comment}{//\ Last\ name\ of\ the\ member}}
+\DoxyCodeLine{00016\ \ \ \ \ DTO\_FIELD(oatpp::String\ ,\ birthDate);\ \ \ \textcolor{comment}{//\ Birth\ date\ of\ the\ member}}
+\DoxyCodeLine{00017\ \ \ \ \ DTO\_FIELD(oatpp::String\ ,\ joinDate);\ \ \ \ \textcolor{comment}{//\ Date\ when\ the\ member\ joined\ the\ organization}}
+\DoxyCodeLine{00018\ \ \ \ \ DTO\_FIELD(oatpp::Boolean,\ active);\ \ \ \ \ \ \textcolor{comment}{//\ Whether\ or\ not\ the\ member\ is\ active}}
+\DoxyCodeLine{00019\ \};}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ OATPP\_CODEGEN\_END(DTO)}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ MEMBERDTO\_HPP}}
+
+\end{DoxyCode}
