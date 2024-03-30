@@ -10,8 +10,6 @@
 #include "dto/PageDTO.hpp"
 #include "database/DatabaseClient.hpp"
 
-#include OATPP_CODEGEN_BEGIN(DTO)
-
 /**
  * @brief Service class to handle operations related to memberships.
  */
@@ -31,7 +29,5 @@ public:
     oatpp::Object<StatusDTO> deactivateMembershipById(const oatpp::Int64& id);
     oatpp::Object<StatusDTO> activateMembershipById(const oatpp::Int64& id);
 };
-
-#include OATPP_CODEGEN_END(DTO)
 
 #endif /* MEMBERSHIPSERVICE_HPP */

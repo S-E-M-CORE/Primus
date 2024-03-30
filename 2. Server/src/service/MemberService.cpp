@@ -59,3 +59,23 @@ oatpp::Object<StatusDTO> MemberService::deactivateMemberById(const oatpp::Int64&
     return status;
 }
 
+oatpp::Object<PageDTO<oatpp::Object<MemberDTO>>> MemberService::getAllMembers(const oatpp::UInt32& offset, const oatpp::UInt32& limit) {
+    oatpp::UInt32 countToFetch = limit;
+
+    if (limit > 10) {
+        countToFetch = 10;
+    }
+
+    auto dbResult = m_database->getActiveMembers(offset, countToFetch);
+    OATPP_ASSERT_HTTP(dbResult->isSuccess(), Status::CODE_500, dbResult->getErrorMessage());
+
+    auto items = dbResult->fetch<oatpp::Vector<oatpp::Object<MemberDTO>>>();
+
+    auto page = PageDTO<oatpp::Object<MemberDTO>>::createShared();
+    page->offset = offset;
+    page->limit = countToFetch;
+    page->count = items->size();
+    page->items = items;
+
+    return page;
+}

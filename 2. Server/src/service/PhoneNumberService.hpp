@@ -9,8 +9,6 @@
 #include "dto/PageDTO.hpp"
 #include "database/DatabaseClient.hpp"
 
-#include OATPP_CODEGEN_BEGIN(DTO)
-
 /**
  * @brief Service class to handle operations related to phone numbers.
  */
@@ -28,7 +26,5 @@ public:
     oatpp::Object<PageDTO<oatpp::Object<PhoneNumberDTO>>> getAllPhoneNumbers(const oatpp::UInt32& offset, const oatpp::UInt32& limit);
     oatpp::Object<StatusDTO> deletePhoneNumberById(const oatpp::Int64& id);
 };
-
-#include OATPP_CODEGEN_END(DTO)
 
 #endif /* PHONENUMBERSERVICE_HPP */

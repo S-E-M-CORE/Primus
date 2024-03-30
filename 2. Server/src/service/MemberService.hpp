@@ -1,4 +1,3 @@
-
 #ifndef MEMBER_SERVICE_HPP
 #define MEMBER_SERVICE_HPP
 
@@ -16,9 +15,7 @@
 class MemberService
 {
 private:
-    typedef oatpp::web::protocol::http::Status Status; // Define a type alias for HTTP status codes
-
-private:
+    typedef oatpp::web::protocol::http::Status Status;            // Define a type alias for HTTP status codes
     OATPP_COMPONENT(std::shared_ptr<DatabaseClient>, m_database); // Inject database component
 
 public:
@@ -63,6 +60,7 @@ public:
      */
     oatpp::Object<StatusDTO> deactivateMemberById(const oatpp::Int64& id);
 
+    oatpp::Object<PageDTO<oatpp::Object<MemberDTO>>> MemberService::getAllMembers(const oatpp::UInt32& offset, const oatpp::UInt32& limit);
 };
 
 #endif //CRUD_USERSERVICE_HPP

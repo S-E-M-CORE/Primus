@@ -9,12 +9,9 @@
     "",
     "\\sql",
     "\\src",
-    "\\src\\database",
-    "\\src\\dto",
-    "\\src\\dto\\database",
+    "\\src\\controller",
     "\\src\\service",
     "\\src\\swagger-ui"
   ],
-  "SelectedNode": "\\src\\service",
   "PreviewInSolutionExplorer": false
 }

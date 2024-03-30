@@ -6,15 +6,23 @@
 #include "oatpp/orm/DbClient.hpp"
 #include "oatpp/core/macro/codegen.hpp"
 
-#include "dto/database/MemberDTO.hpp"
 #include "dto/database/AdressDTO.hpp"
-#include "dto/database/DatabaseDTOs.hpp"
 #include "dto/database/DepartmentDTO.hpp"
 #include "dto/database/EmailDTO.hpp"
 #include "dto/database/MemberDTO.hpp"
 #include "dto/database/MembershipDTO.hpp"
 #include "dto/database/PhoneNumberDTO.hpp"
 #include "dto/database/TrainingDTO.hpp"
+
+#include "dto/database/relations/DepartmentTrainingRelDTO.hpp"
+#include "dto/database/relations/MemberAddressRelDTO.hpp"
+#include "dto/database/relations/MemberEmailRelDTO.hpp"
+#include "dto/database/relations/MemberMembershipRelDTO.hpp"
+#include "dto/database/relations/MemberPhonenumberRelDTO.hpp"
+#include "dto/database/relations/MembershipDepartmentRelDTO.hpp"
+#include "dto/database/relations/MemberTrainingRelDTO.hpp"
+
+#include "dto/database/MemberDTO.hpp"
 
 #include OATPP_CODEGEN_BEGIN(DbClient) //<- Begin Codegen
 
@@ -688,12 +696,12 @@ public:
     *
     * Inserts a new record into the "MemberAddressRel" table with the provided member and address IDs.
     *
-    * @param rel The member-address relationship information to be created as a MemberAdressRelDTO object.
+    * @param rel The member-address relationship information to be created as a MemberAddressRelDTO object.
     */
     QUERY(createMemberAddressRel,
         "INSERT INTO MemberAddressRel (memberID, addressID) "
         "VALUES (:rel.memberID, :rel.addressID);",
-        PARAM(oatpp::Object<MemberAdressRelDTO>, rel));
+        PARAM(oatpp::Object<MemberAddressRelDTO>, rel));
 
     /**
      * @brief Retrieves the address IDs associated with a member ID from the database.
@@ -1026,6 +1034,69 @@ public:
         "DELETE FROM DepartmentTrainingRel WHERE departmentID=:departmentID AND trainingID=:trainingID;",
         PARAM(oatpp::Int64, departmentID),
         PARAM(oatpp::Int64, trainingID));
+
+
+
+    //  __  __                _                   _     _             ____                        _                        _   
+    // |  \/  | ___ _ __ ___ | |__   ___ _ __ ___| |__ (_)_ __       |  _ \  ___ _ __   __ _ _ __| |_ _ __ ___   ___ _ __ | |_ 
+    // | |\/| |/ _ \ '_ ` _ \| '_ \ / _ \ '__/ __| '_ \| | '_ \ _____| | | |/ _ \ '_ \ / _` | '__| __| '_ ` _ \ / _ \ '_ \| __|
+    // | |  | |  __/ | | | | | |_) |  __/ |  \__ \ | | | | |_) |_____| |_| |  __/ |_) | (_| | |  | |_| | | | | |  __/ | | | |_ 
+    // |_|__|_|\___|_| |_| |_|_.__/ \___|_|  |___/_| |_|_| .__/      |____/ \___| .__/ \__,_|_|   \__|_| |_| |_|\___|_| |_|\__|
+    //  / _ \ _   _  ___ _ __ _   _ ___                  |_|                    |_|                                            
+    // | | | | | | |/ _ \ '__| | | / __|                                                                                       
+    // | |_| | |_| |  __/ |  | |_| \__ \                                                                                       
+    //  \__\_\\__,_|\___|_|   \__, |___/                                                                                       
+    //                        |___/                                                                                            
+
+/**
+ * @brief Creates a new relationship between a membership and a department in the database.
+ *
+ * Inserts a new record into the "MembershipDepartmentRel" table with the provided membership and department IDs.
+ *
+ * @param rel The membership-department relationship information to be created as a MembershipDepartmentRelDTO object.
+ */
+    QUERY(createMembershipDepartmentRel,
+        "INSERT INTO MembershipDepartmentRel (membershipID, departmentID) "
+        "VALUES (:rel.membershipID, :rel.departmentID);",
+        PARAM(oatpp::Object<MembershipDepartmentRelDTO>, rel));
+
+    /**
+     * @brief Deletes a relationship between a membership and a department from the database.
+     *
+     * Deletes the record from the "MembershipDepartmentRel" table corresponding to the provided membership and department IDs.
+     *
+     * @param membershipId The ID of the membership.
+     * @param departmentId The ID of the department.
+     */
+    QUERY(deleteMembershipDepartmentRel,
+        "DELETE FROM MembershipDepartmentRel "
+        "WHERE membershipID = :membershipId AND departmentID = :departmentId;",
+        PARAM(oatpp::Int64, membershipId),
+        PARAM(oatpp::Int64, departmentId));
+
+    /**
+     * @brief Retrieves all department IDs associated with a membership from the database.
+     *
+     * Retrieves a list of department IDs from the "MembershipDepartmentRel" table corresponding to the provided membership ID.
+     *
+     * @param membershipId The ID of the membership.
+     * @return A list of department IDs.
+     */
+    QUERY(getDepartmentIdsByMembershipId,
+        "SELECT departmentID FROM MembershipDepartmentRel WHERE membershipID = :membershipId;",
+        PARAM(oatpp::Int64, membershipId));
+
+    /**
+     * @brief Retrieves all membership IDs associated with a department from the database.
+     *
+     * Retrieves a list of membership IDs from the "MembershipDepartmentRel" table corresponding to the provided department ID.
+     *
+     * @param departmentId The ID of the department.
+     * @return A list of membership IDs.
+     */
+    QUERY(getMembershipIdsByDepartmentId,
+        "SELECT membershipID FROM MembershipDepartmentRel WHERE departmentID = :departmentId;",
+        PARAM(oatpp::Int64, departmentId));
 
 
     //      _       _                   
