@@ -1,7 +1,22 @@
 #include "AppComponent.hpp"
 
-#include "controller/MemberController.hpp"
+// Controller includes
 #include "controller/StaticController.hpp"
+#include "controller/MemberController.hpp"
+#include "controller/AddressController.hpp"
+#include "controller/DepartmentController.hpp"
+#include "controller/EmailController.hpp"
+#include "controller/MembershipController.hpp"
+#include "controller/PhoneNumberController.hpp"
+#include "controller/TrainingController.hpp"
+
+#include "controller/relations/MemberAdressRelController.hpp"
+#include "controller/relations/MemberEmailRelController.hpp"
+#include "controller/relations/MemberPhoneRelController.hpp"
+#include "controller/relations/MembershipDepartmentRelController.hpp"
+#include "controller/relations/MemberTrainingRelController.hpp"
+#include "controller/relations/DepartmentTrainingRelController.hpp"
+#include "controller/relations/MemberMembershipRelController.hpp"
 
 #include "oatpp-swagger/Controller.hpp"
 
@@ -17,15 +32,72 @@ void run(void) {
   /* Get router component */
   OATPP_COMPONENT(std::shared_ptr<oatpp::web::server::HttpRouter>, router);
 
+
   /* Create StaticController and add all of its endpoints to router */
   router->addController(std::make_shared<StaticController>());
 
   /* Create MemberController and add all of its endpoints to router */
   router->addController(std::make_shared<MemberController>());
 
+  /* Create AddressController and add all of its endpoints to router */
+  router->addController(std::make_shared<AddressController>());
+
+  /* Create DepartmentController and add all of its endpoints to router */
+  router->addController(std::make_shared<DepartmentController>());
+
+  /* Create EmailController and add all of its endpoints to router */
+  router->addController(std::make_shared<EmailController>());
+
+  /* Create MembershipController and add all of its endpoints to router */
+  router->addController(std::make_shared<MembershipController>());
+
+  /* Create PhoneNumberController and add all of its endpoints to router */
+  router->addController(std::make_shared<PhoneNumberController>());
+
+  /* Create TrainingController and add all of its endpoints to router */
+  router->addController(std::make_shared<TrainingController>());
+
+  /* Create MemberAdressRelController and add all of its endpoints to router */
+  router->addController(std::make_shared<MemberAdressRelController>());
+
+  /* Create MemberEmailRelController and add all of its endpoints to router */
+  router->addController(std::make_shared<MemberEmailRelController>());
+
+  /* Create MemberPhoneRelController and add all of its endpoints to router */
+  router->addController(std::make_shared<MemberPhoneRelController>());
+  
+  /* Create MembershipDepartmentRelController and add all of its endpoints to router */
+  router->addController(std::make_shared<MembershipDepartmentRelController>());
+
+  /* Create MemberTrainingRelController and add all of its endpoints to router */
+  router->addController(std::make_shared<MemberTrainingRelController>());
+
+  /* Create DepartmentTrainingRelController and add all of its endpoints to router */
+  router->addController(std::make_shared<DepartmentTrainingRelController>());
+  
+  /* Create MemberMembershipRelController and add all of its endpoints to router */
+  router->addController(std::make_shared<MemberMembershipRelController>());
+
+
   /* Swagger UI Endpoint documentation */
   oatpp::web::server::api::Endpoints docEndpoints;
-  docEndpoints.append(router->addController(MemberController::createShared())->getEndpoints());
+  docEndpoints.append(router->addController(MemberController::createShared())->getEndpoints());                     // Add the endpoints of MemberController to the swagger ui documentation
+  docEndpoints.append(router->addController(AddressController::createShared())->getEndpoints());                    // Add the endpoints of AddressController to the swagger ui documentation
+  docEndpoints.append(router->addController(DepartmentController::createShared())->getEndpoints());                 // Add the endpoints of DepartmentController to the swagger ui documentation
+  docEndpoints.append(router->addController(EmailController::createShared())->getEndpoints());                      // Add the endpoints of EmailController to the swagger ui documentation
+  docEndpoints.append(router->addController(MembershipController::createShared())->getEndpoints());                 // Add the endpoints of MembershipController to the swagger ui documentation
+  docEndpoints.append(router->addController(PhoneNumberController::createShared())->getEndpoints());                // Add the endpoints of PhoneNumberController to the swagger ui documentation
+  docEndpoints.append(router->addController(TrainingController::createShared())->getEndpoints());                   // Add the endpoints of TrainingController to the swagger ui documentation
+  docEndpoints.append(router->addController(MemberAdressRelController::createShared())->getEndpoints());            // Add the endpoints of MemberAdressRelController to the swagger ui documentation
+  docEndpoints.append(router->addController(MemberEmailRelController::createShared())->getEndpoints());             // Add the endpoints of MemberEmailRelController to the swagger ui documentation
+  docEndpoints.append(router->addController(MemberPhoneRelController::createShared())->getEndpoints());             // Add the endpoints of MemberPhoneRelController to the swagger ui documentation
+  docEndpoints.append(router->addController(MembershipDepartmentRelController::createShared())->getEndpoints());    // Add the endpoints of MembershipDepartmentRelController to the swagger ui documentation
+  docEndpoints.append(router->addController(MemberTrainingRelController::createShared())->getEndpoints());          // Add the endpoints of MemberTrainingRelController to the swagger ui documentation
+  docEndpoints.append(router->addController(DepartmentTrainingRelController::createShared())->getEndpoints());      // Add the endpoints of DepartmentTrainingRelController to the swagger ui documentation
+  docEndpoints.append(router->addController(MemberMembershipRelController::createShared())->getEndpoints());        // Add the endpoints of MemberMembershipRelController to the swagger ui documentation
+
+
+
   router->addController(oatpp::swagger::Controller::createShared(docEndpoints));
 
   /* Get connection handler component */

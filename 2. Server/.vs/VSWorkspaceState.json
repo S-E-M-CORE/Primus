@@ -7,11 +7,12 @@
   },
   "ExpandedNodes": [
     "",
-    "\\sql",
     "\\src",
     "\\src\\controller",
+    "\\src\\controller\\relations",
     "\\src\\service",
-    "\\src\\swagger-ui"
+    "\\src\\service\\relations"
   ],
+  "SelectedNode": "\\src\\controller\\relations\\MemberMembershipRelController.hpp",
   "PreviewInSolutionExplorer": false
 }

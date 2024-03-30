@@ -48,6 +48,8 @@ public:
         info->addResponse<Object<MemberDTO>>(Status::CODE_200, "application/json");
         info->addResponse<Object<StatusDTO>>(Status::CODE_404, "application/json");
         info->addResponse<Object<StatusDTO>>(Status::CODE_500, "application/json");
+
+        info->addTag("MemberController");
     }
     ENDPOINT("POST", "members", createMember,
         BODY_DTO(Object<MemberDTO>, memberDTO))
@@ -62,6 +64,8 @@ public:
         info->addResponse<Object<MemberDTO>>(Status::CODE_200, "application/json");
         info->addResponse<Object<StatusDTO>>(Status::CODE_404, "application/json");
         info->addResponse<Object<StatusDTO>>(Status::CODE_500, "application/json");
+
+        info->addTag("MemberController");
     }
     ENDPOINT("PUT", "members", updateMember,
         BODY_DTO(Object<MemberDTO>, memberDTO))
@@ -75,6 +79,8 @@ public:
         info->addResponse<Object<MemberDTO>>(Status::CODE_200, "application/json");
         info->addResponse<Object<StatusDTO>>(Status::CODE_404, "application/json");
         info->addResponse<Object<StatusDTO>>(Status::CODE_500, "application/json");
+
+        info->addTag("MemberController");
     }
     ENDPOINT("GET", "members/{id}", getMemberById,
         PATH(Int64, id))
@@ -89,6 +95,7 @@ public:
             Status::CODE_200, "application/json"
         );
         info->addResponse<Object<StatusDTO>>(Status::CODE_500, "application/json");
+        info->addTag("MemberController");
     }
     ENDPOINT("GET", "members", getAllMembers,
         QUERY(UInt32, offset),
@@ -103,6 +110,7 @@ public:
         info->addResponse<Object<StatusDTO>>(Status::CODE_200, "application/json");
         info->addResponse<Object<StatusDTO>>(Status::CODE_404, "application/json");
         info->addResponse<Object<StatusDTO>>(Status::CODE_500, "application/json");
+        info->addTag("MemberController");
     }
     ENDPOINT("DELETE", "members/{id}", deleteMemberById,
         PATH(Int64, id))

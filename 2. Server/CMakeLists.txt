@@ -13,7 +13,7 @@ add_library(${project_name}-lib
         src/controller/StaticController.hpp
         src/controller/MemberController.hpp
         src/database/DatabaseClient.hpp
-        src/dto/database/AdressDTO.hpp
+        src/dto/database/AddressDTO.hpp
         src/dto/database/DepartmentDTO.hpp
         src/dto/database/EmailDTO.hpp
         src/dto/database/MemberDTO.hpp
@@ -29,7 +29,7 @@ add_library(${project_name}-lib
         src/dto/database/relations/MemberTrainingRelDTO.hpp
         src/service/MemberService.cpp
         src/service/MemberService.hpp
-        "src/service/AdressService.cpp"
+        "src/service/AddressService.cpp"
         "src/service/DepartmentService.cpp"
         "src/service/EmailService.cpp"
         "src/service/MembershipService.cpp"
@@ -37,8 +37,8 @@ add_library(${project_name}-lib
         "src/service/TrainingService.cpp"
         "src/service/relations/MemberAddressRelService.cpp"
         "src/service/relations/MemberEmailRelService.cpp"
-        "src/service/relations/MemberPhonenumberRelService.cpp"
-        "src/service/relations/MembershipDepartmentRelService.cpp" "src/service/relations/MemberTrainingRelService.cpp")
+        "src/service/relations/MemberPhoneNumberRelService.cpp"
+        "src/service/relations/MembershipDepartmentRelService.cpp" "src/service/relations/MemberTrainingRelService.cpp" "src/service/relations/DepartmentTrainingRelService.cpp" "src/service/relations/MemberMembershipRelService.cpp")
 
 ## link libs
 
@@ -76,7 +76,7 @@ target_include_directories(${project_name}-lib PUBLIC src)
 
 ## add executables
 
-add_executable(${project_name}-exe src/App.cpp "src/service/AdressService.cpp" "src/service/DepartmentService.cpp" "src/service/EmailService.cpp" "src/service/MembershipService.cpp" "src/service/PhoneNumberService.cpp" "src/service/TrainingService.cpp" "src/service/relations/MemberAddressRelService.cpp" "src/service/relations/MemberEmailRelService.cpp" "src/service/relations/MemberPhonenumberRelService.cpp" "src/service/relations/MembershipDepartmentRelService.cpp" "src/service/relations/MemberTrainingRelService.cpp")
+add_executable(${project_name}-exe src/App.cpp "src/service/AddressService.cpp" "src/service/DepartmentService.cpp" "src/service/EmailService.cpp" "src/service/MembershipService.cpp" "src/service/PhoneNumberService.cpp" "src/service/TrainingService.cpp" "src/service/relations/MemberAddressRelService.cpp" "src/service/relations/MemberEmailRelService.cpp" "src/service/relations/MemberPhoneNumberRelService.cpp" "src/service/relations/MembershipDepartmentRelService.cpp" "src/service/relations/MemberTrainingRelService.cpp" "src/service/relations/DepartmentTrainingRelService.cpp" "src/service/relations/MemberMembershipRelService.cpp")
 
 target_link_libraries(${project_name}-exe ${project_name}-lib)
 add_dependencies(${project_name}-exe ${project_name}-lib)
@@ -87,7 +87,7 @@ add_executable(${project_name}-test
         test/app/MyApiTestClient.hpp
         "test/StaticControllerTest.cpp"
         test/StaticControllerTest.hpp
- "src/service/AdressService.cpp" "src/service/DepartmentService.cpp" "src/service/EmailService.cpp" "src/service/MembershipService.cpp" "src/service/PhoneNumberService.cpp" "src/service/TrainingService.cpp" "src/service/relations/MemberAddressRelService.cpp" "src/service/relations/MemberEmailRelService.cpp" "src/service/relations/MemberPhonenumberRelService.cpp" "src/service/relations/MembershipDepartmentRelService.cpp" "src/service/relations/MemberTrainingRelService.cpp")
+ "src/service/AddressService.cpp" "src/service/DepartmentService.cpp" "src/service/EmailService.cpp" "src/service/MembershipService.cpp" "src/service/PhoneNumberService.cpp" "src/service/TrainingService.cpp" "src/service/relations/MemberAddressRelService.cpp" "src/service/relations/MemberEmailRelService.cpp" "src/service/relations/MemberPhoneNumberRelService.cpp" "src/service/relations/MembershipDepartmentRelService.cpp" "src/service/relations/MemberTrainingRelService.cpp" "src/service/relations/DepartmentTrainingRelService.cpp" "src/service/relations/MemberMembershipRelService.cpp")
 
 target_link_libraries(${project_name}-test ${project_name}-lib)
 add_dependencies(${project_name}-test ${project_name}-lib)

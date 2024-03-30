@@ -6,7 +6,7 @@
 #include "oatpp/orm/DbClient.hpp"
 #include "oatpp/core/macro/codegen.hpp"
 
-#include "dto/database/AdressDTO.hpp"
+#include "dto/database/AddressDTO.hpp"
 #include "dto/database/DepartmentDTO.hpp"
 #include "dto/database/EmailDTO.hpp"
 #include "dto/database/MemberDTO.hpp"
