@@ -59,6 +59,32 @@ public:
     {
         return createDtoResponse(Status::CODE_200, m_memberEmailRelService.deleteMemberEmailRel(memberId, emailId));
     }
+
+    // Endpoint to get all email IDs associated with a member
+    ENDPOINT_INFO(getEmailIdsByMemberId) {
+        info->summary = "Get all Email IDs associated with a Member";
+        info->addResponse<List<Int64>>(Status::CODE_200, "application/json");
+        info->addResponse<Object<StatusDTO>>(Status::CODE_500, "application/json");
+        info->addTag("MemberEmailRelController");
+    }
+    ENDPOINT("GET", "member-email-relations/member/{memberId}/emails", getEmailIdsByMemberId,
+        PATH(Int64, memberId))
+    {
+        return createDtoResponse(Status::CODE_200, m_memberEmailRelService.getEmailIdsByMemberId(memberId));
+    }
+
+    // Endpoint to get all member IDs associated with an email
+    ENDPOINT_INFO(getMemberIdsByEmailId) {
+        info->summary = "Get all Member IDs associated with an Email";
+        info->addResponse<List<Int64>>(Status::CODE_200, "application/json");
+        info->addResponse<Object<StatusDTO>>(Status::CODE_500, "application/json");
+        info->addTag("MemberEmailRelController");
+    }
+    ENDPOINT("GET", "member-email-relations/email/{emailId}/members", getMemberIdsByEmailId,
+        PATH(Int64, emailId))
+    {
+        return createDtoResponse(Status::CODE_200, m_memberEmailRelService.getMemberIdsByEmailId(emailId));
+    }
 };
 
 #include OATPP_CODEGEN_END(ApiController) // End API Controller codegen

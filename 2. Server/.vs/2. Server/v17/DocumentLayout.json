@@ -3,80 +3,28 @@
   "WorkspaceRootPath": "F:\\Programming\\School\\repos\\BSFI22D_Primus\\2. Server\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|F:\\Programming\\School\\repos\\BSFI22D_Primus\\2. Server\\src\\App.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\App.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|F:\\Programming\\School\\repos\\BSFI22D_Primus\\2. Server\\src\\controller\\relations\\MemberPhoneRelController.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\controller\\relations\\MemberPhoneRelController.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|F:\\Programming\\School\\repos\\BSFI22D_Primus\\2. Server\\src\\controller\\relations\\MembershipDepartmentRelController.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\controller\\relations\\MembershipDepartmentRelController.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|F:\\Programming\\School\\repos\\BSFI22D_Primus\\2. Server\\src\\service\\relations\\MemberPhoneRelService.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\service\\relations\\MemberPhoneRelService.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|F:\\Programming\\School\\repos\\BSFI22D_Primus\\2. Server\\src\\controller\\relations\\MemberMembershipRelController.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\controller\\relations\\MemberMembershipRelController.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|F:\\Programming\\School\\repos\\BSFI22D_Primus\\2. Server\\src\\service\\relations\\MemberPhoneRelService.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\service\\relations\\MemberPhoneRelService.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|F:\\Programming\\School\\repos\\BSFI22D_Primus\\2. Server\\src\\controller\\relations\\DepartmentTrainingRelController.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\controller\\relations\\DepartmentTrainingRelController.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|F:\\Programming\\School\\repos\\BSFI22D_Primus\\2. Server\\src\\service\\AddressService.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\service\\AddressService.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|F:\\Programming\\School\\repos\\BSFI22D_Primus\\2. Server\\src\\service\\relations\\DepartmentTrainingRelService.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\service\\relations\\DepartmentTrainingRelService.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|F:\\Programming\\School\\repos\\BSFI22D_Primus\\2. Server\\src\\database\\DatabaseClient.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\database\\DatabaseClient.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|F:\\Programming\\School\\repos\\BSFI22D_Primus\\2. Server\\src\\service\\relations\\MemberAddressRelService.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\service\\relations\\MemberAddressRelService.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|F:\\Programming\\School\\repos\\BSFI22D_Primus\\2. Server\\src\\service\\relations\\MemberAddressRelService.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\service\\relations\\MemberAddressRelService.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|F:\\Programming\\School\\repos\\BSFI22D_Primus\\2. Server\\src\\service\\relations\\MemberMembershipRelService.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\service\\relations\\MemberMembershipRelService.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|F:\\Programming\\School\\repos\\BSFI22D_Primus\\2. Server\\src\\service\\relations\\MemberMembershipRelService.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\service\\relations\\MemberMembershipRelService.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|F:\\Programming\\School\\repos\\BSFI22D_Primus\\2. Server\\src\\service\\relations\\DepartmentTrainingRelService.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\service\\relations\\DepartmentTrainingRelService.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|F:\\Programming\\School\\repos\\BSFI22D_Primus\\2. Server\\src\\controller\\relations\\MemberTrainingRelController.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\controller\\relations\\MemberTrainingRelController.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|F:\\Programming\\School\\repos\\BSFI22D_Primus\\2. Server\\src\\service\\relations\\MemberPhoneNumberRelService.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\service\\relations\\MemberPhoneNumberRelService.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|F:\\Programming\\School\\repos\\BSFI22D_Primus\\2. Server\\src\\controller\\relations\\MemberEmailRelController.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\controller\\relations\\MemberEmailRelController.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|F:\\Programming\\School\\repos\\BSFI22D_Primus\\2. Server\\src\\controller\\relations\\MemberAdressRelController.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\controller\\relations\\MemberAdressRelController.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|F:\\Programming\\School\\repos\\BSFI22D_Primus\\2. Server\\src\\controller\\TrainingController.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\controller\\TrainingController.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|F:\\Programming\\School\\repos\\BSFI22D_Primus\\2. Server\\src\\controller\\PhoneNumberController.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\controller\\PhoneNumberController.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|F:\\Programming\\School\\repos\\BSFI22D_Primus\\2. Server\\src\\controller\\MembershipController.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\controller\\MembershipController.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|F:\\Programming\\School\\repos\\BSFI22D_Primus\\2. Server\\src\\controller\\EmailController.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\controller\\EmailController.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|F:\\Programming\\School\\repos\\BSFI22D_Primus\\2. Server\\src\\App.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\App.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -86,259 +34,84 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "DepartmentTrainingRelController.hpp",
-              "DocumentMoniker": "F:\\Programming\\School\\repos\\BSFI22D_Primus\\2. Server\\src\\controller\\relations\\DepartmentTrainingRelController.hpp",
-              "RelativeDocumentMoniker": "src\\controller\\relations\\DepartmentTrainingRelController.hpp",
-              "ToolTip": "F:\\Programming\\School\\repos\\BSFI22D_Primus\\2. Server\\src\\controller\\relations\\DepartmentTrainingRelController.hpp",
-              "RelativeToolTip": "src\\controller\\relations\\DepartmentTrainingRelController.hpp",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAA9AAAA",
+              "DocumentIndex": 1,
+              "Title": "MemberPhoneRelService.hpp",
+              "DocumentMoniker": "F:\\Programming\\School\\repos\\BSFI22D_Primus\\2. Server\\src\\service\\relations\\MemberPhoneRelService.hpp",
+              "RelativeDocumentMoniker": "src\\service\\relations\\MemberPhoneRelService.hpp",
+              "ToolTip": "F:\\Programming\\School\\repos\\BSFI22D_Primus\\2. Server\\src\\service\\relations\\MemberPhoneRelService.hpp",
+              "RelativeToolTip": "src\\service\\relations\\MemberPhoneRelService.hpp",
+              "ViewState": "AQIAABgAAAAAAAAAAAAAAC4AAAAzAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-03-30T18:50:11.299Z",
+              "WhenOpened": "2024-04-01T12:49:22.319Z",
               "EditorCaption": ""
             },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "MemberAddressRelService.hpp",
-              "DocumentMoniker": "F:\\Programming\\School\\repos\\BSFI22D_Primus\\2. Server\\src\\service\\relations\\MemberAddressRelService.hpp",
-              "RelativeDocumentMoniker": "src\\service\\relations\\MemberAddressRelService.hpp",
-              "ToolTip": "F:\\Programming\\School\\repos\\BSFI22D_Primus\\2. Server\\src\\service\\relations\\MemberAddressRelService.hpp",
-              "RelativeToolTip": "src\\service\\relations\\MemberAddressRelService.hpp",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAMAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-03-30T18:48:35.598Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "MemberAddressRelService.cpp",
-              "DocumentMoniker": "F:\\Programming\\School\\repos\\BSFI22D_Primus\\2. Server\\src\\service\\relations\\MemberAddressRelService.cpp",
-              "RelativeDocumentMoniker": "src\\service\\relations\\MemberAddressRelService.cpp",
-              "ToolTip": "F:\\Programming\\School\\repos\\BSFI22D_Primus\\2. Server\\src\\service\\relations\\MemberAddressRelService.cpp",
-              "RelativeToolTip": "src\\service\\relations\\MemberAddressRelService.cpp",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-03-30T18:48:33.405Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "MemberMembershipRelService.hpp",
-              "DocumentMoniker": "F:\\Programming\\School\\repos\\BSFI22D_Primus\\2. Server\\src\\service\\relations\\MemberMembershipRelService.hpp",
-              "RelativeDocumentMoniker": "src\\service\\relations\\MemberMembershipRelService.hpp",
-              "ToolTip": "F:\\Programming\\School\\repos\\BSFI22D_Primus\\2. Server\\src\\service\\relations\\MemberMembershipRelService.hpp",
-              "RelativeToolTip": "src\\service\\relations\\MemberMembershipRelService.hpp",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAADIAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-03-30T18:47:37.801Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "DepartmentTrainingRelService.hpp",
-              "DocumentMoniker": "F:\\Programming\\School\\repos\\BSFI22D_Primus\\2. Server\\src\\service\\relations\\DepartmentTrainingRelService.hpp",
-              "RelativeDocumentMoniker": "src\\service\\relations\\DepartmentTrainingRelService.hpp",
-              "ToolTip": "F:\\Programming\\School\\repos\\BSFI22D_Primus\\2. Server\\src\\service\\relations\\DepartmentTrainingRelService.hpp",
-              "RelativeToolTip": "src\\service\\relations\\DepartmentTrainingRelService.hpp",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-03-30T18:45:46.792Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "MemberMembershipRelService.cpp",
-              "DocumentMoniker": "F:\\Programming\\School\\repos\\BSFI22D_Primus\\2. Server\\src\\service\\relations\\MemberMembershipRelService.cpp",
-              "RelativeDocumentMoniker": "src\\service\\relations\\MemberMembershipRelService.cpp",
-              "ToolTip": "F:\\Programming\\School\\repos\\BSFI22D_Primus\\2. Server\\src\\service\\relations\\MemberMembershipRelService.cpp",
-              "RelativeToolTip": "src\\service\\relations\\MemberMembershipRelService.cpp",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAZAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-03-30T18:47:43.257Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "DepartmentTrainingRelService.cpp",
-              "DocumentMoniker": "F:\\Programming\\School\\repos\\BSFI22D_Primus\\2. Server\\src\\service\\relations\\DepartmentTrainingRelService.cpp",
-              "RelativeDocumentMoniker": "src\\service\\relations\\DepartmentTrainingRelService.cpp",
-              "ToolTip": "F:\\Programming\\School\\repos\\BSFI22D_Primus\\2. Server\\src\\service\\relations\\DepartmentTrainingRelService.cpp",
-              "RelativeToolTip": "src\\service\\relations\\DepartmentTrainingRelService.cpp",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAsAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-03-30T18:45:52.306Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "MemberTrainingRelController.hpp",
-              "DocumentMoniker": "F:\\Programming\\School\\repos\\BSFI22D_Primus\\2. Server\\src\\controller\\relations\\MemberTrainingRelController.hpp",
-              "RelativeDocumentMoniker": "src\\controller\\relations\\MemberTrainingRelController.hpp",
-              "ToolTip": "F:\\Programming\\School\\repos\\BSFI22D_Primus\\2. Server\\src\\controller\\relations\\MemberTrainingRelController.hpp",
-              "RelativeToolTip": "src\\controller\\relations\\MemberTrainingRelController.hpp",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABcAAAA4AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-03-30T18:42:04.053Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "MemberEmailRelController.hpp",
-              "DocumentMoniker": "F:\\Programming\\School\\repos\\BSFI22D_Primus\\2. Server\\src\\controller\\relations\\MemberEmailRelController.hpp",
-              "RelativeDocumentMoniker": "src\\controller\\relations\\MemberEmailRelController.hpp",
-              "ToolTip": "F:\\Programming\\School\\repos\\BSFI22D_Primus\\2. Server\\src\\controller\\relations\\MemberEmailRelController.hpp",
-              "RelativeToolTip": "src\\controller\\relations\\MemberEmailRelController.hpp",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABYAAAAHAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-03-30T18:26:02.408Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "PhoneNumberController.hpp",
-              "DocumentMoniker": "F:\\Programming\\School\\repos\\BSFI22D_Primus\\2. Server\\src\\controller\\PhoneNumberController.hpp",
-              "RelativeDocumentMoniker": "src\\controller\\PhoneNumberController.hpp",
-              "ToolTip": "F:\\Programming\\School\\repos\\BSFI22D_Primus\\2. Server\\src\\controller\\PhoneNumberController.hpp",
-              "RelativeToolTip": "src\\controller\\PhoneNumberController.hpp",
-              "ViewState": "AQIAAEUAAAAAAAAAAAAAAF0AAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-03-30T18:17:35.371Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "TrainingController.hpp",
-              "DocumentMoniker": "F:\\Programming\\School\\repos\\BSFI22D_Primus\\2. Server\\src\\controller\\TrainingController.hpp",
-              "RelativeDocumentMoniker": "src\\controller\\TrainingController.hpp",
-              "ToolTip": "F:\\Programming\\School\\repos\\BSFI22D_Primus\\2. Server\\src\\controller\\TrainingController.hpp",
-              "RelativeToolTip": "src\\controller\\TrainingController.hpp",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAGEAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-03-30T18:20:01.626Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "MemberPhoneNumberRelService.hpp",
-              "DocumentMoniker": "F:\\Programming\\School\\repos\\BSFI22D_Primus\\2. Server\\src\\service\\relations\\MemberPhoneNumberRelService.hpp",
-              "RelativeDocumentMoniker": "src\\service\\relations\\MemberPhoneNumberRelService.hpp",
-              "ToolTip": "F:\\Programming\\School\\repos\\BSFI22D_Primus\\2. Server\\src\\service\\relations\\MemberPhoneNumberRelService.hpp",
-              "RelativeToolTip": "src\\service\\relations\\MemberPhoneNumberRelService.hpp",
-              "ViewState": "AQIAABUAAAAAAAAAAAAUwC8AAAACAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-03-30T18:35:29.003Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "MembershipController.hpp",
-              "DocumentMoniker": "F:\\Programming\\School\\repos\\BSFI22D_Primus\\2. Server\\src\\controller\\MembershipController.hpp",
-              "RelativeDocumentMoniker": "src\\controller\\MembershipController.hpp",
-              "ToolTip": "F:\\Programming\\School\\repos\\BSFI22D_Primus\\2. Server\\src\\controller\\MembershipController.hpp",
-              "RelativeToolTip": "src\\controller\\MembershipController.hpp",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAGEAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-03-30T18:14:17.917Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "MemberAdressRelController.hpp",
-              "DocumentMoniker": "F:\\Programming\\School\\repos\\BSFI22D_Primus\\2. Server\\src\\controller\\relations\\MemberAdressRelController.hpp",
-              "RelativeDocumentMoniker": "src\\controller\\relations\\MemberAdressRelController.hpp",
-              "ToolTip": "F:\\Programming\\School\\repos\\BSFI22D_Primus\\2. Server\\src\\controller\\relations\\MemberAdressRelController.hpp",
-              "RelativeToolTip": "src\\controller\\relations\\MemberAdressRelController.hpp",
-              "ViewState": "AQIAACEAAAAAAAAAAAAAwDAAAAAwAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-03-30T18:22:45.526Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 18,
-              "Title": "EmailController.hpp",
-              "DocumentMoniker": "F:\\Programming\\School\\repos\\BSFI22D_Primus\\2. Server\\src\\controller\\EmailController.hpp",
-              "RelativeDocumentMoniker": "src\\controller\\EmailController.hpp",
-              "ToolTip": "F:\\Programming\\School\\repos\\BSFI22D_Primus\\2. Server\\src\\controller\\EmailController.hpp",
-              "RelativeToolTip": "src\\controller\\EmailController.hpp",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAcAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-03-30T18:07:57.027Z",
-              "EditorCaption": ""
-            }
-          ]
-        },
-        {
-          "DockedWidth": 200,
-          "SelectedChildIndex": 3,
-          "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "MemberMembershipRelController.hpp",
-              "DocumentMoniker": "F:\\Programming\\School\\repos\\BSFI22D_Primus\\2. Server\\src\\controller\\relations\\MemberMembershipRelController.hpp",
-              "RelativeDocumentMoniker": "src\\controller\\relations\\MemberMembershipRelController.hpp",
-              "ToolTip": "F:\\Programming\\School\\repos\\BSFI22D_Primus\\2. Server\\src\\controller\\relations\\MemberMembershipRelController.hpp",
-              "RelativeToolTip": "src\\controller\\relations\\MemberMembershipRelController.hpp",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAEIAAAAAAAAA",
+              "Title": "AddressService.cpp",
+              "DocumentMoniker": "F:\\Programming\\School\\repos\\BSFI22D_Primus\\2. Server\\src\\service\\AddressService.cpp",
+              "RelativeDocumentMoniker": "src\\service\\AddressService.cpp",
+              "ToolTip": "F:\\Programming\\School\\repos\\BSFI22D_Primus\\2. Server\\src\\service\\AddressService.cpp",
+              "RelativeToolTip": "src\\service\\AddressService.cpp",
+              "ViewState": "AQIAABUAAAAAAAAAAAAjwCYAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-04-01T12:48:36.528Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "DatabaseClient.hpp",
+              "DocumentMoniker": "F:\\Programming\\School\\repos\\BSFI22D_Primus\\2. Server\\src\\database\\DatabaseClient.hpp",
+              "RelativeDocumentMoniker": "src\\database\\DatabaseClient.hpp",
+              "ToolTip": "F:\\Programming\\School\\repos\\BSFI22D_Primus\\2. Server\\src\\database\\DatabaseClient.hpp",
+              "RelativeToolTip": "src\\database\\DatabaseClient.hpp",
+              "ViewState": "AQIAAAMAAAAAAAAAAADwvxAAAAAvAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-03-30T18:53:00.399Z",
+              "WhenOpened": "2024-04-01T12:48:12.143Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "MembershipDepartmentRelController.hpp",
-              "DocumentMoniker": "F:\\Programming\\School\\repos\\BSFI22D_Primus\\2. Server\\src\\controller\\relations\\MembershipDepartmentRelController.hpp",
-              "RelativeDocumentMoniker": "src\\controller\\relations\\MembershipDepartmentRelController.hpp",
-              "ToolTip": "F:\\Programming\\School\\repos\\BSFI22D_Primus\\2. Server\\src\\controller\\relations\\MembershipDepartmentRelController.hpp",
-              "RelativeToolTip": "src\\controller\\relations\\MembershipDepartmentRelController.hpp",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-03-30T18:37:13.546Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "MemberPhoneRelController.hpp",
-              "DocumentMoniker": "F:\\Programming\\School\\repos\\BSFI22D_Primus\\2. Server\\src\\controller\\relations\\MemberPhoneRelController.hpp",
-              "RelativeDocumentMoniker": "src\\controller\\relations\\MemberPhoneRelController.hpp",
-              "ToolTip": "F:\\Programming\\School\\repos\\BSFI22D_Primus\\2. Server\\src\\controller\\relations\\MemberPhoneRelController.hpp",
-              "RelativeToolTip": "src\\controller\\relations\\MemberPhoneRelController.hpp",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAC8AAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-03-30T18:30:09.915Z",
+              "Title": "MemberPhoneRelService.cpp",
+              "DocumentMoniker": "F:\\Programming\\School\\repos\\BSFI22D_Primus\\2. Server\\src\\service\\relations\\MemberPhoneRelService.cpp",
+              "RelativeDocumentMoniker": "src\\service\\relations\\MemberPhoneRelService.cpp",
+              "ToolTip": "F:\\Programming\\School\\repos\\BSFI22D_Primus\\2. Server\\src\\service\\relations\\MemberPhoneRelService.cpp",
+              "RelativeToolTip": "src\\service\\relations\\MemberPhoneRelService.cpp",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAAtAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-04-01T12:46:56.896Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "MemberPhoneRelController.hpp",
+              "DocumentMoniker": "F:\\Programming\\School\\repos\\BSFI22D_Primus\\2. Server\\src\\controller\\relations\\MemberPhoneRelController.hpp",
+              "RelativeDocumentMoniker": "src\\controller\\relations\\MemberPhoneRelController.hpp",
+              "ToolTip": "F:\\Programming\\School\\repos\\BSFI22D_Primus\\2. Server\\src\\controller\\relations\\MemberPhoneRelController.hpp",
+              "RelativeToolTip": "src\\controller\\relations\\MemberPhoneRelController.hpp",
+              "ViewState": "AQIAAEQAAAAAAAAAAADwv1EAAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-04-01T12:45:45.304Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "App.cpp",
               "DocumentMoniker": "F:\\Programming\\School\\repos\\BSFI22D_Primus\\2. Server\\src\\App.cpp",
               "RelativeDocumentMoniker": "src\\App.cpp",
               "ToolTip": "F:\\Programming\\School\\repos\\BSFI22D_Primus\\2. Server\\src\\App.cpp",
               "RelativeToolTip": "src\\App.cpp",
-              "ViewState": "AQIAAEgAAAAAAAAAAAAAAGEAAAAAAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAsAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-03-30T17:59:46.269Z",
+              "WhenOpened": "2024-04-01T12:41:51.798Z",
               "EditorCaption": ""
             }
           ]

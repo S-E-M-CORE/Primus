@@ -18,7 +18,7 @@
 #include "dto/database/relations/MemberAddressRelDTO.hpp"
 #include "dto/database/relations/MemberEmailRelDTO.hpp"
 #include "dto/database/relations/MemberMembershipRelDTO.hpp"
-#include "dto/database/relations/MemberPhonenumberRelDTO.hpp"
+#include "dto/database/relations/MemberPhoneRelDTO.hpp"
 #include "dto/database/relations/MembershipDepartmentRelDTO.hpp"
 #include "dto/database/relations/MemberTrainingRelDTO.hpp"
 
@@ -813,12 +813,12 @@ public:
     *
     * Inserts a new record into the "MemberPhoneNumberRel" table with the provided member and phone number IDs.
     *
-    * @param rel The member-phone number relationship information to be created as a MemberPhonenumberRelDTO object.
+    * @param rel The member-phone number relationship information to be created as a MemberPhoneRelDTO object.
     */
     QUERY(createMemberPhoneNumberRel,
         "INSERT INTO MemberPhoneNumberRel (memberID, phoneNumberID) "
         "VALUES (:rel.memberID, :rel.phoneNumberID);",
-        PARAM(oatpp::Object<MemberPhonenumberRelDTO>, rel));
+        PARAM(oatpp::Object<MemberPhoneRelDTO>, rel));
 
     /**
      * @brief Retrieves the phone number IDs associated with a member ID from the database.

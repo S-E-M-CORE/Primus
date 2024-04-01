@@ -59,6 +59,32 @@ public:
     {
         return createDtoResponse(Status::CODE_200, m_memberMembershipRelService.deleteMemberMembershipRel(memberId, membershipId));
     }
+
+    // Endpoint to get all membership IDs associated with a member
+    ENDPOINT_INFO(getMembershipIdsByMemberId) {
+        info->summary = "Get all Membership IDs associated with a Member";
+        info->addResponse<List<Int64>>(Status::CODE_200, "application/json");
+        info->addResponse<Object<StatusDTO>>(Status::CODE_500, "application/json");
+        info->addTag("MemberMembershipRelController");
+    }
+    ENDPOINT("GET", "member-membership-relations/member/{memberId}/memberships", getMembershipIdsByMemberId,
+        PATH(Int64, memberId))
+    {
+        return createDtoResponse(Status::CODE_200, m_memberMembershipRelService.getMembershipIdsByMemberId(memberId));
+    }
+
+    // Endpoint to get all member IDs associated with a membership
+    ENDPOINT_INFO(getMemberIdsByMembershipId) {
+        info->summary = "Get all Member IDs associated with a Membership";
+        info->addResponse<List<Int64>>(Status::CODE_200, "application/json");
+        info->addResponse<Object<StatusDTO>>(Status::CODE_500, "application/json");
+        info->addTag("MemberMembershipRelController");
+    }
+    ENDPOINT("GET", "member-membership-relations/membership/{membershipId}/members", getMemberIdsByMembershipId,
+        PATH(Int64, membershipId))
+    {
+        return createDtoResponse(Status::CODE_200, m_memberMembershipRelService.getMemberIdsByMembershipId(membershipId));
+    }
 };
 
 #include OATPP_CODEGEN_END(ApiController) // End API Controller codegen

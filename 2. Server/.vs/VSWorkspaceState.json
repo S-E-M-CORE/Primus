@@ -10,9 +10,11 @@
     "\\src",
     "\\src\\controller",
     "\\src\\controller\\relations",
-    "\\src\\service",
-    "\\src\\service\\relations"
+    "\\src\\dto",
+    "\\src\\dto\\database",
+    "\\src\\dto\\database\\relations",
+    "\\src\\service"
   ],
-  "SelectedNode": "\\src\\controller\\relations\\MemberMembershipRelController.hpp",
+  "SelectedNode": "\\src\\dto\\database\\relations\\MemberPhoneRelDTO.hpp",
   "PreviewInSolutionExplorer": false
 }
