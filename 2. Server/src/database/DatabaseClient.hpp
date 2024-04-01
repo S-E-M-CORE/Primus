@@ -8,17 +8,13 @@
 
 #include "dto/database/AddressDTO.hpp"
 #include "dto/database/DepartmentDTO.hpp"
-#include "dto/database/EmailDTO.hpp"
 #include "dto/database/MemberDTO.hpp"
 #include "dto/database/MembershipDTO.hpp"
-#include "dto/database/PhoneNumberDTO.hpp"
 #include "dto/database/TrainingDTO.hpp"
 
 #include "dto/database/relations/DepartmentTrainingRelDTO.hpp"
 #include "dto/database/relations/MemberAddressRelDTO.hpp"
-#include "dto/database/relations/MemberEmailRelDTO.hpp"
 #include "dto/database/relations/MemberMembershipRelDTO.hpp"
-#include "dto/database/relations/MemberPhoneRelDTO.hpp"
 #include "dto/database/relations/MembershipDepartmentRelDTO.hpp"
 #include "dto/database/relations/MemberTrainingRelDTO.hpp"
 
@@ -58,15 +54,15 @@ public:
     /**
      * @brief Creates a new member entry in the database.
      *
-     * Inserts a new record into the "Member" table.
+     * Inserts a new record into the "Member" table with the provided member information.
      *
-     * @param member The member to be created as a MemberDTO object.
+     * @param member The member information to be created as a MemberDTO object.
      */
     QUERY(createMember,
-        "INSERT INTO Member "
-        "(firstName, lastName, birthDate, joinDate, active) "
-        "VALUES (:member.firstName, :member.lastName, :member.birthDate, :member.joinDate, :member.active);",
+        "INSERT INTO Member (firstName, lastName, email, phoneNumber, birthDate, createDate, active) "
+        "VALUES (:member.firstName, :member.lastName, :member.email, :member.phoneNumber, :member.birthDate, date('now'), 1);",
         PARAM(oatpp::Object<MemberDTO>, member));
+
 
     /**
      * @brief Updates an existing member entry in the database.
@@ -80,12 +76,14 @@ public:
         "SET "
         "firstName=:member.firstName, "
         "lastName=:member.lastName, "
+        "email=:member.email, "
+        "phoneNumber=:member.phoneNumber, "
         "birthDate=:member.birthDate, "
-        "joinDate=:member.joinDate, "
         "active=:member.active "
         "WHERE "
         "id=:member.id;",
         PARAM(oatpp::Object<MemberDTO>, member));
+
 
     /**
      * @brief Retrieves a member entry from the database by ID.
@@ -99,30 +97,15 @@ public:
         PARAM(oatpp::Int64, id));
 
     /**
-     * @brief Retrieves active member entries from the database.
+     * @brief Retrieves all member entries from the database.
      *
-     * Retrieves records from the "Member" table where the 'active' column is set to 1,
-     * with a specified limit and offset for pagination.
+     * Retrieves records from the "Member" table with a specified limit and offset for pagination.
      *
      * @param offset The offset for pagination.
      * @param limit The maximum number of records to retrieve.
      */
-    QUERY(getActiveMembers,
+    QUERY(getAllMembers,
         "SELECT * FROM Member WHERE active=1 LIMIT :limit OFFSET :offset;",
-        PARAM(oatpp::UInt32, offset),
-        PARAM(oatpp::UInt32, limit));
-
-    /**
-     * @brief Retrieves inactive member entries from the database.
-     *
-     * Retrieves records from the "Member" table where the 'active' column is set to 0,
-     * with a specified limit and offset for pagination.
-     *
-     * @param offset The offset for pagination.
-     * @param limit The maximum number of records to retrieve.
-     */
-    QUERY(getInactiveMembers,
-        "SELECT * FROM Member WHERE active=0 LIMIT :limit OFFSET :offset;",
         PARAM(oatpp::UInt32, offset),
         PARAM(oatpp::UInt32, limit));
 
@@ -231,161 +214,6 @@ public:
     QUERY(deleteAddressById,
         "DELETE FROM Address WHERE id=:id;",
         PARAM(oatpp::Int64, id));
-
-
-    //  ____  _                      _   _                 _               
-    // |  _ \| |__   ___  _ __   ___| \ | |_   _ _ __ ___ | |__   ___ _ __ 
-    // | |_) | '_ \ / _ \| '_ \ / _ \  \| | | | | '_ ` _ \| '_ \ / _ \ '__|
-    // |  __/| | | | (_) | | | |  __/ |\  | |_| | | | | | | |_) |  __/ |   
-    // |_|__ |_| |_|\___/|_| |_|\___|_| \_|\__,_|_| |_| |_|_.__/ \___|_|   
-    //  / _ \ _   _  ___ _ __ _   _ ___                                    
-    // | | | | | | |/ _ \ '__| | | / __|                                   
-    // | |_| | |_| |  __/ |  | |_| \__ \                                   
-    //  \__\_\\__,_|\___|_|   \__, |___/                                   
-    //                        |___/                                        
-
-    /**
-     * @brief Creates a new phone number entry in the database.
-     *
-     * Inserts a new record into the "PhoneNumber" table with the provided phone number.
-     *
-     * @param phoneNumber The phone number to be created as a PhoneNumberDTO object.
-     */
-    QUERY(createPhoneNumber,
-        "INSERT INTO PhoneNumber (number) "
-        "VALUES (:phoneNumber.number);",
-        PARAM(oatpp::Object<PhoneNumberDTO>, phoneNumber));
-
-    /**
-     * @brief Updates an existing phone number entry in the database.
-     *
-     * Updates the record in the "PhoneNumber" table with the provided phone number ID.
-     *
-     * @param phoneNumber The phone number information to update as a PhoneNumberDTO object.
-     */
-    QUERY(updatePhoneNumber,
-        "UPDATE PhoneNumber "
-        "SET "
-        "number=:phoneNumber.number "
-        "WHERE "
-        "id=:phoneNumber.id;",
-        PARAM(oatpp::Object<PhoneNumberDTO>, phoneNumber));
-
-    /**
-     * @brief Retrieves a phone number entry from the database by ID.
-     *
-     * Retrieves the record from the "PhoneNumber" table with the specified ID.
-     *
-     * @param id The ID of the phone number to retrieve.
-     */
-    QUERY(getPhoneNumberById,
-        "SELECT * FROM PhoneNumber WHERE id=:id;",
-        PARAM(oatpp::Int64, id));
-
-    /**
-     * @brief Retrieves all phone number entries from the database.
-     *
-     * Retrieves records from the "PhoneNumber" table with a specified limit and offset for pagination.
-     *
-     * @param offset The offset for pagination.
-     * @param limit The maximum number of records to retrieve.
-     */
-    QUERY(getAllPhoneNumbers,
-        "SELECT * FROM PhoneNumber LIMIT :limit OFFSET :offset;",
-        PARAM(oatpp::UInt32, offset),
-        PARAM(oatpp::UInt32, limit));
-
-    /**
-     * @brief Deletes a phone number entry from the database by ID.
-     *
-     * Deletes the record from the "PhoneNumber" table with the specified ID.
-     *
-     * @param id The ID of the phone number to delete.
-     */
-    QUERY(deletePhoneNumberById,
-        "DELETE FROM PhoneNumber WHERE id=:id;",
-        PARAM(oatpp::Int64, id));
-
-
-    //  _____      __  __       _ _    ___                            
-    // | ____|    |  \/  | __ _(_) |  / _ \ _   _  ___ _ __ _   _ ___ 
-    // |  _| _____| |\/| |/ _` | | | | | | | | | |/ _ \ '__| | | / __|
-    // | |__|_____| |  | | (_| | | | | |_| | |_| |  __/ |  | |_| \__ \
-    // |_____|    |_|  |_|\__,_|_|_|  \__\_\\__,_|\___|_|   \__, |___/
-    //                                                      |___/     
-
-    /**
-    * @brief Creates a new email entry in the database.
-    *
-    * Inserts a new record into the "Email" table with the provided email address.
-    *
-    * @param email The email address to be created as an EmailDTO object.
-    */
-    QUERY(createEmail,
-        "INSERT INTO Email (email) "
-        "VALUES (:email.email);",
-        PARAM(oatpp::Object<EmailDTO>, email));
-
-    /**
-     * @brief Updates an existing email entry in the database.
-     *
-     * Updates the record in the "Email" table with the provided email ID.
-     *
-     * @param email The email address information to update as an EmailDTO object.
-     */
-    QUERY(updateEmail,
-        "UPDATE Email "
-        "SET "
-        "email=:email.email "
-        "WHERE "
-        "id=:email.id;",
-        PARAM(oatpp::Object<EmailDTO>, email));
-
-    /**
-     * @brief Retrieves an email entry from the database by ID.
-     *
-     * Retrieves the record from the "Email" table with the specified ID.
-     *
-     * @param id The ID of the email to retrieve.
-     */
-    QUERY(getEmailById,
-        "SELECT * FROM Email WHERE id=:id;",
-        PARAM(oatpp::Int64, id));
-
-    /**
-     * @brief Retrieves all email entries from the database.
-     *
-     * Retrieves records from the "Email" table with a specified limit and offset for pagination.
-     *
-     * @param offset The offset for pagination.
-     * @param limit The maximum number of records to retrieve.
-     */
-    QUERY(getAllEmails,
-        "SELECT * FROM Email LIMIT :limit OFFSET :offset;",
-        PARAM(oatpp::UInt32, offset),
-        PARAM(oatpp::UInt32, limit));
-
-    /**
-     * @brief Deletes an email entry from the database by ID.
-     *
-     * Deletes the record from the "Email" table with the specified ID.
-     *
-     * @param id The ID of the email to delete.
-     */
-    QUERY(deleteEmailById,
-        "DELETE FROM Email WHERE id=:id;",
-        PARAM(oatpp::Int64, id));
-
-    /**
-     * @brief Retrieves the ID of an email entry from the database by email address.
-     *
-     * Retrieves the ID from the "Email" table for the email address provided.
-     *
-     * @param email The email address to search for.
-     */
-    QUERY(getEmailIdByEmail,
-        "SELECT id FROM Email WHERE email=:email;",
-        PARAM(oatpp::String, email));
 
     //  __  __                _                   _     _       
     // |  \/  | ___ _ __ ___ | |__   ___ _ __ ___| |__ (_)_ __  
@@ -738,125 +566,6 @@ public:
         PARAM(oatpp::Int64, memberID),
         PARAM(oatpp::Int64, addressID));
 
-    //  __  __                _                    _____                 _ _ 
-    // |  \/  | ___ _ __ ___ | |__   ___ _ __     | ____|_ __ ___   __ _(_) |
-    // | |\/| |/ _ \ '_ ` _ \| '_ \ / _ \ '__|____|  _| | '_ ` _ \ / _` | | |
-    // | |  | |  __/ | | | | | |_) |  __/ | |_____| |___| | | | | | (_| | | |
-    // |_|__|_|\___|_| |_| |_|_.__/ \___|_|       |_____|_| |_| |_|\__,_|_|_|
-    //  / _ \ _   _  ___ _ __ _   _ ___                                      
-    // | | | | | | |/ _ \ '__| | | / __|                                     
-    // | |_| | |_| |  __/ |  | |_| \__ \                                     
-    //  \__\_\\__,_|\___|_|   \__, |___/                                     
-    //                        |___/                                          
-
-    /**
-    * @brief Creates a new relationship between a member and an email in the database.
-    *
-    * Inserts a new record into the "MemberEmailRel" table with the provided member and email IDs.
-    *
-    * @param rel The member-email relationship information to be created as a MemberEmailRelDTO object.
-    */
-    QUERY(createMemberEmailRel,
-        "INSERT INTO MemberEmailRel (memberID, emailID) "
-        "VALUES (:rel.memberID, :rel.emailID);",
-        PARAM(oatpp::Object<MemberEmailRelDTO>, rel));
-
-    /**
-     * @brief Retrieves the email IDs associated with a member ID from the database.
-     *
-     * Retrieves the email IDs from the "MemberEmailRel" table for the specified member ID.
-     *
-     * @param memberID The ID of the member.
-     */
-    QUERY(getEmailIdsByMemberId,
-        "SELECT emailID FROM MemberEmailRel WHERE memberID=:memberID;",
-        PARAM(oatpp::Int64, memberID));
-
-    /**
-     * @brief Retrieves the member IDs associated with an email ID from the database.
-     *
-     * Retrieves the member IDs from the "MemberEmailRel" table for the specified email ID.
-     *
-     * @param emailID The ID of the email.
-     */
-    QUERY(getMemberIdsByEmailId,
-        "SELECT memberID FROM MemberEmailRel WHERE emailID=:emailID;",
-        PARAM(oatpp::Int64, emailID));
-
-    /**
-     * @brief Deletes a member-email relationship from the database.
-     *
-     * Deletes the record from the "MemberEmailRel" table with the specified member and email IDs.
-     *
-     * @param memberID The ID of the member.
-     * @param emailID The ID of the email.
-     */
-    QUERY(deleteMemberEmailRel,
-        "DELETE FROM MemberEmailRel WHERE memberID=:memberID AND emailID=:emailID;",
-        PARAM(oatpp::Int64, memberID),
-        PARAM(oatpp::Int64, emailID));
-
-
-    //  __  __                _                    ____  _                            
-    // |  \/  | ___ _ __ ___ | |__   ___ _ __     |  _ \| |__   ___  _ __   ___ _ __  
-    // | |\/| |/ _ \ '_ ` _ \| '_ \ / _ \ '__|____| |_) | '_ \ / _ \| '_ \ / _ \ '_ \ 
-    // | |  | |  __/ | | | | | |_) |  __/ | |_____|  __/| | | | (_) | | | |  __/ | | |
-    // |_|  |_|\___|_| |_| |_|_.__/ \___|_|___    |_|   |_| |_|\___/|_| |_|\___|_| |_|
-    //  _   _ _ __ ___ | |__   ___ _ __   / _ \ _   _  ___ _ __ _   _ ___             
-    // | | | | '_ ` _ \| '_ \ / _ \ '__| | | | | | | |/ _ \ '__| | | / __|            
-    // | |_| | | | | | | |_) |  __/ |    | |_| | |_| |  __/ |  | |_| \__ \            
-    //  \__,_|_| |_| |_|_.__/ \___|_|     \__\_\\__,_|\___|_|   \__, |___/            
-    //                                                          |___/                 
-
-    /**
-    * @brief Creates a new relationship between a member and a phone number in the database.
-    *
-    * Inserts a new record into the "MemberPhoneNumberRel" table with the provided member and phone number IDs.
-    *
-    * @param rel The member-phone number relationship information to be created as a MemberPhoneRelDTO object.
-    */
-    QUERY(createMemberPhoneNumberRel,
-        "INSERT INTO MemberPhoneNumberRel (memberID, phoneNumberID) "
-        "VALUES (:rel.memberID, :rel.phoneNumberID);",
-        PARAM(oatpp::Object<MemberPhoneRelDTO>, rel));
-
-    /**
-     * @brief Retrieves the phone number IDs associated with a member ID from the database.
-     *
-     * Retrieves the phone number IDs from the "MemberPhoneNumberRel" table for the specified member ID.
-     *
-     * @param memberID The ID of the member.
-     */
-    QUERY(getPhoneNumberIdsByMemberId,
-        "SELECT phoneNumberID FROM MemberPhoneNumberRel WHERE memberID=:memberID;",
-        PARAM(oatpp::Int64, memberID));
-
-    /**
-     * @brief Retrieves the member IDs associated with a phone number ID from the database.
-     *
-     * Retrieves the member IDs from the "MemberPhoneNumberRel" table for the specified phone number ID.
-     *
-     * @param phoneNumberID The ID of the phone number.
-     */
-    QUERY(getMemberIdsByPhoneNumberId,
-        "SELECT memberID FROM MemberPhoneNumberRel WHERE phoneNumberID=:phoneNumberID;",
-        PARAM(oatpp::Int64, phoneNumberID));
-
-    /**
-     * @brief Deletes a member-phone number relationship from the database.
-     *
-     * Deletes the record from the "MemberPhoneNumberRel" table with the specified member and phone number IDs.
-     *
-     * @param memberID The ID of the member.
-     * @param phoneNumberID The ID of the phone number.
-     */
-    QUERY(deleteMemberPhoneNumberRel,
-        "DELETE FROM MemberPhoneNumberRel WHERE memberID=:memberID AND phoneNumberID=:phoneNumberID;",
-        PARAM(oatpp::Int64, memberID),
-        PARAM(oatpp::Int64, phoneNumberID));
-
-
-
     //  __  __                _                    __  __                _                   _     _       
     // |  \/  | ___ _ __ ___ | |__   ___ _ __     |  \/  | ___ _ __ ___ | |__   ___ _ __ ___| |__ (_)_ __  
     // | |\/| |/ _ \ '_ ` _ \| '_ \ / _ \ '__|____| |\/| |/ _ \ '_ ` _ \| '_ \ / _ \ '__/ __| '_ \| | '_ \ 
@@ -1098,7 +807,6 @@ public:
         "SELECT membershipID FROM MembershipDepartmentRel WHERE departmentID = :departmentId;",
         PARAM(oatpp::Int64, departmentId));
 
-
     //      _       _                   
     //     | | ___ (_)_ __              
     //  _  | |/ _ \| | '_ \             
@@ -1109,7 +817,6 @@ public:
     // | |_| | |_| |  __/ |  | |_| \__ \
     //  \__\_\\__,_|\___|_|   \__, |___/
     //                        |___/     
-
     /**
     * @brief Retrieves trainings associated with a member ID from the database.
     *

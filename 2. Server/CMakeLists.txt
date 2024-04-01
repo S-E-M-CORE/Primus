@@ -15,30 +15,25 @@ add_library(${project_name}-lib
         src/database/DatabaseClient.hpp
         src/dto/database/AddressDTO.hpp
         src/dto/database/DepartmentDTO.hpp
-        src/dto/database/EmailDTO.hpp
         src/dto/database/MemberDTO.hpp
         src/dto/database/MembershipDTO.hpp
-        src/dto/database/PhoneNumberDTO.hpp
         src/dto/database/TrainingDTO.hpp
         src/dto/database/relations/DepartmentTrainingRelDTO.hpp
         src/dto/database/relations/MemberAddressRelDTO.hpp
-        src/dto/database/relations/MemberEmailRelDTO.hpp
         src/dto/database/relations/MemberMembershipRelDTO.hpp
-        src/dto/database/relations/MemberPhoneRelDTO.hpp
         src/dto/database/relations/MembershipDepartmentRelDTO.hpp
         src/dto/database/relations/MemberTrainingRelDTO.hpp
         src/service/MemberService.cpp
         src/service/MemberService.hpp
         "src/service/AddressService.cpp"
         "src/service/DepartmentService.cpp"
-        "src/service/EmailService.cpp"
         "src/service/MembershipService.cpp"
-        "src/service/PhoneNumberService.cpp"
         "src/service/TrainingService.cpp"
         "src/service/relations/MemberAddressRelService.cpp"
-        "src/service/relations/MemberEmailRelService.cpp"
-        "src/service/relations/MemberPhoneRelService.cpp"
-        "src/service/relations/MembershipDepartmentRelService.cpp" "src/service/relations/MemberTrainingRelService.cpp" "src/service/relations/DepartmentTrainingRelService.cpp" "src/service/relations/MemberMembershipRelService.cpp")
+        "src/service/relations/MembershipDepartmentRelService.cpp"
+        "src/service/relations/MemberTrainingRelService.cpp"
+        "src/service/relations/DepartmentTrainingRelService.cpp"
+        "src/service/relations/MemberMembershipRelService.cpp")
 
 ## link libs
 
@@ -53,18 +48,33 @@ target_link_libraries(${project_name}-lib
         PUBLIC oatpp::oatpp-sqlite
 )
 
+# Create directory for database file
+file(MAKE_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/database)
+
+# Create directory for database content
+file(MAKE_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/database/db_content)
+
+# Create directory for profile images of members
+file(MAKE_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/database/db_content/profile_images)
+
 add_definitions(
         ## define path to swagger-ui static resources folder
         -DOATPP_SWAGGER_RES_PATH="${oatpp-swagger_INCLUDE_DIRS}/../bin/oatpp-swagger/res"
 
         ## SQLite database file
-        -DDATABASE_FILE="${CMAKE_CURRENT_SOURCE_DIR}/database.sqlite"
+        -DDATABASE_FILE="${CMAKE_CURRENT_SOURCE_DIR}/database/database.sqlite"
 
         ## SQLite database test file
-        -DTESTDATABASE_FILE="${CMAKE_CURRENT_SOURCE_DIR}/test-db.sqlite"
+        -DTESTDATABASE_FILE="${CMAKE_CURRENT_SOURCE_DIR}/database/test-db.sqlite"
 
         ## Path to database migration scripts
         -DDATABASE_MIGRATIONS="${CMAKE_CURRENT_SOURCE_DIR}/sql"
+
+        ## Directory for additional database contents
+        -DDB_CONTENT_DIRECTORY="${CMAKE_CURRENT_SOURCE_DIR}/database/db_content"
+
+        ## Special folder for profile images
+        -DPROFILE_IMAGES_DIRECTORY="${CMAKE_CURRENT_SOURCE_DIR}/database/db_content/profile_images"
 )
 
 if(CMAKE_SYSTEM_NAME MATCHES Linux)
@@ -76,7 +86,18 @@ target_include_directories(${project_name}-lib PUBLIC src)
 
 ## add executables
 
-add_executable(${project_name}-exe src/App.cpp "src/service/AddressService.cpp" "src/service/DepartmentService.cpp" "src/service/EmailService.cpp" "src/service/MembershipService.cpp" "src/service/PhoneNumberService.cpp" "src/service/TrainingService.cpp" "src/service/relations/MemberAddressRelService.cpp" "src/service/relations/MemberEmailRelService.cpp" "src/service/relations/MemberPhoneRelService.cpp" "src/service/relations/MembershipDepartmentRelService.cpp" "src/service/relations/MemberTrainingRelService.cpp" "src/service/relations/DepartmentTrainingRelService.cpp" "src/service/relations/MemberMembershipRelService.cpp")
+add_executable(${project_name}-exe src/App.cpp
+"src/service/AddressService.cpp"
+"src/service/DepartmentService.cpp"
+"src/service/MembershipService.cpp"
+"src/service/TrainingService.cpp"
+"src/service/relations/MemberAddressRelService.cpp"
+"src/service/relations/MembershipDepartmentRelService.cpp"
+"src/service/relations/MemberTrainingRelService.cpp"
+"src/service/relations/DepartmentTrainingRelService.cpp"
+"src/service/relations/MemberMembershipRelService.cpp"
+
+)
 
 target_link_libraries(${project_name}-exe ${project_name}-lib)
 add_dependencies(${project_name}-exe ${project_name}-lib)
@@ -87,7 +108,16 @@ add_executable(${project_name}-test
         test/app/MyApiTestClient.hpp
         "test/StaticControllerTest.cpp"
         test/StaticControllerTest.hpp
- "src/service/AddressService.cpp" "src/service/DepartmentService.cpp" "src/service/EmailService.cpp" "src/service/MembershipService.cpp" "src/service/PhoneNumberService.cpp" "src/service/TrainingService.cpp" "src/service/relations/MemberAddressRelService.cpp" "src/service/relations/MemberEmailRelService.cpp" "src/service/relations/MemberPhoneRelService.cpp" "src/service/relations/MembershipDepartmentRelService.cpp" "src/service/relations/MemberTrainingRelService.cpp" "src/service/relations/DepartmentTrainingRelService.cpp" "src/service/relations/MemberMembershipRelService.cpp")
+        "src/service/AddressService.cpp"
+        "src/service/DepartmentService.cpp"
+        "src/service/MembershipService.cpp"
+        "src/service/TrainingService.cpp"
+        "src/service/relations/MemberAddressRelService.cpp"
+        "src/service/relations/MembershipDepartmentRelService.cpp"
+        "src/service/relations/MemberTrainingRelService.cpp"
+        "src/service/relations/DepartmentTrainingRelService.cpp"
+        "src/service/relations/MemberMembershipRelService.cpp"
+)
 
 target_link_libraries(${project_name}-test ${project_name}-lib)
 add_dependencies(${project_name}-test ${project_name}-lib)

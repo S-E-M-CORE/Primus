@@ -7,14 +7,13 @@
   },
   "ExpandedNodes": [
     "",
+    "\\sql",
     "\\src",
     "\\src\\controller",
-    "\\src\\controller\\relations",
-    "\\src\\dto",
+    "\\src\\database",
     "\\src\\dto\\database",
-    "\\src\\dto\\database\\relations",
     "\\src\\service"
   ],
-  "SelectedNode": "\\src\\dto\\database\\relations\\MemberPhoneRelDTO.hpp",
+  "SelectedNode": "\\src\\service\\MemberService.hpp",
   "PreviewInSolutionExplorer": false
 }

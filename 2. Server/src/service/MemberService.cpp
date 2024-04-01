@@ -1,30 +1,22 @@
 #include "MemberService.hpp"
 
-#pragma warning(suppress: 4267)
-
-oatpp::Object<MemberDTO> MemberService::createMember(const oatpp::Object<MemberDTO>& DTO)
-{
-    auto dbResult = m_database->createMember(DTO);
+oatpp::Object<MemberDTO> MemberService::createMember(const oatpp::Object<MemberDTO>& dto) {
+    auto dbResult = m_database->createMember(dto);
     OATPP_ASSERT_HTTP(dbResult->isSuccess(), Status::CODE_500, dbResult->getErrorMessage());
 
-    auto MemberId = oatpp::sqlite::Utils::getLastInsertRowId(dbResult->getConnection());
+    auto memberId = oatpp::sqlite::Utils::getLastInsertRowId(dbResult->getConnection());
 
-    return getMemberById((v_int64)MemberId);
-
+    return getMemberById(memberId);
 }
 
-oatpp::Object<MemberDTO> MemberService::updateMember(const oatpp::Object<MemberDTO>& DTO)
-{
-
-    auto dbResult = m_database->updateMember(DTO);
+oatpp::Object<MemberDTO> MemberService::updateMember(const oatpp::Object<MemberDTO>& dto) {
+    auto dbResult = m_database->updateMember(dto);
     OATPP_ASSERT_HTTP(dbResult->isSuccess(), Status::CODE_500, dbResult->getErrorMessage());
-    return getMemberById(DTO->id);
-
+    return getMemberById(dto->id);
 }
 
-oatpp::Object<MemberDTO> MemberService::getMemberById(const oatpp::Int64& id, const oatpp::provider::ResourceHandle<oatpp::orm::Connection>& connection)
-{
-    auto dbResult = m_database->getMemberById(id, connection);
+oatpp::Object<MemberDTO> MemberService::getMemberById(const oatpp::Int64& id) {
+    auto dbResult = m_database->getMemberById(id);
     OATPP_ASSERT_HTTP(dbResult->isSuccess(), Status::CODE_500, dbResult->getErrorMessage());
     OATPP_ASSERT_HTTP(dbResult->hasMoreToFetch(), Status::CODE_404, "Member not found");
 
@@ -32,31 +24,6 @@ oatpp::Object<MemberDTO> MemberService::getMemberById(const oatpp::Int64& id, co
     OATPP_ASSERT_HTTP(result->size() == 1, Status::CODE_500, "Unknown error");
 
     return result[0];
-
-}
-
-
-oatpp::Object<StatusDTO> MemberService::deleteMemberById(const oatpp::Int64& id)
-{
-    auto dbResult = m_database->deleteMemberById(id);
-    OATPP_ASSERT_HTTP(dbResult->isSuccess(), Status::CODE_500, dbResult->getErrorMessage());
-    auto status = StatusDTO::createShared();
-    status->status = "OK";
-    status->code = 200;
-    status->message = "Member was successfully deleted";
-    return status;
-}
-
-oatpp::Object<StatusDTO> MemberService::deactivateMemberById(const oatpp::Int64& id)
-{
-    auto dbResult = m_database->deactivateMember(id);
-    OATPP_ASSERT_HTTP(dbResult->isSuccess(), Status::CODE_500, dbResult->getErrorMessage());
-
-    auto status = StatusDTO::createShared();
-    status->status = "OK";
-    status->code = 200;
-    status->message = "Member was successfully deactivated";
-    return status;
 }
 
 oatpp::Object<PageDTO<oatpp::Object<MemberDTO>>> MemberService::getAllMembers(const oatpp::UInt32& offset, const oatpp::UInt32& limit) {
@@ -66,7 +33,7 @@ oatpp::Object<PageDTO<oatpp::Object<MemberDTO>>> MemberService::getAllMembers(co
         countToFetch = 10;
     }
 
-    auto dbResult = m_database->getActiveMembers(offset, countToFetch);
+    auto dbResult = m_database->getAllMembers(offset, countToFetch);
     OATPP_ASSERT_HTTP(dbResult->isSuccess(), Status::CODE_500, dbResult->getErrorMessage());
 
     auto items = dbResult->fetch<oatpp::Vector<oatpp::Object<MemberDTO>>>();
@@ -78,4 +45,34 @@ oatpp::Object<PageDTO<oatpp::Object<MemberDTO>>> MemberService::getAllMembers(co
     page->items = items;
 
     return page;
+}
+
+oatpp::Object<StatusDTO> MemberService::deleteMemberById(const oatpp::Int64& id) {
+    auto dbResult = m_database->deleteMemberById(id);
+    OATPP_ASSERT_HTTP(dbResult->isSuccess(), Status::CODE_500, dbResult->getErrorMessage());
+    auto status = StatusDTO::createShared();
+    status->status = "OK";
+    status->code = 200;
+    status->message = "Member was successfully deleted";
+    return status;
+}
+
+oatpp::Object<StatusDTO> MemberService::deactivateMemberById(const oatpp::Int64& id) {
+    auto dbResult = m_database->deactivateMember(id);
+    OATPP_ASSERT_HTTP(dbResult->isSuccess(), Status::CODE_500, dbResult->getErrorMessage());
+    auto status = StatusDTO::createShared();
+    status->status = "OK";
+    status->code = 200;
+    status->message = "Member was successfully deactivated";
+    return status;
+}
+
+oatpp::Object<StatusDTO> MemberService::activateMemberById(const oatpp::Int64& id) {
+    auto dbResult = m_database->activateMember(id);
+    OATPP_ASSERT_HTTP(dbResult->isSuccess(), Status::CODE_500, dbResult->getErrorMessage());
+    auto status = StatusDTO::createShared();
+    status->status = "OK";
+    status->code = 200;
+    status->message = "Member was successfully activated";
+    return status;
 }

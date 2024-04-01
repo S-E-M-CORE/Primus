@@ -76,3 +76,4 @@ oatpp::Object<StatusDTO> MembershipService::activateMembershipById(const oatpp::
     status->message = "Membership was successfully activated";
     return status;
 }
+
