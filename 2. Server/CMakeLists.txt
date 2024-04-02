@@ -18,22 +18,9 @@ add_library(${project_name}-lib
         src/dto/database/MemberDTO.hpp
         src/dto/database/MembershipDTO.hpp
         src/dto/database/TrainingDTO.hpp
-        src/dto/database/relations/DepartmentTrainingRelDTO.hpp
-        src/dto/database/relations/MemberAddressRelDTO.hpp
-        src/dto/database/relations/MemberMembershipRelDTO.hpp
-        src/dto/database/relations/MembershipDepartmentRelDTO.hpp
-        src/dto/database/relations/MemberTrainingRelDTO.hpp
         src/service/MemberService.cpp
         src/service/MemberService.hpp
-        "src/service/AddressService.cpp"
-        "src/service/DepartmentService.cpp"
-        "src/service/MembershipService.cpp"
-        "src/service/TrainingService.cpp"
-        "src/service/relations/MemberAddressRelService.cpp"
-        "src/service/relations/MembershipDepartmentRelService.cpp"
-        "src/service/relations/MemberTrainingRelService.cpp"
-        "src/service/relations/DepartmentTrainingRelService.cpp"
-        "src/service/relations/MemberMembershipRelService.cpp")
+)
 
 ## link libs
 
@@ -93,15 +80,7 @@ target_include_directories(${project_name}-lib PUBLIC src)
 ## add executables
 
 add_executable(${project_name}-exe src/App.cpp
-"src/service/AddressService.cpp"
-"src/service/DepartmentService.cpp"
-"src/service/MembershipService.cpp"
-"src/service/TrainingService.cpp"
-"src/service/relations/MemberAddressRelService.cpp"
-"src/service/relations/MembershipDepartmentRelService.cpp"
-"src/service/relations/MemberTrainingRelService.cpp"
-"src/service/relations/DepartmentTrainingRelService.cpp"
-"src/service/relations/MemberMembershipRelService.cpp"
+
 
 )
 
@@ -114,15 +93,6 @@ add_executable(${project_name}-test
         test/app/MyApiTestClient.hpp
         "test/StaticControllerTest.cpp"
         test/StaticControllerTest.hpp
-        "src/service/AddressService.cpp"
-        "src/service/DepartmentService.cpp"
-        "src/service/MembershipService.cpp"
-        "src/service/TrainingService.cpp"
-        "src/service/relations/MemberAddressRelService.cpp"
-        "src/service/relations/MembershipDepartmentRelService.cpp"
-        "src/service/relations/MemberTrainingRelService.cpp"
-        "src/service/relations/DepartmentTrainingRelService.cpp"
-        "src/service/relations/MemberMembershipRelService.cpp"
 )
 
 target_link_libraries(${project_name}-test ${project_name}-lib)

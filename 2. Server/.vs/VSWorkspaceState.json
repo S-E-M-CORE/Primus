@@ -10,9 +10,8 @@
     "\\sql",
     "\\src",
     "\\src\\controller",
-    "\\src\\database",
     "\\src\\service"
   ],
-  "SelectedNode": "\\src\\controller\\MemberController.hpp",
+  "SelectedNode": "\\CMakeLists.txt",
   "PreviewInSolutionExplorer": false
 }

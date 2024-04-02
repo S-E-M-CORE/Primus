@@ -3,8 +3,12 @@
   "WorkspaceRootPath": "F:\\Programming\\School\\repos\\BSFI22D_Primus\\2. Server\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|F:\\Programming\\School\\repos\\BSFI22D_Primus\\2. Server\\src\\controller\\MemberController.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\controller\\MemberController.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|F:\\Programming\\School\\repos\\BSFI22D_Primus\\2. Server\\src\\controller\\StaticController.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\controller\\StaticController.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|F:\\Programming\\School\\repos\\BSFI22D_Primus\\2. Server\\CMakeLists.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:CMakeLists.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
     }
   ],
   "DocumentGroupContainers": [
@@ -19,14 +23,27 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "MemberController.hpp",
-              "DocumentMoniker": "F:\\Programming\\School\\repos\\BSFI22D_Primus\\2. Server\\src\\controller\\MemberController.hpp",
-              "RelativeDocumentMoniker": "src\\controller\\MemberController.hpp",
-              "ToolTip": "F:\\Programming\\School\\repos\\BSFI22D_Primus\\2. Server\\src\\controller\\MemberController.hpp",
-              "RelativeToolTip": "src\\controller\\MemberController.hpp",
-              "ViewState": "AQIAAIgAAAAAAAAAAAAUwKIAAAAAAAAA",
+              "Title": "StaticController.hpp",
+              "DocumentMoniker": "F:\\Programming\\School\\repos\\BSFI22D_Primus\\2. Server\\src\\controller\\StaticController.hpp",
+              "RelativeDocumentMoniker": "src\\controller\\StaticController.hpp",
+              "ToolTip": "F:\\Programming\\School\\repos\\BSFI22D_Primus\\2. Server\\src\\controller\\StaticController.hpp",
+              "RelativeToolTip": "src\\controller\\StaticController.hpp",
+              "ViewState": "AQIAAA8AAAAAAAAAAAAAAB0AAAAgAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-04-02T00:11:45.17Z",
+              "WhenOpened": "2024-04-02T16:36:28.368Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "CMakeLists.txt",
+              "DocumentMoniker": "F:\\Programming\\School\\repos\\BSFI22D_Primus\\2. Server\\CMakeLists.txt",
+              "RelativeDocumentMoniker": "CMakeLists.txt",
+              "ToolTip": "F:\\Programming\\School\\repos\\BSFI22D_Primus\\2. Server\\CMakeLists.txt",
+              "RelativeToolTip": "CMakeLists.txt",
+              "ViewState": "AQIAACsAAAAAAAAAAAAIwEUAAABAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2024-04-02T16:34:04.677Z",
               "EditorCaption": ""
             }
           ]
