@@ -10,8 +10,10 @@
     "\\sql",
     "\\src",
     "\\src\\controller",
+    "\\src\\database",
+    "\\src\\dto",
     "\\src\\service"
   ],
-  "SelectedNode": "\\CMakeLists.txt",
+  "SelectedNode": "\\src\\dto\\BooleanDto.hpp",
   "PreviewInSolutionExplorer": false
 }

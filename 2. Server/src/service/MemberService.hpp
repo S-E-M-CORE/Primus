@@ -1,14 +1,15 @@
-#ifndef MEMBERSERVICE_HPP
-#define MEMBERSERVICE_HPP
+#ifndef MEMBER_SERVICE_HPP
+#define MEMBER_SERVICE_HPP
 
 #include "oatpp/web/protocol/http/Http.hpp"
 #include "oatpp/core/macro/component.hpp"
+#include "oatpp/core/Types.hpp"
 
-#include "dto/database/MemberDTO.hpp"
-#include "dto/StatusDTO.hpp"
-#include "dto/PageDTO.hpp"
-#include "dto/MemberCountDTO.hpp"
 #include "database/DatabaseClient.hpp"
+#include "dto/DatabaseDtos.hpp"
+#include "dto/PageDto.hpp"
+#include "dto/MembershipFeeDto.hpp"
+#include "dto/BooleanDto.hpp"
 
 class MemberService {
 private:
@@ -18,16 +19,29 @@ private:
     OATPP_COMPONENT(std::shared_ptr<DatabaseClient>, m_database);
 
 public:
-    oatpp::Object<MemberDTO> createMember(const oatpp::Object<MemberDTO>& dto);
-    oatpp::Object<MemberDTO> updateMember(const oatpp::Object<MemberDTO>& dto);
-    oatpp::Object<MemberDTO> getMemberById(const oatpp::Int64& id);
-    oatpp::Object<PageDTO<oatpp::Object<MemberDTO>>> getAllMembers(const oatpp::UInt32& offset, const oatpp::UInt32& limit);
-    oatpp::Object<StatusDTO> deleteMemberById(const oatpp::Int64& id);
-    oatpp::Object<StatusDTO> deactivateMemberById(const oatpp::Int64& id);
-    oatpp::Object<StatusDTO> activateMemberById(const oatpp::Int64& id);
-    oatpp::Int64 getMemberCountTotal();
-    oatpp::Int64 getMemberCountActive();
-    oatpp::Int64 getMemberCountInactive();
+    oatpp::Vector < oatpp::Object<MemberPageDto>> getAllMembers(oatpp::Int32 limit, oatpp::Int32 offset);
+
+    oatpp::Vector < oatpp::Object<MemberPageDto>> getActiveMembers(oatpp::Int32 limit, oatpp::Int32 offset);
+
+    oatpp::Vector < oatpp::Object<MemberPageDto>> getInactiveMembers(oatpp::Int32 limit, oatpp::Int32 offset);
+
+    oatpp::Vector < oatpp::Object<MemberPageDto>> filterMembersByFirstName(const oatpp::String& name, oatpp::Int32 limit, oatpp::Int32 offset);
+
+    oatpp::Vector < oatpp::Object<MemberPageDto>> filterMembersByLastName(const oatpp::String& name, oatpp::Int32 limit, oatpp::Int32 offset);
+
+    void activateMember(oatpp::Int32 id);
+
+    void deactivateMember(oatpp::Int32 id);
+
+    oatpp::Object<MemberDto> getMemberById(oatpp::Int32 id);
+
+    oatpp::Vector<oatpp::Object<AddressDto>> getMemberAddress(oatpp::Int32 id);
+
+    oatpp::Object<MembershipFeeDto> getMembershipFee(oatpp::Int32 id);
+
+    oatpp::Object<PageDto<oatpp::Object<TrainingDto>>> getMemberTrainings(oatpp::Int32 id, oatpp::Int32 limit, oatpp::Int32 offset);
+
+    oatpp::Object<BooleanDto> isWeaponPurchaseAllowed(oatpp::Int32 id);
 };
 
-#endif /* MEMBERSERVICE_HPP */
+#endif // MEMBER_SERVICE_HPP

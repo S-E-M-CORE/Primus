@@ -9,11 +9,16 @@ CREATE TABLE Address (
 );
 
 -- Department table
-CREATE TABLE Department (
+CREATE TABLE IF NOT EXISTS Department (
     id INTEGER PRIMARY KEY,
-    name VARCHAR(100),
-    active BOOLEAN
+    name VARCHAR(50)
 );
+-- Insert departments if not already present
+INSERT OR IGNORE INTO Department (id, name) VALUES
+    (1, 'Bogenschieﬂen'),
+    (2, 'Luftdruck'),
+    (3, 'Schusswaffen');
+
 
 -- Member table
 CREATE TABLE Member (
@@ -24,13 +29,7 @@ CREATE TABLE Member (
     phoneNumber VARCHAR(100),
     birthDate DATE,
     createDate DATE,
-    active BOOLEAN
-);
-
--- Membership table
-CREATE TABLE Membership (
-    id INTEGER PRIMARY KEY,
-    membershipFee DECIMAL(10,2),
+    notes TEXT,
     active BOOLEAN
 );
 
@@ -38,9 +37,7 @@ CREATE TABLE Membership (
 CREATE TABLE Training (
     id INTEGER PRIMARY KEY,
     date DATE,
-    startTime TIME,
-    room VARCHAR(100),
-    notes TEXT
+    createDate DATE,
 );
 
 -- Junction tables
@@ -54,24 +51,6 @@ CREATE TABLE MemberAddressRel (
     PRIMARY KEY (memberID, addressID)
 );
 
--- MemberMembershipRel table
-CREATE TABLE MemberMembershipRel (
-    memberID INTEGER,
-    membershipID INTEGER,
-    FOREIGN KEY (memberID) REFERENCES Member(id),
-    FOREIGN KEY (membershipID) REFERENCES Membership(id),
-    PRIMARY KEY (memberID, membershipID)
-);
-
--- MembershipDepartmentRel table
-CREATE TABLE MembershipDepartmentRel (
-    membershipID INTEGER,
-    departmentID INTEGER,
-    FOREIGN KEY (membershipID) REFERENCES Membership(id),
-    FOREIGN KEY (departmentID) REFERENCES Department(id),
-    PRIMARY KEY (membershipID, departmentID)
-);
-
 -- MemberTrainingRel table
 CREATE TABLE MemberTrainingRel (
     memberID INTEGER,
@@ -80,3 +59,34 @@ CREATE TABLE MemberTrainingRel (
     FOREIGN KEY (trainingID) REFERENCES Training(id),
     PRIMARY KEY (memberID, trainingID)
 );
+
+CREATE TABLE MemberDepartmentRel (
+    memberID INTEGER,
+    departmentID INTEGER,
+    FOREIGN KEY (memberID) REFERENCES Member(id),
+    FOREIGN KEY (departmentID) REFERENCES Department(id),
+    PRIMARY KEY (memberID, departmentID)
+);
+
+CREATE VIEW MemberDetails AS
+SELECT m.id AS memberID, 
+       m.firstName, 
+       m.lastName, 
+       m.email, 
+       m.phoneNumber, 
+       m.birthDate, 
+       m.createDate AS memberCreateDate, 
+       m.active, 
+       a.id AS addressID, 
+       a.zipCode, 
+       a.city, 
+       a.state, 
+       a.houseNumber, 
+       a.street, 
+       d.id AS departmentID, 
+       d.name AS departmentName
+FROM Member m
+JOIN MemberAddressRel mar ON m.id = mar.memberID
+JOIN Address a ON mar.addressID = a.id
+JOIN MemberDepartmentRel mdr ON m.id = mdr.memberID
+JOIN Department d ON mdr.departmentID = d.id;

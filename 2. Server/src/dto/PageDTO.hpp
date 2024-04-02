@@ -1,14 +1,14 @@
 #ifndef PAGEDTO_HPP
 #define PAGEDTO_HPP
 
-#include "database/MemberDTO.hpp"
+#include "DatabaseDtos.hpp"
 
 #include OATPP_CODEGEN_BEGIN(DTO)
 
 template<class T>
-class PageDTO : public oatpp::DTO {
+class PageDto : public oatpp::DTO {
 
-	DTO_INIT(PageDTO, DTO)
+	DTO_INIT(PageDto, DTO)
 
 	DTO_FIELD(UInt32, offset);
 	DTO_FIELD(UInt32, limit);
@@ -17,9 +17,9 @@ class PageDTO : public oatpp::DTO {
 
 };
 
-class MemberPageDTO : public PageDTO<oatpp::Object<MemberDTO>> {
+class MemberPageDto : public PageDto<oatpp::Object<MemberDto>> {
 
-	DTO_INIT(MemberPageDTO, PageDTO<oatpp::Object<MemberDTO>>)
+	DTO_INIT(MemberPageDto, PageDto<oatpp::Object<MemberDto>>)
 
 };
 

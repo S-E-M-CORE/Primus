@@ -13,13 +13,9 @@ add_library(${project_name}-lib
         src/controller/StaticController.hpp
         src/controller/MemberController.hpp
         src/database/DatabaseClient.hpp
-        src/dto/database/AddressDTO.hpp
-        src/dto/database/DepartmentDTO.hpp
-        src/dto/database/MemberDTO.hpp
-        src/dto/database/MembershipDTO.hpp
-        src/dto/database/TrainingDTO.hpp
         src/service/MemberService.cpp
         src/service/MemberService.hpp
+        src/dto/DatabaseDtos.hpp
 )
 
 ## link libs
