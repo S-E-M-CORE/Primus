@@ -142,6 +142,22 @@ public:
         "UPDATE Member SET active=1 WHERE id=:id;",
         PARAM(oatpp::Int64, id));
 
+    /**
+     * @brief Gets the total count of all members.
+     *
+     * Returns the total count of all members in the database.
+     *
+     * @return The total count of all members.
+     */
+    QUERY(getMemberCountActive,
+        "SELECT COUNT(*) AS count FROM Member WHERE active=1;");
+
+    QUERY(getMemberCountInactive,
+        "SELECT COUNT(*) AS count FROM Member WHERE active=0;");
+
+    QUERY(getMemberCountAll,
+        "SELECT COUNT(*) AS count FROM Member");
+
     //     _       _                      ___                            
     //    / \   __| |_ __ ___  ___ ___   / _ \ _   _  ___ _ __ _   _ ___ 
     //   / _ \ / _` | '__/ _ \/ __/ __| | | | | | | |/ _ \ '__| | | / __|

@@ -76,3 +76,24 @@ oatpp::Object<StatusDTO> MemberService::activateMemberById(const oatpp::Int64& i
     status->message = "Member was successfully activated";
     return status;
 }
+
+oatpp::Int64 MemberService::getMemberCountTotal() {
+    auto dbresult = m_database->getMemberCountAll();
+    auto result = dbresult->fetch<oatpp::Vector<oatpp::Object<MemberCountDTO>>>(-1);
+
+    return result[0]->count;
+}
+
+oatpp::Int64 MemberService::getMemberCountActive() {
+    auto dbresult = m_database->getMemberCountActive();
+    auto result = dbresult->fetch<oatpp::Vector<oatpp::Object<MemberCountDTO>>>(-1);
+
+    return result[0]->count;
+}
+
+oatpp::Int64 MemberService::getMemberCountInactive() {
+    auto dbresult = m_database->getMemberCountInactive();
+    auto result = dbresult->fetch<oatpp::Vector<oatpp::Object<MemberCountDTO>>>(-1);
+
+    return result[0]->count;
+}

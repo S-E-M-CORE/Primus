@@ -11,9 +11,8 @@
     "\\src",
     "\\src\\controller",
     "\\src\\database",
-    "\\src\\dto\\database",
     "\\src\\service"
   ],
-  "SelectedNode": "\\src\\service\\MemberService.hpp",
+  "SelectedNode": "\\src\\controller\\MemberController.hpp",
   "PreviewInSolutionExplorer": false
 }

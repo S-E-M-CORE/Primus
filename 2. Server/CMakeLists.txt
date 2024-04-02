@@ -57,6 +57,9 @@ file(MAKE_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/database/db_content)
 # Create directory for profile images of members
 file(MAKE_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/database/db_content/profile_images)
 
+# Create directory for profile images of members
+file(MAKE_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/web/)
+
 add_definitions(
         ## define path to swagger-ui static resources folder
         -DOATPP_SWAGGER_RES_PATH="${oatpp-swagger_INCLUDE_DIRS}/../bin/oatpp-swagger/res"
@@ -75,6 +78,9 @@ add_definitions(
 
         ## Special folder for profile images
         -DPROFILE_IMAGES_DIRECTORY="${CMAKE_CURRENT_SOURCE_DIR}/database/db_content/profile_images"
+
+        ## Folder for html sites that may be requested
+        -DWEB_CONTENT_DIRECTORY="${CMAKE_CURRENT_SOURCE_DIR}/web"
 )
 
 if(CMAKE_SYSTEM_NAME MATCHES Linux)

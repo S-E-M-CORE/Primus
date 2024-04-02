@@ -7,6 +7,7 @@
 #include "dto/database/MemberDTO.hpp"
 #include "dto/StatusDTO.hpp"
 #include "dto/PageDTO.hpp"
+#include "dto/MemberCountDTO.hpp"
 #include "database/DatabaseClient.hpp"
 
 class MemberService {
@@ -24,6 +25,9 @@ public:
     oatpp::Object<StatusDTO> deleteMemberById(const oatpp::Int64& id);
     oatpp::Object<StatusDTO> deactivateMemberById(const oatpp::Int64& id);
     oatpp::Object<StatusDTO> activateMemberById(const oatpp::Int64& id);
+    oatpp::Int64 getMemberCountTotal();
+    oatpp::Int64 getMemberCountActive();
+    oatpp::Int64 getMemberCountInactive();
 };
 
 #endif /* MEMBERSERVICE_HPP */
