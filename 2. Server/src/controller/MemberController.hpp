@@ -4,13 +4,20 @@
 #include "oatpp/web/server/api/ApiController.hpp"
 #include "oatpp/core/macro/codegen.hpp"
 #include "oatpp/core/macro/component.hpp"
+<<<<<<< HEAD
 #include "dto/DatabaseDtos.hpp"
 #include "dto/StatusDto.hpp"
 #include "dto/PageDto.hpp"
+=======
+#include "service/MemberService.hpp"
+#include "dto/StatusDto.hpp"
+#include "dto/DatabaseDtos.hpp"
+>>>>>>> db1965b318089d88d214892967e8600fa806f9c6
 
 #include OATPP_CODEGEN_BEGIN(ApiController) // Begin API Controller codegen
 
-class MemberController : public oatpp::web::server::api::ApiController {
+class MemberController : public oatpp::web::server::api::ApiController
+{
 private:
     OATPP_COMPONENT(std::shared_ptr<DatabaseClient>, m_database);
 public:
@@ -24,6 +31,7 @@ public:
         return std::make_shared<MemberController>(objectMapper);
     }
 
+<<<<<<< HEAD
     ENDPOINT("GET", "/api/members/birthday/upcoming", getMembersWithUpcomingBirthday,
         QUERY(oatpp::UInt32, limit))
     {
@@ -217,6 +225,9 @@ public:
     {
         return createResponse(Status::CODE_501, "Not Implemented");
     }
+=======
+
+>>>>>>> db1965b318089d88d214892967e8600fa806f9c6
 
 };
 

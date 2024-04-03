@@ -24,10 +24,31 @@ set(SOURCES
 # Create a library target
 add_library(PrimusSvrLibrary ${SOURCES})
 
+<<<<<<< HEAD
 # Find required packages
 find_package(oatpp 1.3.0 REQUIRED)
 find_package(oatpp-swagger 1.3.0 REQUIRED)
 find_package(oatpp-sqlite 1.3.0 REQUIRED)
+=======
+set(CMAKE_CXX_STANDARD 11)
+
+add_library(${project_name}-lib
+        src/database/DatabaseComponent.hpp
+        src/swagger-ui/SwaggerComponent.hpp
+        src/AppComponent.hpp
+        src/controller/StaticController.hpp
+        src/controller/MemberController.hpp
+        src/database/DatabaseClient.hpp
+        src/service/MemberService.cpp
+        src/service/MemberService.hpp
+        src/dto/DatabaseDtos.hpp
+)
+
+## link libs
+
+find_package(oatpp          1.3.0 REQUIRED)
+find_package(oatpp-swagger  1.3.0 REQUIRED)
+>>>>>>> db1965b318089d88d214892967e8600fa806f9c6
 find_package(oatpp-sqlite   1.3.0 REQUIRED)
 
 target_link_libraries(PrimusSvrLibrary
@@ -53,6 +74,11 @@ target_include_directories(PrimusSvrLibrary PUBLIC src)
 # Create an executable target
 add_executable(PrimusSvr src/App.cpp)
 
+<<<<<<< HEAD
+=======
+add_executable(${project_name}-exe src/App.cpp
+
+>>>>>>> db1965b318089d88d214892967e8600fa806f9c6
 
 
 # Erstelle die Verzeichnisse
@@ -74,9 +100,18 @@ target_compile_definitions(PrimusSvr
 target_link_libraries(PrimusSvr PrimusSvrLibrary)
 add_dependencies(PrimusSvr PrimusSvrLibrary)
 
+<<<<<<< HEAD
 # Set output directory for the executable
 set_target_properties(PrimusSvr PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/bin"
+=======
+add_executable(${project_name}-test
+        test/tests.cpp
+        test/app/TestComponent.hpp
+        test/app/MyApiTestClient.hpp
+        "test/StaticControllerTest.cpp"
+        test/StaticControllerTest.hpp
+>>>>>>> db1965b318089d88d214892967e8600fa806f9c6
 )
 
 set_target_properties(PrimusSvr PrimusSvrLibrary PROPERTIES

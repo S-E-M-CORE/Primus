@@ -33,10 +33,18 @@ public:
         OATPP_LOGD("UserDb", "Migration - OK. Version=%lld.", version);
     }
 
+<<<<<<< HEAD
     // GET /api/members/birthday/upcoming
     QUERY(getMembersWithUpcomingBirthday,
         "SELECT * FROM Member WHERE birthDate > DATE('now') ORDER BY birthDate LIMIT :limit;",
         PARAM(oatpp::UInt32, limit));
+=======
+    // GET /api/members/birthday/most-recent
+    QUERY(getMembersWithUpcomingBirthday,
+        "SELECT * FROM Member WHERE birthDate > DATE('now') ORDER BY birthDate LIMIT :limit OFFSET :offset;",
+        PARAM(oatpp::Int32, limit),
+        PARAM(oatpp::Int32, offset));
+>>>>>>> db1965b318089d88d214892967e8600fa806f9c6
 
     // GET /api/members/training/most-often
     QUERY(getMembersWithMostTrainings,
@@ -45,49 +53,99 @@ public:
         "GROUP BY m.id "
         "ORDER BY COUNT(mt.trainingID) DESC "
         "LIMIT :limit OFFSET :offset;",
+<<<<<<< HEAD
         PARAM(oatpp::UInt32, limit),
         PARAM(oatpp::UInt32, offset));
+=======
+        PARAM(oatpp::Int32, limit),
+        PARAM(oatpp::Int32, offset));
+>>>>>>> db1965b318089d88d214892967e8600fa806f9c6
 
     // GET /api/member/{id}/department
     QUERY(getDepartmentsOfMember,
         "SELECT d.* FROM Department d "
         "JOIN MemberDepartmentRel mdr ON d.id = mdr.departmentID "
         "WHERE mdr.memberID = :id;",
+<<<<<<< HEAD
         PARAM(oatpp::UInt32, id));
+=======
+        PARAM(oatpp::Int32, id));
+>>>>>>> db1965b318089d88d214892967e8600fa806f9c6
 
     // GET /api/members/all
     QUERY(getAllMembers,
         "SELECT * FROM Member LIMIT :limit OFFSET :offset;",
+<<<<<<< HEAD
         PARAM(oatpp::UInt32, limit),
         PARAM(oatpp::UInt32, offset));
 
+=======
+        PARAM(oatpp::Int32, limit),
+        PARAM(oatpp::Int32, offset));
+>>>>>>> db1965b318089d88d214892967e8600fa806f9c6
 
     // GET /api/members/active
     QUERY(getActiveMembers,
         "SELECT * FROM Member WHERE active = 1 LIMIT :limit OFFSET :offset;",
+<<<<<<< HEAD
         PARAM(oatpp::UInt32, limit),
         PARAM(oatpp::UInt32, offset));
+=======
+        PARAM(oatpp::Int32, limit),
+        PARAM(oatpp::Int32, offset));
+>>>>>>> db1965b318089d88d214892967e8600fa806f9c6
 
     // GET /api/members/inactive
     QUERY(getInactiveMembers,
         "SELECT * FROM Member WHERE active = 0 LIMIT :limit OFFSET :offset;",
+<<<<<<< HEAD
         PARAM(oatpp::UInt32, limit),
         PARAM(oatpp::UInt32, offset));
+=======
+        PARAM(oatpp::Int32, limit),
+        PARAM(oatpp::Int32, offset));
+
+    // GET /api/members/filter/firstname/
+    QUERY(filterMembersByFirstName,
+        "SELECT * FROM Member WHERE firstName LIKE '%' || :name || '%' LIMIT :limit OFFSET :offset;",
+        PARAM(oatpp::String, name),
+        PARAM(oatpp::Int32, limit),
+        PARAM(oatpp::Int32, offset));
+
+    // GET /api/members/filter/lastname/
+    QUERY(filterMembersByLastName,
+        "SELECT * FROM Member WHERE lastName LIKE '%' || :name || '%' LIMIT :limit OFFSET :offset;",
+        PARAM(oatpp::String, name),
+        PARAM(oatpp::Int32, limit),
+        PARAM(oatpp::Int32, offset));
+>>>>>>> db1965b318089d88d214892967e8600fa806f9c6
 
     // UPDATE /api/member/{id}/activate
     QUERY(activateMember,
         "UPDATE Member SET active = 1 WHERE id = :id;",
+<<<<<<< HEAD
         PARAM(oatpp::UInt32, id));
+=======
+        PARAM(oatpp::Int32, id));
+>>>>>>> db1965b318089d88d214892967e8600fa806f9c6
 
     // UPDATE /api/member/{id}/deactivate
     QUERY(deactivateMember,
         "UPDATE Member SET active = 0 WHERE id = :id;",
+<<<<<<< HEAD
         PARAM(oatpp::UInt32, id));
+=======
+        PARAM(oatpp::Int32, id));
+>>>>>>> db1965b318089d88d214892967e8600fa806f9c6
 
     //GET /api/member/{id}
     QUERY(getMemberById,
         "SELECT * from Member WHERE id = :id;",
+<<<<<<< HEAD
         PARAM(oatpp::UInt32, id));
+=======
+        PARAM(oatpp::Int32, id));
+>>>>>>> db1965b318089d88d214892967e8600fa806f9c6
 
     // CREATE /api/member/
     QUERY(createMember,
@@ -104,8 +162,13 @@ public:
 
     // GET /api/member/{id}/address
     QUERY(getMemberAddress,
+<<<<<<< HEAD
         "SELECT * FROM Address WHERE id = (SELECT addressID FROM Address_Member WHERE memberID = :id);",
         PARAM(oatpp::UInt32, id));
+=======
+        "SELECT * FROM Address WHERE id = (SELECT addressID FROM MemberAddressRel WHERE memberID = :id);",
+        PARAM(oatpp::Int32, id));
+>>>>>>> db1965b318089d88d214892967e8600fa806f9c6
 
     // GET /api/member/{id}/membership-fee
     QUERY(getMembershipFee,
@@ -115,16 +178,26 @@ public:
         "FROM Department d "
         "JOIN MemberDepartmentRel mdr ON d.id = mdr.departmentID "
         "WHERE mdr.memberID = :id;",
+<<<<<<< HEAD
         PARAM(oatpp::UInt32, id));
+=======
+        PARAM(oatpp::Int32, id));
+>>>>>>> db1965b318089d88d214892967e8600fa806f9c6
 
     // GET /api/member/{id}/trainings
     QUERY(getMemberTrainings,
         "SELECT t.* FROM Training t "
         "JOIN MemberTrainingRel mt ON t.id = mt.trainingID "
         "WHERE mt.memberID = :id LIMIT :limit OFFSET :offset;",
+<<<<<<< HEAD
         PARAM(oatpp::UInt32, id),
         PARAM(oatpp::UInt32, limit),
         PARAM(oatpp::UInt32, offset));
+=======
+        PARAM(oatpp::Int32, id),
+        PARAM(oatpp::Int32, limit),
+        PARAM(oatpp::Int32, offset));
+>>>>>>> db1965b318089d88d214892967e8600fa806f9c6
 
     // GET /api/member/{id}/purchase/weapons/allowed
     QUERY(isWeaponPurchaseAllowed,
@@ -138,6 +211,7 @@ public:
         "ELSE 18 "
         "END "
         ");",
+<<<<<<< HEAD
         PARAM(oatpp::UInt32, id));
 
     // GET /api/members/all/count
@@ -149,6 +223,9 @@ public:
     // GET /api/members/inactive/count
     QUERY(getMemberCountInactive, "SELECT COUNT(*) as count FROM members WHERE active=0");
 
+=======
+        PARAM(oatpp::Int32, id));
+>>>>>>> db1965b318089d88d214892967e8600fa806f9c6
 };
 
 #include OATPP_CODEGEN_END(DbClient) ///< End code-gen section
