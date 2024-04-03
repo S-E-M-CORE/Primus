@@ -7,13 +7,11 @@ set(SOURCES
     src/controller/StaticController.hpp
     src/database/DatabaseClient.hpp
     src/database/DatabaseComponent.hpp
-    src/dto/database/AddressDTO.hpp
-    src/dto/database/DepartmentDTO.hpp
-    src/dto/database/MemberDTO.hpp
+    src/dto/database/AddressDto.hpp
+    src/dto/database/DepartmentDto.hpp
+    src/dto/database/MemberDto.hpp
     src/dto/BooleanDto.hpp
     src/dto/CountDto.hpp
-    src/dto/DatabaseDtos.hpp
-    src/dto/MemberCountDto.hpp
     src/dto/MembershipFeeDto.hpp
     src/dto/PageDto.hpp
     src/dto/StatusDto.hpp
@@ -24,31 +22,10 @@ set(SOURCES
 # Create a library target
 add_library(PrimusSvrLibrary ${SOURCES})
 
-<<<<<<< HEAD
 # Find required packages
 find_package(oatpp 1.3.0 REQUIRED)
 find_package(oatpp-swagger 1.3.0 REQUIRED)
 find_package(oatpp-sqlite 1.3.0 REQUIRED)
-=======
-set(CMAKE_CXX_STANDARD 11)
-
-add_library(${project_name}-lib
-        src/database/DatabaseComponent.hpp
-        src/swagger-ui/SwaggerComponent.hpp
-        src/AppComponent.hpp
-        src/controller/StaticController.hpp
-        src/controller/MemberController.hpp
-        src/database/DatabaseClient.hpp
-        src/service/MemberService.cpp
-        src/service/MemberService.hpp
-        src/dto/DatabaseDtos.hpp
-)
-
-## link libs
-
-find_package(oatpp          1.3.0 REQUIRED)
-find_package(oatpp-swagger  1.3.0 REQUIRED)
->>>>>>> db1965b318089d88d214892967e8600fa806f9c6
 find_package(oatpp-sqlite   1.3.0 REQUIRED)
 
 target_link_libraries(PrimusSvrLibrary
@@ -74,13 +51,6 @@ target_include_directories(PrimusSvrLibrary PUBLIC src)
 # Create an executable target
 add_executable(PrimusSvr src/App.cpp)
 
-<<<<<<< HEAD
-=======
-add_executable(${project_name}-exe src/App.cpp
-
->>>>>>> db1965b318089d88d214892967e8600fa806f9c6
-
-
 # Erstelle die Verzeichnisse
 file(MAKE_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/bin/")
 file(MAKE_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/bin/database/")
@@ -103,6 +73,7 @@ add_dependencies(PrimusSvr PrimusSvrLibrary)
 # Set output directory for the executable
 set_target_properties(PrimusSvr PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/bin"
+)
 
 set_target_properties(PrimusSvr PrimusSvrLibrary PROPERTIES
         CXX_STANDARD 11

@@ -32,17 +32,12 @@ public:
         }
     }
 
-    // Endpunkt für die Indexseite
-<<<<<<< HEAD
+    // Endpunkt fï¿½r die Indexseite
     ENDPOINT("GET", "/web/*", files,
-=======
-    ENDPOINT("GET", "*", files, 
->>>>>>> db1965b318089d88d214892967e8600fa806f9c6
         REQUEST(std::shared_ptr<IncomingRequest>, request))
     {
         std::string filePath(WEB_CONTENT_DIRECTORY);
         filePath.append("/");
-<<<<<<< HEAD
 
         if (request->getPathTail() == "")
             filePath.append("index.html");
@@ -53,23 +48,13 @@ public:
         return createResponse(Status::CODE_200, buffer);
     }
 
-    // Endpunkt für die Indexseite
+    // Endpunkt fï¿½r die Indexseite
     ENDPOINT("GET", "/", root,
         REQUEST(std::shared_ptr<IncomingRequest>, request))
     {
         auto response = createResponse(Status::CODE_302, "Redirect");
         response->putHeader("Location", "/web/");
         return response;
-=======
-
-        if (request->getPathTail() == "")
-            filePath.append("index.html");
-        else
-            filePath.append(request->getPathTail());
-
-        oatpp::String buffer = readFile(filePath.c_str());
-        return createResponse(Status::CODE_200, buffer);
->>>>>>> db1965b318089d88d214892967e8600fa806f9c6
     }
 };
 
