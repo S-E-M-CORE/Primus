@@ -1,4 +1,0 @@
-J:/Repositorys/Primus/2024.04.03/BSFI22D_Primus/2. Server/build/CMakeFiles/PrimusSvrLibrary.dir
-J:/Repositorys/Primus/2024.04.03/BSFI22D_Primus/2. Server/build/CMakeFiles/PrimusSvr.dir
-J:/Repositorys/Primus/2024.04.03/BSFI22D_Primus/2. Server/build/CMakeFiles/ALL_BUILD.dir
-J:/Repositorys/Primus/2024.04.03/BSFI22D_Primus/2. Server/build/CMakeFiles/ZERO_CHECK.dir
