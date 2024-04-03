@@ -1,86 +1,46 @@
 cmake_minimum_required(VERSION 3.1)
 
-set(project_name PrimusServer)
+project(PrimusSvr)
 
-project(${project_name})
+set(SOURCES
+    src/controller/MemberController.hpp
+    src/controller/StaticController.hpp
+    src/database/DatabaseClient.hpp
+    src/database/DatabaseComponent.hpp
+    src/dto/database/AddressDTO.hpp
+    src/dto/database/DepartmentDTO.hpp
+    src/dto/database/MemberDTO.hpp
+    src/dto/BooleanDto.hpp
+    src/dto/CountDto.hpp
+    src/dto/DatabaseDtos.hpp
+    src/dto/MemberCountDto.hpp
+    src/dto/MembershipFeeDto.hpp
+    src/dto/PageDto.hpp
+    src/dto/StatusDto.hpp
+    src/swagger-ui/SwaggerComponent.hpp
+    src/AppComponent.hpp
+    src/App.cpp
+)
+# Create a library target
+add_library(PrimusSvrLibrary ${SOURCES})
 
-set(CMAKE_CXX_STANDARD 11)
-
-add_library(${project_name}-lib
-        src/database/DatabaseComponent.hpp
-        src/swagger-ui/SwaggerComponent.hpp
-        src/AppComponent.hpp
-        src/controller/StaticController.hpp
-        src/controller/MemberController.hpp
-        src/database/DatabaseClient.hpp
-        src/dto/database/AddressDTO.hpp
-        src/dto/database/DepartmentDTO.hpp
-        src/dto/database/MemberDTO.hpp
-        src/dto/database/MembershipDTO.hpp
-        src/dto/database/TrainingDTO.hpp
-        src/dto/database/relations/DepartmentTrainingRelDTO.hpp
-        src/dto/database/relations/MemberAddressRelDTO.hpp
-        src/dto/database/relations/MemberMembershipRelDTO.hpp
-        src/dto/database/relations/MembershipDepartmentRelDTO.hpp
-        src/dto/database/relations/MemberTrainingRelDTO.hpp
-        src/service/MemberService.cpp
-        src/service/MemberService.hpp
-        "src/service/AddressService.cpp"
-        "src/service/DepartmentService.cpp"
-        "src/service/MembershipService.cpp"
-        "src/service/TrainingService.cpp"
-        "src/service/relations/MemberAddressRelService.cpp"
-        "src/service/relations/MembershipDepartmentRelService.cpp"
-        "src/service/relations/MemberTrainingRelService.cpp"
-        "src/service/relations/DepartmentTrainingRelService.cpp"
-        "src/service/relations/MemberMembershipRelService.cpp")
-
-## link libs
-
-find_package(oatpp          1.3.0 REQUIRED)
-find_package(oatpp-swagger  1.3.0 REQUIRED)
+# Find required packages
+find_package(oatpp 1.3.0 REQUIRED)
+find_package(oatpp-swagger 1.3.0 REQUIRED)
+find_package(oatpp-sqlite 1.3.0 REQUIRED)
 find_package(oatpp-sqlite   1.3.0 REQUIRED)
 
-target_link_libraries(${project_name}-lib
-        PUBLIC oatpp::oatpp
-        PUBLIC oatpp::oatpp-test
-        PUBLIC oatpp::oatpp-swagger
-        PUBLIC oatpp::oatpp-sqlite
-)
+target_link_libraries(PrimusSvrLibrary
+    oatpp::oatpp
+    oatpp::oatpp-swagger
+    oatpp::oatpp-sqlite
+    )
 
-# Create directory for database file
-file(MAKE_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/database)
-
-# Create directory for database content
-file(MAKE_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/database/db_content)
-
-# Create directory for profile images of members
-file(MAKE_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/database/db_content/profile_images)
-
-# Create directory for profile images of members
-file(MAKE_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/web/)
-
-add_definitions(
-        ## define path to swagger-ui static resources folder
-        -DOATPP_SWAGGER_RES_PATH="${oatpp-swagger_INCLUDE_DIRS}/../bin/oatpp-swagger/res"
-
-        ## SQLite database file
-        -DDATABASE_FILE="${CMAKE_CURRENT_SOURCE_DIR}/database/database.sqlite"
-
-        ## SQLite database test file
-        -DTESTDATABASE_FILE="${CMAKE_CURRENT_SOURCE_DIR}/database/test-db.sqlite"
-
-        ## Path to database migration scripts
-        -DDATABASE_MIGRATIONS="${CMAKE_CURRENT_SOURCE_DIR}/sql"
-
-        ## Directory for additional database contents
-        -DDB_CONTENT_DIRECTORY="${CMAKE_CURRENT_SOURCE_DIR}/database/db_content"
-
-        ## Special folder for profile images
-        -DPROFILE_IMAGES_DIRECTORY="${CMAKE_CURRENT_SOURCE_DIR}/database/db_content/profile_images"
-
-        ## Folder for html sites that may be requested
-        -DWEB_CONTENT_DIRECTORY="${CMAKE_CURRENT_SOURCE_DIR}/web"
+target_compile_definitions(PrimusSvrLibrary
+    PUBLIC OATPP_SWAGGER_RES_PATH="${oatpp-swagger_INCLUDE_DIRS}/../bin/oatpp-swagger/res"
+    PUBLIC DATABASE_FILE="${CMAKE_CURRENT_SOURCE_DIR}/bin/database/database.sqlite"
+    PUBLIC DATABASE_MIGRATIONS="${CMAKE_CURRENT_SOURCE_DIR}/bin/sql"
+    PUBLIC WEB_CONTENT_DIRECTORY="${CMAKE_CURRENT_SOURCE_DIR}/bin/web"
 )
 
 if(CMAKE_SYSTEM_NAME MATCHES Linux)
@@ -88,51 +48,59 @@ if(CMAKE_SYSTEM_NAME MATCHES Linux)
     target_link_libraries(crud-lib INTERFACE Threads::Threads ${CMAKE_DL_LIBS})
 endif()
 
-target_include_directories(${project_name}-lib PUBLIC src)
+target_include_directories(PrimusSvrLibrary PUBLIC src)
 
-## add executables
+# Create an executable target
+add_executable(PrimusSvr src/App.cpp)
 
-add_executable(${project_name}-exe src/App.cpp
-"src/service/AddressService.cpp"
-"src/service/DepartmentService.cpp"
-"src/service/MembershipService.cpp"
-"src/service/TrainingService.cpp"
-"src/service/relations/MemberAddressRelService.cpp"
-"src/service/relations/MembershipDepartmentRelService.cpp"
-"src/service/relations/MemberTrainingRelService.cpp"
-"src/service/relations/DepartmentTrainingRelService.cpp"
-"src/service/relations/MemberMembershipRelService.cpp"
 
+
+# Erstelle die Verzeichnisse
+file(MAKE_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/bin/")
+file(MAKE_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/bin/database/")
+file(MAKE_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/bin/sql")
+file(MAKE_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/bin/web")
+
+file(COPY "${CMAKE_CURRENT_SOURCE_DIR}/assets/sql/" DESTINATION "${CMAKE_CURRENT_SOURCE_DIR}/bin/sql/")
+file(COPY "${CMAKE_CURRENT_SOURCE_DIR}/assets/web/" DESTINATION "${CMAKE_CURRENT_SOURCE_DIR}/bin/web/")
+
+target_compile_definitions(PrimusSvr
+    PUBLIC OATPP_SWAGGER_RES_PATH="${oatpp-swagger_INCLUDE_DIRS}/../bin/oatpp-swagger/res"
+    PUBLIC DATABASE_FILE="${CMAKE_CURRENT_SOURCE_DIR}/bin/database/database.sqlite"
+    PUBLIC DATABASE_MIGRATIONS="${CMAKE_CURRENT_SOURCE_DIR}/bin/sql"
+    PUBLIC WEB_CONTENT_DIRECTORY="${CMAKE_CURRENT_SOURCE_DIR}/bin/web"
 )
 
-target_link_libraries(${project_name}-exe ${project_name}-lib)
-add_dependencies(${project_name}-exe ${project_name}-lib)
+target_link_libraries(PrimusSvr PrimusSvrLibrary)
+add_dependencies(PrimusSvr PrimusSvrLibrary)
 
-add_executable(${project_name}-test
-        test/tests.cpp
-        test/app/TestComponent.hpp
-        test/app/MyApiTestClient.hpp
-        "test/StaticControllerTest.cpp"
-        test/StaticControllerTest.hpp
-        "src/service/AddressService.cpp"
-        "src/service/DepartmentService.cpp"
-        "src/service/MembershipService.cpp"
-        "src/service/TrainingService.cpp"
-        "src/service/relations/MemberAddressRelService.cpp"
-        "src/service/relations/MembershipDepartmentRelService.cpp"
-        "src/service/relations/MemberTrainingRelService.cpp"
-        "src/service/relations/DepartmentTrainingRelService.cpp"
-        "src/service/relations/MemberMembershipRelService.cpp"
+# Set output directory for the executable
+set_target_properties(PrimusSvr PROPERTIES
+    RUNTIME_OUTPUT_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/bin"
 )
 
-target_link_libraries(${project_name}-test ${project_name}-lib)
-add_dependencies(${project_name}-test ${project_name}-lib)
-
-set_target_properties(${project_name}-lib ${project_name}-exe ${project_name}-test PROPERTIES
+set_target_properties(PrimusSvr PrimusSvrLibrary PROPERTIES
         CXX_STANDARD 11
         CXX_EXTENSIONS OFF
         CXX_STANDARD_REQUIRED ON
 )
 
-enable_testing()
-add_test(project-tests ${project_name}-test)
+# Set output directory for the executable
+set_target_properties(PrimusSvr PROPERTIES
+    RUNTIME_OUTPUT_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/bin"
+)
+
+# Set output directory for the library
+set_target_properties(PrimusSvrLibrary PROPERTIES
+    ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/bin"
+)
+
+# Setze das Ausgabeverzeichnis für alle Konfigurationen (Debug, Release, etc.)
+set_property(TARGET PrimusSvr PROPERTY
+    VS_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/bin"
+)
+
+# Setze das Ausgabeverzeichnis für die Bibliothek
+set_property(TARGET PrimusSvrLibrary PROPERTY
+    VS_ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/bin"
+)

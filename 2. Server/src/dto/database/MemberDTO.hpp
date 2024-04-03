@@ -6,8 +6,8 @@
 
 #include OATPP_CODEGEN_BEGIN(DTO)
 
-class MemberDTO : public oatpp::DTO {
-    DTO_INIT(MemberDTO, DTO /* extends */)
+class MemberDto : public oatpp::DTO {
+    DTO_INIT(MemberDto, DTO /* extends */)
 
     DTO_FIELD(oatpp::Int64, id);             // Unique identifier for each member
     DTO_FIELD(oatpp::String, firstName);     // First name of the member

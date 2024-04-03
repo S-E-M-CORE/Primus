@@ -6,11 +6,11 @@
 
 #include OATPP_CODEGEN_BEGIN(DTO)
 
-class StatusDTO : public oatpp::DTO {
+class StatusDto : public oatpp::DTO {
 
-    DTO_INIT(StatusDTO, DTO)
+    DTO_INIT(StatusDto, DTO)
 
-    DTO_FIELD_INFO(status) {
+        DTO_FIELD_INFO(status) {
     info->description = "Short status text";
     }
     DTO_FIELD(String, status);

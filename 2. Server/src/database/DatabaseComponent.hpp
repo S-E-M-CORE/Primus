@@ -4,14 +4,13 @@
 #include "oatpp/core/macro/component.hpp"
 
 #include "DatabaseClient.hpp"
+#include "filesystemHelper.hpp"
 
 /**
  * @brief Database component responsible for creating database connections and clients.
  */
 class DatabaseComponent {
 public:
-
-
     // Create database connection provider component
     OATPP_CREATE_COMPONENT(std::shared_ptr<oatpp::provider::Provider<oatpp::sqlite::Connection>>, dbConnectionProvider)([] {
 

@@ -21,8 +21,8 @@ public:
         oatpp::swagger::DocumentInfo::Builder builder;
 
         builder
-            .setTitle("Member entity service")
-            .setDescription("")
+            .setTitle("Primus")
+            .setDescription("Swagger documentation for the primus project")
             .setVersion("1.0")
             .setContactName("Sascha Meissner")
             .setContactUrl("https://thesascham.github.io/Website/")
