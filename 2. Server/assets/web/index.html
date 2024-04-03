@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Primus API Benutzeroberfläche</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="#">Primus API</a>
+    </div>
+  </nav>
+
+  <!-- Content -->
+  <div class="container mt-4">
+    <!-- View All Members -->
+    <h2>Alle Mitglieder</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Vorname</th>
+          <th>Nachname</th>
+          <th>E-Mail</th>
+          <th>Telefonnummer</th>
+          <th>Geburtsdatum</th>
+          <th>Erstellungsdatum</th>
+          <th>Notizen</th>
+          <th>Aktiv</th>
+        </tr>
+      </thead>
+      <tbody id="membersTableBody">
+        <!-- Members will be displayed here using JavaScript -->
+      </tbody>
+    </table>
+
+    <!-- Add New Member Form -->
+    <h2>Neues Mitglied hinzufügen</h2>
+    <form id="addMemberForm">
+      <div class="form-group">
+        <label for="firstName">Vorname</label>
+        <input type="text" class="form-control" id="firstName" name="firstName" required>
+      </div>
+      <div class="form-group">
+        <label for="lastName">Nachname</label>
+        <input type="text" class="form-control" id="lastName" name="lastName" required>
+      </div>
+      <div class="form-group">
+        <label for="email">E-Mail</label>
+        <input type="email" class="form-control" id="email" name="email" required>
+      </div>
+      <div class="form-group">
+        <label for="phoneNumber">Telefonnummer</label>
+        <input type="text" class="form-control" id="phoneNumber" name="phoneNumber">
+      </div>
+      <div class="form-group">
+        <label for="birthDate">Geburtsdatum</label>
+        <input type="date" class="form-control" id="birthDate" name="birthDate" required>
+      </div>
+      <div class="form-group">
+        <label for="notes">Notizen</label>
+        <textarea class="form-control" id="notes" name="notes"></textarea>
+      </div>
+      <div class="form-group form-check">
+        <input type="checkbox" class="form-check-input" id="active" name="active" checked>
+        <label class="form-check-label" for="active">Aktiv</label>
+      </div>
+      <button type="submit" class="btn btn-primary">Speichern</button>
+    </form>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <script>
+    // Fetch all members from the API and populate the table
+    fetch('http://localhost:8000/api/members/all')
+      .then(response => response.json())
+      .then(data => {
+        const membersTableBody = document.getElementById('membersTableBody');
+        data.forEach(member => {
+          const row = document.createElement('tr');
+          row.innerHTML = `
+            <td>${member.id}</td>
+            <td>${member.firstName}</td>
+            <td>${member.lastName}</td>
+            <td>${member.email}</td>
+            <td>${member.phoneNumber}</td>
+            <td>${member.birthDate}</td>
+            <td>${member.createDate}</td>
+            <td>${member.notes}</td>
+            <td>${member.active ? 'Ja' : 'Nein'}</td>
+          `;
+          membersTableBody.appendChild(row);
+        });
+      });
+
+    // Handle form submission to add a new member
+    document.getElementById('addMemberForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      const formData = new FormData(this);
+      const memberData = {};
+      formData.forEach((value, key) => {
+        memberData[key] = value;
+      });
+      fetch('http://localhost:8000/api/member', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(memberData)
+      })
+      .then(response => response.json())
+      .then(data => {
+        // Reload the page after adding a member
+        location.reload();
+      })
+      .catch(error => {
+        console.error('Error adding member:', error);
+      });
+    });
+  </script>
+</body>
+</html>
