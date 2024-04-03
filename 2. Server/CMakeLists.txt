@@ -100,19 +100,9 @@ target_compile_definitions(PrimusSvr
 target_link_libraries(PrimusSvr PrimusSvrLibrary)
 add_dependencies(PrimusSvr PrimusSvrLibrary)
 
-<<<<<<< HEAD
 # Set output directory for the executable
 set_target_properties(PrimusSvr PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/bin"
-=======
-add_executable(${project_name}-test
-        test/tests.cpp
-        test/app/TestComponent.hpp
-        test/app/MyApiTestClient.hpp
-        "test/StaticControllerTest.cpp"
-        test/StaticControllerTest.hpp
->>>>>>> db1965b318089d88d214892967e8600fa806f9c6
-)
 
 set_target_properties(PrimusSvr PrimusSvrLibrary PROPERTIES
         CXX_STANDARD 11
