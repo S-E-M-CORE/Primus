@@ -245,7 +245,7 @@ namespace primus {
 
                     auto memberId = oatpp::sqlite::Utils::getLastInsertRowId(dbResult->getConnection());
 
-                    OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Created member with id: %d", memberId.operator v_uint32());
+                    OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Created member with id: %d", memberId);
                     OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, primus::constants::apicontroller::member_endpoint::logSeperation);
                     return getMemberById(memberId);
                 }
