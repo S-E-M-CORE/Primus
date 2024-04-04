@@ -9,8 +9,11 @@ namespace primus
     namespace dto
     {
 #include OATPP_CODEGEN_BEGIN(DTO)
-        class MembershipFeeDto : public oatpp::DTO {
-
+        /**
+         * @brief DTO class representing a membership fee.
+         */
+        class MembershipFeeDto : public oatpp::DTO
+        {
             DTO_INIT(MembershipFeeDto, DTO)
 
                 DTO_FIELD_INFO(fee) {

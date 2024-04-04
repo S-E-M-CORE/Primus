@@ -10,7 +10,12 @@ namespace primus
     {
 
 #include OATPP_CODEGEN_BEGIN(DTO)
-        class CountDto : public oatpp::DTO {
+
+        /**
+         * @brief DTO class representing single value. This dto may be used for counting database rows
+         */
+        class CountDto : public oatpp::DTO
+        {
 
             DTO_INIT(CountDto, DTO);
 
@@ -20,6 +25,7 @@ namespace primus
             DTO_FIELD(oatpp::UInt32, count);
 
         };
+
 #include OATPP_CODEGEN_END(DTO)
 
     } // namespace dto

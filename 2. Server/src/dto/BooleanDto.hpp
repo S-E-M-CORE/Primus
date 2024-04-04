@@ -10,7 +10,11 @@ namespace primus
     {
 
 #include OATPP_CODEGEN_BEGIN(DTO)
-        class BooleanDto : public oatpp::DTO {
+        /**
+        * @brief DTO class representing a boolean value.
+        */
+        class BooleanDto : public oatpp::DTO
+        {
 
             DTO_INIT(BooleanDto, DTO)
 

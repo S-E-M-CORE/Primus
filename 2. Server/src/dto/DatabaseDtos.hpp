@@ -14,7 +14,9 @@ namespace primus
         {
             class AddressDto : public oatpp::DTO
             {
-
+                /**
+                 * @brief DTO representing an address in the database.
+                 */
                 DTO_INIT(AddressDto, DTO /* extends */)
 
                     DTO_FIELD_INFO(id) {
@@ -49,8 +51,11 @@ namespace primus
 
             };
 
-
-            class DepartmentDto : public oatpp::DTO {
+            /**
+             * @brief DTO class representing a department.
+             */
+            class DepartmentDto : public oatpp::DTO
+            {
 
                 DTO_INIT(DepartmentDto, DTO /* extends */)
 
@@ -66,8 +71,11 @@ namespace primus
 
             };
 
-
-            class MemberDto : public oatpp::DTO {
+            /**
+             * @brief DTO class representing a member.
+             */
+            class MemberDto : public oatpp::DTO
+            {
 
                 DTO_INIT(MemberDto, DTO /* extends */)
 
@@ -140,8 +148,11 @@ namespace primus
 
             };
 
-
-            class MemberDetailsDto : public oatpp::DTO {
+            /**
+             * @brief DTO class representing detailed information about a member.
+             */
+            class MemberDetailsDto : public oatpp::DTO
+            {
 
                 DTO_INIT(MemberDetailsDto, DTO /* extends */)
 
