@@ -4,9 +4,13 @@
 #include "oatpp/core/macro/codegen.hpp"
 #include "oatpp/core/Types.hpp"
 
+namespace primus
+{
+    namespace dto
+    {
 #include OATPP_CODEGEN_BEGIN(DTO)
-
-class StatusDto : public oatpp::DTO {
+class StatusDto : public oatpp::DTO
+{
 
     DTO_INIT(StatusDto, DTO)
 
@@ -26,7 +30,8 @@ class StatusDto : public oatpp::DTO {
     DTO_FIELD(String, message);
 
 };
-
 #include OATPP_CODEGEN_END(DTO)
 
+    } // namespace dto
+} // namespace primus
 #endif // STATUSDTO_HPP

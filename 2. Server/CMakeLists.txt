@@ -7,9 +7,6 @@ set(SOURCES
     src/controller/StaticController.hpp
     src/database/DatabaseClient.hpp
     src/database/DatabaseComponent.hpp
-    src/dto/database/AddressDto.hpp
-    src/dto/database/DepartmentDto.hpp
-    src/dto/database/MemberDto.hpp
     src/dto/BooleanDto.hpp
     src/dto/CountDto.hpp
     src/dto/MembershipFeeDto.hpp
@@ -26,7 +23,6 @@ add_library(PrimusSvrLibrary ${SOURCES})
 find_package(oatpp 1.3.0 REQUIRED)
 find_package(oatpp-swagger 1.3.0 REQUIRED)
 find_package(oatpp-sqlite 1.3.0 REQUIRED)
-find_package(oatpp-sqlite   1.3.0 REQUIRED)
 
 target_link_libraries(PrimusSvrLibrary
     oatpp::oatpp
