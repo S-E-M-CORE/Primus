@@ -52,7 +52,7 @@ namespace primus {
                     QUERY(oatpp::UInt32, limit))
                 {
                     OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, primus::constants::apicontroller::member_endpoint::logSeperation);
-                    OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Received request for upcoming birthdays with limit: %d", limit);
+                    OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Received request for upcoming birthdays with limit: %d", limit.operator v_uint32());
                     auto dbResult = m_database->getMembersWithUpcomingBirthday(limit);
                     OATPP_ASSERT_HTTP(dbResult->isSuccess(), Status::CODE_500, dbResult->getErrorMessage());
 
@@ -63,7 +63,7 @@ namespace primus {
                     page->count = items->size();
                     page->items = items;
 
-                    OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Processed request. Returned %d items", page->count);
+                    OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Processed request. Returned %d items", page->count.operator v_uint32());
                     OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, primus::constants::apicontroller::member_endpoint::logSeperation);
                     return createDtoResponse(Status::CODE_200, page);
                 }
@@ -72,7 +72,7 @@ namespace primus {
                     QUERY(oatpp::UInt32, limit), QUERY(oatpp::UInt32, offset))
                 {
                     OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, primus::constants::apicontroller::member_endpoint::logSeperation);
-                    OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Received request for members with most trainings. Limit: %d, Offset: %d", limit, offset);
+                    OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Received request for members with most trainings. Limit: %d, Offset: %d", limit.operator v_uint32(), offset.operator v_uint32());
 
                     auto dbResult = m_database->getMembersWithMostTrainings(limit, offset);
                     OATPP_ASSERT_HTTP(dbResult->isSuccess(), Status::CODE_500, dbResult->getErrorMessage());
@@ -85,7 +85,7 @@ namespace primus {
                     page->count = items->size();
                     page->items = items;
 
-                    OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Processed request. Returned %d items", page->count);
+                    OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Processed request. Returned %d items", page->count.operator v_uint32());
                     OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, primus::constants::apicontroller::member_endpoint::logSeperation);
 
                     return createDtoResponse(Status::CODE_200, page);
@@ -95,7 +95,7 @@ namespace primus {
                     PATH(oatpp::UInt32, id))
                 {
                     OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, primus::constants::apicontroller::member_endpoint::logSeperation);
-                    OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Received request to get departments of member with id: %d", id);
+                    OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Received request to get departments of member with id: %d", id.operator v_uint32());
 
                     auto dbResult = m_database->getDepartmentsOfMember(id);
                     OATPP_ASSERT_HTTP(dbResult->isSuccess(), Status::CODE_500, dbResult->getErrorMessage());
@@ -106,7 +106,7 @@ namespace primus {
                     page->count = items->size();
                     page->items = items;
 
-                    OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Processed request to get departments of member with id: %d. Returned %d items", id, page->count);
+                    OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Processed request to get departments of member with id: %d. Returned %d items", id.operator v_uint32(), page->count.operator v_uint32());
                     OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, primus::constants::apicontroller::member_endpoint::logSeperation);
 
                     return createDtoResponse(Status::CODE_200, page);
@@ -116,7 +116,7 @@ namespace primus {
                     QUERY(oatpp::UInt32, limit), QUERY(oatpp::UInt32, offset))
                 {
                     OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, primus::constants::apicontroller::member_endpoint::logSeperation);
-                    OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Received request to get all members. Limit: %d, Offset: %d", limit, offset);
+                    OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Received request to get all members. Limit: %d, Offset: %d", limit.operator v_uint32(), offset.operator v_uint32());
                     auto dbResult = m_database->getAllMembers(offset, limit);
                     OATPP_ASSERT_HTTP(dbResult->isSuccess(), Status::CODE_500, dbResult->getErrorMessage());
 
@@ -128,7 +128,7 @@ namespace primus {
                     page->count = items->size();
                     page->items = items;
 
-                    OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Processed request to get all members. Returned %d items", page->count);
+                    OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Processed request to get all members. Returned %d items", page->count.operator v_uint32());
                     OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, primus::constants::apicontroller::member_endpoint::logSeperation);
                     return createDtoResponse(Status::CODE_200, page);
                 }
@@ -137,7 +137,7 @@ namespace primus {
                     QUERY(oatpp::UInt32, limit), QUERY(oatpp::UInt32, offset))
                 {
                     OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, primus::constants::apicontroller::member_endpoint::logSeperation);
-                    OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Received request to get active members. Limit: %d, Offset: %d", limit, offset);
+                    OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Received request to get active members. Limit: %d, Offset: %d", limit.operator v_uint32(), offset.operator v_uint32());
 
                     auto dbResult = m_database->getActiveMembers(limit, offset);
 
@@ -150,7 +150,7 @@ namespace primus {
                     page->count = items->size();
                     page->items = items;
 
-                    OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Processed request to get active members. Returned %d items", page->count);
+                    OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Processed request to get active members. Returned %d items", page->count.operator v_uint32());
                     OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, primus::constants::apicontroller::member_endpoint::logSeperation);
                     return createDtoResponse(Status::CODE_200, page);
                 }
@@ -159,7 +159,7 @@ namespace primus {
                     QUERY(oatpp::UInt32, limit), QUERY(oatpp::UInt32, offset))
                 {
                     OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, primus::constants::apicontroller::member_endpoint::logSeperation);
-                    OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Received request to get inactive members. Limit: %d, Offset: %d", limit, offset);
+                    OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Received request to get inactive members. Limit: %d, Offset: %d", limit.operator v_uint32(), offset.operator v_uint32());
 
                     auto dbResult = m_database->getInactiveMembers(limit, offset);
 
@@ -172,7 +172,7 @@ namespace primus {
                     page->count = items->size();
                     page->items = items;
 
-                    OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Processed request to get inactive members. Returned %d items", page->count);
+                    OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Processed request to get inactive members. Returned %d items", page->count.operator v_uint32());
                     OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, primus::constants::apicontroller::member_endpoint::logSeperation);
                     return createDtoResponse(Status::CODE_200, page);
                 }
@@ -245,7 +245,7 @@ namespace primus {
 
                     auto memberId = oatpp::sqlite::Utils::getLastInsertRowId(dbResult->getConnection());
 
-                    OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Created member with id: %d", memberId);
+                    OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Created member with id: %d", memberId.operator v_uint32());
                     OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, primus::constants::apicontroller::member_endpoint::logSeperation);
                     return getMemberById(memberId);
                 }
@@ -254,7 +254,7 @@ namespace primus {
                     BODY_DTO(Object<primus::dto::database::MemberDto>, member))
                 {
                     OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, primus::constants::apicontroller::member_endpoint::logSeperation);
-                    OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Received request to update member with id: %d", member->id);
+                    OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Received request to update member with id: %d", member->id.operator v_uint32());
 
                     {
                         auto dbResult = m_database->getMemberById(member->id);
@@ -263,7 +263,7 @@ namespace primus {
                         auto currentMember = memberArray[0];
 
                         OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Old member data:");
-                        OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "  - ID: %d", currentMember->id);
+                        OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "  - ID: %d", currentMember->id.operator v_uint32());
                         OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "  - First Name: %s", currentMember->firstName->c_str());
                         OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "  - Last Name: %s", currentMember->lastName->c_str());
                         OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "  - Email: %s", currentMember->email->c_str());
@@ -274,7 +274,7 @@ namespace primus {
                         OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "  - Active: %s", currentMember->active ? "true" : "false");
 
                         OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "New member data:");
-                        OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "  - ID: %d", member->id);
+                        OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "  - ID: %d", member->id.operator v_uint32());
                         OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "  - First Name: %s", member->firstName->c_str());
                         OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "  - Last Name: %s", member->lastName->c_str());
                         OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "  - Email: %s", member->email->c_str());
@@ -288,7 +288,7 @@ namespace primus {
                     auto dbResult = m_database->updateMember(member);
                     OATPP_ASSERT_HTTP(dbResult->isSuccess(), Status::CODE_500, dbResult->getErrorMessage());
 
-                    OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Updated member with id: %d", member->id);
+                    OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Updated member with id: %d", member->id.operator v_uint32());
                     OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, primus::constants::apicontroller::member_endpoint::logSeperation);
                     return getMemberById(member->id);
                 }
@@ -297,7 +297,7 @@ namespace primus {
                     PATH(UInt32, id))
                 {
                     OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, primus::constants::apicontroller::member_endpoint::logSeperation);
-                    OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Received request to get address of member with id: %d", id);
+                    OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Received request to get address of member with id: %d", id.operator v_uint32());
 
                     auto dbResult = m_database->getMemberAddress(id);
 
@@ -305,7 +305,7 @@ namespace primus {
 
                     auto adress = dbResult->fetch<oatpp::Object<AddressDto>>();
 
-                    OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Processed request to get address of member with id: %d", id);
+                    OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Processed request to get address of member with id: %d", id.operator v_uint32());
                     OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, primus::constants::apicontroller::member_endpoint::logSeperation);
                     return createDtoResponse(Status::CODE_200, adress);
                 }
@@ -314,14 +314,14 @@ namespace primus {
                     PATH(UInt32, id))
                 {
                     OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, primus::constants::apicontroller::member_endpoint::logSeperation);
-                    OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Received request to get membership fee of member with id: %d", id);
+                    OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Received request to get membership fee of member with id: %d", id.operator v_uint32());
 
                     auto dbResult = m_database->getMembershipFee(id);
                     OATPP_ASSERT_HTTP(dbResult->isSuccess(), Status::CODE_404, "User was not found");
 
                     auto fee = dbResult->fetch<oatpp::Object<MembershipFeeDto>>();
 
-                    OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Processed request to get membership fee of member with id: %d", id);
+                    OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Processed request to get membership fee of member with id: %d", id.operator v_uint32());
                     OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, primus::constants::apicontroller::member_endpoint::logSeperation);
                     return createDtoResponse(Status::CODE_200, fee);
                 }
@@ -330,7 +330,7 @@ namespace primus {
                     PATH(oatpp::UInt32, id), QUERY(oatpp::UInt32, limit), QUERY(oatpp::UInt32, offset))
                 {
                     OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, primus::constants::apicontroller::member_endpoint::logSeperation);
-                    OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Received request to get trainings of member with id: %d", id);
+                    OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Received request to get trainings of member with id: %d", id.operator v_uint32());
 
                     auto dbResult = m_database->getMemberTrainings(id, limit, offset);
                     OATPP_ASSERT_HTTP(dbResult->isSuccess(), Status::CODE_404, "User was not found");
@@ -343,7 +343,7 @@ namespace primus {
                     page->count = trainings->size();
                     page->items = trainings;
 
-                    OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Processed request to get trainings of member with id: %d. Returned %d trainings", id, page->count);
+                    OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Processed request to get trainings of member with id: %d. Returned %d trainings", id, page->count.operator v_uint32());
                     OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, primus::constants::apicontroller::member_endpoint::logSeperation);
                     return createDtoResponse(Status::CODE_200, page);
                 }
@@ -352,14 +352,14 @@ namespace primus {
                     PATH(UInt32, id))
                 {
                     OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, primus::constants::apicontroller::member_endpoint::logSeperation);
-                    OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Received request to check if weapon purchase is allowed for member with id: %d", id);
+                    OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Received request to check if weapon purchase is allowed for member with id: %d", id.operator v_uint32());
 
                     auto dbResult = m_database->isWeaponPurchaseAllowed(id);
                     OATPP_ASSERT_HTTP(dbResult->isSuccess(), Status::CODE_404, "User was not found");
 
                     auto allowed = dbResult->fetch<oatpp::Object<BooleanDto>>();
 
-                    OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Processed request to check if weapon purchase is allowed for member with id: %d. Purchase allowed: %s", id, allowed->value ? "true" : "false");
+                    OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Processed request to check if weapon purchase is allowed for member with id: %d. Purchase allowed: %s", id.operator v_uint32(), allowed->value ? "true" : "false");
                     OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, primus::constants::apicontroller::member_endpoint::logSeperation);
                     return createDtoResponse(Status::CODE_200, allowed);
                 }
@@ -374,7 +374,7 @@ namespace primus {
 
                     auto count = dbResult->fetch<oatpp::Object<CountDto>>();
 
-                    OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Processed request to get count of all members. Total count: %d", count->count);
+                    OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Processed request to get count of all members. Total count: %d", count->count.operator v_uint32());
                     OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, primus::constants::apicontroller::member_endpoint::logSeperation);
                     return createDtoResponse(Status::CODE_200, count);
                 }
@@ -389,7 +389,7 @@ namespace primus {
 
                     auto count = dbResult->fetch<oatpp::Object<CountDto>>();
 
-                    OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Processed request to get count of active members. Total active count: %d", count->count);
+                    OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Processed request to get count of active members. Total active count: %d", count->count.operator v_uint32());
                     OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, primus::constants::apicontroller::member_endpoint::logSeperation);
                     return createDtoResponse(Status::CODE_200, count);
                 }
@@ -404,7 +404,7 @@ namespace primus {
 
                     auto count = dbResult->fetch<oatpp::Object<CountDto>>();
 
-                    OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Processed request to get count of inactive members. Total inactive count: %d", count->count);
+                    OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Processed request to get count of inactive members. Total inactive count: %d", count->count.operator v_uint32());
                     OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, primus::constants::apicontroller::member_endpoint::logSeperation);
                     return createDtoResponse(Status::CODE_200, count);
                 }
