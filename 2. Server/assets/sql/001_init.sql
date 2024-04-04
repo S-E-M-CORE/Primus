@@ -3,7 +3,7 @@ CREATE TABLE Address (
     id INTEGER PRIMARY KEY,
     zipCode VARCHAR(10),
     city VARCHAR(100),
-    state CHAR(2),
+    state VARCHAR(100),
     houseNumber VARCHAR(10),
     street VARCHAR(255)
 );
