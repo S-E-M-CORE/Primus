@@ -47,7 +47,7 @@ namespace primus
 
             // GET /api/members/birthday/upcoming
             QUERY(getMembersWithUpcomingBirthday,
-                "SELECT * FROM Member WHERE birthDate > DATE('now') ORDER BY birthDate LIMIT :limit;",
+                "SELECT * FROM Member WHERE birthDate >= DATE('now') ORDER BY birthDate LIMIT :limit;",
                 PARAM(oatpp::UInt32, limit));
 
 
@@ -102,7 +102,7 @@ namespace primus
                 "SELECT * from Member WHERE id = :id;",
                 PARAM(oatpp::UInt32, id));
 
-            // CREATE /api/member/
+            // POST /api/member/
             QUERY(createMember,
                 "INSERT INTO Member (firstName, lastName, email, phoneNumber, birthDate, createDate, notes, active) "
                 "VALUES (:member.firstName, :member.lastName, :member.email, :member.phoneNumber, :member.birthDate, DATE('now'), :member.notes, :member.active);",
@@ -126,6 +126,32 @@ namespace primus
             QUERY(getMemberAddress,
                 "SELECT * FROM Address WHERE id = (SELECT addressID FROM Address_Member WHERE memberID = :id);",
                 PARAM(oatpp::UInt32, id));
+
+            // GET /api/member/{id}/address
+            QUERY(getAdressById,
+                "SELECT * FROM Address WHERE id = :id);",
+                PARAM(oatpp::UInt32, id));
+
+            // POST /api/member/{id}/address
+            QUERY(createAdress,
+                "INSERT INTO Address (state, zipCode, city, street, houseNumber) "
+                "SELECT :dto.state, :dto.zipCode, :dto.city, :dto.street, :dto.houseNumber "
+                "WHERE NOT EXISTS ("
+                "   SELECT 1 FROM Address "
+                "   WHERE state = :dto.state "
+                "   AND zipCode = :dto.zipCode "
+                "   AND city = :dto.city "
+                "   AND street = :dto.street "
+                "   AND houseNumber = :dto.houseNumber "
+                ")",
+                PARAM(oatpp::Object<AddressDto>, dto));
+
+            // POST /api/member/{id}/address
+            QUERY(createAdressMemberRelation,
+                "INSERT INTO Address_Member (address_id, member_id) "
+                " VALUES (:address_id, :member_id) ",
+                PARAM(oatpp::UInt32, address_id),
+                PARAM(oatpp::UInt32, member_id));
 
             // GET /api/member/{id}/membership-fee
             QUERY(getMembershipFee,
@@ -161,13 +187,13 @@ namespace primus
                 PARAM(oatpp::UInt32, id));
 
             // GET /api/members/all/count
-            QUERY(getMemberCountAll, "SELECT COUNT(*) as count FROM members");
+            QUERY(getMemberCountAll, "SELECT COUNT(*) as count FROM Member");
 
             // GET /api/members/active/count
-            QUERY(getMemberCountActive, "SELECT COUNT(*) as count FROM members WHERE active=1");
+            QUERY(getMemberCountActive, "SELECT COUNT(*) as count FROM Member WHERE active=1");
 
             // GET /api/members/inactive/count
-            QUERY(getMemberCountInactive, "SELECT COUNT(*) as count FROM members WHERE active=0");
+            QUERY(getMemberCountInactive, "SELECT COUNT(*) as count FROM Member WHERE active=0");
 
         };
 

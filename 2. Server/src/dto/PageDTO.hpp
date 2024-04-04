@@ -15,12 +15,12 @@ namespace primus
 
             DTO_INIT(PageDto, DTO)
 
-                DTO_FIELD_INFO(offset) {
-                info->description = "Offset value for pagination";
+            DTO_FIELD_INFO(offset) {
+            info->description = "Offset value for pagination";
             }
             DTO_FIELD(UInt32, offset);
 
-            DTO_FIELD_INFO(limit) {
+            DTO_FIELD_INFO(limit){
                 info->description = "Limit value for pagination";
             }
             DTO_FIELD(UInt32, limit);
