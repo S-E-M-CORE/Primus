@@ -26,9 +26,22 @@ namespace primus {
             using primus::dto::CountDto;
             using primus::dto::MembershipFeeDto;
             using primus::dto::BooleanDto;
+            using primus::dto::database::MemberWithAdressDto;
+
+
 
             class MemberController : public oatpp::web::server::api::ApiController
             {
+            private:
+                typedef primus::dto::database::MemberDto                                 MemberDto;
+                typedef primus::dto::database::DepartmentDto                             DepartmentDto;
+                typedef primus::dto::database::TrainingDto                               TrainingDto;
+                typedef primus::dto::database::AddressDto                                AddressDto;
+                typedef primus::dto::MemberPageDto                                       MemberPageDto;
+                typedef primus::dto::CountDto                                            CountDto;
+                typedef primus::dto::MembershipFeeDto                                    MembershipFeeDto;
+                typedef primus::dto::BooleanDto                                          BooleanDto;
+
             private:
                 OATPP_COMPONENT(std::shared_ptr<primus::component::DatabaseClient>, m_database);
             public:
@@ -53,15 +66,18 @@ namespace primus {
                 {
                     OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, primus::constants::apicontroller::member_endpoint::logSeperation);
                     OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Received request for upcoming birthdays with limit: %d", limit.operator v_uint32());
+
                     auto dbResult = m_database->getMembersWithUpcomingBirthday(limit);
                     OATPP_ASSERT_HTTP(dbResult->isSuccess(), Status::CODE_500, dbResult->getErrorMessage());
 
                     auto items = dbResult->fetch<oatpp::Vector<oatpp::Object<MemberDto>>>();
 
                     auto page = PageDto<oatpp::Object<MemberDto>>::createShared();
+
                     page->limit = limit;
                     page->count = items->size();
                     page->items = items;
+                    page->offset = (limit - limit);
 
                     OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Processed request. Returned %d items", page->count.operator v_uint32());
                     OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, primus::constants::apicontroller::member_endpoint::logSeperation);
@@ -117,12 +133,14 @@ namespace primus {
                 {
                     OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, primus::constants::apicontroller::member_endpoint::logSeperation);
                     OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Received request to get all members. Limit: %d, Offset: %d", limit.operator v_uint32(), offset.operator v_uint32());
-                    auto dbResult = m_database->getAllMembers(offset, limit);
+
+                    auto dbResult = m_database->getAllMembers(limit, offset);
                     OATPP_ASSERT_HTTP(dbResult->isSuccess(), Status::CODE_500, dbResult->getErrorMessage());
 
-                    auto items = dbResult->fetch<oatpp::Vector<oatpp::Object<primus::dto::database::MemberDto>>>();
+                    auto items = dbResult->fetch<oatpp::Vector<oatpp::Object<MemberDto>>>();
 
-                    auto page = PageDto<oatpp::Object<primus::dto::database::MemberDto>>::createShared();
+                    auto page = PageDto<oatpp::Object<MemberDto>>::createShared();
+
                     page->offset = offset;
                     page->limit = limit;
                     page->count = items->size();
@@ -236,7 +254,6 @@ namespace primus {
                     OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "  - Email: %s", member->email->c_str());
                     OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "  - Phone Number: %s", member->phoneNumber->c_str());
                     OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "  - Birth Date: %s", member->birthDate->c_str());
-                    OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "  - Create Date: %s", member->createDate->c_str());
                     OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "  - Notes: %s", member->notes->c_str());
                     OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "  - Active: %s", member->active ? "true" : "false");
 
@@ -291,6 +308,49 @@ namespace primus {
                     OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Updated member with id: %d", member->id.operator v_uint32());
                     OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, primus::constants::apicontroller::member_endpoint::logSeperation);
                     return getMemberById(member->id);
+                }
+
+                ENDPOINT("POST", "/api/member/{memberId}/address", setMemberAdress,
+                    PATH(oatpp::UInt32, memberId), BODY_DTO(oatpp::Object<AddressDto>, address))
+                {
+                    OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, primus::constants::apicontroller::member_endpoint::logSeperation);
+                    OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Received request to set member adress of member with id %d to", memberId.operator v_uint32());
+                    OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "State: %d", address->state->c_str());
+                    OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Zip: %d", address->zipCode->c_str());
+                    OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "City: %d", address->city->c_str());
+                    OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Street: %d", address->street->c_str());
+                    OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Number: %d", address->houseNumber->c_str());
+                    
+                    auto dbResult = m_database->getMemberById(memberId);
+                    OATPP_ASSERT_HTTP(dbResult->isSuccess(), Status::CODE_500, dbResult->getErrorMessage());
+
+                    auto member = (dbResult->fetch<oatpp::Vector<oatpp::Object<MemberDto>>>())[0];
+
+                    dbResult = m_database->createAdress(address);
+                    OATPP_ASSERT_HTTP(dbResult->isSuccess(), Status::CODE_500, dbResult->getErrorMessage());
+
+                    auto addressId = oatpp::sqlite::Utils::getLastInsertRowId(dbResult->getConnection());
+                    OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Adress created with id %d", addressId);
+
+                    dbResult = m_database->createAdressMemberRelation(addressId, memberId);
+                    OATPP_ASSERT_HTTP(dbResult->isSuccess(), Status::CODE_500, dbResult->getErrorMessage());
+
+                    dbResult = m_database->getAdressById(addressId);
+                    OATPP_ASSERT_HTTP(dbResult->isSuccess(), Status::CODE_500, dbResult->getErrorMessage());
+
+                    auto addressCreated = (dbResult->fetch<oatpp::Vector<oatpp::Object<AddressDto>>>())[0];
+
+                    OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Created relation between addressId and memberId");
+
+                    oatpp::Object<MemberWithAdressDto> ret;
+
+                    ret->loadMemberDto(std::move(member));
+                    ret->loadAddressDto(std::move(addressCreated));
+
+                    OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Processed request to set address of member with id: %d", memberId.operator v_uint32());
+                    OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, primus::constants::apicontroller::member_endpoint::logSeperation);
+
+                    return createDtoResponse(Status::CODE_200, ret);
                 }
 
                 ENDPOINT("GET", "/api/member/{id}/address", getMemberAddress,
@@ -372,11 +432,12 @@ namespace primus {
                     auto dbResult = m_database->getMemberCountAll();
                     OATPP_ASSERT_HTTP(dbResult->isSuccess(), Status::CODE_500, dbResult->getErrorMessage());
 
-                    auto count = dbResult->fetch<oatpp::Object<CountDto>>();
+                    auto count = dbResult->fetch<oatpp::Vector<oatpp::Object<CountDto>>>();
 
-                    OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Processed request to get count of all members. Total count: %d", count->count.operator v_uint32());
+                    OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Processed request to get count of all members. Total count: %d", count[0]->count.operator v_uint32());
                     OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, primus::constants::apicontroller::member_endpoint::logSeperation);
-                    return createDtoResponse(Status::CODE_200, count);
+
+                    return createDtoResponse(Status::CODE_200, count[0]);
                 }
 
                 ENDPOINT("GET", "/api/members/active/count", getMemberCountActive)
@@ -387,11 +448,11 @@ namespace primus {
                     auto dbResult = m_database->getMemberCountActive();
                     OATPP_ASSERT_HTTP(dbResult->isSuccess(), Status::CODE_500, dbResult->getErrorMessage());
 
-                    auto count = dbResult->fetch<oatpp::Object<CountDto>>();
+                    auto count = dbResult->fetch<oatpp::Vector<oatpp::Object<CountDto>>>();
 
-                    OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Processed request to get count of active members. Total active count: %d", count->count.operator v_uint32());
+                    OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Processed request to get count of active members. Total active count: %d", count[0]->count.operator v_uint32());
                     OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, primus::constants::apicontroller::member_endpoint::logSeperation);
-                    return createDtoResponse(Status::CODE_200, count);
+                    return createDtoResponse(Status::CODE_200, count[0]);
                 }
 
                 ENDPOINT("GET", "/api/members/inactive/count", getMemberCountInactive)
@@ -402,11 +463,11 @@ namespace primus {
                     auto dbResult = m_database->getMemberCountInactive();
                     OATPP_ASSERT_HTTP(dbResult->isSuccess(), Status::CODE_500, dbResult->getErrorMessage());
 
-                    auto count = dbResult->fetch<oatpp::Object<CountDto>>();
+                    auto count = dbResult->fetch<oatpp::Vector<oatpp::Object<CountDto>>>();
 
-                    OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Processed request to get count of inactive members. Total inactive count: %d", count->count.operator v_uint32());
+                    OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Processed request to get count of inactive members. Total inactive count: %d", count[0]->count.operator v_uint32());
                     OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, primus::constants::apicontroller::member_endpoint::logSeperation);
-                    return createDtoResponse(Status::CODE_200, count);
+                    return createDtoResponse(Status::CODE_200, count[0]);
                 }
 
 
