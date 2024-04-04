@@ -8,7 +8,7 @@ namespace primus
 	namespace constants
 	{
 		const std::size_t logNameLength = 20;
-		const std::size_t logSeperationLength = 60;
+		const std::size_t logSeperationLength = 30;
 
 		namespace main
 		{
