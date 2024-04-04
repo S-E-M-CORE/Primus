@@ -17,10 +17,10 @@ namespace primus
                 /**
                  * @brief DTO representing an address in the database.
                  */
-                DTO_INIT(AddressDto, DTO /* extends */)
+                DTO_INIT(AddressDto, DTO /* extends */);
 
-                    DTO_FIELD_INFO(id) {
-                    info->description = "Unique identifier for the address";
+                DTO_FIELD_INFO(id) {
+                info->description = "Unique identifier for the address";
                 }
                 DTO_FIELD(oatpp::UInt32, id);
 
@@ -79,8 +79,8 @@ namespace primus
 
                 DTO_INIT(MemberDto, DTO /* extends */)
 
-                    DTO_FIELD_INFO(id) {
-                    info->description = "Unique identifier for each member";
+                DTO_FIELD_INFO(id) {
+                info->description = "Unique identifier for each member";
                 }
                 DTO_FIELD(oatpp::UInt32, id);
 
@@ -235,8 +235,111 @@ namespace primus
                     info->description = "Department name of the member";
                 }
                 DTO_FIELD(oatpp::String, departmentName);
-
             };
+
+            class MemberWithAdressDto : public oatpp::DTO
+            {
+                DTO_INIT(MemberWithAdressDto, DTO /*extends*/);
+
+                DTO_FIELD_INFO(memberId) {
+                    info->description = "Unique identifier for each member";
+                }
+                DTO_FIELD(oatpp::UInt32, memberId);
+
+                DTO_FIELD_INFO(firstName) {
+                    info->description = "First name of the member";
+                }
+                DTO_FIELD(oatpp::String, firstName);
+
+                DTO_FIELD_INFO(lastName) {
+                    info->description = "Last name of the member";
+                }
+                DTO_FIELD(oatpp::String, lastName);
+
+                DTO_FIELD_INFO(email) {
+                    info->description = "Email address of the member";
+                }
+                DTO_FIELD(oatpp::String, email);
+
+                DTO_FIELD_INFO(phoneNumber) {
+                    info->description = "Phone number of the member";
+                }
+                DTO_FIELD(oatpp::String, phoneNumber);
+
+                DTO_FIELD_INFO(birthDate) {
+                    info->description = "Birth date of the member";
+                }
+                DTO_FIELD(oatpp::String, birthDate);
+
+                DTO_FIELD_INFO(createDate) {
+                    info->description = "Date when the member was created";
+                }
+                DTO_FIELD(oatpp::String, createDate);
+
+                DTO_FIELD_INFO(notes) {
+                    info->description = "Additional notes about the member";
+                }
+                DTO_FIELD(oatpp::String, notes);
+
+                DTO_FIELD_INFO(active) {
+                    info->description = "Whether or not the member is activated";
+                }
+                DTO_FIELD(oatpp::Boolean, active) = true;
+
+                DTO_FIELD_INFO(addressId) {
+                    info->description = "Unique identifier for the address";
+                }
+                DTO_FIELD(oatpp::UInt32, addressId);
+
+                DTO_FIELD_INFO(zipCode) {
+                    info->description = "ZIP code of the address";
+                }
+                DTO_FIELD(oatpp::String, zipCode);
+
+                DTO_FIELD_INFO(city) {
+                    info->description = "City of the address";
+                }
+                DTO_FIELD(oatpp::String, city);
+
+                DTO_FIELD_INFO(state) {
+                    info->description = "State of the address";
+                }
+                DTO_FIELD(oatpp::String, state);
+
+                DTO_FIELD_INFO(houseNumber) {
+                    info->description = "House number of the address";
+                }
+                DTO_FIELD(oatpp::String, houseNumber);
+
+                DTO_FIELD_INFO(street) {
+                    info->description = "Street of the address";
+                }
+                DTO_FIELD(oatpp::String, street);
+
+                void loadMemberDto(oatpp::Object<MemberDto>&& dto)
+                {
+                    memberId    = std::move(dto->id         );
+                    firstName   = std::move(dto->firstName  );
+                    lastName    = std::move(dto->lastName   );
+                    email       = std::move(dto->email      );
+                    phoneNumber = std::move(dto->phoneNumber);
+                    birthDate   = std::move(dto->birthDate  );
+                    createDate  = std::move(dto->createDate );
+                    notes       = std::move(dto->notes      );
+                    active      = std::move(dto->active     );
+                }
+
+                void loadAddressDto(oatpp::Object<AddressDto>&& dto)
+                {
+                    addressId   = std::move(dto->id         );
+                    zipCode     = std::move(dto->zipCode    );
+                    city        = std::move(dto->city       );
+                    state       = std::move(dto->state      );
+                    houseNumber = std::move(dto->houseNumber);
+                    street      = std::move(dto->street     );
+                }
+            };
+
 #include OATPP_CODEGEN_END(DTO)
         } // namespace database
     } // namespace dto
