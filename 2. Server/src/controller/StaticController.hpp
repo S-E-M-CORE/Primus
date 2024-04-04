@@ -2,7 +2,9 @@
 #include "oatpp/core/macro/codegen.hpp"
 #include "oatpp/core/macro/component.hpp"
 #include "oatpp/web/protocol/http/outgoing/BufferBody.hpp"
+#include <iostream>
 #include <fstream>
+#include <sstream>
 
 #include "general/constants.hpp"
 
@@ -31,25 +33,25 @@ namespace primus {
                 {
                     return std::make_shared<StaticController>(objectMapper);
                 }
-
+                
                 // Funktion zum Lesen von Dateien
-                oatpp::String readFile(const char* filename)
-                {
-                    std::ifstream file(filename);
-                    if (file)
-                    {
-                        OATPP_LOGI(primus::constants::apicontroller::static_endpoint::logName, "File at %s found", filename);
-                        std::string content((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
-
-                        return oatpp::String(content.c_str(), content.size());
-                    }
-                    else
-                    {
-                        OATPP_LOGI(primus::constants::apicontroller::static_endpoint::logName, "File at %s was not found", filename);
-
-                        return "File not found!";
-                    }
-                }
+                // std::string readFile(const char* filename)
+                // {
+                //     std::ifstream file(filename);
+                //     if (file)
+                //     {
+                //         OATPP_LOGI(primus::constants::apicontroller::static_endpoint::logName, "File at %s found", filename);
+                //         std::string content((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
+                // 
+                //         return std::string(content.c_str(), content.size());
+                //     }
+                //     else
+                //     {
+                //         OATPP_LOGI(primus::constants::apicontroller::static_endpoint::logName, "File at %s was not found", filename);
+                // 
+                //         return std::string("File not found!");
+                //     }
+                // }
 
                 ENDPOINT("GET", "/web/*", files,
                     REQUEST(std::shared_ptr<IncomingRequest>, request))
@@ -67,12 +69,27 @@ namespace primus {
 
                     OATPP_LOGI(primus::constants::apicontroller::static_endpoint::logName, "Serving file: %s", filePath.c_str());
 
-                    oatpp::String buffer = readFile(filePath.c_str());
+                    std::ifstream file(filePath, std::ios::binary);
+                    if (file.good())
+                    {
+                        OATPP_LOGI(primus::constants::apicontroller::static_endpoint::logName, "File at %s found", filePath.c_str());
 
-                    OATPP_LOGI(primus::constants::apicontroller::static_endpoint::logName, "Processed request to serve file: %s", request->getPathTail()->c_str());
-                    OATPP_LOGI(primus::constants::apicontroller::static_endpoint::logName, primus::constants::apicontroller::static_endpoint::logSeperation);
+                        std::ostringstream content;
+                        content << file.rdbuf();
 
-                    return createResponse(Status::CODE_200, buffer);
+                        file.close();
+
+                        OATPP_LOGI(primus::constants::apicontroller::static_endpoint::logName, "Processed request to serve file: %s", request->getPathTail()->c_str());
+                        OATPP_LOGI(primus::constants::apicontroller::static_endpoint::logName, primus::constants::apicontroller::static_endpoint::logSeperation);
+
+                        return createResponse(Status::CODE_200, content.str());
+                    }
+                    else
+                    {
+                        OATPP_LOGI(primus::constants::apicontroller::static_endpoint::logName, "File at %s was not found", filePath.c_str());
+
+                        return createResponse(Status::CODE_404, "NOT FOUND");
+                    }
                 }
 
                 // Endpunkt f�r die Indexseite
