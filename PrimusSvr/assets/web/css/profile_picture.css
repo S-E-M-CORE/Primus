@@ -1,0 +1,56 @@
+
+
+
+/* Profile_picture.css */
+
+/* Stil für das Bild */
+.image 
+{
+    width: 15%;
+    height: 95%; /* Automatische Höhe beibehalten */
+}
+
+/* Stil für den Container, der das Hintergrundbild und den Text enthält */
+.image-container 
+{
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+}
+
+/* Stil für das Hintergrundbild */
+.background-image 
+{
+    position: absolute;    
+    /* top: 4%;
+    left: 0.8%;
+    width:  30%;
+    height: 80%; */
+    background-image: url('../../assets/blank_Profile_Image.png'); /* Pfad zum Hintergrundbild */
+    background-size: cover;
+    opacity: 0; /* Anfangs unsichtbar */
+    transition: opacity 0.3s ease; /* Übergangseffekt für die Opazität */
+}
+
+/* Stil für den Text */
+.hover-text 
+{
+    position: absolute;
+    top: 20%; /* In der Mitte der Höhe des Containers positionieren */
+    left: 15%; /* In der Mitte der Breite des Containers positionieren */
+    transform: translate(-50%, -50%); /* Zentrieren des Textes */
+    color: rgb(41, 39, 39); /* Farbe des Textes */
+    font-size: 20px; /* Größe des Textes anpassen */
+    text-align: center; /* Text zentrieren */
+    opacity: 0; /* Anfangs unsichtbar */
+    transition: opacity 0.3s ease; /* Übergangseffekt für die Opazität */
+}
+
+/* Stil für den Container, wenn der Benutzer mit der Maus über das Bild fährt */
+.image-container:hover .background-image {
+    opacity: 0.7; /* Hintergrundbild sichtbar machen */
+}
+
+.image-container:hover .hover-text {
+    opacity: 1; /* Text sichtbar machen */
+}

@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="sidebars.css">
+    <title>Primus</title>
+</head>
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+    <!--Muss noch bearbeitet werden-->
+    <header>
+        <div class="navbar navbar-dark bg-dark shadow-sm">
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a href="/1. Frontend/Website/Index_Files/index.html" class="navbar-brand d-flex align-items-center">  
+                <strong>Logo</strong>
+            </a>
+        </div>
+      </header>
+
+        <!--Die Side bar on the left Side-->
+        <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
+            <div class="offcanvas-header startSide">
+                <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Verzeichnis</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <p><a href="/1. Frontend/Website/Index_Files/index.html" class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Startseite</a></p>
+                <p><a href="/1. Frontend/Website/Index_Files/Member/Member_Tabelle.html" class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Mitgliederliste</a></p>
+                <p><a href="/1. Frontend/Website/Index_Files/Member/Member_Create.html" class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Neues Mitglied anlegen</a></p>
+                <p><a href="/1. Frontend/Website/Index_Files/Nodes/nodes_birthday.html" class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Geburtstagserinnerung</a></p>
+                <p><a href="/1. Frontend/Website/Index_Files/Nodes/nodes_To_Do_Liste.html" class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">To-Do-Liste</a></p>
+            </div>
+        </div>
+
+
+
+<main>  
+    <div class="container-fluid">
+        <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <svg class="bd-placeholder-img" width="100wv" height="80vh" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
+                        <rect width="100%" height="100%" fill="var(--bs-secondary-color)"/>
+                    </svg>
+                    <div class="container">
+                    <div class="carousel-caption text-start">
+                        <h1>Geburtstagserinnerung</h1>
+                        <p class="opacity-75">
+                            Hier werden die nächsten Geburtstage in chronologischer Rheinfolge angezeigt.
+                        </p>
+                        <p>
+                            <a class="btn btn-lg btn-primary" href="\Website\Index_Files\Nodes\nodes_birthday.html">Notiz/Errinnerung anlegen</a>
+                        </p>
+                    </div>
+                    </div>
+                </div>
+            <div class="carousel-item">
+                <svg class="bd-placeholder-img" width="100wv" height="80vh" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
+                    <rect width="100%" height="100%" fill="var(--bs-secondary-color)"/>
+                </svg>
+                <div class="container">
+                    
+                    <div class="carousel-caption">
+                        <!-- Hier stehen offene Aufgaben oder Notizen des Benutzer der den Schießverein verwaltet. -->
+                        <h1>To-DO-Liste</h1>
+                        <p> Bitte nur offene Aufgaben oder Notizen hinzufügen</p>   <!-- Noitzen werden extern gespeichert.-->
+                        
+                        <div class="row">
+                            <p>
+                                <a class="btn btn-lg btn-primary" href="#">als gelesen markieren.</a> 
+                                <a class="btn btn-lg btn-primary" href="#">als fertig markieren.</a>
+                            </p>
+                            <p id = "newToDo">
+                                <a class="btn btn-lg btn-primary" href="Website\Index_Files\Nodes\nodes.html">neue "to-does" hinzufügen.</a>
+                            </p> <!-- Es gibt immer eine große To-DO-Liste wo alles gespeichert wird. Grund spart platz und wir brauche ehe nicht mehr als 1 To-DO-Liste -->
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <svg class="bd-placeholder-img" width="100wv" height="80vh" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
+                    <rect width="100%" height="100%" fill="var(--bs-secondary-color)"/>
+                </svg>
+                <div class="container">
+                    <div class="carousel-caption text-end">
+                        <h1>Events</h1>
+                        <p>Hier werden bestimmte Events in chronologischer Rheinfolge angezeigt</p>
+                        <div class="row">
+                            <p><a class="btn btn-lg btn-primary" href="#">neue Events eintragen</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+
+     <!-- 
+            <div class="row">    
+            
+        </div>
+     -->
+    </div>     
+
+    <div class="album py-5 bg-light">
+        <div class="container">
+
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+
+            <!-- Erste Mitgliederkarte -->
+            <div class="col">
+                <div class="card shadow-sm">
+                <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
+                    <title>Placeholder</title>
+                    <rect width="100%" height="100%" fill="#55595c"/>
+                    <text x="50%" y="50%" fill="#eceeef" dy=".3em">Mitglied 1</text>
+                </svg>
+                    <div class="card-body">
+                        <p class="card-text"> 
+                            <table>
+                                <tr>
+                                    <ul>Vorname: </ul>
+                                    <ul>Nachname: </ul>
+                                    <ul>Geburtstag: </ul>
+                                </tr>
+                            </table>
+                    
+                        </p>
+                        <div class="d-flex justify-content-between align-items-center">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-sm btn-outline-secondary" onclick="window.location.href = 'Website\Index_Files\Member\Member_display.html';">
+                                Anschauen <!-- Wir wechseln auf die Member_display Website mit den Infomationen des geben Mitgliedes -->
+                            </button>
+                            <button type="button" class="btn btn-sm btn-outline-secondary" onclick="window.location.href = 'Website\Index_Files\Member\Member_Create.html';">
+                                Bearbeiten
+                            </button>
+                        </div>
+                        <small class="text-muted">9 mins</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Zweite Mitgliederkarte -->
+            <div class="col">
+                <div class="card shadow-sm">
+                <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
+                    <title>Placeholder</title>
+                    <rect width="100%" height="100%" fill="#55595c"/>
+                    <text x="50%" y="50%" fill="#eceeef" dy=".3em">Mitglied 2</text>
+                </svg>
+
+                <div class="card-body">
+                    <p class="card-text"> 
+                        <table>
+                            <tr>
+                                <ul>Vorname: </ul>
+                                <ul>Nachname: </ul>
+                                <ul>Geburtstag: </ul>
+                            </tr>
+                        </table>
+                
+                    </p>
+                    <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-sm btn-outline-secondary" onclick="window.location.href = 'Website\Index_Files\Member\Member_display.html';">
+                            Anschauen <!-- Wir wechseln auf die Member_display Website mit den Infomationen des geben Mitgliedes -->
+                        </button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary" onclick="window.location.href = 'Website\Index_Files\Member\Member_Create.html';">
+                            Bearbeiten
+                        </button>                        
+                    </div>
+                    <small class="text-muted">9 mins</small>
+                    </div>
+                </div>
+                </div>
+            </div>
+
+            <!-- dritte Mitgliederkarte -->
+            <div class="col">
+                <div class="card shadow-sm">
+                <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
+                    <title>Placeholder</title>
+                    <rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Mitglied 1</text>
+                </svg>
+
+                <div class="card-body">
+                    <p class="card-text"> 
+                        <table>
+                            <tr>
+                                <ul>Vorname: </ul>
+                                <ul>Nachname: </ul>
+                                <ul>Geburtstag: </ul>
+                            </tr>
+                        </table>
+                
+                    </p>
+                    <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-sm btn-outline-secondary">Anschauen</button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary">Bearbeiten</button>                        
+                    </div>
+                    <small class="text-muted">9 mins</small>
+                    </div>
+                </div>
+                </div>
+            </div>
+
+            <!-- Vierte Mitgliederkarte -->
+            <div class="col">
+                <div class="card shadow-sm">
+                <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
+                    <title>Placeholder</title>
+                    <rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Mitglied 1</text>
+                </svg>
+
+                <div class="card-body">
+                    <p class="card-text"> 
+                        <table>
+                            <tr>
+                                <ul>Vorname: </ul>
+                                <ul>Nachname: </ul>
+                                <ul>Geburtstag: </ul>
+                            </tr>
+                        </table>
+                
+                    </p>
+                    <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-sm btn-outline-secondary">Anschauen</button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary">Bearbeiten</button>
+                    </div>
+                    <small class="text-muted">9 mins</small>
+                    </div>
+                </div>
+                </div>
+            </div>
+
+            <!-- Fünfte Mitgliederkarte -->
+            <div class="col">
+                <div class="card shadow-sm">
+                <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
+                    <title>Placeholder</title>
+                    <rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Mitglied 1</text>
+                </svg>
+
+                <div class="card-body">
+                    <p class="card-text"> 
+                        <table>
+                            <tr>
+                                <ul>Vorname: </ul>
+                                <ul>Nachname: </ul>
+                                <ul>Geburtstag: </ul>
+                            </tr>
+                        </table>
+                
+                    </p>
+                    <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-sm btn-outline-secondary">Anschauen</button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary">Bearbeiten</button>
+                    </div>
+                    <small class="text-muted">9 mins</small>
+                    </div>
+                </div>
+                </div>
+            </div>
+
+            <!-- Sechste Mitgliederkarte -->
+            <div class="col">
+                <div class="card shadow-sm">
+                <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
+                    <title>Placeholder</title>
+                    <rect width="100%" height="100%" fill="#55595c"/>
+                    <text x="50%" y="50%" fill="#eceeef" dy=".3em">Mitglied 1</text>
+                </svg>
+
+                <div class="card-body">
+                    <p class="card-text"> 
+                        <table>
+                            <tr>
+                                <ul>Vorname: </ul>
+                                <ul>Nachname: </ul>
+                                <ul>Geburtstag: </ul>
+                            </tr>
+                        </table>
+                
+                    </p>
+                    <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-sm btn-outline-secondary">Anschauen</button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary">Bearbeiten</button>
+                    </div>
+                    <small class="text-muted">9 mins</small>
+                    </div>
+                </div>
+                </div>
+            </div>
+
+            <!-- Siebte Mitgliederkarte -->
+            <div class="col">
+                <div class="card shadow-sm">
+                <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
+                    <title>Placeholder</title>
+                    <rect width="100%" height="100%" fill="#55595c"/>
+                    <text x="50%" y="50%" fill="#eceeef" dy=".3em">Mitglied 1</text>
+                </svg>
+
+                <div class="card-body">
+                    <p class="card-text"> 
+                        <table>
+                            <tr>
+                                <ul>Vorname: </ul>
+                                <ul>Nachname: </ul>
+                                <ul>Geburtstag: </ul>
+                            </tr>
+                        </table>
+                
+                    </p>
+                    <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-sm btn-outline-secondary">Anschauen</button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary">Bearbeiten</button>  
+                    </div>
+                    <small class="text-muted">9 mins</small>
+                    </div>
+                </div>
+                </div>
+            </div>
+
+            <!-- Achte Mitgliederkarte -->
+            <div class="col">
+                <div class="card shadow-sm">
+                <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
+                    <title>Placeholder</title>
+                    <rect width="100%" height="100%" fill="#55595c"/>
+                    <text x="50%" y="50%" fill="#eceeef" dy=".3em">Mitglied 1</text>
+                </svg>
+
+                    <div class="card-body">
+                        <p class="card-text"> 
+                            <table>
+                                <tr>
+                                    <ul>Vorname: </ul>
+                                    <ul>Nachname: </ul>
+                                    <ul>Geburtstag: </ul>
+                                </tr>
+                            </table>
+                    
+                        </p>
+                        <div class="d-flex justify-content-between align-items-center">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-sm btn-outline-secondary">Anschauen</button>
+                            <button type="button" class="btn btn-sm btn-outline-secondary">Bearbeiten</button>                          
+                        </div>
+                        <small class="text-muted">9 mins</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- neunte Mitgliederkarte -->
+            <div class="col">
+                <div class="card shadow-sm">
+                <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Mitglied 1</text></svg>
+
+                <div class="card-body">
+                    <p class="card-text"> 
+                        <table>
+                            <tr>
+                                <ul>Vorname: </ul>
+                                <ul>Nachname: </ul>
+                                <ul>Geburtstag: </ul>
+                            </tr>
+                        </table>
+                
+                    </p>
+                    <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-sm btn-outline-secondary">Anschauen</button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary">Bearbeiten</button>  
+                    </div>
+                    <small class="text-muted">9 mins</small>
+                    </div>
+                </div>
+                </div>
+            </div>
+
+            </div>
+        </div>
+    </div>    
+
+
+
+
+
+
+
+<!--Hero PLatzhalter oder für zusätzliche Infomationen-->
+<div class="b-example-divider"></div>
+
+<div class="container my-5">
+    <div class="row p-4 pb-0 pe-lg-0 pt-lg-5 align-items-center rounded-3 border shadow-lg">
+    <div class="col-lg-7 p-3 p-lg-5 pt-lg-3">
+        <h1 class="display-4 fw-bold lh-1 text-body-emphasis"> Überschrift</h1>
+        <p class="lead">Info Text zum Bild und deren Infomationen. Die Buttons zum weiterleiten</p>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-4 mb-lg-3">
+        <button type="button" class="btn btn-primary btn-lg px-4 me-md-2 fw-bold">Primary</button>
+        <button type="button" class="btn btn-outline-secondary btn-lg px-4">Default</button>
+        </div>
+    </div>
+    <div class="col-lg-4 offset-lg-1 p-0 overflow-hidden shadow-lg">
+        <img class="rounded-lg-3" src="" alt="Bildliche Infomationen" width="720">
+    </div>
+    </div>
+</div>
+
+
+
+</main>
+
+
+
+
+
+
+
+</body>
+</html>
