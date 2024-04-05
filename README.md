@@ -1,7 +1,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/theSaschaM/BSFI22D_Primus/">
-    <img src="5. Assets/General/Logo - Der glühende Colt 512x512.jpg" alt="Logo" width="150" height="150">
+    <img src="ProjectAssets/General/Logo - Der glühende Colt 512x512.jpg" alt="Logo" width="150" height="150">
   </a>
 
   <h3 align="center">Primus - Der glühende Colt</h3>
