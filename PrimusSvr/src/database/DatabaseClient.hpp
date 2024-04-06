@@ -14,6 +14,11 @@ namespace primus
     namespace component
     {
 #include OATPP_CODEGEN_BEGIN(DbClient) //<- Begin Codegen
+        //  ____        _        _                     ____ _ _            _   
+        // |  _ \  __ _| |_ __ _| |__   __ _ ___  ___ / ___| (_) ___ _ __ | |_ 
+        // | | | |/ _` | __/ _` | '_ \ / _` / __|/ _ \ |   | | |/ _ \ '_ \| __|
+        // | |_| | (_| | || (_| | |_) | (_| \__ \  __/ |___| | |  __/ | | | |_ 
+        // |____/ \__,_|\__\__,_|_.__/ \__,_|___/\___|\____|_|_|\___|_| |_|\__|
         /**
          * @brief DatabaseClient class represents a client to interact with the database.
          */
@@ -23,7 +28,6 @@ namespace primus
             typedef primus::dto::database::DepartmentDto    DepartmentDto;
             typedef primus::dto::database::MemberDto        MemberDto;
         public:
-
             /**
              * Constructor to initialize the DatabaseClient.
              * @param executor - shared pointer to oatpp executor.
@@ -43,12 +47,11 @@ namespace primus
                 OATPP_LOGI(primus::constants::databaseclient::logName,"Migration - OK. Version=%lld.", version);
             }
 
-            //                           _                                     _ 
-            //  _ __ ___   ___ _ __ ___ | |__   ___ _ __    ___ _ __ _   _  __| |
-            // | '_ ` _ \ / _ \ '_ ` _ \| '_ \ / _ \ '__|  / __| '__| | | |/ _` |
-            // | | | | | |  __/ | | | | | |_) |  __/ |    | (__| |  | |_| | (_| |
-            // |_| |_| |_|\___|_| |_| |_|_.__/ \___|_|     \___|_|   \__,_|\__,_|
-            // But no delete...
+            //                           _               
+            //  _ __ ___   ___ _ __ ___ | |__   ___ _ __ 
+            // | '_ ` _ \ / _ \ '_ ` _ \| '_ \ / _ \ '__|
+            // | | | | | |  __/ | | | | | |_) |  __/ |   
+            // |_| |_| |_|\___|_| |_| |_|_.__/ \___|_|   
 
             /**
             * Retrieves a member by id
@@ -191,11 +194,11 @@ namespace primus
                 " ORDER BY id ASC",
                 PARAM(oatpp::UInt32, id));
 
-            //            _     _                                         _ 
-            //   __ _  __| | __| |_ __ ___  ___ ___    ___ _ __ _   _  __| |
-            //  / _` |/ _` |/ _` | '__/ _ \/ __/ __|  / __| '__| | | |/ _` |
-            // | (_| | (_| | (_| | | |  __/\__ \__ \ | (__| |  | |_| | (_| |
-            //  \__,_|\__,_|\__,_|_|  \___||___/___/  \___|_|   \__,_|\__,_|
+            //            _     _                   
+            //   __ _  __| | __| |_ __ ___  ___ ___ 
+            //  / _` |/ _` |/ _` | '__/ _ \/ __/ __|
+            // | (_| | (_| | (_| | | |  __/\__ \__ \
+            //  \__,_|\__,_|\__,_|_|  \___||___/___/
 
             QUERY(createAddress,
                 " INSERT INTO Address (postalCode, city, country, houseNumber, street) "
@@ -244,7 +247,7 @@ namespace primus
             QUERY(getAttendancesOfMember,
                 " SELECT date FROM Attendance "
                 " WHERE member_id = :member_id "
-                " ORDER BY date "
+                " ORDER BY date DESC "
                 " LIMIT :limit OFFSET :offset;",
                 PARAM(oatpp::UInt32, member_id),
                 PARAM(oatpp::UInt32, limit),
@@ -273,6 +276,27 @@ namespace primus
             QUERY(associateDepartmentWithMember, "INSERT INTO Department_Member (department_id, member_id) VALUES (:departmentId, :memberId);", PARAM(oatpp::UInt32, departmentId), PARAM(oatpp::UInt32, memberId));
             QUERY(disassociateDepartmentFromMember, "DELETE FROM Department_Member WHERE department_id = :departmentId AND member_id = :memberId;", PARAM(oatpp::UInt32, departmentId), PARAM(oatpp::UInt32, memberId));
 
+            // __      _____  __ _ _ __   ___  _ __       
+            // \ \ /\ / / _ \/ _` | '_ \ / _ \| '_ \      
+            //  \ V  V /  __/ (_| | |_) | (_) | | | |     
+            //   \_/\_/ \___|\__,_| .__/ \___/|_| |_|     
+            //  _ __  _   _ _ __ _|_| |__   __ _ ___  ___ 
+            // | '_ \| | | | '__/ __| '_ \ / _` / __|/ _ \
+            // | |_) | |_| | | | (__| | | | (_| \__ \  __/
+            // | .__/ \__,_|_|  \___|_| |_|\__,_|___/\___|
+            // |_|                                        
+
+            QUERY(getCountOfMemberAttendancesInLastYear,
+                " SELECT COUNT(*) as value "
+                " FROM Attendance WHERE member_id = :memberId AND date >= DATE('now', '-1 year');",
+                PARAM(oatpp::UInt32, memberId));
+
+            QUERY(countDistinctAttendentMontsWithinLastYear,
+                " SELECT COUNT(DISTINCT strftime('%m', date)) AS value "
+                " FROM Attendance "
+                " WHERE date >= DATE('now', '-1 year') "
+                " AND member_id = :memberId; ",
+                PARAM(oatpp::UInt32, memberId));
         };
 
 #include OATPP_CODEGEN_END(DbClient) ///< End code-gen section

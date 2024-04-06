@@ -12,6 +12,11 @@ namespace primus
     {
         namespace database
         {
+            //     _       _     _                   ____  _        
+            //    / \   __| | __| |_ __ ___  ___ ___|  _ \| |_ ___  
+            //   / _ \ / _` |/ _` | '__/ _ \/ __/ __| | | | __/ _ \ 
+            //  / ___ \ (_| | (_| | | |  __/\__ \__ \ |_| | || (_) |
+            // /_/   \_\__,_|\__,_|_|  \___||___/___/____/ \__\___/ 
             class AddressDto : public oatpp::DTO
             {
                 /**
@@ -51,6 +56,11 @@ namespace primus
 
             };
 
+            //  ____        _       ____  _        
+            // |  _ \  __ _| |_ ___|  _ \| |_ ___  
+            // | | | |/ _` | __/ _ \ | | | __/ _ \ 
+            // | |_| | (_| | ||  __/ |_| | || (_) |
+            // |____/ \__,_|\__\___|____/ \__\___/ 
             /**
              * @brief DTO class representing a single Date.
              */
@@ -59,9 +69,15 @@ namespace primus
 
                 DTO_INIT(DateDto, DTO)
 
-                DTO_FIELD(oatpp::String, date);
+                    DTO_FIELD(oatpp::String, date);
             };
 
+            //  ____                        _                        _   ____  _        
+            // |  _ \  ___ _ __   __ _ _ __| |_ _ __ ___   ___ _ __ | |_|  _ \| |_ ___  
+            // | | | |/ _ \ '_ \ / _` | '__| __| '_ ` _ \ / _ \ '_ \| __| | | | __/ _ \ 
+            // | |_| |  __/ |_) | (_| | |  | |_| | | | | |  __/ | | | |_| |_| | || (_) |
+            // |____/ \___| .__/ \__,_|_|   \__|_| |_| |_|\___|_| |_|\__|____/ \__\___/ 
+            //            |_|                                                           
             /**
              * @brief DTO class representing a department.
              */
@@ -82,15 +98,19 @@ namespace primus
 
             };
 
+            //  __  __                _               ____  _        
+            // |  \/  | ___ _ __ ___ | |__   ___ _ __|  _ \| |_ ___  
+            // | |\/| |/ _ \ '_ ` _ \| '_ \ / _ \ '__| | | | __/ _ \ 
+            // | |  | |  __/ | | | | | |_) |  __/ |  | |_| | || (_) |
+            // |_|  |_|\___|_| |_| |_|_.__/ \___|_|  |____/ \__\___/ 
             /**
              * @brief DTO class representing a member.
              */
             class MemberDto : public oatpp::DTO
             {
+                DTO_INIT(MemberDto, DTO /* extends */);
 
-                DTO_INIT(MemberDto, DTO /* extends */)
-
-                    DTO_FIELD_INFO(id) {
+                DTO_FIELD_INFO(id) {
                     info->description = "Unique identifier for each member";
                 }
                 DTO_FIELD(oatpp::UInt32, id);
