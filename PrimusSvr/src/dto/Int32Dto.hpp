@@ -35,7 +35,7 @@ namespace primus
             DTO_INIT(Int32Dto, DTO);
 
             DTO_FIELD_INFO(value) {
-                info->description = "General value of a single unsigned int";
+                info->description = "General value of a single signed int";
             }
             DTO_FIELD(oatpp::Int32, value);
 
