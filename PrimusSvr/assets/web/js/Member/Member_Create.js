@@ -47,23 +47,19 @@ async function getUserInput()
 
 async function uploadMember(memberData)
 {
-// Member erstellen und in der Datenbank speichern
-try 
-{
-    // Member erstellen und Antwort abwarten
-    let response = await client.createMember(memberData);
-    // Antwort verarbeiten (z. B. Erfolg oder Fehlermeldung anzeigen)
-    console.log(response);
-} 
-catch (error) 
-{
-    console.error("Fehler beim Erstellen des Mitglieds:", error);
+    // Member erstellen und in der Datenbank speichern
+    try 
+    {
+        // Member erstellen und Antwort abwarten
+        let response = await client.createMember(memberData);
+        // Antwort verarbeiten (z. B. Erfolg oder Fehlermeldung anzeigen)
+        console.log(response);
+    } 
+    catch (error) 
+    {
+        console.error("Fehler beim Erstellen des Mitglieds:", error);
+    }
 }
-}
-
-
-
-
 
 
 // Event-Listener für den Button hinzufügen

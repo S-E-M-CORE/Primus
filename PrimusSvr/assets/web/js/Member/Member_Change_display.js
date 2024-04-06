@@ -8,15 +8,15 @@ displayController();
 
 async function displayController()
 {
-    let memberData = await displayMemberData();       // gibt uns das Adresse Jason Objekt.
-    //let adresseData = displayAdresseData();     // gibt uns das Adresse Jason Objekt.
+    let memberData      = await getMemberData();       // gibt uns das Adresse Jason Objekt.
+    let adresseData     = await getAdresseData();     // gibt uns das Adresse Jason Objekt.
+    let DepartmentData  = await getDepartment();
 
-    adresseData = 1; // Damit es funktioniert muss auf Sascha warten. 
-
-    updateHTML(memberData, adresseData);        // ändert den angezeigten Text.
+    
+    updateHTML(memberData, adresseData, DepartmentData);        // ändert den angezeigten Text.
 }
 
-async function displayMemberData() 
+async function getMemberData() 
 {
     try 
     {
@@ -26,7 +26,6 @@ async function displayMemberData()
         const memberData = await apiClient.getMemberById(memberId);
         JSON.stringify(memberData);
         return memberData;
-
     } 
     catch (error) 
     {
@@ -37,45 +36,47 @@ async function displayMemberData()
 
 /*
 */ 
-async function displayAdresseData()
+async function getAdresseData()
 {
     try 
     {
         const memberId = 2; // Beispielhaft festgelegte Mitglieds-ID
+        const attributes = 'addresses';
+        const limit = 2;
         const apiClient = new PrimusApiClient(`http://localhost:8000`);
 
-        const adresseData = await apiClient.getMemberById(memberId);
-        JSON.stringify(memberData);
-        return memberData;
+        const addresseData = await apiClient.getMemberList(memberId, attributes, 0, limit);
+        JSON.stringify(addresseData);
+        return addresseData;
 
+    } 
+    catch (error) 
+    {
+        console.error('Fehler beim Abrufen der Adressedaten:', error);
+        // Hier kannst du die Fehlerbehandlung ergänzen, z.B. eine Fehlermeldung auf der Seite anzeigen
+    }
+}
+
+/**/
+async function getDepartment()
+{
+    try 
+    {
+        const memberId = 2; // Beispielhaft festgelegte Mitglieds-ID
+        const attributes = 'departments';
+        const limit = 2;
+        const apiClient = new PrimusApiClient(`http://localhost:8000`);
+
+        const DepartmentData = await apiClient.getMemberList(memberId, attributes, 0, limit);
+        JSON.stringify(DepartmentData);
+        return DepartmentData;
     } 
     catch (error) 
     {
         console.error('Fehler beim Abrufen der Mitgliedsdaten:', error);
         // Hier kannst du die Fehlerbehandlung ergänzen, z.B. eine Fehlermeldung auf der Seite anzeigen
-    }
-} 
-
-
-
-// async function getuserinput() 
-// {
-//     // benutzereingaben erfassen
-//     let firstname = document.getelementbyid("firstname").value;
-//     let lastname = document.getelementbyid("lastname").value;
-//     let birthdate = document.getelementbyid("birth_date").value;
-//     let postalcode = document.getelementbyid("poz").value;
-//     let residence = document.getelementbyid("residence").value;
-//     let street = document.getelementbyid("street").value;
-//     let housenumber = document.getelementbyid("h_number").value;
-//     let email = document.getelementbyid("member_email").value;
-//     let phonenumber = document.getelementbyid("telenumber").value;
-//     let joindate = document.getelementbyid("date").value;
-//     let notes = document.queryselector("textarea").value;
-//     let membership = document.queryselector("select").value;
-// }
-
-
+    } 
+}
 
 /*
 Die Funktion ist dazu alle infomationen die von allen benötigten Jason Objekten kommen  
@@ -84,13 +85,14 @@ Parameters:
     memberData - zeigen Vorname
     adresseData - zeigen Postleitzahl, Wohnort, Straßename, Hausnummer
 */
-function updateHTML(memberData , adresseData) 
+function updateHTML(memberData , adresseData, DepartmentData) 
 {
     error_DB_Anomalie(memberData, adresseData);     // wir überprüfen die Ressource die wir bekommen haben.
 
-    let currentUserMember   = memberData[0];    // 0 weil wir nur nach einem User Fragen wollen.
-    let currentUserAdresse   = adresseData[0];   //
-    
+    let currentUserMember       = memberData[0];            // 0 weil wir nur nach einem User Fragen wollen.
+    let currentUserAdresse      = adresseData.items[0];     //
+    let CurrentUserDepartment   = DepartmentData.items[0];  //
+
     /* 
         currentUserMember
     */
@@ -101,33 +103,39 @@ function updateHTML(memberData , adresseData)
     inputElement_LastName.value = currentUserMember.lastName;    
 
     var inputElement_birth_date = document.getElementById('birth_date');    
-    birth_date.value = currentUserMember.birthDate;  
-
+    inputElement_birth_date.value = currentUserMember.birthDate;  
 
     /*
         currentUserAdresse
     */
-    //var inputElement_Poz = document.getElementById('Poz');    
-    //inputElement_Poz.value = currentUserAdresse.firstName;           //     
-//
-    //var inputElement_residence = document.getElementById('residence');    
-    //inputElement_residence.value = currentUserAdresse.city;           // 
-//
-    //var inputElement_street = document.getElementById('street');    
-    //inputElement_street.value = currentUserAdresse.street;           // 
-//
-    //var inputElement_H_Number = document.getElementById('H_Number');    
-    //inputElement_H_Number.value = currentUserAdresse.houseNumber;           // 
+    var inputElement_Poz = document.getElementById('Poz');    
+    inputElement_Poz.value = currentUserAdresse.postalCode;           //     
+
+    var inputElement_residence = document.getElementById('residence');    
+    inputElement_residence.value = currentUserAdresse.city;           // 
+
+    var inputElement_street = document.getElementById('street');    
+    inputElement_street.value = currentUserAdresse.street;           // 
+
+    var inputElement_H_Number = document.getElementById('H_Number');    
+    inputElement_H_Number.value = currentUserAdresse.houseNumber;           // 
+
+
+
+    // ('Member_email').textContent = ${currentUserMember.email}
+    // ('phoneNumber').textContent =  ${currentUserMember.phoneNumber}
+
+
+
 
 
     /*
-
+        CurrentUserDepartment
     */
-
+    var inputDepartment = document.getElementById('Department');
 
     
-    // ('Member_email').textContent = ${currentUserMember.email}
-    // ('phoneNumber').textContent =  ${currentUserMember.phoneNumber}
+
     
 
 

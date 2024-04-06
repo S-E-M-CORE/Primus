@@ -98,7 +98,7 @@
                 <div class="col-2">
                     <p>
                         <label for="birth_date">Geburtstag: </label>
-                        <input type="date" id="birth_date" />
+                        <input type="date" id="birth_date">
                     </p>
                     <br><br>
                 </div>
@@ -158,6 +158,13 @@
         </div>
 
 
+        <!--
+
+
+        -->
+
+
+
         <div class="container">
             <div class="row">
                 <div class="col-8">
@@ -167,36 +174,26 @@
                     </div>
                 </div>
             </div>
+    
+            <br>
 
             <div class="row">
-                <div class="col-2">
-                    <label>bla</label>
-                    <input type="text" placeholder="BLA BLA">
-                    <br><br>
+                <div class="col-4">
+                    <select class="form-control">
+                        <option id = none>None</option>                   <!-- soll der default Wert sein und es soll überprüft werden das es nicht (None == true) ist. Sonst kann das Mitglied micht erstellt werden-->
+                            <option id = onlyBow>nur Bogenschießen</option>
+                            <option id = onlyAirgun>Nur Luftdruckwaffen</option>
+                            <option id = onlyGuns>Nur Feuerwaffen</option>
+                            <option id = everthing>VIP-Paket alle Abteilungen</option>  
+                            <option id = bowAndAirGun>VIP-Paket Bogen und Luft Abteilungen</option>
+                            <option id = bowAndGun>VIP-Paket Bogen und Feuerwaffen Abteilungen</option>
+                            <option id = AirGunAndGun>VIP-Paket Luft und Feuerwaffen Abteilungen</option>
+                    </select>
                 </div>
+                
+                <br><br>
             </div>
 
-            <div class="container">
-                <div class="row">
-                    <div class="col-4">
-                        <select class="form-control">
-                            <option>None</option>                   <!-- soll der default Wert sein und es soll überprüft werden das es nicht (None == true) ist. Sonst kann das Mitglied micht erstellt werden-->
-                            <option>nur Bogenschießen</option>
-                            <option>Nur Luftdruckwaffen</option>
-                            <option>Nur Feuerwaffen</option>
-                            <option>VIP-Paket (kann alle Kurze belegen)</option>  
-                            <!-- 
-                                Sollte diese Option ausgewählt werden. 
-                                Soll mehre Optionen kommen, wo der Benutzer angeben kann. 
-                                Welche Kurze er mit dem VIP-Paket abdecken möchte.
-                            -->
-                        </select>
-                    </div>
-                    
-                    <br><br>
-                </div>
-    
-            </div>
         </div>
 
 
