@@ -14,6 +14,13 @@ namespace primus {
 
 #include OATPP_CODEGEN_BEGIN(ApiController)
 
+
+
+            //  ____  _        _   _       ____            _             _ _           
+            // / ___|| |_ __ _| |_(_) ___ / ___|___  _ __ | |_ _ __ ___ | | | ___ _ __ 
+            // \___ \| __/ _` | __| |/ __| |   / _ \| '_ \| __| '__/ _ \| | |/ _ \ '__|
+            //  ___) | || (_| | |_| | (__| |__| (_) | | | | |_| | | (_) | | |  __/ |   
+            // |____/ \__\__,_|\__|_|\___|\____\___/|_| |_|\__|_|  \___/|_|_|\___|_|   
             class StaticController : public oatpp::web::server::api::ApiController
             {
             public:
@@ -88,7 +95,16 @@ namespace primus {
                     {
                         OATPP_LOGI(primus::constants::apicontroller::static_endpoint::logName, "File at %s was not found", filePath.c_str());
 
-                        return createResponse(Status::CODE_404, "NOT FOUND");
+                        auto status = primus::dto::StatusDto::createShared();
+
+                        std::string verboseMessage = "File at \"";
+                        verboseMessage.append(filePath.c_str());
+                        verboseMessage.append("\" could not be found");
+
+                        status->code = 404;
+                        status->message = verboseMessage;
+                        status->status = "NOT FOUND";
+                        return createDtoResponse(Status::CODE_404, status);
                     }
                 }
 
@@ -110,28 +126,28 @@ namespace primus {
 
                 // Endpoint Infos
 
-                ENDPOINT_INFO(files) {
+                ENDPOINT_INFO(files)
+                {
                     info->name = "files";
                     info->summary = "Serve static files";
-                    info->description = "Serves static files from the specified directory.";
+                    info->description = "This endpoint serves static files from the '/web' directory.";
                     info->path = "/web/*";
                     info->method = "GET";
-                    info->tags = { "Static" };
-                    info->addResponse<String>(Status::CODE_200, "text/html", "Content of the requested file");
-                    info->addResponse<String>(Status::CODE_404, "text/plain", "File not found");
-                    info->addResponse<String>(Status::CODE_500, "text/plain", "Internal Server Error");
+                    info->addTag("Static File");
+                    info->pathParams["*"].description = "File path relative to the '/web' directory";
+                    info->addResponse<String>(Status::CODE_200, "text/html");
+                    info->addResponse<Object<primus::dto::StatusDto>>(Status::CODE_404, "application/json");
                 }
 
-                ENDPOINT_INFO(root) {
+                ENDPOINT_INFO(root)
+                {
                     info->name = "root";
                     info->summary = "Redirect to web directory";
-                    info->description = "Redirects requests to the root path to the web directory.";
+                    info->description = "This endpoint redirects requests to the root URL to the '/web' directory.";
                     info->path = "/";
                     info->method = "GET";
-                    info->tags = { "Static" };
-                    info->addResponse<String>(Status::CODE_302, "text/plain", "Redirects to /web/");
+                    info->addResponse<String>(Status::CODE_302, "text/html");
                 }
-
             };
 
 #include OATPP_CODEGEN_END(ApiController)

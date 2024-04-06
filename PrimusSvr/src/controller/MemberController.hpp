@@ -9,6 +9,7 @@
 #include "dto/Int32Dto.hpp"
 #include "dto/BooleanDto.hpp"
 #include "general/constants.hpp"
+#include "assert.h"
 
 namespace primus {
     namespace apicontroller {
@@ -18,6 +19,11 @@ namespace primus {
 
 
             using primus::dto::PageDto;
+            //  __  __                _                ____            _             _ _           
+            // |  \/  | ___ _ __ ___ | |__   ___ _ __ / ___|___  _ __ | |_ _ __ ___ | | | ___ _ __ 
+            // | |\/| |/ _ \ '_ ` _ \| '_ \ / _ \ '__| |   / _ \| '_ \| __| '__/ _ \| | |/ _ \ '__|
+            // | |  | |  __/ | | | | | |_) |  __/ |  | |__| (_) | | | | |_| | | (_) | | |  __/ |   
+            // |_|  |_|\___|_| |_| |_|_.__/ \___|_|   \____\___/|_| |_|\__|_|  \___/|_|_|\___|_|   
 
             class MemberController : public oatpp::web::server::api::ApiController
             {
@@ -29,6 +35,7 @@ namespace primus {
                 typedef primus::dto::UInt32Dto UInt32Dto;
                 typedef primus::dto::Int32Dto Int32Dto;
                 typedef primus::dto::BooleanDto BooleanDto;
+                typedef primus::dto::StatusDto StatusDto;
 
             private:
                 OATPP_COMPONENT(std::shared_ptr<primus::component::DatabaseClient>, m_database);
@@ -40,7 +47,6 @@ namespace primus {
                     OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, primus::constants::apicontroller::member_endpoint::logSeperation);
                     OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "MemberController (oatpp::web::server::api::ApiController) initialized");
                     OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, primus::constants::apicontroller::member_endpoint::logSeperation);
-
                 }
 
                 static std::shared_ptr<MemberController> createShared(
@@ -83,7 +89,12 @@ namespace primus {
                     {
                         OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Received request to get a list of members with %s, which is not an available attribute", attribute->c_str());
                         OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Returning CODE 404: NOT FOUND. Available options: birthday, all, active or inactive");
-                        return createResponse(Status::CODE_404, "NOT FOUND");
+
+                        auto status = primus::dto::StatusDto::createShared();
+                        status->code = 404;
+                        status->message = "Received request to get a list of members with invalid attribute. Available options: birthday, all, active or inactive";
+                        status->status = "INVALID ATTRIBUTE";
+                        return createDtoResponse(Status::CODE_200, status);
                     }
                     OATPP_ASSERT_HTTP(dbResult->isSuccess(), Status::CODE_500, dbResult->getErrorMessage());
 
@@ -107,12 +118,26 @@ namespace primus {
                     OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, primus::constants::apicontroller::member_endpoint::logSeperation);
                     OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Received request to activate member with id: %d", id);
 
+                    {
+                        auto status = primus::assert::assertMemberExists(id);
+
+                        if (status->code != 200)
+                        {
+                            return createDtoResponse(Status::CODE_500, status);
+                        }
+                    }
+
                     auto dbResult = m_database->activateMember(id);
-                    OATPP_ASSERT_HTTP(dbResult->isSuccess(), Status::CODE_404, "User was not found");
+                    OATPP_ASSERT_HTTP(dbResult->isSuccess(), Status::CODE_500, "Unknown error");
 
                     OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Member with id: %d activated", id);
                     OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, primus::constants::apicontroller::member_endpoint::logSeperation);
-                    return createResponse(Status::CODE_200, "Member activated");
+
+                    auto status = primus::dto::StatusDto::createShared();
+                    status->code = 200;
+                    status->message = "Member has been activated";
+                    status->status = "Member activated";
+                    return createDtoResponse(Status::CODE_200, status);
                 }
 
                 ENDPOINT("UPDATE", "/api/member/{id}/deactivate", deactivateMember,
@@ -121,12 +146,25 @@ namespace primus {
                     OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, primus::constants::apicontroller::member_endpoint::logSeperation);
                     OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Received request to deactivate member with id: %d", id);
 
+                    {
+                        auto status = primus::assert::assertMemberExists(id);
+                        if (status->code != 200)
+                        {
+                            return createDtoResponse(Status::CODE_500, status);
+                        }
+                    }
+
                     auto dbResult = m_database->deactivateMember(id);
-                    OATPP_ASSERT_HTTP(dbResult->isSuccess(), Status::CODE_404, "User was not found");
+                    OATPP_ASSERT_HTTP(dbResult->isSuccess(), Status::CODE_500, "UNKNOWN ERROR");
 
                     OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Member with id: %d deactivated", id);
                     OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, primus::constants::apicontroller::member_endpoint::logSeperation);
-                    return createResponse(Status::CODE_200, "Member deactivated");
+
+                    auto status = primus::dto::StatusDto::createShared();
+                    status->code = 200;
+                    status->message = "Member has been deactivated";
+                    status->status = "Member deactivated";
+                    return createDtoResponse(Status::CODE_200, status);
                 }
 
                 ENDPOINT("GET", "/api/member/{id}", getMemberById,
@@ -134,6 +172,13 @@ namespace primus {
                 {
                     OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, primus::constants::apicontroller::member_endpoint::logSeperation);
                     OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Received request to get member by id: %d", id.operator v_uint32());
+
+                    auto status = primus::assert::assertMemberExists(id);
+
+                    if (status->code != 200)
+                    {
+                        return createDtoResponse(Status::CODE_500, status);
+                    }
 
                     auto dbResult = m_database->getMemberById(id);
 
@@ -155,48 +200,48 @@ namespace primus {
                     OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Received request to create member");
 
                     OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Member data:");
-                        OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "  - First Name: %s", member->firstName->c_str());
-                        OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "  - Last Name: %s", member->lastName->c_str());
-                        OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "  - Email: %s", member->email->c_str());
-                        OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "  - Phone Number: %s", member->phoneNumber->c_str());
-                        OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "  - Birth Date: %s", member->birthDate->c_str());
-                        OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "  - Create Date: %s", member->createDate->c_str());
-                        OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "  - Notes: %s", member->notes->c_str());
-                        OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "  - Active: %s", member->active ? "true" : "false");
+                    OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "  - First Name: %s", member->firstName->c_str());
+                    OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "  - Last Name: %s", member->lastName->c_str());
+                    OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "  - Email: %s", member->email->c_str());
+                    OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "  - Phone Number: %s", member->phoneNumber->c_str());
+                    OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "  - Birth Date: %s", member->birthDate->c_str());
+                    OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "  - Create Date: %s", member->createDate->c_str());
+                    OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "  - Notes: %s", member->notes->c_str());
+                    OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "  - Active: %s", member->active ? "true" : "false");
 
-                        std::shared_ptr<oatpp::orm::QueryResult> dbResult = m_database->createMember(member);
-                        OATPP_ASSERT_HTTP(dbResult->isSuccess(), Status::CODE_500, "Bad Request");
+                    std::shared_ptr<oatpp::orm::QueryResult> dbResult = m_database->createMember(member);
+                    OATPP_ASSERT_HTTP(dbResult->isSuccess(), Status::CODE_500, "Bad Request");
 
-                        oatpp::UInt32 memberId = oatpp::sqlite::Utils::getLastInsertRowId(dbResult->getConnection());
+                    oatpp::UInt32 memberId = oatpp::sqlite::Utils::getLastInsertRowId(dbResult->getConnection());
 
-                        oatpp::Vector<oatpp::Object<MemberDto>> foundMembers;
-                        oatpp::Object<MemberDto> retMember;
+                    oatpp::Vector<oatpp::Object<MemberDto>> foundMembers;
+                    oatpp::Object<MemberDto> retMember;
 
-                        if (memberId == 0)
-                        {
-                            OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Member already exists. proceeding to return existing user");
+                    if (memberId == 0)
+                    {
+                        OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Member already exists. proceeding to return existing user");
 
-                            dbResult = m_database->findMemberIdByDetails(member->firstName, member->lastName, member->email, member->birthDate);
-                            OATPP_ASSERT_HTTP(dbResult->isSuccess(), Status::CODE_500, "Unknown error");
+                        dbResult = m_database->findMemberIdByDetails(member->firstName, member->lastName, member->email, member->birthDate);
+                        OATPP_ASSERT_HTTP(dbResult->isSuccess(), Status::CODE_500, "Unknown error");
 
-                            foundMembers = dbResult->fetch<oatpp::Vector<oatpp::Object<MemberDto>>>();
+                        foundMembers = dbResult->fetch<oatpp::Vector<oatpp::Object<MemberDto>>>();
 
-                            retMember = foundMembers[0];
-                        }
-                        else
-                        {
-                            OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Created member with id: %d", memberId.operator v_uint32());
-
-                            dbResult = m_database->getMemberById(memberId);
-                            OATPP_ASSERT_HTTP(dbResult->isSuccess(), Status::CODE_500, "Unknown error");
-
-                            foundMembers = dbResult->fetch<oatpp::Vector<oatpp::Object<MemberDto>>>();
-
-                            retMember = foundMembers[0];
-                        }
-                        OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, primus::constants::apicontroller::member_endpoint::logSeperation);
-                        return createDtoResponse(memberId == 0 ? Status::CODE_200 : Status::CODE_201, retMember);
+                        retMember = foundMembers[0];
                     }
+                    else
+                    {
+                        OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Created member with id: %d", memberId.operator v_uint32());
+
+                        dbResult = m_database->getMemberById(memberId);
+                        OATPP_ASSERT_HTTP(dbResult->isSuccess(), Status::CODE_500, "Unknown error");
+
+                        foundMembers = dbResult->fetch<oatpp::Vector<oatpp::Object<MemberDto>>>();
+
+                        retMember = foundMembers[0];
+                    }
+                    OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, primus::constants::apicontroller::member_endpoint::logSeperation);
+                    return createDtoResponse(memberId == 0 ? Status::CODE_200 : Status::CODE_201, retMember);
+                }
 
                 ENDPOINT("PUT", "/api/member", updateMember,
                     BODY_DTO(Object<MemberDto>, member))
@@ -259,11 +304,16 @@ namespace primus {
                     {
                         dbResult = m_database->getMemberCountInactive();
                     }
-                    else 
+                    else
                     {
                         OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Received count request for members with attribute %s, which is not an available attribute", attribute->c_str());
-                        OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Returning CODE 500: Bad Request. Available options:");
-                        return createResponse(Status::CODE_500, "BAD REQUEST. Use all, active or inactive");
+                        OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Returning CODE 500: Bad Request. Available options: all, active, inactive");
+
+                        auto status = primus::dto::StatusDto::createShared();
+                        status->code = 404;
+                        status->message = "Received request for a count of members with invalid attribute. Available options: all, active, inactive";
+                        status->status = "INVALID ATTRIBUTE";
+                        return createDtoResponse(Status::CODE_404, status);
                     }
 
                     OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Received request to get count of %s members", attribute->c_str());
@@ -294,19 +344,31 @@ namespace primus {
                     OATPP_ASSERT_HTTP(!(departments->size() > 1), Status::CODE_404, "Critical database error: More than 1 department with id %d", departmentId.operator v_uint32());
                     OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Department found: %d | %s", departments[0]->id.operator v_uint32(), departments[0]->name->c_str());
 
-                    dbResult = m_database->getMemberById(memberId);
-                    OATPP_ASSERT_HTTP(dbResult->isSuccess(), Status::CODE_500, dbResult->getErrorMessage());
-                    member = dbResult->fetch<oatpp::Vector<oatpp::Object<MemberDto>>>();
-                    OATPP_ASSERT_HTTP(member->size() != 0, Status::CODE_404, "Member not found");
-                    OATPP_ASSERT_HTTP(!(member->size() > 1), Status::CODE_404, "Critical database error: More than 1 member with id %d", memberId.operator v_uint32());
-                    OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Member found: %d | %s | %s", member[0]->id.operator v_uint32(), member[0]->firstName->c_str(), member[0]->lastName->c_str());
+
 
                     OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Creating member-department association");
                     dbResult = m_database->associateDepartmentWithMember(departmentId, memberId);
-                    OATPP_ASSERT_HTTP(dbResult->isSuccess(), Status::CODE_500, dbResult->getErrorMessage());
+
+                    if (!dbResult->isSuccess())
+                    {
+                        oatpp::Object<primus::dto::StatusDto> ret = primus::dto::StatusDto::createShared();
+
+                        oatpp::String verboseMessage = "Database operation did not succeed. This might be because the member is already associated with the department. The database error message was the following: ";
+                        verboseMessage->append(dbResult->getErrorMessage());
+
+                        ret->code = 500;
+                        ret->message = verboseMessage;
+                        ret->status = "Member likely already in department";
+
+                        return createDtoResponse(Status::CODE_500, ret);
+                    }
                     OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "member-department association successfully created");
 
-                    return createResponse(Status::CODE_200, "member-department association successfully created");
+                    auto status = primus::dto::StatusDto::createShared();
+                    status->code = 200;
+                    status->message = "member-department association successfully created";
+                    status->status = "member-department association successfully created";
+                    return createDtoResponse(Status::CODE_200, status);
                 }
                 ENDPOINT("DELETE", "/api/member/{memberId}/department/remove/{departmentId}", deleteMemberDepartmentDisassociation, PATH(oatpp::UInt32, memberId), PATH(oatpp::UInt32, departmentId))
                 {
@@ -326,41 +388,41 @@ namespace primus {
                     OATPP_ASSERT_HTTP(!(departments->size() > 1), Status::CODE_404, "Critical database error: More than 1 department with id %d", departmentId.operator v_uint32());
                     OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Department found: %d | %s", departments[0]->id.operator v_uint32(), departments[0]->name->c_str());
 
-                    dbResult = m_database->getMemberById(memberId);
-                    OATPP_ASSERT_HTTP(dbResult->isSuccess(), Status::CODE_500, dbResult->getErrorMessage());
-                    member = dbResult->fetch<oatpp::Vector<oatpp::Object<MemberDto>>>();
-                    OATPP_ASSERT_HTTP(member->size() != 0, Status::CODE_404, "Member not found");
-                    OATPP_ASSERT_HTTP(!(member->size() > 1), Status::CODE_404, "Critical database error: More than 1 member with id %d", memberId.operator v_uint32());
-                    OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Member found: %d | %s | %s", member[0]->id.operator v_uint32(), member[0]->firstName->c_str(), member[0]->lastName->c_str());
+                    auto memberStatus = primus::assert::assertMemberExists(memberId);
+                    if (memberStatus->code != 200)
+                        return createDtoResponse(Status::CODE_500, memberStatus);
 
                     OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Disassociating member and department");
                     dbResult = m_database->disassociateDepartmentFromMember(departmentId, memberId);
                     OATPP_ASSERT_HTTP(dbResult->isSuccess(), Status::CODE_500, dbResult->getErrorMessage());
                     OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "member and department successfully disassociated");
 
-                    return createResponse(Status::CODE_200, "member and department successfully disassociated");
+                    memberStatus = primus::dto::StatusDto::createShared();
+
+                    memberStatus->code = 200;
+                    memberStatus->message = "member and department successfully disassociated";
+                    memberStatus->status = "member and department successfully disassociated";
+
+                    return createDtoResponse(Status::CODE_200, memberStatus);
                 }
 
-                ENDPOINT("POST",   "/api/member/{memberId}/address/add", createMemberAddressAssociation, PATH(oatpp::UInt32, memberId), BODY_DTO(oatpp::Object<AddressDto>, address))
+                ENDPOINT("POST", "/api/member/{memberId}/address/add", createMemberAddressAssociation, PATH(oatpp::UInt32, memberId), BODY_DTO(oatpp::Object<AddressDto>, address))
                 {
                     OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, primus::constants::apicontroller::member_endpoint::logSeperation);
                     OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Received request to set address for member with id %d", memberId.operator v_uint32());
                     OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Address data:");
-                    OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "- Street: %s"         , address->street->c_str());
-                    OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "- City: %s"           , address->city->c_str());
-                    OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "- Postal code: %s"    , address->postalCode->c_str());
-                    OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "- Country: %s"        , address->country->c_str());
+                    OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "- Street: %s", address->street->c_str());
+                    OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "- City: %s", address->city->c_str());
+                    OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "- Postal code: %s", address->postalCode->c_str());
+                    OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "- Country: %s", address->country->c_str());
 
+                    auto status = primus::assert::assertMemberExists(memberId);
+                    if (status->code != 200)
+                    {
+                        return createDtoResponse(Status::CODE_500, status);
+                    }
 
-
-                    std::shared_ptr<oatpp::orm::QueryResult> dbResult = m_database->getMemberById(memberId);
-                    OATPP_ASSERT_HTTP(dbResult->isSuccess(), Status::CODE_404, "Member not found");
-                    auto members = dbResult->fetch<oatpp::Vector<oatpp::Object<MemberDto>>>();
-                        
-                    OATPP_ASSERT_HTTP(members->size() > 0, Status::CODE_404, "Member not found");
-                    OATPP_ASSERT_HTTP(members->size() < 2, Status::CODE_500, "Critical database error: More than one member with given id");
-
-                   dbResult = m_database->createAddress(address);
+                    auto dbResult = m_database->createAddress(address);
 
                     OATPP_ASSERT_HTTP(dbResult->isSuccess(), Status::CODE_500, dbResult->getErrorMessage());
 
@@ -411,12 +473,13 @@ namespace primus {
                     OATPP_ASSERT_HTTP(!(addresses->size() > 1), Status::CODE_404, "Critical database error: More than 1 address with id %d", departmentId.operator v_uint32());
                     OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Address found");
 
-                    dbResult = m_database->getMemberById(memberId);
-                    OATPP_ASSERT_HTTP(dbResult->isSuccess(), Status::CODE_500, dbResult->getErrorMessage());
-                    member = dbResult->fetch<oatpp::Vector<oatpp::Object<MemberDto>>>();
-                    OATPP_ASSERT_HTTP(member->size() != 0, Status::CODE_404, "Member not found");
-                    OATPP_ASSERT_HTTP(!(member->size() > 1), Status::CODE_404, "Critical database error: More than 1 member with id %d", memberId.operator v_uint32());
-                    OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Member found: %d | %s | %s", member[0]->id.operator v_uint32(), member[0]->firstName->c_str(), member[0]->lastName->c_str());
+                    {
+                        auto status = primus::assert::assertMemberExists(memberId);
+                        if (status->code != 200)
+                        {
+                            return createDtoResponse(Status::CODE_500, status);
+                        }
+                    }
 
                     OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Disassociating member and address");
                     dbResult = m_database->disassociateAddressFromMember(addressId, memberId);
@@ -444,7 +507,11 @@ namespace primus {
                         OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Other members are associated with address");
                         OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "keeping address in database");
                     }
-                    return createResponse(Status::CODE_200, "member and department successfully disassociated");
+                    auto status = primus::dto::StatusDto::createShared();
+                    status->code = 200;
+                    status->message = "member and department successfully disassociated";
+                    status->status = "member and department successfully disassociated";
+                    return createDtoResponse(Status::CODE_200, status);
                 }
 
                 ENDPOINT("POST", "/api/member/{memberId}/attendance/{dateOfAttendance}", addMemberAttendance, PATH(oatpp::UInt32, memberId), PATH(oatpp::String, dateOfAttendance))
@@ -467,7 +534,11 @@ namespace primus {
 
                     OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Member attendance was set for date %s", dateOfAttendance->c_str());
 
-                    return createResponse(Status::CODE_200, "Attendance set");
+                    auto status = primus::dto::StatusDto::createShared();
+                    status->code = 200;
+                    status->message = "Attendance set";
+                    status->status = "Attendance set";
+                    return createDtoResponse(Status::CODE_200, status);
                 }
                 ENDPOINT("DELETE", "/api/member/{memberId}/attendance/{dateOfAttendance}", deleteMemberAttendance, PATH(oatpp::UInt32, memberId), PATH(oatpp::String, dateOfAttendance))
                 {
@@ -489,7 +560,11 @@ namespace primus {
 
                     OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Member attendance was removed for date %s", dateOfAttendance->c_str());
 
-                    return createResponse(Status::CODE_200, "Attendance removed");
+                    auto status = primus::dto::StatusDto::createShared();
+                    status->code = 200;
+                    status->message = "Attendance removed";
+                    status->status = "Attendance removed";
+                    return createDtoResponse(Status::CODE_200, status);
                 }
 
                 ENDPOINT("GET", "/api/member/{memberId}/fee", getMemberFee,
@@ -497,25 +572,25 @@ namespace primus {
                 {
                     OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, primus::constants::apicontroller::member_endpoint::logSeperation);
                     OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Received request to calculate the member fee for member with id %d.", memberId.operator v_uint32());
-                    
+
                     std::shared_ptr<oatpp::orm::QueryResult> dbResult;
                     oatpp::Vector<oatpp::Object<MemberDto>> members;
                     oatpp::Vector<oatpp::Object<DepartmentDto>> departments;
                     auto memberFee = UInt32Dto::createShared();
-                    
+
                     dbResult = m_database->getMemberById(memberId);
                     OATPP_ASSERT_HTTP(dbResult->isSuccess(), Status::CODE_500, dbResult->getErrorMessage());
-                    
+
                     members = dbResult->fetch<oatpp::Vector<oatpp::Object<MemberDto>>>();
                     OATPP_ASSERT_HTTP(members->size() > 0, Status::CODE_404, "Member not found");
                     OATPP_ASSERT_HTTP(members->size() < 2, Status::CODE_500, "Critical database error: more than one member with given id");
-                    
+
                     OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Member was found.", memberId.operator v_uint32());
-                    
+
                     dbResult = m_database->getMemberDepartments(memberId, oatpp::UInt32(3), oatpp::UInt32(static_cast<unsigned int>(0)));
                     OATPP_ASSERT_HTTP(dbResult->isSuccess(), Status::CODE_500, dbResult->getErrorMessage());
                     departments = dbResult->fetch<oatpp::Vector<oatpp::Object<DepartmentDto>>>();
-                    
+
                     if (departments->size() < 1) // No department
                         memberFee->value = primus::constants::pricing::DepartmentPrices::None;
                     else if (departments->size() > 1) // multiple departments
@@ -534,13 +609,20 @@ namespace primus {
                             break;
                         }
                     else
-                        return createResponse(Status::CODE_500, "UNKNOWN ERROR");
-                    
+                    {
+                        auto status = primus::dto::StatusDto::createShared();
+
+                        status->status = "UNKNOWN ERROR";
+                        status->code = 500;
+                        status->message = "Failed while trying to determine membership fee";
+                        return createDtoResponse(Status::CODE_500, status);
+                    }
+
                     OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Member is in %d departments.", departments->size());
                     OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Fee is %d euro", memberFee->value.operator v_uint32());
-                    
+
                     OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, primus::constants::apicontroller::member_endpoint::logSeperation);
-                    
+
                     return createDtoResponse(Status::CODE_200, memberFee);
                 }
 
@@ -550,8 +632,15 @@ namespace primus {
                     OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, primus::constants::apicontroller::member_endpoint::logSeperation);
 
                     std::shared_ptr<oatpp::orm::QueryResult> dbResult;
-
                     std::shared_ptr<OutgoingResponse> ret;
+
+                    {
+                        std::shared_ptr<oatpp::orm::QueryResult> dbResult = m_database->getMemberById(memberId);
+                        OATPP_ASSERT_HTTP(dbResult->isSuccess(), Status::CODE_500, dbResult->getErrorMessage());
+                        oatpp::Vector<oatpp::Object<MemberDto>> members = dbResult->fetch<oatpp::Vector<oatpp::Object<MemberDto>>>();
+                        OATPP_ASSERT_HTTP(members->size() > 0, Status::CODE_404, "Member not found");
+                        OATPP_ASSERT_HTTP(members->size() < 2, Status::CODE_500, "Critical database error: more than one member with given id");
+                    }
 
                     if (attribute == oatpp::String("addresses"))
                     {
@@ -615,7 +704,16 @@ namespace primus {
                         OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Received request to get a list of members with %s, which is not an available attribute", attribute->c_str());
                         OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Returning CODE 500: Bad Request. Available options: addresses");
 
-                        ret = createResponse(Status::CODE_500, "BAD REQUEST");
+                        auto status = primus::dto::StatusDto::createShared();
+
+                        oatpp::String verboseMessage = "Received request to get a list of members with invalid attribute: ";
+                        verboseMessage->append(attribute);
+
+
+                        status->code = 404;
+                        status->message = verboseMessage;
+                        status->status = "INVALID ATTRIBUTE";
+                        return createDtoResponse(Status::CODE_404, status);
                     }
 
                     OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, primus::constants::apicontroller::member_endpoint::logSeperation);
@@ -623,9 +721,307 @@ namespace primus {
                     return ret;
                 }
 
+                ENDPOINT("GET", "api/member/{memberId}/weaponpurchase/", canMemberBuyWeapon,
+                    PATH(oatpp::UInt32, memberId))
+                {
+                    OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, primus::constants::apicontroller::member_endpoint::logSeperation);
+                    OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Received request to check if member with id %d", memberId.operator v_uint32());
+                    OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "is allowed to purchase a weapon");
+                    {
+                        auto status = primus::assert::assertMemberExists(memberId);
+
+                        if (status->code != 200)
+                            return createDtoResponse(Status::CODE_500, status);
+                    }
+                    OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Member was found");
+
+                    {
+                        std::shared_ptr<oatpp::orm::QueryResult> dbResult;
+                        oatpp::Vector<oatpp::Object<UInt32Dto>> count;
+                        auto ret = BooleanDto::createShared();
+
+                        dbResult = m_database->getCountOfMemberAttendancesInLastYear(memberId);
+                        OATPP_ASSERT_HTTP(dbResult->isSuccess(), Status::CODE_500, dbResult->getErrorMessage());
+                        count = dbResult->fetch<oatpp::Vector<oatpp::Object<UInt32Dto>>>();
+
+                        OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Checking first condition of weapon purchase...");
+                        OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Member attended %d sessions last year.", count[0]->value.operator v_uint32());
+
+                        if (count[0]->value >= 18)
+                        {
+                            ret->value = true;
+                            OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Which allowes him to purchase a weapon");
+                            OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Returning true");
+                        }
+                        else
+                        {
+                            OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Member does not have the yearly attendance to purchase a weapon");
+                            OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Checking for secondary-condition (monthly attendance x1)");
+
+                            dbResult = m_database->countDistinctAttendentMontsWithinLastYear(memberId);
+                            OATPP_ASSERT_HTTP(dbResult->isSuccess(), Status::CODE_500, dbResult->getErrorMessage());
+                            count = dbResult->fetch<oatpp::Vector<oatpp::Object<UInt32Dto>>>();
+
+                            if (count[0]->value == 12)
+                            {
+                                OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Member attended at least one session per month");
+                                OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Returning true");
+                                ret->value = true;
+                            }
+                            else
+                            {
+                                OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Member attended less than one session per month");
+                                OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Returning false");
+                                ret->value = false;
+                            }
+                        }
+
+                        return createDtoResponse(Status::CODE_200, ret);
+                    }
+                }
                 // Endpoint Infos
 
-                
+                ENDPOINT_INFO(getMembersList)
+                {
+                    info->name = "getMembersList";
+                    info->summary = "Get a list of members based on attribute";
+                    info->description = "This endpoint retrieves a list of members based on the provided attribute. Available attributes are: all, active, inactive, birthday.";
+                    info->path = "/api/members/list/{attribute}";
+                    info->method = "GET";
+                    info->addTag("Members");
+                    info->addTag("List");
+                    info->pathParams["attribute"].description = "Attribute to filter members (options: all, active, inactive, birthday)";
+                    info->queryParams["limit"].description = "Maximum number of items to return";
+                    info->queryParams["offset"].description = "Number of items to skip before starting to collect the response items";
+                    info->addResponse<oatpp::Object<PageDto<oatpp::Vector<oatpp::Object<MemberDto>>>>>(Status::CODE_200, "application/json");
+                    info->addResponse<Object<StatusDto>>(Status::CODE_404, "application/json");
+                    info->addResponse<Object<StatusDto>>(Status::CODE_500, "application/json");
+                }
+
+                ENDPOINT_INFO(activateMember) {
+                    info->name = "activateMember";
+                    info->summary = "Activate a member by ID";
+                    info->description = "This endpoint activates a member with the provided ID.";
+                    info->path = "/api/member/{id}/activate";
+                    info->method = "UPDATE";
+                    info->addTag("Member");
+                    info->pathParams["id"].description = "Identifier of the member to activate";
+                    info->addResponse<Object<StatusDto>>(Status::CODE_200, "application/json");
+                    info->addResponse<Object<StatusDto>>(Status::CODE_500, "application/json");
+                }
+
+                ENDPOINT_INFO(deactivateMember) {
+                    info->name = "deactivateMember";
+                    info->summary = "Deactivate a member by ID";
+                    info->description = "This endpoint deactivates a member with the provided ID.";
+                    info->path = "/api/member/{id}/deactivate";
+                    info->method = "UPDATE";
+                    info->addTag("Member");
+                    info->pathParams["id"].description = "Identifier of the member to deactivate";
+                    info->addResponse<Object<StatusDto>>(Status::CODE_200, "application/json");
+                    info->addResponse<Object<StatusDto>>(Status::CODE_500, "application/json");
+                }
+
+                ENDPOINT_INFO(getMemberById) {
+                    info->name = "getMemberById";
+                    info->summary = "Get a member by ID";
+                    info->description = "This endpoint retrieves a member with the provided ID.";
+                    info->path = "/api/member/{id}";
+                    info->method = "GET";
+                    info->addTag("Member");
+                    info->pathParams["id"].description = "Identifier of the member to retrieve";
+                    info->addResponse<oatpp::Vector<oatpp::Object<MemberDto>>>(Status::CODE_200, "application/json");
+                    info->addResponse<Object<StatusDto>>(Status::CODE_404, "application/json");
+                    info->addResponse<Object<StatusDto>>(Status::CODE_500, "application/json");
+                }
+
+                ENDPOINT_INFO(createMember)
+                {
+                    info->name = "createMember";
+                    info->summary = "Create a new member";
+                    info->description = "This endpoint creates a new member with the provided data.";
+                    info->path = "/api/member";
+                    info->method = "POST";
+                    info->addTag("Member");
+                    info->bodyContentType = "application/json";
+                    info->addResponse<oatpp::Object<MemberDto>>(Status::CODE_200, "application/json");
+                    info->addResponse<oatpp::Object<MemberDto>>(Status::CODE_201, "application/json");
+                    info->addResponse<Object<StatusDto>>(Status::CODE_500, "application/json");
+                }
+
+                ENDPOINT_INFO(updateMember)
+                {
+                    info->name = "updateMember";
+                    info->summary = "Update an existing member";
+                    info->description = "This endpoint updates an existing member with the provided data.";
+                    info->path = "/api/member";
+                    info->method = "PUT";
+                    info->addTag("Member");
+                    info->bodyContentType = "application/json";
+                    info->addResponse<oatpp::Object<MemberDto>>(Status::CODE_200, "application/json");
+                    info->addResponse<Object<StatusDto>>(Status::CODE_500, "application/json");
+                }
+
+                ENDPOINT_INFO(getMemberCount)
+                {
+                    info->name = "getMemberCount";
+                    info->summary = "Get the count of members based on attribute";
+                    info->description = "This endpoint retrieves the count of members based on the provided attribute. Available attributes are: all, active, inactive.";
+                    info->path = "/api/members/count/{attribute}";
+                    info->method = "GET";
+                    info->addTag("Members");
+                    info->addTag("Counts");
+                    info->queryParams["attribute"].description = "Attribute to filter members (options: all, active, inactive)";
+                    info->addResponse<Object<UInt32Dto>>(Status::CODE_200, "application/json");
+                    info->addResponse<Object<StatusDto>>(Status::CODE_404, "application/json");
+                    info->addResponse<Object<StatusDto>>(Status::CODE_500, "application/json");
+                }
+
+                ENDPOINT_INFO(createMemberDepartmentAssociation)
+                {
+                    info->name = "createMemberDepartmentAssociation";
+                    info->summary = "Create association between member and department";
+                    info->description = "This endpoint creates an association between a member and a department.";
+                    info->path = "/api/member/{memberId}/department/add/{departmentId}";
+                    info->method = "POST";
+                    info->addTag("Member");
+                    info->addTag("Department");
+                    info->pathParams["memberId"].description = "ID of the member";
+                    info->pathParams["departmentId"].description = "ID of the department";
+                    info->addResponse<Object<StatusDto>>(Status::CODE_200, "application/json");
+                    info->addResponse<Object<StatusDto>>(Status::CODE_404, "application/json");
+                    info->addResponse<Object<StatusDto>>(Status::CODE_500, "application/json");
+                }
+
+                ENDPOINT_INFO(deleteMemberDepartmentDisassociation)
+                {
+                    info->name = "deleteMemberDepartmentDisassociation";
+                    info->summary = "Remove association between member and department";
+                    info->description = "This endpoint removes the association between a member and a department.";
+                    info->path = "/api/member/{memberId}/department/remove/{departmentId}";
+                    info->method = "DELETE";
+                    info->addTag("Member");
+                    info->addTag("Department");
+                    info->pathParams["memberId"].description = "ID of the member";
+                    info->pathParams["departmentId"].description = "ID of the department";
+                    info->addResponse<Object<StatusDto>>(Status::CODE_200, "application/json");
+                    info->addResponse<Object<StatusDto>>(Status::CODE_404, "application/json");
+                    info->addResponse<Object<StatusDto>>(Status::CODE_500, "application/json");
+                }
+
+                ENDPOINT_INFO(createMemberAddressAssociation)
+                {
+                    info->name = "createMemberAddressAssociation";
+                    info->summary = "Create association between member and address";
+                    info->description = "This endpoint creates an association between a member and an address.";
+                    info->path = "/api/member/{memberId}/address/add";
+                    info->method = "POST";
+                    info->addTag("Member");
+                    info->addTag("Address");
+                    info->pathParams["memberId"].description = "ID of the member";
+                    info->addResponse<Object<AddressDto>>(Status::CODE_200, "application/json");
+                    info->addResponse<Object<AddressDto>>(Status::CODE_201, "application/json");
+                    info->addResponse<Object<StatusDto>>(Status::CODE_500, "application/json");
+                }
+
+                ENDPOINT_INFO(deleteMemberAddressDisassociation)
+                {
+                    info->name = "deleteMemberAddressDisassociation";
+                    info->summary = "Remove association between member and address";
+                    info->description = "This endpoint removes the association between a member and an address.";
+                    info->path = "/api/member/{memberId}/address/remove/{addressId}";
+                    info->method = "DELETE";
+                    info->addTag("Member");
+                    info->addTag("Address");
+                    info->pathParams["memberId"].description = "ID of the member";
+                    info->pathParams["addressId"].description = "ID of the address";
+                    info->addResponse<Object<StatusDto>>(Status::CODE_200, "application/json");
+                    info->addResponse<Object<StatusDto>>(Status::CODE_500, "application/json");
+                }
+
+                ENDPOINT_INFO(addMemberAttendance)
+                {
+                    info->name = "addMemberAttendance";
+                    info->summary = "Add attendance for a member on a specific date";
+                    info->description = "This endpoint adds attendance for a member on a specific date.";
+                    info->path = "/api/member/{memberId}/attendance/{dateOfAttendance}";
+                    info->method = "POST";
+                    info->addTag("Member");
+                    info->addTag("Attendance");
+                    info->pathParams["memberId"].description = "ID of the member";
+                    info->pathParams["dateOfAttendance"].description = "Date of the attendance (format: YYYY-MM-DD)";
+                    info->addResponse<Object<StatusDto>>(Status::CODE_200, "application/json");
+                    info->addResponse<Object<StatusDto>>(Status::CODE_404, "application/json");
+                    info->addResponse<Object<StatusDto>>(Status::CODE_500, "application/json");
+                }
+
+                ENDPOINT_INFO(deleteMemberAttendance)
+                {
+                    info->name = "deleteMemberAttendance";
+                    info->summary = "Remove attendance for a member on a specific date";
+                    info->description = "This endpoint removes attendance for a member on a specific date.";
+                    info->path = "/api/member/{memberId}/attendance/{dateOfAttendance}";
+                    info->method = "DELETE";
+                    info->addTag("Member");
+                    info->addTag("Attendance");
+                    info->pathParams["memberId"].description = "ID of the member";
+                    info->pathParams["dateOfAttendance"].description = "Date of the attendance (format: YYYY-MM-DD)";
+                    info->addResponse<Object<StatusDto>>(Status::CODE_200, "application/json");
+                    info->addResponse<Object<StatusDto>>(Status::CODE_404, "application/json");
+                    info->addResponse<Object<StatusDto>>(Status::CODE_500, "application/json");
+                }
+
+                ENDPOINT_INFO(getMemberFee)
+                {
+                    info->name = "getMemberFee";
+                    info->summary = "Calculate the member fee for a member";
+                    info->description = "This endpoint calculates the membership fee for a member based on their department.";
+                    info->path = "/api/member/{memberId}/fee";
+                    info->method = "GET";
+                    info->addTag("Member");
+                    info->addTag("Fee");
+                    info->pathParams["memberId"].description = "ID of the member";
+                    info->addResponse<Object<UInt32Dto>>(Status::CODE_200, "application/json");
+                    info->addResponse<Object<StatusDto>>(Status::CODE_404, "application/json");
+                    info->addResponse<Object<StatusDto>>(Status::CODE_500, "application/json");
+                }
+
+                ENDPOINT_INFO(getMemberList)
+                {
+                    info->name = "getMemberList";
+                    info->summary = "Get a list of information associated with a member";
+                    info->description = "This endpoint retrieves a list of information associated with a member, such as addresses, departments, or attendances.";
+                    info->path = "/api/member/{memberId}/list/{attribute}";
+                    info->method = "GET";
+                    info->addTag("Member");
+                    info->addTag("List");
+                    info->pathParams["memberId"].description = "ID of the member";
+                    info->pathParams["attribute"].description = "Attribute to retrieve (addresses, departments, attendances)";
+                    info->queryParams["limit"].description = "Limit of items to retrieve (default is 0)";
+                    info->queryParams["offset"].description = "Offset for pagination (default is 0)";
+                    info->addResponse<Object<PageDto<oatpp::Object<AddressDto>>>>(Status::CODE_200, "application/json");
+                    info->addResponse<Object<PageDto<oatpp::Object<DepartmentDto>>>>(Status::CODE_200, "application/json");
+                    info->addResponse<Object<PageDto<oatpp::Object<DateDto>>>>(Status::CODE_200, "application/json");
+                    info->addResponse<Object<StatusDto>>(Status::CODE_404, "application/json");
+                    info->addResponse<Object<StatusDto>>(Status::CODE_500, "application/json");
+                }
+
+                ENDPOINT_INFO(canMemberBuyWeapon)
+                {
+                    info->name = "canMemberBuyWeapon";
+                    info->summary = "Check if a member is allowed to purchase a weapon";
+                    info->description = "This endpoint checks if a member is eligible to purchase a weapon based on their attendance records.";
+                    info->path = "/api/member/{memberId}/weaponpurchase/";
+                    info->method = "GET";
+                    info->addTag("Member");
+                    info->addTag("Weapon");
+                    info->pathParams["memberId"].description = "ID of the member";
+                    info->addResponse<Object<BooleanDto>>(Status::CODE_200, "application/json");
+                    info->addResponse<Object<StatusDto>>(Status::CODE_404, "application/json");
+                    info->addResponse<Object<StatusDto>>(Status::CODE_500, "application/json");
+                }
+
+
             };
 
 #include OATPP_CODEGEN_END(ApiController) // End API Controller codegen

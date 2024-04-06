@@ -1,15 +1,24 @@
 #include "AppComponent.hpp"
 
 // Controller includes
+#include "general/asserts.hpp"
 #include "controller/StaticController.hpp"
 #include "controller/MemberController.hpp"
-
 #include "oatpp-swagger/Controller.hpp"
-
 #include "oatpp/network/Server.hpp"
-
 #include <iostream>
 
+// __| |__________________________________| |__
+// __   __________________________________   __
+//   | |                                  | |  
+//   | | ____       _                     | |  
+//   | ||  _ \ _ __(_)_ __ ___  _   _ ___ | |  
+//   | || |_) | '__| | '_ ` _ \| | | / __|| |  
+//   | ||  __/| |  | | | | | | | |_| \__ \| |  
+//   | ||_|   |_|  |_|_| |_| |_|\__,_|___/| |  
+// __| |__________________________________| |__
+// __   __________________________________   __
+//   | |                                  | |  
 namespace primus {
     namespace main {
         void run(void) {
@@ -92,9 +101,14 @@ namespace primus {
     } // namespace main
 } // namespace primus
 
+//  __  __       _       
+// |  \/  | __ _(_)_ __  
+// | |\/| |/ _` | | '_ \ 
+// | |  | | (_| | | | | |
+// |_|  |_|\__,_|_|_| |_|
 /**
-    *  main
-    */
+*  main
+*/
 int main(int argc, const char* argv[])
 {
     oatpp::base::Environment::init();

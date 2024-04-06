@@ -10,12 +10,18 @@ namespace primus
     namespace dto
     {
 #include OATPP_CODEGEN_BEGIN(DTO)
+        //  ____                  ____  _        
+        // |  _ \ __ _  __ _  ___|  _ \| |_ ___  
+        // | |_) / _` |/ _` |/ _ \ | | | __/ _ \ 
+        // |  __/ (_| | (_| |  __/ |_| | || (_) |
+        // |_|   \__,_|\__, |\___|____/ \__\___/ 
+        //             |___/                     
         template<class T>
         class PageDto : public oatpp::DTO {
 
-            DTO_INIT(PageDto, DTO)
+            DTO_INIT(PageDto, DTO);
 
-                DTO_FIELD_INFO(offset) {
+            DTO_FIELD_INFO(offset) {
                 info->description = "Offset value for pagination";
             }
             DTO_FIELD(UInt32, offset);
@@ -36,7 +42,12 @@ namespace primus
             DTO_FIELD(Vector<T>, items);
 
         };
-
+        //  __  __                _               ____                  ____  _        
+        // |  \/  | ___ _ __ ___ | |__   ___ _ __|  _ \ __ _  __ _  ___|  _ \| |_ ___  
+        // | |\/| |/ _ \ '_ ` _ \| '_ \ / _ \ '__| |_) / _` |/ _` |/ _ \ | | | __/ _ \ 
+        // | |  | |  __/ | | | | | |_) |  __/ |  |  __/ (_| | (_| |  __/ |_| | || (_) |
+        // |_|  |_|\___|_| |_| |_|_.__/ \___|_|  |_|   \__,_|\__, |\___|____/ \__\___/ 
+        //                                                   |___/                     
         class MemberPageDto : public PageDto<oatpp::Object<primus::dto::database::MemberDto>> {
 
             DTO_INIT(MemberPageDto, PageDto<oatpp::Object<primus::dto::database::MemberDto>>)
