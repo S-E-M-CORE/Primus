@@ -10,6 +10,18 @@ namespace primus
 		const std::size_t logNameLength = 20;
 		const std::size_t logSeperationLength = 60;
 
+		namespace pricing
+		{
+			enum DepartmentPrices
+			{
+				Bogenschiessen = 8,
+				Luftdruck = 10,
+				Schusswaffen = 15,
+				Multiple = 20,
+				None = 0
+			};
+		}
+
 		namespace main
 		{
 			const char logName[logNameLength]			  = "Main initialization";

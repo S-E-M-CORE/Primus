@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.1)
 
 project(PrimusSvr)
 
+
 set(SOURCES
     src/controller/MemberController.hpp
     src/controller/StaticController.hpp

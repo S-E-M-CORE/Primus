@@ -246,7 +246,7 @@ namespace primus
                 " WHERE member_id = :member_id "
                 " ORDER BY date "
                 " LIMIT :limit OFFSET :offset;",
-                PARAM(oatpp::UInt32, memberId),
+                PARAM(oatpp::UInt32, member_id),
                 PARAM(oatpp::UInt32, limit),
                 PARAM(oatpp::UInt32, offset));
 
