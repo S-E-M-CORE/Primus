@@ -31,17 +31,13 @@ CREATE TABLE Member (
     active      BOOLEAN
 );
 
--- Training table
-CREATE TABLE Training (
-    id          INTEGER PRIMARY KEY,
-    date        DATE,
-    notes       TEXT
-);
-
--- Training table
+-- Attendance table
 CREATE TABLE Attendance (
-    id          INTEGER PRIMARY KEY,
-    date        DATE
+    id              INTEGER PRIMARY KEY,
+    date            DATE,
+
+    dateOfCreation  DATE,
+
 );
 
 
@@ -65,14 +61,6 @@ CREATE TABLE Department_Member (
     FOREIGN KEY (member_id) REFERENCES Member(id)
 );
 
-CREATE TABLE Training_Member (
-    training_id         INTEGER,
-    member_id           INTEGER,
-    PRIMARY KEY (training_id, member_id),
-    FOREIGN KEY (training_id) REFERENCES Training(id),
-    FOREIGN KEY (member_id) REFERENCES Member(id)
-);
-
 CREATE TABLE Member_Attendance (
     member_id                   INTEGER,
     attendance_id               INTEGER,
@@ -80,8 +68,6 @@ CREATE TABLE Member_Attendance (
     FOREIGN KEY (member_id)     REFERENCES Member(id),
     FOREIGN KEY (attendance_id) REFERENCES Attendance(id)
 );
-
-
 
 CREATE TABLE Training_Department (
     training_id         INTEGER,

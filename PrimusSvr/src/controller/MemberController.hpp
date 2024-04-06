@@ -6,7 +6,7 @@
 #include "oatpp/core/macro/component.hpp"
 #include "dto/StatusDto.hpp"
 #include "dto/PageDto.hpp"
-#include "dto/CountDto.hpp"
+#include "dto/Int32Dto.hpp"
 #include "dto/MembershipFeeDto.hpp"
 #include "dto/BooleanDto.hpp"
 #include "general/constants.hpp"
@@ -24,10 +24,9 @@ namespace primus {
             {
                 typedef primus::dto::database::MemberDto MemberDto;
                 typedef primus::dto::database::DepartmentDto DepartmentDto;
-                typedef primus::dto::database::TrainingDto TrainingDto;
                 typedef primus::dto::database::AddressDto AddressDto;
                 typedef primus::dto::MemberPageDto MemberPageDto;
-                typedef primus::dto::CountDto CountDto;
+                typedef primus::dto::UInt32Dto UInt32Dto;
                 typedef primus::dto::MembershipFeeDto MembershipFeeDto;
                 typedef primus::dto::BooleanDto BooleanDto;
             private:
@@ -268,9 +267,9 @@ namespace primus {
                     OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Received request to get count of %s members", attribute->c_str());
                     OATPP_ASSERT_HTTP(dbResult->isSuccess(), Status::CODE_500, dbResult->getErrorMessage());
 
-                    auto count = dbResult->fetch<oatpp::Vector<oatpp::Object<CountDto>>>();
+                    auto count = dbResult->fetch<oatpp::Vector<oatpp::Object<UInt32Dto>>>();
 
-                    OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Processed request to get count of %s members. Total count: %d", attribute->c_str(), count[0]->count.operator v_uint32());
+                    OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Processed request to get count of %s members. Total count: %d", attribute->c_str(), count[0]->value.operator v_uint32());
                     OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, primus::constants::apicontroller::member_endpoint::logSeperation);
                     return createDtoResponse(Status::CODE_200, count[0]);
                 }

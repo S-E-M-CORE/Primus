@@ -8,7 +8,7 @@ set(SOURCES
     src/database/DatabaseClient.hpp
     src/database/DatabaseComponent.hpp
     src/dto/BooleanDto.hpp
-    src/dto/CountDto.hpp
+    src/dto/Int32Dto.hpp
     src/dto/MembershipFeeDto.hpp
     src/dto/PageDto.hpp
     src/dto/StatusDto.hpp
