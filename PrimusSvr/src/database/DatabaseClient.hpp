@@ -49,8 +49,10 @@ namespace primus
 
             QUERY(createMember,
                 "INSERT INTO Member (firstName, lastName, email, phoneNumber, birthDate, createDate, notes, active) "
-                "VALUES (:member.firstName, :member.lastName, :member.email, :member.phoneNumber, :member.birthDate, DATE('now'), :member.notes, :member.active);",
+                "SELECT :member.firstName, :member.lastName, :member.email, :member.phoneNumber, :member.birthDate, DATE('now'), :member.notes, :member.active "
+                "WHERE NOT EXISTS (SELECT 1 FROM Member WHERE firstName = :member.firstName AND lastName = :member.lastName AND email = :member.email AND birthDate = :member.birthDate);",
                 PARAM(oatpp::Object<MemberDto>, member));
+
 
             QUERY(updateMember,
                 "UPDATE Member SET "
@@ -63,6 +65,14 @@ namespace primus
                 "active = :member.active "
                 "WHERE id = :member.id;",
                 PARAM(oatpp::Object<MemberDto>, member));
+
+            QUERY(findMemberIdByDetails,
+                "SELECT * FROM Member WHERE firstName = :firstName AND lastName = :lastName AND email = :email AND birthDate = :birthDate;",
+                PARAM(oatpp::String, firstName),
+                PARAM(oatpp::String, lastName),
+                PARAM(oatpp::String, email),
+                PARAM(oatpp::String, birthDate));
+
 
             QUERY(getMemberCountAll, "SELECT COUNT(*) as count FROM Member");
 
@@ -78,12 +88,27 @@ namespace primus
                 PARAM(oatpp::UInt32, offset));
 
             QUERY(getAllMembers,
-                "SELECT * FROM Member LIMIT :limit OFFSET :offset;", PARAM(oatpp::UInt32, limit), PARAM(oatpp::UInt32, offset));
+                " SELECT * FROM Member m "
+                " ORDER BY id ASC "
+                " LIMIT :limit OFFSET : offset;",
+                PARAM(oatpp::UInt32, limit),
+                PARAM(oatpp::UInt32, offset));
 
             QUERY(getActiveMembers,
-                "SELECT * FROM Member WHERE active = 1 LIMIT :limit OFFSET :offset;", PARAM(oatpp::UInt32, limit), PARAM(oatpp::UInt32, offset));
+                " SELECT * FROM Member "
+                " ORDER BY id ASC "
+                " WHERE active = 1 "
+                " LIMIT :limit OFFSET :offset;",
+                PARAM(oatpp::UInt32, limit),
+                PARAM(oatpp::UInt32, offset));
 
-            QUERY(getInactiveMembers, "SELECT * FROM Member WHERE active = 0 LIMIT :limit OFFSET :offset;", PARAM(oatpp::UInt32, limit), PARAM(oatpp::UInt32, offset));
+            QUERY(getInactiveMembers,
+                " SELECT * FROM Member "
+                " WHERE active = 0 "
+                " ORDER BY id ASC "
+                " LIMIT :limit OFFSET :offset;",
+                PARAM(oatpp::UInt32, limit),
+                PARAM(oatpp::UInt32, offset));
 
             QUERY(activateMember, "UPDATE Member SET active = 1 WHERE id = :id;", PARAM(oatpp::UInt32, id));
 
@@ -104,15 +129,44 @@ namespace primus
                 "WHERE mdr.memberID = :id;",
                 PARAM(oatpp::UInt32, id));
 
-            QUERY(getMemberAddress,
-                "SELECT * FROM Address WHERE id = (SELECT addressID FROM Address_Member WHERE memberID = :id);",
+            QUERY(getMemberAddresses,
+                " SELECT a.* FROM Address a "
+                " INNER JOIN Address_Member am ON a.id = am.address_id "
+                " WHERE am.member_id = :id "
+                " ORDER BY a.id "
+                " LIMIT :limit OFFSET :offset;",
+                PARAM(oatpp::UInt32, id),
+                PARAM(oatpp::UInt32, limit),
+                PARAM(oatpp::UInt32, offset));
+
+            QUERY(getDepartmentById,
+                " SELECT * FROM Department "
+                " WHERE id = :id; "
+                " ORDER BY id ASC",
                 PARAM(oatpp::UInt32, id));
 
-            // Address
+            QUERY(getMemberDepartments,
+                " SELECT d.* FROM Department d "
+                " INNER JOIN Department_Member dm ON d.id = dm.department_id "
+                " WHERE dm.member_id = :id "
+                " ORDER BY d.id ASC"
+                " LIMIT :limit OFFSET :offset;",
+                PARAM(oatpp::UInt32, id),
+                PARAM(oatpp::UInt32, limit),
+                PARAM(oatpp::UInt32, offset));
+
             QUERY(createAddress,
-                "INSERT INTO Address (street, city, postalCode, country) "
-                "VALUES (:address.street, :address.city, :address.postalCode, :address.country);",
+                " INSERT INTO Address (postalCode, city, country, houseNumber, street) "
+                " SELECT :address.postalCode, :address.city, :address.country, :address.houseNumber, :address.street "
+                " WHERE NOT EXISTS (SELECT 1 FROM Address WHERE postalCode = :address.postalCode AND city = :address.city AND country = :address.country AND houseNumber = :address.houseNumber AND street = :address.street);",
                 PARAM(oatpp::Object<AddressDto>, address));
+
+            QUERY(findAddressByDetails,
+                "SELECT * FROM Address WHERE street = :street AND city = :city AND postalCode = :postalCode AND country = :country;",
+                PARAM(oatpp::String, street),
+                PARAM(oatpp::String, city),
+                PARAM(oatpp::String, postalCode),
+                PARAM(oatpp::String, country));
 
             // READ
             QUERY(getAddressById,
@@ -124,16 +178,15 @@ namespace primus
                 "UPDATE Address SET "
                 "street = :address.street, "
                 "city = :address.city, "
-                "postalCode = :address.postalCode, "
+                "zipCode = :address.zipCode, "
                 "country = :address.country "
                 "WHERE id = :address.id;",
                 PARAM(oatpp::Object<AddressDto>, address));
 
             // DELETE
             QUERY(deleteAddress,
-                "DELETE FROM Address WHERE id = :id;",
+                "DELETE FROM Address WHERE id = :id AND id NOT IN (SELECT address_id FROM Address_Member);",
                 PARAM(oatpp::UInt32, id));
-
 
             // Training
             QUERY(createTraining,
@@ -163,6 +216,26 @@ namespace primus
             QUERY(deleteTraining,
                 "DELETE FROM Training WHERE id = :id;",
                 PARAM(oatpp::UInt32, id));
+
+            QUERY(associateAddressWithMember, "INSERT INTO Address_Member (address_id, member_id) VALUES (:addressId, :memberId);", PARAM(oatpp::UInt32, addressId), PARAM(oatpp::UInt32, memberId));
+            QUERY(disassociateAddressFromMember, "DELETE FROM Address_Member WHERE address_id = :addressId AND member_id = :memberId;", PARAM(oatpp::UInt32, addressId), PARAM(oatpp::UInt32, memberId));
+
+            QUERY(getMembersByAddress, "SELECT Member.* FROM Member INNER JOIN Address_Member ON Member.id = Address_Member.member_id WHERE Address_Member.address_id = :addressId;", PARAM(oatpp::UInt32, addressId));
+
+            QUERY(associateDepartmentWithMember, "INSERT INTO Department_Member (department_id, member_id) VALUES (:departmentId, :memberId);", PARAM(oatpp::UInt32, departmentId), PARAM(oatpp::UInt32, memberId));
+            QUERY(disassociateDepartmentFromMember, "DELETE FROM Department_Member WHERE department_id = :departmentId AND member_id = :memberId;", PARAM(oatpp::UInt32, departmentId), PARAM(oatpp::UInt32, memberId));
+
+            QUERY(getMembersByDepartment, "SELECT Member.* FROM Member INNER JOIN Department_Member ON Member.id = Department_Member.member_id WHERE Department_Member.department_id = :departmentId;", PARAM(oatpp::UInt32, departmentId));
+
+            QUERY(associateTrainingWithMember, "INSERT INTO Training_Member (training_id, member_id) VALUES (:trainingId, :memberId);", PARAM(oatpp::UInt32, trainingId), PARAM(oatpp::UInt32, memberId));
+            QUERY(disassociateTrainingFromMember, "DELETE FROM Training_Member WHERE training_id = :trainingId AND member_id = :memberId;", PARAM(oatpp::UInt32, trainingId), PARAM(oatpp::UInt32, memberId));
+
+            QUERY(getMembersByTraining, "SELECT Member.* FROM Member INNER JOIN Training_Member ON Member.id = Training_Member.member_id WHERE Training_Member.training_id = :trainingId;", PARAM(oatpp::UInt32, trainingId));
+
+            QUERY(associateTrainingWithDepartment, "INSERT INTO Training_Department (training_id, department_id) VALUES (:trainingId, :departmentId);", PARAM(oatpp::UInt32, trainingId), PARAM(oatpp::UInt32, departmentId));
+            QUERY(disassociateTrainingFromDepartment, "DELETE FROM Training_Department WHERE training_id = :trainingId AND department_id = :departmentId;", PARAM(oatpp::UInt32, trainingId), PARAM(oatpp::UInt32, departmentId));
+
+            QUERY(getDepartmentsByTraining, "SELECT Department.* FROM Department INNER JOIN Training_Department ON Department.id = Training_Department.department_id WHERE Training_Department.training_id = :trainingId;", PARAM(oatpp::UInt32, trainingId));
 
         };
 
