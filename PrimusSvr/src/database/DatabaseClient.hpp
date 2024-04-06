@@ -122,7 +122,6 @@ namespace primus
 
             QUERY(getAllMembers,
                 " SELECT * FROM Member "
-                " ORDER BY id "
                 " LIMIT :limit OFFSET :offset;",
                 PARAM(oatpp::UInt32, limit),
                 PARAM(oatpp::UInt32, offset));
@@ -230,7 +229,36 @@ namespace primus
             // | (_| | |_| ||  __/ | | | (_| | (_| | | | | (_|  __/
             //  \__,_|\__|\__\___|_| |_|\__,_|\__,_|_| |_|\___\___|
 
-            
+            QUERY(createMemberAttendance,
+                "INSERT INTO Attendance (member_id, date) "
+                "VALUES (:member_id, :date); ",
+                PARAM(oatpp::UInt32, member_id),
+                PARAM(oatpp::String, date));
+
+            QUERY(deleteMemberAttendance,
+                "DELETE FROM Attendance "
+                "WHERE member_id = :member_id AND date = :date;",
+                PARAM(oatpp::UInt32, member_id),
+                PARAM(oatpp::String, date));
+
+            QUERY(getAttendancesOfMember,
+                " SELECT date FROM Attendance "
+                " WHERE member_id = :member_id "
+                " ORDER BY date "
+                " LIMIT :limit OFFSET :offset;",
+                PARAM(oatpp::UInt32, memberId),
+                PARAM(oatpp::UInt32, limit),
+                PARAM(oatpp::UInt32, offset));
+
+            QUERY(getMembersByAttendanceDate,
+                " SELECT member_id as value FROM Attendance "
+                " WHERE date = :date "
+                " ORDER BY date "
+                " LIMIT :limit OFFSET :offset;",
+                PARAM(oatpp::String, dateOfAttendance),
+                PARAM(oatpp::UInt32, limit),
+                PARAM(oatpp::UInt32, offset));
+
 
             //    _                  _   _               _        _     _           
             //   (_)_   _ _ __   ___| |_(_) ___  _ __   | |_ __ _| |__ | | ___  ___ 

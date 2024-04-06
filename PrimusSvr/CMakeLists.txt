@@ -9,7 +9,6 @@ set(SOURCES
     src/database/DatabaseComponent.hpp
     src/dto/BooleanDto.hpp
     src/dto/Int32Dto.hpp
-    src/dto/MembershipFeeDto.hpp
     src/dto/PageDto.hpp
     src/dto/StatusDto.hpp
     src/swagger-ui/SwaggerComponent.hpp

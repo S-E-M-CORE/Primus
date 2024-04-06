@@ -51,14 +51,15 @@ namespace primus
 
             };
 
-            class AttendanceDto : public oatpp::DTO
+            /**
+             * @brief DTO class representing a single Date.
+             */
+            class DateDto : public oatpp::DTO
             {
 
-                DTO_INIT(AttendanceDto, DTO)
+                DTO_INIT(DateDto, DTO)
 
-                DTO_FIELD(oatpp::Int32, id);
                 DTO_FIELD(oatpp::String, date);
-
             };
 
             /**
