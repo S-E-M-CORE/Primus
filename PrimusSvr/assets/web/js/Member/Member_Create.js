@@ -16,7 +16,7 @@ async function getUserInput()
     let street = document.getElementById("street").value;
     let houseNumber = document.getElementById("H_Number").value;
     let email = document.getElementById("Member_email").value;
-    let phoneNumber = document.getElementById("TeleNumber").value;
+    let phoneNumber = document.getElementById("phoneNumber").value;
     let joinDate = document.getElementById("date").value;
     let notes = document.querySelector("textarea").value;
     let membership = document.querySelector("select").value;

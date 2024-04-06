@@ -7,7 +7,6 @@
         <link rel="stylesheet" href="/web/css/sidebars.css">
         
         <link rel="canonical" href="https://icons.getbootstrap.com/icons/camera/"><script src="/assets/js/color-modes.js"></script>
-
         <link rel="stylesheet" href="/assets/font/bootstrap-icons.min.css"><link rel="stylesheet" href="/assets/css/docs.css">
 
         <title>Neues mit Glieder erstellen</title>
@@ -23,7 +22,7 @@
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <a href="/1. Frontend/Website/Index_Files/index.html" class="navbar-brand d-flex align-items-center">  
-                        <strong>Logo</strong>
+                        <img src="../../assets/Logo.jpg" style="width: 20%; height: 15%">
                     </a>
                 <!-- </div> -->
             </div>
@@ -54,7 +53,7 @@
                     (Zukunft)Ändert sich aber durch JS zur dem vom Nutzer ausgewählen Bild
                 -->
                 <div class="Profile">
-                    <img class="Profile_Image" src="/5. Assets/Profil/blank_Profile_Image.png" alt="Blank Profile Image" width="150" height="150">
+                    <img class="Profile_Image" src="../../assets/blank_Profile_Image.png" alt="Blank Profile Image" width="150" height="150">
                     <div class = "Profile_Content">
                         <span class="profil__icon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-camera" viewBox="0 0 16 16">
@@ -82,13 +81,13 @@
             <div class="row">
                 <div class="col-2">
                     <label>Vorname:</label>
-                    <input type="text"  placeholder="Max">
+                    <input type="text" id="FirstName" placeholder="Max">
                     <br><br>
                 </div>
 
                 <div class="col-2">
                     <label>Nachname:</label>
-                    <input type="text" placeholder="Mustermann">
+                    <input type="text" id="LastName" placeholder="Mustermann">
                     <br><br>
 
                 </div>
@@ -98,8 +97,8 @@
                 -->
                 <div class="col-2">
                     <p>
-                        <label for="date">Geburtstag: </label>
-                        <input type="date" id="date" />
+                        <label for="birth_date">Geburtstag: </label>
+                        <input type="date" id="birth_date" />
                     </p>
                     <br><br>
                 </div>
@@ -107,39 +106,39 @@
 
             <div class="row">
                 <div class="col-2">
-                    <label>Postleitzahl:</label>
-                    <input type="number" placeholder="65388 oder 65151">
+                    <label for = "Poz">Postleitzahl</label>
+                    <input id = "Poz" type="number" placeholder="65388 oder 65151">
                     <br><br>    
                 </div>
 
                 <div class="col-2">
-                    <label>Wohnort:</label>
-                    <input type="text" placeholder="z.B. Mainz Wiesbaden">
+                    <label for = "residence">Wohnort</label>
+                    <input id = "residence" type="text" placeholder="z.B. Mainz Wiesbaden">
                     <br><br> 
                 </div>
 
                 <div class="col-2">
-                    <label>Straße:</label>
-                    <input type="text" placeholder="z.B. Hindenburgplatz">
+                    <label for = "street">Straßename</label>
+                    <input id = "street" type="text" placeholder="z.B. Hindenburgplatz">
                     <br><br>    
                 </div>            
 
                 <div class="col-2">
-                    <label>Hausnummer:</label>
-                    <input type="text" placeholder="z.B. 15, 12 oder 52">
+                    <label for = "H_Number">Hausnummer</label>
+                    <input id = "H_Number" type="text" placeholder="z.B. 15, 12 oder 52">
                     <br><br>    
                 </div> 
             </div>
 
             <div class="row">
                 <div class="col-4">
-                    <label >Email address:</label>
-                    <input type="email" class="form-control" placeholder="max.Mustermann@t-online.de">
+                    <label for = "Member_email">Email address</label>
+                    <input type="email" id = "Member_email" class="form-control" placeholder="max.Mustermann@t-online.de">
                     <small>Ihre E-Mail wird nicht weiter verbreitet.</small>
                 </div>
                 <div class="col-4">
-                    <label>Telefonnummer:</label>
-                    <input type="text" class="form-control" placeholder="+49 564 3..5.7...">
+                    <label for = "phoneNumber">Telefonnummer</label>
+                    <input id = "phoneNumber" type="text" class="form-control" placeholder="+49 564 3..5.7...">
                     <small> Bitte keine staatlich genutzte Telefonnummer eingeben. Z.B. 110</small>
                     <br><br>
                 </div>
@@ -219,11 +218,16 @@
         <div class="container">
             <div class="row">
                 <div class="col-4">
-                    <button type="button">Änderungen durchführen</button>
+                    <button class="btn btn-primary" style = "background-color: rgb(66, 70, 73)">
+                        Änderungen durchführen
+                    </button>
                 </div>
             </div>
         </div>
-        
-        <script src="/1. Frontend/Website/JS_Files/Member/Member_Change.js"></script>
+
+
+        <script type="text/javascript" defer src="../../js/Member/Member_Change_display.js"></script>
+        <script type="text/javascript" src="../../js/Member/Member_Change_Profile.js"></script>
+        <script type="text/javascript" src="../../js/Client/PrimusApiClient.js"></script>
     </body>
 </html>
