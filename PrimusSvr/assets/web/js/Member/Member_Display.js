@@ -14,7 +14,7 @@ async function displayMemberData()
     try 
     {
         const memberId = 2; // Beispielhaft festgelegte Mitglieds-ID
-        const apiClient = new PrimusApiClient(`http://localhost:8000/api/member/${memberId}`);
+        const apiClient = new PrimusApiClient(`http://localhost:8000`);
 
         const memberData = await apiClient.getMemberById(memberId);
 
@@ -25,14 +25,36 @@ async function displayMemberData()
         // Hier kannst du die Fehlerbehandlung ergänzen, z.B. eine Fehlermeldung auf der Seite anzeigen
     }
 }
+/*
+Die Funktion ist dazu alle infomationen die von allen benötigten Jason Objekt kommen anzuzeigen. 
 
-function updateHTML(memberData) 
+Parameters:
+memberData - zeigen Vorname
+adresseData - zeigen Postleitzahl, Wohnort, Straßename, Hausnummer
+
+*/
+function updateHTML(memberData , adresseData) 
 {
-    document.getElementById('FirstName').textContent = `Vorname: ${memberData.firstName}`;
-    document.getElementById('LastName').textContent = `Nachname: ${memberData.lastName}`;
-    document.getElementById('date').textContent = `Geburtstag: ${memberData.birthDate}`;
-    // Füge weitere Daten hinzu und aktualisiere entsprechende HTML-Elemente
+    error_DB_Anomalie(memberData);     // wir überprüfen die Ressource die wir bekommen haben.
+
+    let currentUser = memberData[0];    // 0 weil wir nur nach einem User Fragen wollen.
+    
+    JSON.stringify(memberData);
+    document.getElementById('FirstName').textContent = `Vorname: ${currentUser.firstName}`;
+    document.getElementById('LastName').textContent = `Nachname: ${currentUser.lastName}`;
+    document.getElementById('date').textContent = `Geburtstag: ${currentUser.birthDate}`;
+    document.getElementById('Member_email').textContent = `Email address: ${currentUser.email}`;
+    document.getElementById('phoneNumber').textContent = `Telefonnummer: ${currentUser.phoneNumber}`;
+    //document.getElementById('Poz').textContent = `Postleitzahl: ${currentUser.phoneNumber}`;
+    
 }
     
-
+// check for single User.
+function error_DB_Anomalie(memberData)
+{
+    if(memberData[1] !== undefined)
+    {
+        alert("Datenbank Anomalie erkannt. Mindestens 2 Nutzer mit ID currentUser.id");
+    }
+}
 
