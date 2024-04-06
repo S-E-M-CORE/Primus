@@ -24,25 +24,25 @@ namespace primus
                 }
                 DTO_FIELD(oatpp::UInt32, id);
 
-                DTO_FIELD_INFO(zipCode) {
+                DTO_FIELD_INFO(postalCode) {
                     info->description = "ZIP code of the address";
                 }
-                DTO_FIELD(oatpp::String, zipCode);
+                DTO_FIELD(oatpp::String, postalCode);
 
                 DTO_FIELD_INFO(city) {
                     info->description = "City of the address";
                 }
                 DTO_FIELD(oatpp::String, city);
 
-                DTO_FIELD_INFO(state) {
+                DTO_FIELD_INFO(country) {
                     info->description = "State of the address";
                 }
-                DTO_FIELD(oatpp::String, state);
+                DTO_FIELD(oatpp::String, country);
 
                 DTO_FIELD_INFO(houseNumber) {
                     info->description = "House number of the address";
                 }
-                DTO_FIELD(oatpp::String, houseNumber);
+                DTO_FIELD(oatpp::UInt32, houseNumber);
 
                 DTO_FIELD_INFO(street) {
                     info->description = "Street of the address";
