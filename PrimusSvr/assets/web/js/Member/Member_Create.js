@@ -16,7 +16,7 @@ async function getUserInput()
     let street = document.getElementById("street").value;
     let houseNumber = document.getElementById("H_Number").value;
     let email = document.getElementById("Member_email").value;
-    let phoneNumber = document.getElementById("TeleNumber").value;
+    let phoneNumber = document.getElementById("phoneNumber").value;
     let joinDate = document.getElementById("date").value;
     let notes = document.querySelector("textarea").value;
     let membership = document.querySelector("select").value;
@@ -47,23 +47,19 @@ async function getUserInput()
 
 async function uploadMember(memberData)
 {
-// Member erstellen und in der Datenbank speichern
-try 
-{
-    // Member erstellen und Antwort abwarten
-    let response = await client.createMember(memberData);
-    // Antwort verarbeiten (z. B. Erfolg oder Fehlermeldung anzeigen)
-    console.log(response);
-} 
-catch (error) 
-{
-    console.error("Fehler beim Erstellen des Mitglieds:", error);
+    // Member erstellen und in der Datenbank speichern
+    try 
+    {
+        // Member erstellen und Antwort abwarten
+        let response = await client.createMember(memberData);
+        // Antwort verarbeiten (z. B. Erfolg oder Fehlermeldung anzeigen)
+        console.log(response);
+    } 
+    catch (error) 
+    {
+        console.error("Fehler beim Erstellen des Mitglieds:", error);
+    }
 }
-}
-
-
-
-
 
 
 // Event-Listener für den Button hinzufügen
