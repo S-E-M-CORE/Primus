@@ -42,36 +42,40 @@ namespace primus {
                 ENDPOINT("GET", "/web/*", files,
                     REQUEST(std::shared_ptr<IncomingRequest>, request))
                 {
-                    
                     OATPP_LOGI(primus::constants::apicontroller::static_endpoint::logName, "Received request to serve file: %s", request->getPathTail()->c_str());
+
+                    // Ignore query parameters if present
+                    auto pathTail = request->getPathTail();
+                    auto queryPos = pathTail->find("?");
+                    if (queryPos != std::string::npos) {
+                        pathTail = pathTail->substr(0, queryPos);
+                    }
 
                     std::string filePath(WEB_CONTENT_DIRECTORY);
                     filePath.append("/");
 
-                    if (request->getPathTail() == "")
+                    if (pathTail->empty()) {
                         filePath.append("index.html");
-                    else
-                        filePath.append(request->getPathTail());
+                    }
+                    else {
+                        filePath.append(*pathTail);
+                    }
 
                     OATPP_LOGI(primus::constants::apicontroller::static_endpoint::logName, "Serving file: %s", filePath.c_str());
 
                     std::ifstream file(filePath, std::ios::binary);
-                    if (file.good())
-                    {
+                    if (file.good()) {
                         OATPP_LOGI(primus::constants::apicontroller::static_endpoint::logName, "File at %s found", filePath.c_str());
 
                         std::ostringstream content;
                         content << file.rdbuf();
-
                         file.close();
 
                         OATPP_LOGI(primus::constants::apicontroller::static_endpoint::logName, "Processed request to serve file: %s", request->getPathTail()->c_str());
-                        
 
                         return createResponse(Status::CODE_200, content.str());
                     }
-                    else
-                    {
+                    else {
                         OATPP_LOGI(primus::constants::apicontroller::static_endpoint::logName, "File at %s was not found", filePath.c_str());
 
                         auto status = primus::dto::StatusDto::createShared();
@@ -86,6 +90,7 @@ namespace primus {
                         return createDtoResponse(Status::CODE_404, status);
                     }
                 }
+
 
                 ENDPOINT("GET", "/", root,
                     REQUEST(std::shared_ptr<IncomingRequest>, request))

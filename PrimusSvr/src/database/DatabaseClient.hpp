@@ -117,9 +117,10 @@ namespace primus
             // |_| |_| |_|\___|_| |_| |_|_.__/ \___|_|    |_|_|___/\__|___/
 
             QUERY(getMembersWithUpcomingBirthday,
-                "SELECT * from Member m "
-                "WHERE active = 1 AND strftime('%m-%d', m.birthDate) >= strftime('%m-%d', 'now') "
-                "ORDER BY strftime('%m-%d', m.birthDate) ASC; ",
+                " SELECT * from Member m "
+                " WHERE active = 1 AND strftime('%m-%d', m.birthDate) >= strftime('%m-%d', 'now') "
+                " ORDER BY strftime('%m-%d', m.birthDate) ASC "
+                " LIMIT :limit OFFSET :offset; ",
                 PARAM(oatpp::UInt32, limit),
                 PARAM(oatpp::UInt32, offset));
 
@@ -134,6 +135,20 @@ namespace primus
                 " WHERE active = 1 "
                 " ORDER BY id "
                 " LIMIT :limit OFFSET :offset;",
+                PARAM(oatpp::UInt32, limit),
+                PARAM(oatpp::UInt32, offset));
+
+            QUERY(getMembersByMostTraining,
+                " SELECT m.* "
+                " FROM Member m "
+                " JOIN( "
+                "     SELECT member_id, COUNT(*) AS attendance_count "
+                "     FROM Attendance"
+                "     WHERE date >= date('now', '-6 months') "
+                "     GROUP BY member_id "
+                "     ORDER BY attendance_count DESC "
+                "     LIMIT :limit OFFSET :offset "
+                " ) AS top_members ON m.id = top_members.member_id; ",
                 PARAM(oatpp::UInt32, limit),
                 PARAM(oatpp::UInt32, offset));
 
@@ -253,6 +268,11 @@ namespace primus
                 PARAM(oatpp::UInt32, limit),
                 PARAM(oatpp::UInt32, offset));
 
+            QUERY(getCountOfAttendancesOfMember,
+                " SELECT COUNT(*) as value FROM Attendance "
+                " WHERE member_id = :member_id ",
+                PARAM(oatpp::UInt32, member_id));
+
             QUERY(getMembersByAttendanceDate,
                 " SELECT member_id as value FROM Attendance "
                 " WHERE date = :date "
@@ -262,6 +282,11 @@ namespace primus
                 PARAM(oatpp::UInt32, limit),
                 PARAM(oatpp::UInt32, offset));
 
+            QUERY(hasMemberAttendedOnDate,
+                " SELECT COUNT(*) as value FROM Attendance "
+                " WHERE date = :date AND member_id = :member_id;",
+                PARAM(oatpp::UInt32, member_id),
+                PARAM(oatpp::String, date));
 
             //    _                  _   _               _        _     _           
             //   (_)_   _ _ __   ___| |_(_) ___  _ __   | |_ __ _| |__ | | ___  ___ 
