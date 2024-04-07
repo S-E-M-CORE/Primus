@@ -30,11 +30,23 @@ target_link_libraries(PrimusSvrLibrary
     oatpp::oatpp-sqlite
     )
 
+# Erstelle die Verzeichnisse
+file(MAKE_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/bin/")
+file(MAKE_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/bin/database/")
+file(MAKE_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/bin/sql")
+file(MAKE_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/bin/web")
+file(MAKE_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/bin/database/assets/member")
+
+file(COPY "${CMAKE_CURRENT_SOURCE_DIR}/assets/sql/"             DESTINATION "${CMAKE_CURRENT_SOURCE_DIR}/bin/sql/")
+file(COPY "${CMAKE_CURRENT_SOURCE_DIR}/assets/web/"             DESTINATION "${CMAKE_CURRENT_SOURCE_DIR}/bin/web/")
+file(COPY "${CMAKE_CURRENT_SOURCE_DIR}/assets/database/member/" DESTINATION "${CMAKE_CURRENT_SOURCE_DIR}/bin/database/assets/member/")
+
 target_compile_definitions(PrimusSvrLibrary
     PUBLIC OATPP_SWAGGER_RES_PATH="${oatpp-swagger_INCLUDE_DIRS}/../bin/oatpp-swagger/res"
     PUBLIC DATABASE_FILE="${CMAKE_CURRENT_SOURCE_DIR}/bin/database/database.sqlite"
     PUBLIC DATABASE_MIGRATIONS="${CMAKE_CURRENT_SOURCE_DIR}/bin/sql"
     PUBLIC WEB_CONTENT_DIRECTORY="${CMAKE_CURRENT_SOURCE_DIR}/bin/web"
+    PUBLIC USER_ASSETS="${CMAKE_CURRENT_SOURCE_DIR}/bin/database/assets/member"
 )
 
 if(CMAKE_SYSTEM_NAME MATCHES Linux)
@@ -47,20 +59,12 @@ target_include_directories(PrimusSvrLibrary PUBLIC src)
 # Create an executable target
 add_executable(PrimusSvr src/App.cpp)
 
-# Erstelle die Verzeichnisse
-file(MAKE_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/bin/")
-file(MAKE_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/bin/database/")
-file(MAKE_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/bin/sql")
-file(MAKE_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/bin/web")
-
-file(COPY "${CMAKE_CURRENT_SOURCE_DIR}/assets/sql/" DESTINATION "${CMAKE_CURRENT_SOURCE_DIR}/bin/sql/")
-file(COPY "${CMAKE_CURRENT_SOURCE_DIR}/assets/web/" DESTINATION "${CMAKE_CURRENT_SOURCE_DIR}/bin/web/")
-
 target_compile_definitions(PrimusSvr
     PUBLIC OATPP_SWAGGER_RES_PATH="${oatpp-swagger_INCLUDE_DIRS}/../bin/oatpp-swagger/res"
     PUBLIC DATABASE_FILE="${CMAKE_CURRENT_SOURCE_DIR}/bin/database/database.sqlite"
     PUBLIC DATABASE_MIGRATIONS="${CMAKE_CURRENT_SOURCE_DIR}/bin/sql"
     PUBLIC WEB_CONTENT_DIRECTORY="${CMAKE_CURRENT_SOURCE_DIR}/bin/web"
+    PUBLIC USER_ASSETS="${CMAKE_CURRENT_SOURCE_DIR}/bin/database/assets/member"
 )
 
 target_link_libraries(PrimusSvr PrimusSvrLibrary)

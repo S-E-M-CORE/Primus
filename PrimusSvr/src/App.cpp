@@ -29,7 +29,6 @@ namespace primus {
             typedef primus::component::DatabaseComponent                        DatabaseComponent;
             typedef primus::component::SwaggerComponent                         SwaggerComponent;
 
-            OATPP_LOGI(primus::constants::main::logName, primus::constants::main::logSeperation);
             OATPP_LOGI(primus::constants::main::logName, "Initializing AppComponents");
 
             /* Register Components in scope of run() method */
@@ -92,7 +91,18 @@ namespace primus {
             OATPP_LOGI(primus::constants::main::logName, "Starting server");
             OATPP_LOGI(primus::constants::main::logName, "Host: %s", connectionProvider->getProperty("host").getData());
             OATPP_LOGI(primus::constants::main::logName, "Port: %s", connectionProvider->getProperty("port").getData());
-            OATPP_LOGI(primus::constants::main::logName, primus::constants::main::logSeperation);
+
+            OATPP_LOGI(primus::constants::main::logName, "__| |__________________________________| |__ ");
+            OATPP_LOGI(primus::constants::main::logName, " __   __________________________________   __");
+            OATPP_LOGI(primus::constants::main::logName, "   | |                                  | |  ");
+            OATPP_LOGI(primus::constants::main::logName, "   | | ____       _                     | |  ");
+            OATPP_LOGI(primus::constants::main::logName, "   | ||  _ \\ _ __(_)_ __ ___  _   _ ___ | |  ");
+            OATPP_LOGI(primus::constants::main::logName, "   | || |_) | '__| | '_ ` _ \\| | | / __|| |  ");
+            OATPP_LOGI(primus::constants::main::logName, "   | ||  __/| |  | | | | | | | |_| \\__ \\| |  ");
+            OATPP_LOGI(primus::constants::main::logName, "   | ||_|   |_|  |_|_| |_| |_|\\__,_|___/| |  ");
+            OATPP_LOGI(primus::constants::main::logName, " __| |__________________________________| |__");
+            OATPP_LOGI(primus::constants::main::logName, " __   __________________________________   __");
+            OATPP_LOGI(primus::constants::main::logName, "   | |                                  | |  ");
 
             /* Run server */
             server.run();
