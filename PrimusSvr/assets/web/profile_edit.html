@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Member Information</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container mt-5">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Links</h2>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group">
+                            <li class="list-group-item"><a href="index.html">Home</a></li>
+                            <li class="list-group-item"><a href="profile_create.html">Add a member</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- Main Content -->
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Update Member Information</h2>
+                    </div>
+                    <div class="card-body">
+                        <form id="updateMemberForm">
+                            <!-- Member Information -->
+                            <div class="form-group">
+                                <label for="firstName">First Name:</label>
+                                <input type="text" class="form-control" id="firstName" name="firstName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">Last Name:</label>
+                                <input type="text" class="form-control" id="lastName" name="lastName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email:</label>
+                                <input type="email" class="form-control" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phoneNumber">Phone Number:</label>
+                                <input type="text" class="form-control" id="phoneNumber" name="phoneNumber">
+                            </div>
+                            <div class="form-group">
+                                <label for="birthDate">Birth Date:</label>
+                                <input type="date" class="form-control" id="birthDate" name="birthDate">
+                            </div>
+                            <div class="form-group">
+                                <label for="notes">Notes:</label>
+                                <textarea class="form-control" id="notes" name="notes" rows="3"></textarea>
+                            </div>
+                            <!-- Active Status -->
+                            <div class="form-group">
+                                <label for="active">Active:</label>
+                                <select class="form-control" id="active" name="active">
+                                    <option value="true">Yes</option>
+                                    <option value="false">No</option>
+                                </select>
+                            </div>
+                            <!-- Departments -->
+                            <hr>
+                            <h4>Departments</h4>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="1" id="department1" name="department1">
+                                <label class="form-check-label" for="department1">
+                                    Bogenschiessen
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="2" id="department2" name="department2">
+                                <label class="form-check-label" for="department2">
+                                    Luftdruck
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="3" id="department3" name="department3">
+                                <label class="form-check-label" for="department3">
+                                    Schusswaffen
+                                </label>
+                            </div>
+                            <!-- Address Information -->
+                            <hr>
+                            <h4>Address</h4>
+                            <div class="form-group">
+                                <label for="postalCode">Postal Code:</label>
+                                <input type="text" class="form-control" id="postalCode" name="postalCode" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="city">City:</label>
+                                <input type="text" class="form-control" id="city" name="city" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="country">Country:</label>
+                                <input type="text" class="form-control" id="country" name="country" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="street">Street:</label>
+                                <input type="text" class="form-control" id="street" name="street" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="houseNumber">House Number:</label>
+                                <input type="text" class="form-control" id="houseNumber" name="houseNumber" required>
+                            </div>
+                            <!-- Hidden input field for memberId -->
+                            <input type="hidden" id="memberId" name="memberId">
+                            <!-- Submit Button -->
+                            <button type="submit" class="btn btn-primary">Update</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        // Function to get query variable from URL
+        function getQueryVariable(variable) {
+            var query = window.location.search.substring(1);
+            var vars = query.split("&");
+            for (var i = 0; i < vars.length; i++) {
+                var pair = vars[i].split("=");
+                if (pair[0] === variable) {
+                    return pair[1];
+                }
+            }
+            return null;
+        }
+
+        // Get memberId from URL query
+        var memberId = getQueryVariable("memberId");
+        // Set memberId value to the hidden input field
+        $('#memberId').val(memberId);
+
+        // Populate form fields with member data using memberId
+        // Make API request to fetch member data based on memberId
+        fetch('http://localhost:8000/api/member/' + memberId)
+            .then(response => response.json())
+            .then(data => {
+                $('#firstName').val(data.firstName);
+                $('#lastName').val(data.lastName);
+                $('#email').val(data.email);
+                $('#phoneNumber').val(data.phoneNumber);
+                $('#birthDate').val(data.birthDate);
+                $('#notes').val(data.notes);
+                $('#active').val(data.active.toString());
+                // Load member address
+                fetch('http://localhost:8000/api/member/' + memberId + '/list/addresses?limit=1&offset=0')
+                    .then(response => response.json())
+                    .then(addressData => {
+                        if (addressData.count > 0) {
+                            var address = addressData.items[0];
+                            $('#postalCode').val(address.postalCode);
+                            $('#city').val(address.city);
+                            $('#country').val(address.country);
+                            $('#street').val(address.street);
+                            $('#houseNumber').val(address.houseNumber);
+                        }
+                    });
+            });
+
+        // Function to load member departments and pre-check checkboxes
+function loadMemberDepartments() {
+    fetch('http://localhost:8000/api/member/' + memberId + '/list/departments?limit=3&offset=0')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed to load member departments');
+            }
+            return response.json();
+        })
+        .then(data => {
+            data.items.forEach(department => {
+                $('#department' + department.id).prop('checked', true);
+            });
+        })
+        .catch(error => {
+            console.error('Error loading member departments:', error);
+        });
+}
+
+
+        // Load member departments and pre-check checkboxes
+        loadMemberDepartments();
+
+        // Submit form data to update member information
+        $('#updateMemberForm').submit(function (event) {
+            event.preventDefault(); // Prevent the form from submitting normally
+            // Get form data
+            var formData = {
+                'id': parseInt($('#memberId').val()), // ID als Zahl parsen
+                'firstName': $('#firstName').val(),
+                'lastName': $('#lastName').val(),
+                'email': $('#email').val(),
+                'phoneNumber': $('#phoneNumber').val(),
+                'birthDate': $('#birthDate').val(),
+                'createDate': '', // Der Wert für createDate ist nicht im Formular vorhanden und muss möglicherweise vom Server generiert werden
+                'notes': $('#notes').val(),
+                'active': $('#active').val() === 'true',
+                'address': {
+                    'id': 0,
+                    'postalCode': $('#postalCode').val(),
+                    'city': $('#city').val(),
+                    'country': $('#country').val(),
+                    'houseNumber': parseInt($('#houseNumber').val()), // Hausnummer als Zahl parsen
+                    'street': $('#street').val()
+                }
+            };
+
+            // Make API request to update member information
+            fetch('http://localhost:8000/api/member', {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Error updating member');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Response data:', data);
+                    // Optionally, you can display a success message to the user
+                    alert('Member information updated successfully!');
+                    // Check if the address has been modified
+                    var originalPostalCode = ''; // Hier sollten die ursprünglichen Adressdaten gespeichert werden
+                    var originalCity = ''; // Hier sollten die ursprünglichen Adressdaten gespeichert werden
+                    var originalCountry = ''; // Hier sollten die ursprünglichen Adressdaten gespeichert werden
+                    var originalHouseNumber = ''; // Hier sollten die ursprünglichen Adressdaten gespeichert werden
+                    var originalStreet = ''; // Hier sollten die ursprünglichen Adressdaten gespeichert werden
+                    fetch('http://localhost:8000/api/member/' + formData.id + '/list/addresses?limit=1&offset=0')
+                        .then(response => response.json())
+                        .then(addressData => {
+                            if (addressData.count > 0) {
+                                var address = addressData.items[0];
+                                originalPostalCode = address.postalCode;
+                                originalCity = address.city;
+                                originalCountry = address.country;
+                                originalHouseNumber = address.houseNumber;
+                                originalStreet = address.street;
+                            }
+                            // Check if address has been modified
+                            if (formData.address.postalCode !== originalPostalCode ||
+                                formData.address.city !== originalCity ||
+                                formData.address.country !== originalCountry ||
+                                formData.address.houseNumber !== originalHouseNumber ||
+                                formData.address.street !== originalStreet) {
+                                // Delete the old address
+                                fetch('http://localhost:8000/api/member/' + formData.id + '/address/remove/' + address.id, {
+                                    method: 'DELETE'
+                                })
+                                    .then(response => {
+                                        if (!response.ok) {
+                                            throw new Error('Error removing old address');
+                                        }
+                                        // Add the updated address
+                                        fetch('http://localhost:8000/api/member/' + formData.id + '/address/add', {
+                                            method: 'POST',
+                                            headers: {
+                                                'Content-Type': 'application/json'
+                                            },
+                                            body: JSON.stringify(formData.address)
+                                        })
+                                            .then(response => {
+                                                if (!response.ok) {
+                                                    throw new Error('Error adding new address');
+                                                }
+                                                // Optionally, you can display a success message to the user
+                                                console.log('Address updated successfully!');
+                                            })
+                                            .catch(error => {
+                                                // Optionally, you can handle errors and display error messages to the user
+                                                console.error('Error adding new address:', error.message);
+                                                alert('Error adding new address. Please try again.');
+                                            });
+                                    })
+                                    .catch(error => {
+                                        // Optionally, you can handle errors and display error messages to the user
+                                        console.error('Error removing old address:', error.message);
+                                        alert('Error removing old address. Please try again.');
+                                    });
+                            }
+                        });
+                })
+                .catch(error => {
+                    // Optionally, you can handle errors and display error messages to the user
+                    console.error('Error updating member:', error.message);
+                    alert('Error updating member. Please try again.');
+                });
+        });
+
+        // Function to handle checkbox change event
+        $('.form-check-input').change(function () {
+            var departmentId = $(this).val();
+            var memberId = $('#memberId').val();
+            var isChecked = $(this).is(':checked');
+
+            // Make API request to add or remove member from department based on checkbox state
+            if (isChecked) {
+                // Add member to department
+                fetch('http://localhost:8000/api/member/' + memberId + '/department/add/' + departmentId, {
+                    method: 'POST'
+                })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Error adding member to department');
+                        }
+                        // Optionally, you can display a success message to the user
+                        console.log('Member added to department successfully!');
+                    })
+                    .catch(error => {
+                        // Optionally, you can handle errors and display error messages to the user
+                        console.error('Error adding member to department:', error.message);
+                        alert('Error adding member to department. Please try again.');
+                    });
+            } else {
+                // Remove member from department
+                fetch('http://localhost:8000/api/member/' + memberId + '/department/remove/' + departmentId, {
+                    method: 'DELETE'
+                })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Error removing member from department');
+                        }
+                        // Optionally, you can display a success message to the user
+                        console.log('Member removed from department successfully!');
+                    })
+                    .catch(error => {
+                        // Optionally, you can handle errors and display error messages to the user
+                        console.error('Error removing member from department:', error.message);
+                        alert('Error removing member from department. Please try again.');
+                    });
+            }
+        });
+    });
+</script>
+</body>
+
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Member Profile</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Member Profile</h1>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Personal Information</h5>
+                        <div class="mb-3">
+                            <label for="member-name" class="form-label">Name:</label>
+                            <span id="member-name"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label for="member-email" class="form-label">Email:</label>
+                            <span id="member-email"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label for="member-phone" class="form-label">Phone:</label>
+                            <span id="member-phone"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label for="member-birthdate" class="form-label">Birth Date:</label>
+                            <span id="member-birthdate"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Addresses</h5>
+                        <ul class="list-group" id="addresses-list">
+                            <!-- Addresses will be dynamically inserted here -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Departments</h5>
+                        <ul class="list-group" id="departments-list">
+                            <!-- Departments will be dynamically inserted here -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Attendances</h5>
+                        <ul class="list-group" id="attendances-list">
+                            <!-- Attendances will be dynamically inserted here -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Profile Picture</h5>
+                        <div id="profile-picture" class="mb-3">
+                            <!-- Profile picture will be dynamically inserted here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Function to fetch member profile data
+        function fetchMemberProfile(memberId) {
+            return fetch(`/api/member/${memberId}`)
+                .then(response => response.json())
+                .then(data => {
+                    displayMemberProfile(data);
+                })
+                .catch(error => {
+                    console.error('Error fetching member profile:', error);
+                });
+        }
+
+        // Function to display member profile data
+        function displayMemberProfile(profileData) {
+            // Personal information
+            document.getElementById('member-name').innerText = `${profileData.firstName} ${profileData.lastName}`;
+            document.getElementById('member-email').innerText = profileData.email;
+            document.getElementById('member-phone').innerText = profileData.phoneNumber;
+            document.getElementById('member-birthdate').innerText = profileData.birthDate;
+
+            // Addresses
+            const addressesList = document.getElementById('addresses-list');
+            addressesList.innerHTML = '';
+            profileData.addresses.forEach(address => {
+                const addressItem = document.createElement('li');
+                addressItem.classList.add('list-group-item');
+                addressItem.innerText = `${address.street}, ${address.city}, ${address.country}`;
+                addressesList.appendChild(addressItem);
+            });
+
+            // Departments
+            const departmentsList = document.getElementById('departments-list');
+            departmentsList.innerHTML = '';
+            profileData.departments.forEach(department => {
+                const departmentItem = document.createElement('li');
+                departmentItem.classList.add('list-group-item');
+                departmentItem.innerText = department.name;
+                departmentsList.appendChild(departmentItem);
+            });
+
+            // Attendances
+            const attendancesList = document.getElementById('attendances-list');
+            attendancesList.innerHTML = '';
+            profileData.attendances.forEach(attendance => {
+                const attendanceItem = document.createElement('li');
+                attendanceItem.classList.add('list-group-item');
+                attendanceItem.innerText = attendance.date;
+                attendancesList.appendChild(attendanceItem);
+            });
+
+            // Profile picture
+            const profilePicture = document.getElementById('profile-picture');
+            const img = document.createElement('img');
+            img.src = `/api/member/${profileData.id}/assets/profilepicture`;
+            img.alt = 'Profile Picture';
+            img.classList.add('img-fluid');
+            profilePicture.appendChild(img);
+        }
+
+        // Example call to fetch member profile with ID 123
+        fetchMemberProfile(1);
+    </script>
+</body>
+</html>

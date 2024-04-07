@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Member</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Add New Member</h2>
+                    </div>
+                    <div class="card-body">
+                        <form id="addMemberForm">
+                            <div class="form-group">
+                                <label for="firstName">First Name:</label>
+                                <input type="text" class="form-control" id="firstName" name="firstName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">Last Name:</label>
+                                <input type="text" class="form-control" id="lastName" name="lastName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email:</label>
+                                <input type="email" class="form-control" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phoneNumber">Phone Number:</label>
+                                <input type="text" class="form-control" id="phoneNumber" name="phoneNumber">
+                            </div>
+                            <div class="form-group">
+                                <label for="birthDate">Birth Date:</label>
+                                <input type="date" class="form-control" id="birthDate" name="birthDate">
+                            </div>
+                            <div class="form-group">
+                                <label for="notes">Notes:</label>
+                                <textarea class="form-control" id="notes" name="notes" rows="3"></textarea>
+                            </div>
+                            <hr>
+                            <h4>Address</h4>
+                            <div class="form-group">
+                                <label for="postalCode">Postal Code:</label>
+                                <input type="text" class="form-control" id="postalCode" name="postalCode" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="city">City:</label>
+                                <input type="text" class="form-control" id="city" name="city" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="country">Country:</label>
+                                <input type="text" class="form-control" id="country" name="country" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="street">Street:</label>
+                                <input type="text" class="form-control" id="street" name="street" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="houseNumber">House Number:</label>
+                                <input type="text" class="form-control" id="houseNumber" name="houseNumber" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#addMemberForm').submit(function (event) {
+                event.preventDefault(); // Prevent the form from submitting normally
+
+                // Get form data
+                var formData = {
+                    'firstName': $('#firstName').val(),
+                    'lastName': $('#lastName').val(),
+                    'email': $('#email').val(),
+                    'phoneNumber': $('#phoneNumber').val(),
+                    'birthDate': $('#birthDate').val(),
+                    'notes': $('#notes').val(),
+                    'address': {
+                        'postalCode': $('#postalCode').val(),
+                        'city': $('#city').val(),
+                        'country': $('#country').val(),
+                        'street': $('#street').val(),
+                        'houseNumber': $('#houseNumber').val()
+                    }
+                };
+
+                // Submit the form using Fetch API
+                fetch('http://localhost:8000/api/member', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Error adding member');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Response data:', data);
+                    // Check if memberId is available in the response data
+                    if (data.id) {
+                        // Use memberId to add address
+                        var memberId = data.id;
+                        var addressData = {
+                            'id': 0,
+                            'postalCode': $('#postalCode').val(),
+                            'city': $('#city').val(),
+                            'country': $('#country').val(),
+                            'houseNumber': parseInt($('#houseNumber').val()),
+                            'street': $('#street').val()
+                        };
+
+						// Call the API to add address
+                        fetch('http://localhost:8000/api/member/' + memberId + '/address/add', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(addressData)
+                        })
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error('Error adding member address');
+                            }
+                            return response.json();
+                        })
+                        .then(data => {
+                            console.log('Address added successfully:', data);
+                        })
+                        .catch(error => {
+                            console.error('Error adding member address:', error.message);
+                        });
+
+                        // Use memberId to add departments
+                        var departments = [];
+                        if ($('#department1').is(':checked')) {
+                            departments.push(1);
+                        }
+                        if ($('#department2').is(':checked')) {
+                            departments.push(2);
+                        }
+                        if ($('#department3').is(':checked')) {
+                            departments.push(3);
+                        }
+
+                        // Call the API to add departments
+                        departments.forEach(departmentId => {
+                            fetch('http://localhost:8000/api/member/' + memberId + '/department/add/' + departmentId, {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                }
+                            })
+                            .then(response => {
+                                if (!response.ok) {
+                                    throw new Error('Error adding member department');
+                                }
+                                return response.json();
+                            })
+                            .then(data => {
+                                console.log('Department added successfully:', data);
+                            })
+                            .catch(error => {
+                                console.error('Error adding member department:', error.message);
+                            });
+                        });
+
+                        // Reset the form after successful submission
+                        $('#addMemberForm').trigger('reset');
+                        // Optionally, you can display a success message to the user
+                        alert('Member added successfully!');
+                    } else {
+                        // If memberId is not available in the response data, display an error message
+                        console.error('Error adding member:', data.error);
+                        alert('Error adding member. Please try again.');
+                    }
+                })
+                .catch(error => {
+                    // Optionally, you can handle errors and display error messages to the user
+                    console.error('Error adding member:', error.message);
+                    alert('Error adding member. Please try again.');
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

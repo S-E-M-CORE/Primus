@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Member List</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/index.css">
+</head>
+
+<body>
+
+    <div class="container mt-5">
+        <div class="mt-5">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2>Member Counts</h2>
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-group">
+                                <li class="list-group-item member-count" id="active-members">Active Members: Loading...</li>
+                                <li class="list-group-item member-count" id="total-members">Total Members: Loading...</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2>Links</h2>
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-group">
+                                <li class="list-group-item"><a href="index.html">Home</a></li>
+                                <li class="list-group-item"><a href="profile_create.html">Add a member</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Member List</h2>
+                    </div>
+                    <div class="card-body">
+						<!-- Radio buttons for selecting member status -->
+						<div class="row justify-content-center mb-3">
+							<div class="col-auto">
+								<div class="form-check form-check-inline">
+									<input class="form-check-input" type="radio" name="memberStatus" id="allMembers"
+										value="all" checked>
+									<label class="form-check-label" for="allMembers">All Members</label>
+								</div>
+							</div>
+							<div class="col-auto">
+								<div class="form-check form-check-inline">
+									<input class="form-check-input" type="radio" name="memberStatus"
+										id="activeMembers" value="active">
+									<label class="form-check-label" for="activeMembers">Active Members</label>
+								</div>
+							</div>
+							<div class="col-auto">
+								<div class="form-check form-check-inline">
+									<input class="form-check-input" type="radio" name="memberStatus"
+										id="inactiveMembers" value="inactive">
+									<label class="form-check-label" for="inactiveMembers">Inactive Members</label>
+								</div>
+							</div>
+						</div>
+
+
+                        <!-- Buttons for interacting with selected member -->
+                        <div class="text-center mb-3">
+                            <button id="viewButton" class="btn btn-primary mr-2" disabled>View Selected
+                                Member</button>
+                            <button id="editButton" class="btn btn-primary mr-2" disabled>Edit Selected
+                                Member</button>
+                            <button id="deactivateButton" class="btn btn-danger" disabled>Deactivate/Activate
+                                Selected Member</button>
+                        </div>
+
+                        <!-- Member List with Pagination -->
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th></th> <!-- Radio button column -->
+                                        <th>ID</th>
+                                        <th>First Name</th>
+                                        <th>Last Name</th>
+                                        <th>Email</th>
+                                        <th>Phone Number</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="memberList">
+                                    <!-- Member items will be added here -->
+                                </tbody>
+                            </table>
+
+                            <!-- Pagination -->
+                            <nav aria-label="Page navigation">
+                                <ul class="pagination justify-content-center" id="pagination">
+                                    <!-- Pagination buttons will be added here -->
+                                </ul>
+                            </nav>
+                        </div>
+
+                        <!-- Navigation buttons -->
+                        <div class="text-center mt-4">
+                            <button id="prevPageButton" class="btn btn-primary mr-2" disabled>Previous
+                                Page</button>
+                            <button id="nextPageButton" class="btn btn-primary" disabled>Next Page</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+let currentPage = 1; // Variable to keep track of the current page
+let maxPages = 1; // Variable to keep track of the maximum number of pages
+const limit = 10; // Limit of members per page
+let selectedMemberId = null; // Variable to keep track of the selected member ID
+let memberStatus = 'all'; // Variable to keep track of selected member status
+
+// Function to fetch total count of members
+function fetchMemberCount() {
+    const url = `http://localhost:8000/api/members/count/${memberStatus}`;
+
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            // Calculate the maximum number of pages
+            maxPages = Math.ceil(data.value / limit);
+            fetchMembers();
+        })
+        .catch(error => console.error('Error fetching member count:', error));
+}
+
+// Function to fetch member data with limit and offset
+function fetchMembers() {
+    const offset = (currentPage - 1) * limit;
+    const url = `http://localhost:8000/api/members/list/${memberStatus}?limit=${limit}&offset=${offset}`;
+
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            // Clear previous data
+            document.getElementById('memberList').innerHTML = '';
+
+            // Populate the table with member data
+            data.items.forEach(member => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td><input type="radio" name="selectedMember" data-member-id="${member.id}"></td>
+                    <td>${member.id}</td>
+                    <td>${member.firstName}</td>
+                    <td>${member.lastName}</td>
+                    <td>${member.email}</td>
+                    <td>${member.phoneNumber}</td>
+                `;
+                // Add click event listener to the row
+                row.addEventListener('click', () => handleRowClick(member.id));
+                document.getElementById('memberList').appendChild(row);
+            });
+
+            // Enable/disable action buttons based on selection
+            const radioButtons = document.querySelectorAll('input[type="radio"]');
+            radioButtons.forEach(radioButton => {
+                radioButton.addEventListener('change', handleRadioChange);
+            });
+
+            // Generate pagination buttons
+            generatePaginationButtons();
+
+            // Enable/disable navigation buttons based on current page
+            document.getElementById("prevPageButton").disabled = currentPage === 1;
+            document.getElementById("nextPageButton").disabled = currentPage === maxPages;
+
+            // Clear selection and remove highlighting when fetching new data
+            clearSelection();
+        })
+        .catch(error => console.error('Error fetching members:', error));
+}
+
+// Function to handle radio button selection
+function handleRadioChange(event) {
+    const selected = event.target.checked;
+    const selectedOption = event.target.value;
+
+    // Update the selectedOption variable to reflect the current selection
+    if (selected) {
+        currentOption = selectedOption;
+    }
+
+    // Check the "All Members" radio button if no option is selected
+    if (currentOption === '') {
+        document.getElementById("allMembers").checked = true;
+    }
+
+    // Fetch members according to the selected option
+    fetchMembers();
+}
+
+// Function to handle row click
+function handleRowClick(memberId) {
+    const selectedRow = document.querySelector(`input[type="radio"][data-member-id="${memberId}"]`);
+    selectedRow.checked = true;
+    selectedMemberId = memberId;
+
+    // Remove color from all rows
+    const rows = document.querySelectorAll('tbody tr');
+    rows.forEach(row => {
+        row.classList.remove('table-primary');
+    });
+    // Colorize selected row
+    selectedRow.parentNode.parentNode.classList.add('table-primary');
+
+    // Enable/disable action buttons based on selection
+    document.getElementById("viewButton").disabled = false;
+    document.getElementById("editButton").disabled = false;
+    document.getElementById("deactivateButton").disabled = false;
+}
+
+// Function to handle pagination click
+function handlePaginationClick(page) {
+    currentPage = page; // Update current page
+    fetchMembers();
+}
+
+// Function to generate pagination buttons
+function generatePaginationButtons() {
+    const paginationUl = document.getElementById('pagination');
+    paginationUl.innerHTML = '';
+
+    for (let i = 1; i <= maxPages; i++) {
+        const li = document.createElement('li');
+        li.classList.add('page-item');
+        const button = document.createElement('button');
+        button.innerText = i;
+        button.classList.add('page-link');
+        button.addEventListener('click', () => handlePaginationClick(i));
+        li.appendChild(button);
+        paginationUl.appendChild(li);
+    }
+}
+
+// Function to handle navigation to previous page
+function goToPrevPage() {
+    if (currentPage > 1) {
+        currentPage--;
+        fetchMembers();
+    }
+}
+
+// Function to handle navigation to next page
+function goToNextPage() {
+    if (currentPage < maxPages) {
+        currentPage++;
+        fetchMembers();
+    }
+}
+
+// Function to toggle member status (activate/deactivate)
+function toggleMemberStatus() {
+    // Check if a member is selected
+    if (!selectedMemberId) {
+        alert('Please select a member to deactivate/activate.');
+        return;
+    }
+
+    // Fetch the member data first
+    const url = `http://localhost:8000/api/member/${selectedMemberId}`;
+    fetch(url)
+        .then(response => response.json())
+        .then(memberData => {
+            // Toggle the active status
+            const updatedMemberData = {
+                ...memberData,
+                active: !memberData.active
+            };
+
+            // Update the member data on the server
+            updateMemberData(updatedMemberData);
+        })
+        .catch(error => console.error('Error fetching member data:', error));
+}
+
+// Function to update member data on the server
+function updateMemberData(updatedMemberData) {
+    const url = `http://localhost:8000/api/member/`;
+    fetch(url, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(updatedMemberData)
+    })
+    .then(response => {
+        if (response.ok) {
+            // Refresh member list after successful update
+            fetchMembers();
+            const buttonText = updatedMemberData.active ? 'Deactivate' : 'Activate';
+            document.getElementById('toggleButton').textContent = `${buttonText} Selected Member`;
+            alert('Member status updated successfully.');
+        } else {
+            throw new Error('Failed to update member status.');
+        }
+    })
+    .catch(error => console.error('Error updating member status:', error));
+}
+
+// Function to set button text based on selected member status
+function setButtonText(memberId) {
+    const url = `http://localhost:8000/api/member/${memberId}`;
+    fetch(url)
+        .then(response => response.json())
+        .then(memberData => {
+            const buttonText = memberData.active ? 'Deactivate' : 'Activate';
+            document.getElementById('toggleButton').textContent = `${buttonText} Selected Member`;
+        })
+        .catch(error => console.error('Error fetching member data:', error));
+}
+
+
+// Function to clear selection and remove highlighting
+function clearSelection() {
+    selectedMemberId = null;
+    const selectedRow = document.querySelector('.table-primary');
+    if (selectedRow) {
+        selectedRow.classList.remove('table-primary');
+        const radioButton = selectedRow.querySelector('input[type="radio"]');
+        radioButton.checked = false;
+    }
+    document.getElementById("viewButton").disabled = true;
+    document.getElementById("editButton").disabled = true;
+    document.getElementById("deactivateButton").disabled = true;
+    document.getElementById("deactivateButton").innerText = 'Deactivate/Activate Selected Member';
+}
+
+// Event listeners for navigation buttons
+document.getElementById("prevPageButton").addEventListener('click', goToPrevPage);
+document.getElementById("nextPageButton").addEventListener('click', goToNextPage);
+
+// Event listener for radio button group change
+document.querySelectorAll('input[name="memberStatus"]').forEach(radio => {
+    radio.addEventListener('change', event => {
+        memberStatus = event.target.value;
+        currentPage = 1; // Reset current page when switching status
+        fetchMemberCount();
+    });
+});
+
+// Event listener for deactivateButton
+document.getElementById("deactivateButton").addEventListener('click', toggleMemberStatus);
+
+// Fetch total count of members and initiate fetching members for the initial page
+fetchMemberCount();
+
+	
+        // Fetch member counts
+        fetch('http://localhost:8000/api/members/count/active')
+            .then(response => response.json())
+            .then(data => {
+                console.log('Received active members count:', data);
+                const activeMembersCount = document.getElementById('active-members');
+                activeMembersCount.textContent = 'Active Members: ' + data.value;
+            })
+            .catch(error => {
+                console.error('Error fetching active members count:', error);
+            });
+
+        fetch('http://localhost:8000/api/members/count/all')
+            .then(response => response.json())
+            .then(data => {
+                console.log('Received total members count:', data);
+                const totalMembersCount = document.getElementById('total-members');
+                totalMembersCount.textContent = 'Total Members: ' + data.value;
+            })
+            .catch(error => {
+                console.error('Error fetching total members count:', error);
+            });
+
+    document.getElementById("viewButton").addEventListener('click', function() {
+        // Überprüfen, ob ein Mitglied ausgewählt wurde
+        if (!selectedMemberId) {
+            alert('Bitte wählen Sie ein Mitglied aus.');
+            return;
+        }
+        // Weiterleitung zur Seite "member_display.html" mit der Mitglieds-ID als Query-Parameter
+        window.location.href = `profile_display.html?memberId=${selectedMemberId}`;
+    });
+	
+    document.getElementById("editButton").addEventListener('click', function() {
+        // Überprüfen, ob ein Mitglied ausgewählt wurde
+        if (!selectedMemberId) {
+            alert('Bitte wählen Sie ein Mitglied aus.');
+            return;
+        }
+        // Weiterleitung zur Seite "member_display.html" mit der Mitglieds-ID als Query-Parameter
+        window.location.href = `profile_edit.html?memberId=${selectedMemberId}`;
+    });
+
+    </script>
+</body>
+
+</html>

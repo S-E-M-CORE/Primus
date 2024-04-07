@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Member Profile</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <!-- Navigation -->
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Links</h2>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group">
+                            <li class="list-group-item"><a href="index.html">Home</a></li>
+                            <li class="list-group-item"><a href="overview.html">Overview</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Member Profile -->
+                <div class="card mt-3">
+                    <div class="card-header">
+                        <h2>Member Profile</h2>
+                    </div>
+                    <div class="card-footer" id="profileDetails">
+                        <!-- Profile details will be displayed here -->
+                    </div>
+                </div>
+
+                <!-- Addresses -->
+                <div class="card mt-3">
+                    <div class="card-header">
+                        <h2>Addresses</h2>
+                    </div>
+                    <div class="card-footer">
+                        <div id="addressList" class="mt-3">
+                            <!-- Address details will be displayed here -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Membership -->
+                <div class="card mt-3">
+                    <div class="card-header">
+                        <h2>Membership</h2>
+                    </div>
+                    <div class="card-footer" id="departments">
+                        <!-- Department details will be displayed here -->
+                    </div>
+                    <div class="card-footer" id="membershipFee">
+                        <!-- Membership fee details will be displayed here -->
+                    </div>
+                    <div class="card-footer" id="canBuyWeapon">
+                        <!-- Weapon purchase status will be displayed here -->
+                    </div>
+                </div>
+
+                <!-- Attendances -->
+                <div class="card mt-3">
+                    <div class="card-header">
+                        <h2>Attendances</h2>
+                    </div>
+                    <div class="card-footer" id="attendanceCount">
+                        <!-- Attendance count will be displayed here -->
+                    </div>
+                    <div class="card-footer" id="attendanceList">
+                        <!-- Attendances will be displayed here -->
+                    </div>
+                    <div class="card-footer">
+                        <!-- Button to mark attendance for today -->
+                        <button id="markAttendanceBtn" class="btn btn-primary" onclick="markAttendance()">Mark Attendance for Today</button>
+                        <!-- Navigation buttons for attendances -->
+                        <div class="mt-3">
+                            <button id="prevAttendanceBtn" class="btn btn-secondary mr-2" onclick="navigateAttendance(-1)" disabled>Previous</button>
+                            <button id="nextAttendanceBtn" class="btn btn-secondary" onclick="navigateAttendance(1)" disabled>Next</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        var addresses = [];
+        var currentAddressIndex = 0;
+        var attendances = [];
+        var currentAttendanceIndex = 0;
+        var totalAttendances = 0;
+        var urlParams = new URLSearchParams(window.location.search);
+        var memberId = urlParams.get('memberId');
+
+        // Function to extract member ID from URL and fetch member details
+        function fetchMemberDetails() {
+            if (!memberId) {
+                console.error('Member ID not found in URL.');
+                return;
+            }
+
+            fetch('http://localhost:8000/api/member/' + memberId)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Failed to fetch member details.');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    displayMemberDetails(data);
+                    fetchAddresses(memberId);
+                    fetchDepartments(memberId);
+                    fetchMembershipFee(memberId);
+                    fetchCanBuyWeapon(memberId);
+                    fetchTotalAttendances(memberId);
+                    fetchAttendances(memberId);
+                })
+                .catch(error => {
+                    console.error('Error fetching member details:', error);
+                    document.getElementById('profileDetails').innerHTML = '<p>Error fetching member details.</p>';
+                });
+        }
+
+        // Function to display member details on the page
+        function displayMemberDetails(member) {
+            var profileHtml = `
+                <p><strong>Member ID:</strong> ${member.id}</p>
+                <p><strong>First Name:</strong> ${member.firstName}</p>
+                <p><strong>Last Name:</strong> ${member.lastName}</p>
+                <p><strong>Email:</strong> ${member.email}</p>
+                <p><strong>Phone Number:</strong> ${member.phoneNumber || '-'}</p>
+                <p><strong>Birth Date:</strong> ${member.birthDate}</p>
+                <p><strong>Create Date:</strong> ${member.createDate}</p>
+                <p><strong>Notes:</strong> ${member.notes || '-'}</p>
+            `;
+            document.getElementById('profileDetails').innerHTML = profileHtml;
+        }
+
+        // Function to fetch member addresses
+        function fetchAddresses(memberId) {
+            fetch('http://localhost:8000/api/member/' + memberId + '/list/addresses?limit=10&offset=0')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Failed to fetch member addresses.');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    addresses = data.items;
+                    displayAddress(addresses[currentAddressIndex]);
+                    updateAddressNavigationButtons();
+                })
+                .catch(error => {
+                    console.error('Error fetching member addresses:', error);
+                    document.getElementById('addressList').innerHTML = '<p>Error fetching member addresses.</p>';
+                });
+        }
+
+        // Function to display address on the page
+        function displayAddress(address) {
+            var addressHtml = `
+                <p><strong>Postal Code:</strong> ${address.postalCode}</p>
+                <p><strong>City:</strong> ${address.city}</p>
+                <p><strong>Country:</strong> ${address.country}</p>
+                <p><strong>Street:</strong> ${address.street}</p>
+                <p><strong>House Number:</strong> ${address.houseNumber}</p>
+            `;
+            document.getElementById('addressList').innerHTML = addressHtml;
+        }
+
+        // Function to fetch member departments
+        function fetchDepartments(memberId) {
+            fetch('http://localhost:8000/api/member/' + memberId + '/list/departments?limit=10&offset=0')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Failed to fetch member departments.');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    displayDepartments(data.items);
+                })
+                .catch(error => {
+                    console.error('Error fetching member departments:', error);
+                    document.getElementById('departments').innerHTML = '<p>Error fetching member departments.</p>';
+                });
+        }
+
+        // Function to display departments on the page
+        function displayDepartments(departments) {
+            var departmentHtml = '';
+            departments.forEach(department => {
+                departmentHtml += `<p>${department.name}</p>`;
+            });
+            document.getElementById('departments').innerHTML = departmentHtml;
+        }
+
+        // Function to fetch membership fee
+        function fetchMembershipFee(memberId) {
+            fetch('http://localhost:8000/api/member/' + memberId + '/fee')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Failed to fetch membership fee.');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    displayMembershipFee(data.value);
+                })
+                .catch(error => {
+                    console.error('Error fetching membership fee:', error);
+                    document.getElementById('membershipFee').innerHTML = '<p>Error fetching membership fee.</p>';
+                });
+        }
+
+        // Function to display membership fee on the page
+        function displayMembershipFee(fee) {
+            document.getElementById('membershipFee').innerHTML = `<p><strong>Membership Fee:</strong> ${fee}</p>`;
+        }
+
+        // Function to fetch can buy weapon status
+        function fetchCanBuyWeapon(memberId) {
+            fetch('http://localhost:8000/api/member/' + memberId + '/weaponpurchase/')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Failed to fetch weapon purchase status.');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    displayCanBuyWeapon(data.value);
+                })
+                .catch(error => {
+                    console.error('Error fetching weapon purchase status:', error);
+                    document.getElementById('canBuyWeapon').innerHTML = '<p>Error fetching weapon purchase status.</p>';
+                });
+        }
+
+        // Function to display can buy weapon status on the page
+        function displayCanBuyWeapon(canBuy) {
+            var status = canBuy ? 'Yes' : 'No';
+            document.getElementById('canBuyWeapon').innerHTML = `<p><strong>Can Buy Weapon:</strong> ${status}</p>`;
+        }
+        
+        function fetchTotalAttendances(memberId) {
+            fetch('http://localhost:8000/api/member/' + memberId + '/count/attendances')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Failed to fetch total attendances count.');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    totalAttendances = data.value;
+                    displayTotalAttendances(totalAttendances);
+                    updateAttendanceNavigationButtons(); // Update navigation buttons
+                })
+                .catch(error => {
+                    console.error('Error fetching total attendances count:', error);
+                });
+        }
+
+        function fetchAttendances(memberId, offset = 0, limit = 5) {
+            fetch('http://localhost:8000/api/member/' + memberId + '/list/attendances?limit=' + limit + '&offset=' + offset)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Failed to fetch member attendances.');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    attendances = data.items;
+                    displayAttendances();
+                })
+                .catch(error => {
+                    console.error('Error fetching member attendances:', error);
+                    document.getElementById('attendanceList').innerHTML = '<p>Error fetching member attendances.</p>';
+                });
+        }
+
+        // Function to display total attendances on the page
+        function displayTotalAttendances(count) {
+            document.getElementById('attendanceCount').innerHTML = `<p><strong>Total :</strong> ${count}</p>`;
+        }
+
+        // Function to display attendances on the page
+        function displayAttendances() {
+            var attendanceHtml = '';
+            attendances.forEach(attendance => {
+                attendanceHtml += `<p>${attendance.date}</p>`;
+            });
+            document.getElementById('attendanceList').innerHTML = attendanceHtml;
+        }
+
+        // Function to navigate between addresses
+        function navigateAddress(direction) {
+            currentAddressIndex += direction;
+            displayAddress(addresses[currentAddressIndex]);
+            updateAddressNavigationButtons();
+        }
+
+        // Function to update address navigation buttons
+        function updateAddressNavigationButtons() {
+            document.getElementById('prevAddressBtn').disabled = currentAddressIndex === 0;
+            document.getElementById('nextAddressBtn').disabled = currentAddressIndex === addresses.length - 1;
+        }
+
+        // Function to navigate between attendances
+        function navigateAttendance(direction) {
+            var limit = 5; // Number of attendances per page
+            var newOffset = currentAttendanceIndex + direction * limit; // Calculate new offset
+            if (newOffset >= 0 && newOffset < totalAttendances) {
+                currentAttendanceIndex = newOffset;
+                fetchAttendances(memberId, newOffset, limit);
+                updateAttendanceNavigationButtons(); // Update navigation buttons
+            }
+        }
+
+        // Function to update attendance navigation buttons
+        function updateAttendanceNavigationButtons() {
+            var limit = 5; // Number of attendances per page
+            var totalPages = Math.ceil(totalAttendances / limit); // Calculate total pages
+            var currentPage = Math.floor(currentAttendanceIndex / limit) + 1; // Calculate current page
+
+            document.getElementById('prevAttendanceBtn').disabled = currentPage === 1; // Disable previous button on first page
+            document.getElementById('nextAttendanceBtn').disabled = currentPage === totalPages; // Disable next button on last page
+        }
+
+        // Function to mark attendance for today
+        function markAttendance() {
+            var today = new Date();
+            var formattedDate = today.toISOString().split('T')[0]; // Format date as YYYY-MM-DD
+            fetch('http://localhost:8000/api/member/' + memberId + '/attendance/' + formattedDate, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    memberId: memberId,
+                    dateOfAttendance: formattedDate
+                })
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to mark attendance for today.');
+                }
+                return response.json();
+            })
+            .then(data => {
+                alert(data.status); // Show status message
+                // Refresh attendances after marking attendance
+                fetchTotalAttendances(memberId);
+                fetchAttendances(memberId);
+            })
+            .catch(error => {
+                console.error('Error marking attendance for today:', error);
+                alert('Error marking attendance for today.');
+            });
+        }
+
+        // Fetch member details when the page loads
+        window.onload = fetchMemberDetails;
+    </script>
+</body>
+
+</html>
