@@ -91,7 +91,6 @@ function updateHTML(memberData , adresseData, DepartmentData)
 
     let currentUserMember       = memberData[0];            // 0 weil wir nur nach einem User Fragen wollen.
     let currentUserAddresse     = adresseData.items[0];     //
-    let currentUserDepartment   = DepartmentData.items;  //
 
     // currentUserMember
     document.getElementById('FirstName').textContent    = `Vorname: ${currentUserMember.firstName}`;
@@ -99,20 +98,32 @@ function updateHTML(memberData , adresseData, DepartmentData)
     document.getElementById('date').textContent         = `Geburtstag: ${currentUserMember.birthDate}`;
     document.getElementById('Member_email').textContent = `Email address: ${currentUserMember.email}`;
     document.getElementById('phoneNumber').textContent  = `Telefonnummer: ${currentUserMember.phoneNumber}`;
+    document.getElementById('joindate').textContent  = `Einstiegdatum: ${currentUserMember.createDate}`;
+    document.getElementById('notes').textContent  = `Notizen oder Kommentare: ${currentUserMember.notes}`;
     
+
     //currentUserAdresse
     document.getElementById('Poz').textContent          = `Postleitzahl: ${currentUserAddresse.postalCode}`;
     document.getElementById('residence').textContent    = `Wohnort: ${currentUserAddresse.city}`;
     document.getElementById('street').textContent       = `Straßename: ${currentUserAddresse.street}`;
     document.getElementById('H_Number').textContent     = `Hausnummer: ${currentUserAddresse.houseNumber}`;
 
+    let departmentsString = ""; 
+
     //CurrentUserDepartment
     for(var i = 0; i < DepartmentData.count; i++) // er kann mehren Departments angehören. 
     {
-        
+        if(i !== 0)
+        {
+            departmentsString =  departmentsString + "," + DepartmentData.items[i].name;
+        }
+        else 
+        {
+            departmentsString =  departmentsString + DepartmentData.items[i].name;
+        }
     }
 
-    document.getElementById('membership').textContent = `Mitgliedschaften: ${currentUserDepartment.date[i]}`;
+    document.getElementById('membership').textContent = `Mitgliedschaften: ${departmentsString}`;
 
     // Extra information
     //document.getElementById('membership').textContent    = Mitgliedschaften: ${.}`;

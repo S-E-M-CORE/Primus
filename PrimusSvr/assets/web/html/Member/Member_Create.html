@@ -10,6 +10,7 @@
         <script src="/assets/js/color-modes.js"></script>
         <link rel="stylesheet" href="assets/font/bootstrap-icons.min.css">
         <link rel="stylesheet" href="/web/css/sidebars.css">
+        <link rel="stylesheet" href="../../css/Logo.css">
         <title>Neues mit Mitglied erstellen</title>
 
     </head>
@@ -25,7 +26,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <a href="/1. Frontend/Website/Index_Files/index.html" class="navbar-brand d-flex align-items-center">  
-                    <strong>Logo</strong>
+                    <img id = "logo" class="Logo" src="../../assets/Logo.jpg" style = "width: 15%; height: 95%;">
                 </a>
             </div>
         </header>
@@ -57,10 +58,7 @@
                 -->
       
                     <div class="image-container">
-                        <img src="../../assets/blank_Profile_Image.png" alt="Avatar" class="image">
-                        <div class="background-image">
-                            <img src="../../assets/blank_Profile_Image.png" class="image">   
-                        </div> 
+                        <img src="../../assets/blank_Profile_Image.png" alt="Avatar" class="image" style = "width: 15%; height: 80%;">
                         <div class="hover-text"> <!-- Text, der angezeigt wird, wenn über das Bild gehovert wird -->
                             <i class="bi bi-camera">
                             </i> 
@@ -73,7 +71,6 @@
                     </div>
                 </div>
             </div>
-                <input type="file" placeholder="Ein Bild von dir.">
             </div>
         </div>
 
@@ -172,16 +169,6 @@
                     </div>
                 </div>
 
-                <!-- 
-                    Template
-                    <div class="row">
-                    <div class="col-2">
-                        <label>bla</label>
-                        <input type="text" placeholder="BLA BLA">
-                        <br><br>
-                    </div>
-                </div> 
-            -->
 
                 <div class="container">
                     <div class="row">
@@ -204,16 +191,6 @@
                     <br><br>
                 </div>
             </div>
-
-
-            <div class="container">
-                <div class="row">
-                    <br><br>
-                    <input type="file" placeholder="Bild es Personalausweis">
-                    <br><br>
-                </div>
-            </div>
-        </div>
 
         <!-- 
             Ersstellt das neue Mitglied in der Datenbank mit den zu Verfügung gestellten infomationen.

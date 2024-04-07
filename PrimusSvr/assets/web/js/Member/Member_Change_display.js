@@ -1,9 +1,4 @@
 
-/*
-    Per Id des Members und einer GET function.
-    Sollen alle Attribute wie z.B. Vorname,alter, Telefon, Poz, .... auf der Webseite angezeigt werden.
-*/
-
 displayController();
 
 async function displayController()
@@ -57,7 +52,8 @@ async function getAdresseData()
     }
 }
 
-/**/
+/*
+*/
 async function getDepartment()
 {
     try 
@@ -91,7 +87,6 @@ function updateHTML(memberData , adresseData, DepartmentData)
 
     let currentUserMember       = memberData[0];            // 0 weil wir nur nach einem User Fragen wollen.
     let currentUserAdresse      = adresseData.items[0];     //
-    let CurrentUserDepartment   = DepartmentData.items[0];  //
 
     /* 
         currentUserMember
@@ -105,47 +100,85 @@ function updateHTML(memberData , adresseData, DepartmentData)
     var inputElement_birth_date = document.getElementById('birth_date');    
     inputElement_birth_date.value = currentUserMember.birthDate;  
 
+    var inputElement_email = document.getElementById('Member_email');    
+    inputElement_email.value = currentUserMember.email;  
+
+    var inputElement_phoneNumber = document.getElementById('phoneNumber');    
+    inputElement_phoneNumber.value = currentUserMember.phoneNumber;  
+
+    var inputElement_joindate = document.getElementById('joindate');    
+    inputElement_joindate.value = currentUserMember.createDate;  
+
+    var inputElement_notes = document.getElementById('notes');    
+    inputElement_notes.value = currentUserMember.notes; 
+
     /*
         currentUserAdresse
     */
     var inputElement_Poz = document.getElementById('Poz');    
-    inputElement_Poz.value = currentUserAdresse.postalCode;           //     
+    inputElement_Poz.value = currentUserAdresse.postalCode;             //     
 
     var inputElement_residence = document.getElementById('residence');    
-    inputElement_residence.value = currentUserAdresse.city;           // 
+    inputElement_residence.value = currentUserAdresse.city;             // 
 
     var inputElement_street = document.getElementById('street');    
-    inputElement_street.value = currentUserAdresse.street;           // 
+    inputElement_street.value = currentUserAdresse.street;              // 
 
     var inputElement_H_Number = document.getElementById('H_Number');    
-    inputElement_H_Number.value = currentUserAdresse.houseNumber;           // 
-
-
-
-    // ('Member_email').textContent = ${currentUserMember.email}
-    // ('phoneNumber').textContent =  ${currentUserMember.phoneNumber}
-
-
-
-
+    inputElement_H_Number.value = currentUserAdresse.houseNumber;       // 
 
     /*
         CurrentUserDepartment
     */
-    var inputDepartment = document.getElementById('Department');
+    var inputDepartment = document.getElementById('Department_dropdown');
+    checkDepartment(DepartmentData, inputDepartment);
 
-    
-
-    
-
-
-
-    //document.getElementById('FirstName').textContent = `Vorname: ${currentUserMember.firstName}`;
-    
-    //currentUserAdresse
-    //document.getElementById('Poz').textContent = `Postleitzahl: ${currentUserAdresse.phoneNumber}`;
 }
-    
+
+function checkDepartment(DepartmentData, inputDepartment)
+{
+    if (DepartmentData.count <= 0) 
+    {
+        if (DepartmentData.items[0] && DepartmentData.items[1] && DepartmentData.items[2]) 
+        {
+            inputDepartment.value = inputDepartment.items[0].value;
+        }
+        // Bogen und Luftgewehre
+        if (DepartmentData.items[0] && DepartmentData.items[1]) 
+        {
+            inputDepartment.value = "VIP-Paket Bogen und Luft Abteilungen";
+        } 
+        else if (DepartmentData.items[0] && DepartmentData.items[2]) 
+        {
+            inputDepartment.value = "VIP-Paket Bogen und Feuerwaffen Abteilungen";
+        } 
+        else if (DepartmentData.items[1] && DepartmentData.items[2]) 
+        {
+            inputDepartment.value = "VIP-Paket Luft und Feuerwaffen Abteilungen";
+        }
+    } 
+    else if (DepartmentData.count <= 0) 
+    {
+        if (DepartmentData.items[0]) 
+        {
+            inputDepartment.value = "nur Bogenschießen";
+        } 
+        else if (DepartmentData.items[1]) 
+        {
+            inputDepartment.value = "Nur Luftdruckwaffen";
+        } 
+        else if (DepartmentData.items[2]) 
+        {
+            inputDepartment.value = "Nur Feuerwaffen";
+        }
+    } 
+    else 
+    {
+        // Default-Wert setzen, wenn keine Bedingung zutrifft
+        inputDepartment.value = "none";
+    }
+}
+
 // check for single User.
 function error_DB_Anomalie(memberData, adresseData)
 {
@@ -153,11 +186,6 @@ function error_DB_Anomalie(memberData, adresseData)
     {
         alert("Datenbank Anomalie erkannt. Mindestens 2 Nutzer mit ID currentUser.id");
     }
-
-    // if(adresseData[1] !== undefined)
-    // {
-    //     alert("Datenbank Anomalie erkannt. Mindestens 2 Nutzer mit ID currentUser.id");
-    // }
 }
 
 

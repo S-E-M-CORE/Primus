@@ -8,6 +8,7 @@
         
         <link rel="canonical" href="https://icons.getbootstrap.com/icons/camera/"><script src="/assets/js/color-modes.js"></script>
         <link rel="stylesheet" href="/assets/font/bootstrap-icons.min.css"><link rel="stylesheet" href="/assets/css/docs.css">
+        <link rel="stylesheet" href="../../css/Logo.css">
 
         <title>Neues mit Glieder erstellen</title>
     </head>
@@ -22,60 +23,58 @@
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <a href="/1. Frontend/Website/Index_Files/index.html" class="navbar-brand d-flex align-items-center">  
-                        <img src="../../assets/Logo.jpg" style="width: 20%; height: 15%">
+                        <img id = "logo" class="Logo" src="../../assets/Logo.jpg" style="width: 10%; height: 10%">
                     </a>
                 <!-- </div> -->
             </div>
         </header>
 
-        <!--Die Side bar on the left Side-->
-        <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
-            <div class="offcanvas-header startSide">
-                <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Verzeichnis</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-            </div>
-            <div class="offcanvas-body">
-                <p><a href="/1. Frontend/Website/Index_Files/index.html" class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Startseite</a></p>
-                <p><a href="/1. Frontend/Website/Index_Files/Member/Member_Tabelle.html" class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Mitgliederliste</a></p>
-                <p><a href="/1. Frontend/Website/Index_Files/Member/Member_Create.html" class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Neues Mitglied anlegen</a></p>
-                <p><a href="/1. Frontend/Website/Index_Files/Nodes/nodes_birthday.html" class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Geburtstagserinnerung</a></p>
-                <p><a href="/1. Frontend/Website/Index_Files/Nodes/nodes_To_Do_Liste.html" class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">To-Do-Liste</a></p>
-            </div>
+    <!--Die Side bar on the left Side-->
+    <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
+        <div class="offcanvas-header startSide">
+            <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Verzeichnis</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
+        <div class="offcanvas-body">
+            <p><a href="/1. Frontend/Website/Index_Files/index.html" class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Startseite</a></p>
+            <p><a href="/1. Frontend/Website/Index_Files/Member/Member_Tabelle.html" class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Mitgliederliste</a></p>
+            <p><a href="/1. Frontend/Website/Index_Files/Member/Member_Create.html" class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Neues Mitglied anlegen</a></p>
+            <p><a href="/1. Frontend/Website/Index_Files/Nodes/nodes_birthday.html" class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Geburtstagserinnerung</a></p>
+            <p><a href="/1. Frontend/Website/Index_Files/Nodes/nodes_To_Do_Liste.html" class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">To-Do-Liste</a></p>
+        </div>
+    </div>
 
         
 
-        <div class="container">
-            <div class="row">
+    <div class="container">
+        <div class="row">
 
-                <!-- 
-                    Erzeugt das default Bild. 
-                    (Zukunft)Ändert sich aber durch JS zur dem vom Nutzer ausgewählen Bild
-                -->
-                <div class="Profile">
-                    <img class="Profile_Image" src="../../assets/blank_Profile_Image.png" alt="Blank Profile Image" width="150" height="150">
-                    <div class = "Profile_Content">
-                        <span class="profil__icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-camera" viewBox="0 0 16 16">
-                                <path d="M15 12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h1.172a3 3 0 0 0 2.12-.879l.83-.828A1 1 0 0 1 6.827 3h2.344a1 1 0 0 1 .707.293l.828.828A3 3 0 0 0 12.828 5H14a1 1 0 0 1 1 1zM2 4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-1.172a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 9.172 2H6.828a2 2 0 0 0-1.414.586l-.828.828A2 2 0 0 1 3.172 4z"/>
-                                <path d="M8 11a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5m0 1a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7M3 6.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0"/>
-                            </svg>
-                        </span>     <!-- Icon from the camera-->
-                        <span class="profil__text">Edit Profile</span>
-                    </div>
-                <!-- 
-                    Sollte das Bild geklickt werden soll das hier ausgeführt werden.
-                -->
-                    
-                    <input type="file" placeholder="Ein Bild von dir.">
-            
+            <!-- 
+                Erzeugt das default Bild. 
+                (Zukunft)Ändert sich aber durch JS zur dem vom Nutzer ausgewählen Bild
+            -->
+            <div class="Profile">
+                <img class="Profile_Image" src="../../assets/blank_Profile_Image.png" alt="Blank Profile Image" width="150" height="150">
+                <div class = "Profile_Content">
+                    <span class="profil__icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-camera" viewBox="0 0 16 16">
+                            <path d="M15 12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h1.172a3 3 0 0 0 2.12-.879l.83-.828A1 1 0 0 1 6.827 3h2.344a1 1 0 0 1 .707.293l.828.828A3 3 0 0 0 12.828 5H14a1 1 0 0 1 1 1zM2 4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-1.172a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 9.172 2H6.828a2 2 0 0 0-1.414.586l-.828.828A2 2 0 0 1 3.172 4z"/>
+                            <path d="M8 11a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5m0 1a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7M3 6.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0"/>
+                        </svg>
+                    </span>     <!-- Icon from the camera-->
+                    <span class="profil__text">Edit Profile</span>
                 </div>
-
+            <!-- 
+                Sollte das Bild geklickt werden soll das hier ausgeführt werden.
+            -->
+                
+                <input type="file" placeholder="Ein Bild von dir.">
+        
             </div>
         </div>
+    </div>
 
     <div class="container">
-
         <div class="container">
 
             <div class="row">
@@ -144,43 +143,39 @@
                 </div>
             </div>
         </div>
+    </div>
+
+
 
 
         <div class="container">
             <div class="row">
                 <div class="col-4">
                     <p>
-                        <label for="date">Einstiegdatum:</label>
-                        <input type="date" id="date" />
+                        <label for="joindate">Einstiegdatum:</label>
+                        <input type="date" id="joindate" />
                     </p>
                 </div>
             </div>
         </div>
 
-
-        <!--
-
-
-        -->
-
-
-
         <div class="container">
             <div class="row">
                 <div class="col-8">
                     <div class="input-group">
-                        <span class="input-group-text">Notizen oder Kommentare</span>
-                        <textarea class="form-control" aria-label="With textarea"></textarea>
+                        <span for = "notes" class="input-group-text">Notizen oder Kommentare</span>
+                        <textarea id = "notes" class="form-control" aria-label="With textarea"></textarea>
                     </div>
                 </div>
             </div>
-    
-            <br>
+        </div>
+        <br>
+        <div class="container">
 
             <div class="row">
                 <div class="col-4">
-                    <select class="form-control">
-                        <option id = none>None</option>                   <!-- soll der default Wert sein und es soll überprüft werden das es nicht (None == true) ist. Sonst kann das Mitglied micht erstellt werden-->
+                    <select id = "Department_dropdown" class="form-control" placeholder = "None">
+                            <option id = none>None</option>                   <!-- soll der default Wert sein und es soll überprüft werden das es nicht (None == true) ist. Sonst kann das Mitglied micht erstellt werden-->
                             <option id = onlyBow>nur Bogenschießen</option>
                             <option id = onlyAirgun>Nur Luftdruckwaffen</option>
                             <option id = onlyGuns>Nur Feuerwaffen</option>
@@ -197,16 +192,7 @@
         </div>
 
 
-        <div class="container">
-            <div class="row">
-                <br><br>
-                <input type="file" placeholder="Bild es Personalausweis">
-                <br><br>
-            </div>
-        </div>
-    </div>
-
-    
+        <br><br>
 
 
 <!-- 
