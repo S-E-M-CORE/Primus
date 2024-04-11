@@ -1,0 +1,4 @@
+var searchData=
+[
+  ['query_0',['QUERY',['../classprimus_1_1component_1_1_database_client.html#a0e0dfdbd5a41a12f3eb347bc3c3c0fe1',1,'primus::component::DatabaseClient::QUERY(getMemberById, &quot;SELECT * from Member WHERE id = :id;&quot;, PARAM(oatpp::UInt32, id))'],['../classprimus_1_1component_1_1_database_client.html#abf9edde6d3b8fdc420f18d8337dc764a',1,'primus::component::DatabaseClient::QUERY(createMember, &quot;INSERT INTO Member (firstName, lastName, email, phoneNumber, birthDate, createDate, notes, active) &quot; &quot;SELECT :member.firstName, :member.lastName, :member.email, :member.phoneNumber, :member.birthDate, DATE(&apos;now&apos;), :member.notes, :member.active &quot; &quot;WHERE NOT EXISTS (SELECT 1 FROM Member WHERE firstName = :member.firstName AND lastName = :member.lastName AND email = :member.email AND birthDate = :member.birthDate);&quot;, PARAM(oatpp::Object&lt; MemberDto &gt;, member))']]]
+];
