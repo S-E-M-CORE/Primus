@@ -1,4 +1,3 @@
-```markdown
 <br />
 <div align="center">
   <a href="https://github.com/theSaschaM/BSFI22D_Primus/">
@@ -130,9 +129,6 @@ Bitte beachten Sie, dass wir keine Authentifizierungssysteme in diese Implementi
 ### Dokumentation
 
 Wie bereits erwähnt, finden Sie eine Dokumentation der REST-API-Endpunkte bei laufendem Serverbetrieb unter der Adresse http://localhost:8000/swagger/ui/. In dem Verzeichnis BSFI22D_Primus\Documentation sind weitere Dokumente verfügbar, darunter eine Doxygen-generierte Dokumentation der Backend-Klassen (PrimusSrv-Dokumentation.pdf). Da es sich um ein Schulprojekt handelt, finden Sie dort auch die Datei "Projekt-Dokumentation.pdf", die alle Antworten und Anforderungen enthält, die im Rahmen des Schulprojekts erhalten wurden.
-
-
-## Lizenz
 
 Veröffentlicht unter der Apache 2.0 Lizenz. Weitere Informationen finden Sie in der Datei `LICENSE.txt`.
 ```
