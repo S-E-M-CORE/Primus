@@ -35,9 +35,7 @@ namespace primus
             DatabaseClient(const std::shared_ptr<oatpp::orm::Executor>& executor)
                 : oatpp::orm::DbClient(executor)
             {
-                OATPP_LOGI(primus::constants::databaseclient::logName, primus::constants::databaseclient::logSeperation);
                 OATPP_LOGI(primus::constants::databaseclient::logName, "DatabaseClient(oatpp::orm::DbClient) initialized");
-                OATPP_LOGI(primus::constants::databaseclient::logName, primus::constants::databaseclient::logSeperation);
 
                 oatpp::orm::SchemaMigration migration(executor);
                 migration.addFile(1 /* start from version 1 */, DATABASE_MIGRATIONS "/001_init.sql");

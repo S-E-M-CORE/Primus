@@ -110,7 +110,7 @@ namespace primus {
 
                     page->offset = offset;
                     page->limit = limit;
-                    page->count = items->size();
+                    page->count = static_cast<oatpp::UInt32>(items->size());
                     page->items = items;
 
                     OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Processed request to get a list of members with %s. Limit: %d, Offset: %d. Returned %d items", attribute->c_str(), limit.operator v_uint32(), offset.operator v_uint32(), page->count.operator v_uint32());

@@ -22,87 +22,95 @@
 namespace primus {
     namespace main {
         void run(void) {
-            typedef primus::apicontroller::static_endpoint::StaticController    StaticController;
-            typedef primus::apicontroller::member_endpoint::MemberController    MemberController;
-            typedef primus::component::AppComponent                             AppComponent;
-            typedef primus::component::DatabaseClient                           DatabaseClient;
-            typedef primus::component::DatabaseComponent                        DatabaseComponent;
-            typedef primus::component::SwaggerComponent                         SwaggerComponent;
+            using StaticController     =    primus::apicontroller::static_endpoint::StaticController;
+            using MemberController     =    primus::apicontroller::member_endpoint::MemberController;
+            using AppComponent         =    primus::component::AppComponent                         ;
+            using DatabaseClient       =    primus::component::DatabaseClient                       ;
+            using DatabaseComponent    =    primus::component::DatabaseComponent                    ;
+            using SwaggerComponent     =    primus::component::SwaggerComponent                     ;
+            
+            const char* const logName = primus::constants::main::logName;
 
-            OATPP_LOGI(primus::constants::main::logName, "Initializing AppComponents");
+            OATPP_LOGI(logName, "Initializing AppComponents");
 
             /* Register Components in scope of run() method */
-            AppComponent components;
+            AppComponent components{};
 
-            OATPP_LOGI(primus::constants::main::logName, "AppComponents have been initialized");
-            OATPP_LOGI(primus::constants::main::logName, "Creating additional component router (oatpp::web::server::HttpRouter)");
+            OATPP_LOGI(logName, "Creating HttpRouter");
 
             /* Get router component */
             OATPP_COMPONENT(std::shared_ptr<oatpp::web::server::HttpRouter>, router);
 
-            OATPP_LOGI(primus::constants::main::logName, "router (oatpp::web::server::HttpRouter) has been initialized");
-            OATPP_LOGI(primus::constants::main::logName, "Adding Endpoints of StaticController to router");
+            OATPP_LOGI(logName, "Adding static endpoints...");
 
             /* Create StaticController and add all of its endpoints to router */
             router->addController(std::make_shared<StaticController>());
 
-            OATPP_LOGI(primus::constants::main::logName, "Endpoints of StaticController successfully added");
-            OATPP_LOGI(primus::constants::main::logName, "Adding Endpoints of MemberController to router");
+            OATPP_LOGI(logName, "Adding member endpoints...");
 
             /* Create MemberController and add all of its endpoints to router */
             router->addController(std::make_shared<MemberController>());
 
-            OATPP_LOGI(primus::constants::main::logName, "Endpoints of MemberController successfully added");
-            OATPP_LOGI(primus::constants::main::logName, "Endpoints of MemberController successfully added");
-            OATPP_LOGI(primus::constants::main::logName, "Collecting Endpoints for swagger-ui...");
+            if (primus::constants::useSwagger)
+            {
+                OATPP_LOGI(logName, "Collecting endpoints for swagger-ui");
 
-            /* Swagger UI Endpoint documentation */
-            oatpp::web::server::api::Endpoints docEndpoints;
+                /* Swagger UI Endpoint documentation */
+                oatpp::web::server::api::Endpoints docEndpoints;
 
-            docEndpoints.append(router->addController(StaticController::createShared())->getEndpoints());
-            OATPP_LOGI(primus::constants::main::logName, "Collected Endpoints of StaticController");
+                docEndpoints.append(router->addController(StaticController::createShared())->getEndpoints());
+                OATPP_LOGI(logName, "Collected static endpoints");
 
-            docEndpoints.append(router->addController(MemberController::createShared())->getEndpoints());                     // Add the endpoints of MemberController to the swagger ui documentation
-            OATPP_LOGI(primus::constants::main::logName, "Collected Endpoints of MemberController");
+                docEndpoints.append(router->addController(MemberController::createShared())->getEndpoints());                     // Add the endpoints of MemberController to the swagger ui documentation
+                OATPP_LOGI(logName, "Collected member endpoints");
 
-            OATPP_LOGI(primus::constants::main::logName, "Initializing Swagger Endpoint-Controller (oatpp::swagger::Controller) with collected endpoints");
-            router->addController(oatpp::swagger::Controller::createShared(docEndpoints));
+                OATPP_LOGI(logName, "Initializing Swagger");
+                router->addController(oatpp::swagger::Controller::createShared(docEndpoints));
 
-            OATPP_LOGI(primus::constants::main::logName, "Creating additional component connectionHandler (oatpp::network::ConnectionHandler)");
+            }
+
+            OATPP_LOGI(logName, "Creating additional component connectionHandler (oatpp::network::ConnectionHandler)");
 
             /* Get connection handler component */
             OATPP_COMPONENT(std::shared_ptr<oatpp::network::ConnectionHandler>, connectionHandler);
 
-            OATPP_LOGI(primus::constants::main::logName, "connectionHandler(oatpp::network::ConnectionHandler) successfully initialized");
-
-            OATPP_LOGI(primus::constants::main::logName, "Creating additional component ServerConnectionProvider (oatpp::network::ServerConnectionProvider)");
+            OATPP_LOGI(logName, "Creating additional component ServerConnectionProvider (oatpp::network::ServerConnectionProvider)");
 
             /* Get connection provider component */
             OATPP_COMPONENT(std::shared_ptr<oatpp::network::ServerConnectionProvider>, connectionProvider);
 
-            OATPP_LOGI(primus::constants::main::logName, "ServerConnectionProvider (oatpp::network::ServerConnectionProvider) successfully initialized");
-            OATPP_LOGI(primus::constants::main::logName, "Initializing server (oatpp::network::Server) with connectionProvider and connectionHandler");
+            OATPP_LOGI(logName, "Initializing server (oatpp::network::Server) with connectionProvider and connectionHandler");
 
             /* Create server which takes provided TCP connections and passes them to HTTP connection handler */
             oatpp::network::Server server(connectionProvider, connectionHandler);
 
-            OATPP_LOGI(primus::constants::main::logName, "Server has been initialized");
+            OATPP_LOGI(logName, "Server has been initialized");
 
-            OATPP_LOGI(primus::constants::main::logName, "Starting server");
-            OATPP_LOGI(primus::constants::main::logName, "Host: %s", connectionProvider->getProperty("host").getData());
-            OATPP_LOGI(primus::constants::main::logName, "Port: %s", connectionProvider->getProperty("port").getData());
+            OATPP_LOGI(logName, "Starting server");
 
-            OATPP_LOGI(primus::constants::main::logName, "__| |__________________________________| |__ ");
-            OATPP_LOGI(primus::constants::main::logName, " __   __________________________________   __");
-            OATPP_LOGI(primus::constants::main::logName, "   | |                                  | |  ");
-            OATPP_LOGI(primus::constants::main::logName, "   | | ____       _                     | |  ");
-            OATPP_LOGI(primus::constants::main::logName, "   | ||  _ \\ _ __(_)_ __ ___  _   _ ___ | |  ");
-            OATPP_LOGI(primus::constants::main::logName, "   | || |_) | '__| | '_ ` _ \\| | | / __|| |  ");
-            OATPP_LOGI(primus::constants::main::logName, "   | ||  __/| |  | | | | | | | |_| \\__ \\| |  ");
-            OATPP_LOGI(primus::constants::main::logName, "   | ||_|   |_|  |_|_| |_| |_|\\__,_|___/| |  ");
-            OATPP_LOGI(primus::constants::main::logName, " __| |__________________________________| |__");
-            OATPP_LOGI(primus::constants::main::logName, " __   __________________________________   __");
-            OATPP_LOGI(primus::constants::main::logName, "   | |                                  | |  ");
+            {
+                const char* host{static_cast<const char*>(connectionProvider->getProperty("host").getData())};
+                const char* port{ static_cast<const char*>(connectionProvider->getProperty("port").getData()) };
+
+                host = host[0] == 48 && host[1] == 46 ? "localhost" : host;
+
+                OATPP_LOGI(logName, "Primus server at http://%s:%s/web/", host, port);
+
+                if(primus::constants::useSwagger)
+                    OATPP_LOGI(logName, "Swagger-ui at http://%s:%s/swagger/ui", host, port);
+            }
+
+            OATPP_LOGI(logName, "__| |__________________________________| |__ ");
+            OATPP_LOGI(logName, " __   __________________________________   __");
+            OATPP_LOGI(logName, "   | |                                  | |  ");
+            OATPP_LOGI(logName, "   | | ____       _                     | |  ");
+            OATPP_LOGI(logName, "   | ||  _ \\ _ __(_)_ __ ___  _   _ ___ | |  ");
+            OATPP_LOGI(logName, "   | || |_) | '__| | '_ ` _ \\| | | / __|| |  ");
+            OATPP_LOGI(logName, "   | ||  __/| |  | | | | | | | |_| \\__ \\| |  ");
+            OATPP_LOGI(logName, "   | ||_|   |_|  |_|_| |_| |_|\\__,_|___/| |  ");
+            OATPP_LOGI(logName, " __| |__________________________________| |__");
+            OATPP_LOGI(logName, " __   __________________________________   __");
+            OATPP_LOGI(logName, "   | |                                  | |  ");
 
             /* Run server */
             server.run();
