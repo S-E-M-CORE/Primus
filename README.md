@@ -6,7 +6,7 @@
 
   <h3 align="center">Primus - Der glühende Colt</h3>
   
-[![License]([https://img.shields.io/badge/license-GPLv3-blue.svg)](https://github.com/theSaschaM/Primus/blob/main/LICENSE.txt)
+[![License](https://img.shields.io/badge/license-GPLv3-blue.svg)](https://github.com/theSaschaM/Primus/blob/main/LICENSE.txt)
 
   <p align="center">
 Primus ist ein modernes Mitgliederverwaltungssystem, das im Rahmen eines Schulprojekts entwickelt wurde. Es soll die veraltete Excel-97-Version für den fiktiven Schützenverein "Der glühende Colt" ersetzen. Mit einer benutzerfreundlichen Oberfläche vereinfacht Primus die Mitgliederverwaltungsaufgaben mühelos.
