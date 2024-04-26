@@ -4,7 +4,7 @@
     <img src="ProjectAssets/General/Logo - Der glühende Colt 512x512.jpg" alt="Logo" width="300" height="300">
 </div>
 
-[![License](https://img.shields.io/badge/license-GPLv3-blue.svg)](https://github.com/theSaschaM/Primus/blob/main/LICENSE)
+[![License](https://img.shields.io/badge/license-GPLv3-blue.svg)](https://github.com/S-E-M-CORE/Primus/blob/main/LICENSE)
 
 Primus ist ein modernes Mitgliederverwaltungssystem, das im Rahmen eines Schulprojekts entwickelt wurde. Es soll die veraltete Excel-97-Version für den fiktiven Schützenverein "Der glühende Colt" ersetzen. Mit einer benutzerfreundlichen Oberfläche vereinfacht Primus die Mitgliederverwaltungsaufgaben mühelos.
 
@@ -84,7 +84,7 @@ cd build\
 cmake .. -DOATPP_SQLITE_AMALGAMATION=ON
 cmake --build . --target INSTALL
 
-git clone https://github.com/theSaschaM/BSFI22D_Primus.git
+git clone https://github.com/S-E-M-CORE/BSFI22D_Primus.git
 cd BSFI22D_Primus
 cd PrimusSvr
 mkdir build
