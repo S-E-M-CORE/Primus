@@ -1,9 +1,7 @@
 # Primus - Der glühende Colt
 
 <div align="center">
-  <a href="https://github.com/theSaschaM/BSFI22D_Primus/">
     <img src="ProjectAssets/General/Logo - Der glühende Colt 512x512.jpg" alt="Logo" width="300" height="300">
-  </a>
 </div>
 
 [![License](https://img.shields.io/badge/license-GPLv3-blue.svg)](https://github.com/theSaschaM/Primus/blob/main/LICENSE)
@@ -14,7 +12,7 @@ Hinweis: Primus ist ein Projekt im Aufbau und wurde ausschließlich zu Bildungsz
 
 [Projektdokumentation »](https://S-E-M-CORE.github.io/Primus/index.html)
 
-[Einen Fehler gefunden?](https://github.com/theSaschaM/Primus/issues)
+[Einen Fehler gefunden?](https://github.com/S-E-M-CORE/Primus/issues)
 
 ## Über das Projekt
 
