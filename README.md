@@ -49,7 +49,7 @@ Dieses Projekt wurde in einem schulischen Rahmen gestartet. Die Software bietet 
 ### Installation
 
 Die Installation wurde bisher ausschließlich unter Windows getestet. Im Folgenden finden Sie eine Anleitung für die Windows-Installation.
-Theoretisch ist der Code jedoch plattformunabhängig und sollte auf allen bekannten Platformen funktionieren, die auch von [oatpp](https://oatpp.io/) unterstützt werden.
+Theoretisch ist der Code jedoch plattformunabhängig und sollte auf allen bekannten Platformen funktionieren, die auch von [oatpp](https://oatpp.io/supported-platforms/) unterstützt werden.
 
 #### Anforderungen
 - Microsoft Visual Studio (getestet mit Visual Studio 2022 Community)
