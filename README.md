@@ -1,6 +1,10 @@
 # Primus - Der glühende Colt
 
-![Logo](ProjectAssets/General/Logo - Der glühende Colt 512x512.jpg)
+<div align="center">
+  <a href="https://github.com/theSaschaM/BSFI22D_Primus/">
+    <img src="ProjectAssets/General/Logo - Der glühende Colt 512x512.jpg" alt="Logo" width="300" height="300">
+  </a>
+</div>
 
 [![License](https://img.shields.io/badge/license-GPLv3-blue.svg)](https://github.com/theSaschaM/Primus/blob/main/LICENSE)
 
