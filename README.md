@@ -12,7 +12,7 @@ Primus ist ein modernes Mitgliederverwaltungssystem, das im Rahmen eines Schulpr
 
 Hinweis: Primus ist ein Projekt im Aufbau und wurde ausschließlich zu Bildungszwecken erstellt. Das beschriebene Szenario ist fiktiv.
 
-[Projektdokumentation »](https://thesascham.github.io/Primus/index.html)
+[Projektdokumentation »](https://S-E-M-CORE.github.io/Primus/index.html)
 
 [Einen Fehler gefunden?](https://github.com/theSaschaM/Primus/issues)
 
