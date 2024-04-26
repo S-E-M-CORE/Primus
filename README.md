@@ -84,8 +84,8 @@ cd build\
 cmake .. -DOATPP_SQLITE_AMALGAMATION=ON
 cmake --build . --target INSTALL
 
-git clone https://github.com/S-E-M-CORE/BSFI22D_Primus.git
-cd BSFI22D_Primus
+git clone https://github.com/S-E-M-CORE/Primus.git
+cd Primus
 cd PrimusSvr
 mkdir build
 cd build\
@@ -94,7 +94,7 @@ cmake ..
 cmake --build . 
 ```
 
-Die ausführbare Datei (Exe-Datei) befindet sich nun im Verzeichnis BSFI22D_Primus\PrimusSvr\bin\Debug. Da die CMake-Konfiguration bisher noch unvollständig ist, müssen die Dateien manuell in das übergeordnete Verzeichnis verschoben werden. Kopieren Sie dazu alle Dateien aus BSFI22D_Primus\PrimusSvr\bin\Debug in BSFI22D_Primus\PrimusSvr\bin. Anschließend kann der Ordner "Debug" gelöscht werden.
+Die ausführbare Datei (Exe-Datei) befindet sich nun im Verzeichnis Primus\PrimusSvr\bin\Debug. Da die CMake-Konfiguration bisher noch unvollständig ist, müssen die Dateien manuell in das übergeordnete Verzeichnis verschoben werden. Kopieren Sie dazu alle Dateien aus Primus\PrimusSvr\bin\Debug in Primus\PrimusSvr\bin. Anschließend kann der Ordner "Debug" gelöscht werden.
 
 Nachdem dies erledigt ist, kann die PrimusSvr.exe ausgeführt werden. Öffnen Sie dazu einen Webbrowser und geben Sie http://localhost:8000 ein. Sie werden automatisch zur Weboberfläche weitergeleitet. Die Endpunkt-Dokumentation, die mit Swagger erstellt wurde, ist unter http://localhost:8000/swagger/ui/ verfügbar.
 
