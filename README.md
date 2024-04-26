@@ -8,45 +8,48 @@
 
 <hr>
 
-Primus ist ein modernes Mitgliederverwaltungssystem, das im Rahmen eines Schulprojekts entwickelt wurde. Es soll die veraltete Excel-97-Version für den fiktiven Schützenverein "Der glühende Colt" ersetzen. Mit einer benutzerfreundlichen Oberfläche vereinfacht Primus die Mitgliederverwaltungsaufgaben mühelos.
+## Über das Projekt
 
-Hinweis: Primus ist ein Projekt im Aufbau und wurde ausschließlich zu Bildungszwecken erstellt. Das beschriebene Szenario ist fiktiv.
+Primus ist ein Mitgliederverwaltungssystem für einen Schützenverein.
+Es ermöglicht das Verwalten von Mitgliedern. Folgende Daten lassen sich erfassen:
+- Vor(Name)
+- Geburtsdatum
+- Email
+- Telefonnummer
+- Adresse
+- Anewesenheit zu Trainingseinheiten (Schießübungen)
+- Erlaubnis zum Erwerb von Waffen (Auftrag entsprechend, nicht nach echten Waffenregulierungen!)
+
+Dieses Projekt wurde in einem schulischen Rahmen gestartet. Die Software bietet keinerlei Authentifizierung/Autorisierung. Entsprechend empfehlen wir nicht die Anwendung in öffentlichen Netzwerken zu verwenden.
 
 [Projektdokumentation »](https://S-E-M-CORE.github.io/Primus/index.html)
 
 [Einen Fehler gefunden?](https://github.com/S-E-M-CORE/Primus/issues)
 
-## Über das Projekt
-
-"Primus" ist der Codename für unser erstes umfassendes Full-Stack-Projekt im Rahmen des Lernfelds 8 (Datenbanken) an der Berufsschule. Alle relevanten Informationen, einschließlich Projektklarstellungen und aller verwendeten Ressourcen, sind in dieser Datei dokumentiert.
+<hr>
 
 ### Erstellt mit
 
+#### Backend
+- [C++](https://www.cplusplus.com/)
+- [oatpp](https://oatpp.io/)
+- [oatpp-swagger](https://github.com/oatpp/oatpp-swagger)
+- [oatpp-sqlite](https://github.com/oatpp/oatpp-sqlite)
+- [SQLite](https://www.sqlite.org/)
+
+#### Frontend
 - [HTML](https://developer.mozilla.org/de/docs/Web/HTML)
 - [CSS](https://developer.mozilla.org/de/docs/Web/CSS)
-- [Bootstrap](https://getbootstrap.com/) - Frontend-Framework
+- [Bootstrap](https://getbootstrap.com/)
 - [JavaScript](https://developer.mozilla.org/de/docs/Web/JavaScript)
-- [jQuery](https://jquery.com/) - JavaScript-Bibliothek
-- [Fetch API](https://developer.mozilla.org/de/docs/Web/API/Fetch_API) - Zum Senden von HTTP-Anfragen
-- [Popper.js](https://popper.js.org/) - Zur Erstellung von Popovers und Tooltips
-
-#### Backend
-
-- [C++](https://www.cplusplus.com/) - Programmiersprache für das Backend
-- [oatpp](https://oatpp.io/) - C++ Web Framework
-- [oatpp-swagger](https://github.com/oatpp/oatpp-swagger) - Werkzeug zur API-Dokumentation
-- [oatpp-sqlite](https://github.com/oatpp/oatpp-sqlite) - SQLite-Erweiterung für oatpp
-- [SQLite](https://www.sqlite.org/) - Datenbank für das Backend
-
-## Erste Schritte
-
-Da es noch keine richtige Version der Anwendung gibt, wird dieser Abschnitt in späteren Versionen aktualisiert.
-
-### Voraussetzungen
+- [jQuery](https://jquery.com/)
+- [Fetch API](https://developer.mozilla.org/de/docs/Web/API/Fetch_API)
+- [Popper.js](https://popper.js.org/)
 
 ### Installation
 
-Die Installation wurde bisher ausschließlich unter Windows getestet. Im Folgenden finden Sie eine Anleitung für die Windows-Installation. Theoretisch ist der Code jedoch plattformunabhängig und sollte auch unter Linux-Distributionen problemlos funktionieren.
+Die Installation wurde bisher ausschließlich unter Windows getestet. Im Folgenden finden Sie eine Anleitung für die Windows-Installation.
+Theoretisch ist der Code jedoch plattformunabhängig und sollte auf allen bekannten Platformen funktionieren, die auch von [oatpp](https://oatpp.io/) unterstützt werden.
 
 #### Anforderungen
 - Microsoft Visual Studio (getestet mit Visual Studio 2022 Community)
