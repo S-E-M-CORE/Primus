@@ -29,10 +29,10 @@ namespace primus
                     .setDescription("Swagger documentation for the primus project")
                     .setVersion("1.0")
                     .setContactName("Sascha Meissner")
-                    .setContactUrl("https://thesascham.github.io/Website/")
+                    .setContactUrl("https://s-e-m-core.github.io/Website/")
 
-                    .setLicenseName("Apache License, Version 2.0")
-                    .setLicenseUrl("http://www.apache.org/licenses/LICENSE-2.0")
+                    .setLicenseName("GNU GENERAL PUBLIC LICENSE Version 3")
+                    .setLicenseUrl("https://github.com/S-E-M-CORE/Primus/blob/main/LICENSE")
 
                     .addServer("http://localhost:8000", "server on localhost");
 
