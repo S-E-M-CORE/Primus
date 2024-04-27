@@ -16,9 +16,6 @@ namespace primus {
         namespace member_endpoint {
 
 #include OATPP_CODEGEN_BEGIN(ApiController) // Begin API Controller codegen
-
-
-            using primus::dto::PageDto;
             //  __  __                _                ____            _             _ _           
             // |  \/  | ___ _ __ ___ | |__   ___ _ __ / ___|___  _ __ | |_ _ __ ___ | | | ___ _ __ 
             // | |\/| |/ _ \ '_ ` _ \| '_ \ / _ \ '__| |   / _ \| '_ \| __| '__/ _ \| | |/ _ \ '__|
@@ -27,15 +24,21 @@ namespace primus {
 
             class MemberController : public oatpp::web::server::api::ApiController
             {
-                typedef primus::dto::database::MemberDto MemberDto;
-                typedef primus::dto::database::DepartmentDto DepartmentDto;
-                typedef primus::dto::database::AddressDto AddressDto;
-                typedef primus::dto::database::DateDto DateDto;
-                typedef primus::dto::MemberPageDto MemberPageDto;
-                typedef primus::dto::UInt32Dto UInt32Dto;
-                typedef primus::dto::Int32Dto Int32Dto;
-                typedef primus::dto::BooleanDto BooleanDto;
-                typedef primus::dto::StatusDto StatusDto;
+                using MemberDto     = primus::dto::database::MemberDto    ;
+                using DepartmentDto = primus::dto::database::DepartmentDto;
+                using AddressDto    = primus::dto::database::AddressDto   ;
+                using DateDto       = primus::dto::database::DateDto      ;
+                using UInt32Dto     = primus::dto::UInt32Dto              ;
+                using Int32Dto      = primus::dto::Int32Dto               ;
+                using BooleanDto    = primus::dto::BooleanDto             ;
+                using StatusDto     = primus::dto::StatusDto              ;
+                using String        = oatpp::String                       ;
+                using UInt32        = oatpp::UInt32                       ;
+
+                using MemberPageDto     = primus::dto::MemberPageDto    ;
+                using AddressPageDto    = primus::dto::AddressPageDto   ;
+                using DepartmentPageDto = primus::dto::DepartmentPageDto;
+                using DatePageDto       = primus::dto::DatePageDto      ;
 
             private:
                 OATPP_COMPONENT(std::shared_ptr<primus::component::DatabaseClient>, m_database);
@@ -56,7 +59,7 @@ namespace primus {
                     return std::make_shared<MemberController>(objectMapper);
                 }
 
-                ENDPOINT("GET", "/api/members/list/{attribute}", getMembersList,
+                ENDPOINT("GET", "/api/members/list/{attribute}", endpoint_member_getMemberListOfAttribute,
                     PATH(oatpp::String, attribute), QUERY(oatpp::UInt32, limit), QUERY(oatpp::UInt32, offset))
                 {
                     
@@ -106,11 +109,11 @@ namespace primus {
 
                     auto items = dbResult->fetch<oatpp::Vector<oatpp::Object<MemberDto>>>();
 
-                    auto page = PageDto<oatpp::Object<MemberDto>>::createShared();
+                    auto page = MemberPageDto::createShared();
 
                     page->offset = offset;
                     page->limit = limit;
-                    page->count = static_cast<oatpp::UInt32>(items->size());
+                    page->count = static_cast<uint32_t>(items->size());
                     page->items = items;
 
                     OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Processed request to get a list of members with %s. Limit: %d, Offset: %d. Returned %d items", attribute->c_str(), limit.operator v_uint32(), offset.operator v_uint32(), page->count.operator v_uint32());
@@ -118,7 +121,24 @@ namespace primus {
                     return createDtoResponse(Status::CODE_200, page);
                 }
 
-                ENDPOINT("UPDATE", "/api/member/{id}/activate", activateMember,
+                ENDPOINT_INFO(endpoint_member_getMemberListOfAttribute)
+                {
+                    info->name = "getMembersList";
+                    info->summary = "Get a list of members based on attribute";
+                    info->description = "This endpoint retrieves a list of members based on the provided attribute. Available attributes are: all, active, inactive, birthday.";
+                    info->path = "/api/members/list/{attribute}";
+                    info->method = "GET";
+                    info->addTag("Members");
+                    info->addTag("List");
+                    info->pathParams["attribute"].description = "Attribute to filter members (options: all, active, inactive, birthday)";
+                    info->queryParams["limit"].description = "Maximum number of items to return";
+                    info->queryParams["offset"].description = "Number of items to skip before starting to collect the response items";
+                    info->addResponse<oatpp::Object<MemberPageDto>>(Status::CODE_200, "application/json");
+                    info->addResponse<Object<StatusDto>>(Status::CODE_404, "application/json");
+                    info->addResponse<Object<StatusDto>>(Status::CODE_500, "application/json");
+                }
+
+                ENDPOINT("UPDATE", "/api/member/{id}/activate", endpoint_member_activate,
                     PATH(oatpp::UInt32, id))
                 {
                     
@@ -146,7 +166,19 @@ namespace primus {
                     return createDtoResponse(Status::CODE_200, status);
                 }
 
-                ENDPOINT("UPDATE", "/api/member/{id}/deactivate", deactivateMember,
+                ENDPOINT_INFO(endpoint_member_activate) {
+                    info->name = "activateMember";
+                    info->summary = "Activate a member by ID";
+                    info->description = "This endpoint activates a member with the provided ID.";
+                    info->path = "/api/member/{id}/activate";
+                    info->method = "UPDATE";
+                    info->addTag("Member");
+                    info->pathParams["id"].description = "Identifier of the member to activate";
+                    info->addResponse<Object<StatusDto>>(Status::CODE_200, "application/json");
+                    info->addResponse<Object<StatusDto>>(Status::CODE_500, "application/json");
+                }
+
+                ENDPOINT("UPDATE", "/api/member/{id}/deactivate", endpoint_member_deactivate,
                     PATH(oatpp::UInt32, id))
                 {
                     
@@ -173,7 +205,19 @@ namespace primus {
                     return createDtoResponse(Status::CODE_200, status);
                 }
 
-                ENDPOINT("GET", "/api/member/{id}", getMemberById,
+                ENDPOINT_INFO(endpoint_member_deactivate) {
+                    info->name = "deactivateMember";
+                    info->summary = "Deactivate a member by ID";
+                    info->description = "This endpoint deactivates a member with the provided ID.";
+                    info->path = "/api/member/{id}/deactivate";
+                    info->method = "UPDATE";
+                    info->addTag("Member");
+                    info->pathParams["id"].description = "Identifier of the member to deactivate";
+                    info->addResponse<Object<StatusDto>>(Status::CODE_200, "application/json");
+                    info->addResponse<Object<StatusDto>>(Status::CODE_500, "application/json");
+                }
+
+                ENDPOINT("GET", "/api/member/{id}", endpoint_member_getById,
                     PATH(oatpp::UInt32, id))
                 {
                     
@@ -199,7 +243,20 @@ namespace primus {
                     return createDtoResponse(Status::CODE_200, result[0]);
                 }
 
-                ENDPOINT("POST", "/api/member", createMember,
+                ENDPOINT_INFO(endpoint_member_getById) {
+                    info->name = "getMemberById";
+                    info->summary = "Get a member by ID";
+                    info->description = "This endpoint retrieves a member with the provided ID.";
+                    info->path = "/api/member/{id}";
+                    info->method = "GET";
+                    info->addTag("Member");
+                    info->pathParams["id"].description = "Identifier of the member to retrieve";
+                    info->addResponse<oatpp::Vector<oatpp::Object<MemberDto>>>(Status::CODE_200, "application/json");
+                    info->addResponse<Object<StatusDto>>(Status::CODE_404, "application/json");
+                    info->addResponse<Object<StatusDto>>(Status::CODE_500, "application/json");
+                }
+
+                ENDPOINT("POST", "/api/member", endpoint_member_create,
                     BODY_DTO(Object<MemberDto>, member))
                 {
                     
@@ -227,7 +284,7 @@ namespace primus {
                     std::shared_ptr<oatpp::orm::QueryResult> dbResult = m_database->createMember(member);
                     OATPP_ASSERT_HTTP(dbResult->isSuccess(), Status::CODE_500, "Bad Request");
 
-                    oatpp::UInt32 memberId = oatpp::sqlite::Utils::getLastInsertRowId(dbResult->getConnection());
+                    oatpp::UInt32 memberId = static_cast<uint32_t>(oatpp::sqlite::Utils::getLastInsertRowId(dbResult->getConnection()));
 
                     oatpp::Vector<oatpp::Object<MemberDto>> foundMembers;
                     oatpp::Object<MemberDto> retMember;
@@ -258,7 +315,20 @@ namespace primus {
                     return createDtoResponse(Status::CODE_200, retMember);
                 }
 
-                ENDPOINT("PUT", "/api/member", updateMember,
+                ENDPOINT_INFO(endpoint_member_create)
+                {
+                    info->name = "createMember";
+                    info->summary = "Create a new member";
+                    info->description = "This endpoint creates a new member with the provided data.";
+                    info->path = "/api/member";
+                    info->method = "POST";
+                    info->addTag("Member");
+                    info->bodyContentType = "application/json";
+                    info->addResponse<oatpp::Object<MemberDto>>(Status::CODE_200, "application/json");
+                    info->addResponse<Object<StatusDto>>(Status::CODE_500, "application/json");
+                }
+
+                ENDPOINT("PUT", "/api/member", endpoint_member_updateMember,
                     BODY_DTO(Object<MemberDto>, member))
                 {
                         member->id = member->id == nullptr ? 0 : member->id;
@@ -327,10 +397,24 @@ namespace primus {
 
                     OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Updated member with id: %d", member->id.operator v_uint32());
                     
-                    return getMemberById(member->id);
+                    return endpoint_member_getById(member->id);
                 }
 
-                ENDPOINT("GET", "/api/members/count/{attribute}", getMemberCount, PATH(oatpp::String, attribute))
+                ENDPOINT_INFO(endpoint_member_updateMember)
+                {
+                    info->name = "updateMember";
+                    info->summary = "Update an existing member";
+                    info->description = "This endpoint updates an existing member with the provided data.";
+                    info->path = "/api/member";
+                    info->method = "PUT";
+                    info->addTag("Member");
+                    info->bodyContentType = "application/json";
+                    info->addResponse<oatpp::Object<MemberDto>>(Status::CODE_200, "application/json");
+                    info->addResponse<Object<StatusDto>>(Status::CODE_500, "application/json");
+                }
+
+                ENDPOINT("GET", "/api/members/count/{attribute}", endpoint_member_countMembers,
+                    PATH(oatpp::String, attribute))
                 {
                     
 
@@ -370,7 +454,23 @@ namespace primus {
                     return createDtoResponse(Status::CODE_200, count[0]);
                 }
 
-                ENDPOINT("GET", "/api/member/{memberId}/count/{attribute}", getCountOfAttributeForMember, PATH(oatpp::UInt32, memberId), PATH(oatpp::String, attribute))
+                ENDPOINT_INFO(endpoint_member_countMembers)
+                {
+                    info->name = "getMemberCount";
+                    info->summary = "Get the count of members based on attribute";
+                    info->description = "This endpoint retrieves the count of members based on the provided attribute. Available attributes are: all, active, inactive.";
+                    info->path = "/api/members/count/{attribute}";
+                    info->method = "GET";
+                    info->addTag("Members");
+                    info->addTag("Counts");
+                    info->queryParams["attribute"].description = "Attribute to filter members (options: all, active, inactive)";
+                    info->addResponse<Object<UInt32Dto>>(Status::CODE_200, "application/json");
+                    info->addResponse<Object<StatusDto>>(Status::CODE_404, "application/json");
+                    info->addResponse<Object<StatusDto>>(Status::CODE_500, "application/json");
+                }
+
+                ENDPOINT("GET", "/api/member/{memberId}/count/{attribute}", endpoint_member_countAttribute,
+                    PATH(oatpp::UInt32, memberId), PATH(oatpp::String, attribute))
                 {
                     std::shared_ptr<oatpp::orm::QueryResult> dbResult;
 
@@ -397,7 +497,28 @@ namespace primus {
                     return createDtoResponse(Status::CODE_200, count[0]);
                 }
 
-                ENDPOINT("POST", "/api/member/{memberId}/department/add/{departmentId}", createMemberDepartmentAssociation, PATH(oatpp::UInt32, memberId), PATH(oatpp::UInt32, departmentId))
+                ENDPOINT_INFO(endpoint_member_countAttribute)
+                {
+                    info->name = "getMemberList";
+                    info->summary = "Get a list of information associated with a member";
+                    info->description = "This endpoint retrieves a list of information associated with a member, such as addresses, departments, or attendances.";
+                    info->path = "/api/member/{memberId}/list/{attribute}";
+                    info->method = "GET";
+                    info->addTag("Member");
+                    info->addTag("List");
+                    info->pathParams["memberId"].description = "ID of the member";
+                    info->pathParams["attribute"].description = "Attribute to retrieve (addresses, departments, attendances)";
+                    info->queryParams["limit"].description = "Limit of items to retrieve (default is 0)";
+                    info->queryParams["offset"].description = "Offset for pagination (default is 0)";
+                    info->addResponse<Object<AddressPageDto>>(Status::CODE_200, "application/json");
+                    info->addResponse<Object<DepartmentPageDto>>(Status::CODE_200, "application/json");
+                    info->addResponse<Object<DatePageDto>>(Status::CODE_200, "application/json");
+                    info->addResponse<Object<StatusDto>>(Status::CODE_404, "application/json");
+                    info->addResponse<Object<StatusDto>>(Status::CODE_500, "application/json");
+                }
+
+                ENDPOINT("POST", "/api/member/{memberId}/department/add/{departmentId}", endpoint_member_addMemberToDepartment,
+                    PATH(oatpp::UInt32, memberId), PATH(oatpp::UInt32, departmentId))
                 {
                     
                     OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Received request to add member with id %d to department with id %d", memberId.operator v_uint32(), departmentId.operator v_uint32());
@@ -442,7 +563,25 @@ namespace primus {
                     status->status = "member-department association successfully created";
                     return createDtoResponse(Status::CODE_200, status);
                 }
-                ENDPOINT("DELETE", "/api/member/{memberId}/department/remove/{departmentId}", deleteMemberDepartmentDisassociation, PATH(oatpp::UInt32, memberId), PATH(oatpp::UInt32, departmentId))
+
+                ENDPOINT_INFO(endpoint_member_addMemberToDepartment)
+                {
+                    info->name = "createMemberDepartmentAssociation";
+                    info->summary = "Create association between member and department";
+                    info->description = "This endpoint creates an association between a member and a department.";
+                    info->path = "/api/member/{memberId}/department/add/{departmentId}";
+                    info->method = "POST";
+                    info->addTag("Member");
+                    info->addTag("Department");
+                    info->pathParams["memberId"].description = "ID of the member";
+                    info->pathParams["departmentId"].description = "ID of the department";
+                    info->addResponse<Object<StatusDto>>(Status::CODE_200, "application/json");
+                    info->addResponse<Object<StatusDto>>(Status::CODE_404, "application/json");
+                    info->addResponse<Object<StatusDto>>(Status::CODE_500, "application/json");
+                }
+
+                ENDPOINT("DELETE", "/api/member/{memberId}/department/remove/{departmentId}", endpoint_member_removeMemberFromDepartment,
+                    PATH(oatpp::UInt32, memberId), PATH(oatpp::UInt32, departmentId))
                 {
                     
                     OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Received request to remove member with id %d from department with id %d", memberId.operator v_uint32(), departmentId.operator v_uint32());
@@ -478,7 +617,24 @@ namespace primus {
                     return createDtoResponse(Status::CODE_200, memberStatus);
                 }
 
-                ENDPOINT("POST", "/api/member/{memberId}/address/add", createMemberAddressAssociation, PATH(oatpp::UInt32, memberId), BODY_DTO(oatpp::Object<AddressDto>, address))
+                ENDPOINT_INFO(endpoint_member_removeMemberFromDepartment)
+                {
+                    info->name = "deleteMemberDepartmentDisassociation";
+                    info->summary = "Remove association between member and department";
+                    info->description = "This endpoint removes the association between a member and a department.";
+                    info->path = "/api/member/{memberId}/department/remove/{departmentId}";
+                    info->method = "DELETE";
+                    info->addTag("Member");
+                    info->addTag("Department");
+                    info->pathParams["memberId"].description = "ID of the member";
+                    info->pathParams["departmentId"].description = "ID of the department";
+                    info->addResponse<Object<StatusDto>>(Status::CODE_200, "application/json");
+                    info->addResponse<Object<StatusDto>>(Status::CODE_404, "application/json");
+                    info->addResponse<Object<StatusDto>>(Status::CODE_500, "application/json");
+                }
+
+                ENDPOINT("POST", "/api/member/{memberId}/address/add", endpoint_member_addAddressToMember,
+                    PATH(oatpp::UInt32, memberId), BODY_DTO(oatpp::Object<AddressDto>, address))
                 {
                     
                     OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Received request to set address for member with id %d", memberId.operator v_uint32());
@@ -498,7 +654,7 @@ namespace primus {
 
                     OATPP_ASSERT_HTTP(dbResult->isSuccess(), Status::CODE_500, dbResult->getErrorMessage());
 
-                    oatpp::UInt32 addressId = oatpp::sqlite::Utils::getLastInsertRowId(dbResult->getConnection());
+                    oatpp::UInt32 addressId = static_cast<uint32_t>(oatpp::sqlite::Utils::getLastInsertRowId(dbResult->getConnection()));
 
                     oatpp::Vector<oatpp::Object<AddressDto>> foundAddresses;
                     oatpp::Object<AddressDto> retAddress;
@@ -527,7 +683,23 @@ namespace primus {
 
                     return createDtoResponse(Status::CODE_200, retAddress);
                 }
-                ENDPOINT("DELETE", "/api/member/{memberId}/address/remove/{addressId}", deleteMemberAddressDisassociation, PATH(oatpp::UInt32, memberId), PATH(oatpp::UInt32, addressId))
+
+                ENDPOINT_INFO(endpoint_member_addAddressToMember)
+                {
+                    info->name = "createMemberAddressAssociation";
+                    info->summary = "Create association between member and address";
+                    info->description = "This endpoint creates an association between a member and an address.";
+                    info->path = "/api/member/{memberId}/address/add";
+                    info->method = "POST";
+                    info->addTag("Member");
+                    info->addTag("Address");
+                    info->pathParams["memberId"].description = "ID of the member";
+                    info->addResponse<Object<AddressDto>>(Status::CODE_200, "application/json");
+                    info->addResponse<Object<StatusDto>>(Status::CODE_500, "application/json");
+                }
+
+                ENDPOINT("DELETE", "/api/member/{memberId}/address/remove/{addressId}", endpoint_member_removeAddressFromMember,
+                    PATH(oatpp::UInt32, memberId), PATH(oatpp::UInt32, addressId))
                 {
                     
                     OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Received request to remove member with id %d from address with id %d", memberId.operator v_uint32(), addressId.operator v_uint32());
@@ -586,7 +758,23 @@ namespace primus {
                     return createDtoResponse(Status::CODE_200, status);
                 }
 
-                ENDPOINT("POST", "/api/member/{memberId}/attendance/{dateOfAttendance}", addMemberAttendance, PATH(oatpp::UInt32, memberId), PATH(oatpp::String, dateOfAttendance))
+                ENDPOINT_INFO(endpoint_member_removeAddressFromMember)
+                {
+                    info->name = "deleteMemberAddressDisassociation";
+                    info->summary = "Remove association between member and address";
+                    info->description = "This endpoint removes the association between a member and an address.";
+                    info->path = "/api/member/{memberId}/address/remove/{addressId}";
+                    info->method = "DELETE";
+                    info->addTag("Member");
+                    info->addTag("Address");
+                    info->pathParams["memberId"].description = "ID of the member";
+                    info->pathParams["addressId"].description = "ID of the address";
+                    info->addResponse<Object<StatusDto>>(Status::CODE_200, "application/json");
+                    info->addResponse<Object<StatusDto>>(Status::CODE_500, "application/json");
+                }
+
+                ENDPOINT("POST", "/api/member/{memberId}/attendance/{dateOfAttendance}", endpoint_member_setMemberAttendance,
+                    PATH(oatpp::UInt32, memberId), PATH(oatpp::String, dateOfAttendance))
                 {
                     
                     OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Received request set member attendance for member with id %d", memberId.operator v_uint32());
@@ -629,7 +817,25 @@ namespace primus {
                     status->status = "Attendance set";
                     return createDtoResponse(Status::CODE_200, status);
                 }
-                ENDPOINT("DELETE", "/api/member/{memberId}/attendance/{dateOfAttendance}", deleteMemberAttendance, PATH(oatpp::UInt32, memberId), PATH(oatpp::String, dateOfAttendance))
+
+                ENDPOINT_INFO(endpoint_member_setMemberAttendance)
+                {
+                    info->name = "addMemberAttendance";
+                    info->summary = "Add attendance for a member on a specific date";
+                    info->description = "This endpoint adds attendance for a member on a specific date.";
+                    info->path = "/api/member/{memberId}/attendance/{dateOfAttendance}";
+                    info->method = "POST";
+                    info->addTag("Member");
+                    info->addTag("Attendance");
+                    info->pathParams["memberId"].description = "ID of the member";
+                    info->pathParams["dateOfAttendance"].description = "Date of the attendance (format: YYYY-MM-DD)";
+                    info->addResponse<Object<StatusDto>>(Status::CODE_200, "application/json");
+                    info->addResponse<Object<StatusDto>>(Status::CODE_404, "application/json");
+                    info->addResponse<Object<StatusDto>>(Status::CODE_500, "application/json");
+                }
+
+                ENDPOINT("DELETE", "/api/member/{memberId}/attendance/{dateOfAttendance}", endpoint_member_deleteMemberAttendance,
+                    PATH(oatpp::UInt32, memberId), PATH(oatpp::String, dateOfAttendance))
                 {
                     
                     OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Received request remove member attendance for member with id %d", memberId.operator v_uint32());
@@ -656,10 +862,40 @@ namespace primus {
                     return createDtoResponse(Status::CODE_200, status);
                 }
 
-                ENDPOINT("GET", "/api/member/{memberId}/fee", getMemberFee,
+                ENDPOINT_INFO(endpoint_member_deleteMemberAttendance)
+                {
+                    info->name = "deleteMemberAttendance";
+                    info->summary = "Remove attendance for a member on a specific date";
+                    info->description = "This endpoint removes attendance for a member on a specific date.";
+                    info->path = "/api/member/{memberId}/attendance/{dateOfAttendance}";
+                    info->method = "DELETE";
+                    info->addTag("Member");
+                    info->addTag("Attendance");
+                    info->pathParams["memberId"].description = "ID of the member";
+                    info->pathParams["dateOfAttendance"].description = "Date of the attendance (format: YYYY-MM-DD)";
+                    info->addResponse<Object<StatusDto>>(Status::CODE_200, "application/json");
+                    info->addResponse<Object<StatusDto>>(Status::CODE_404, "application/json");
+                    info->addResponse<Object<StatusDto>>(Status::CODE_500, "application/json");
+                }
+
+                ENDPOINT("GET", "/api/member/{memberId}/fee", endpoint_member_getMemberFee,
                     PATH(oatpp::UInt32, memberId))
                 {
-                    
+                    // The department values are nested within this function as they are not used elsewhere
+                    // This function may be changed later on, as we may implement functionality to create new departments
+                    const auto departmentBow     = 1;
+                    const auto departmentAirgun  = 2;
+                    const auto departmentFirearm = 3;
+
+                    enum DepartmentPrices
+                    {
+                        Bogenschiessen = 8,
+                        Luftdruck = 10,
+                        Schusswaffen = 15,
+                        Multiple = 20,
+                        None = 0
+                    };
+
                     OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Received request to calculate the member fee for member with id %d.", memberId.operator v_uint32());
 
                     std::shared_ptr<oatpp::orm::QueryResult> dbResult;
@@ -681,20 +917,20 @@ namespace primus {
                     departments = dbResult->fetch<oatpp::Vector<oatpp::Object<DepartmentDto>>>();
 
                     if (departments->size() < 1) // No department
-                        memberFee->value = primus::constants::pricing::DepartmentPrices::None;
+                        memberFee->value = DepartmentPrices::None;
                     else if (departments->size() > 1) // multiple departments
-                        memberFee->value = primus::constants::pricing::DepartmentPrices::Multiple;
+                        memberFee->value = DepartmentPrices::Multiple;
                     else if (departments->size() == 1) // Only one department
                         switch (departments[0]->id)
                         {
-                        case 1: // Bogenschiessen
-                            memberFee->value = primus::constants::pricing::DepartmentPrices::Bogenschiessen;
+                        case departmentBow:
+                            memberFee->value = DepartmentPrices::Bogenschiessen;
                             break;
-                        case 2: // Luftdruck
-                            memberFee->value = primus::constants::pricing::DepartmentPrices::Luftdruck;
+                        case departmentAirgun:
+                            memberFee->value = DepartmentPrices::Luftdruck;
                             break;
-                        case 3: // Schusswaffen
-                            memberFee->value = primus::constants::pricing::DepartmentPrices::Schusswaffen;
+                        case departmentFirearm:
+                            memberFee->value = DepartmentPrices::Schusswaffen;
                             break;
                         }
                     else
@@ -715,7 +951,22 @@ namespace primus {
                     return createDtoResponse(Status::CODE_200, memberFee);
                 }
 
-                ENDPOINT("GET", "/api/member/{memberId}/list/{attribute}", getMemberList,
+                ENDPOINT_INFO(endpoint_member_getMemberFee)
+                {
+                    info->name = "getMemberFee";
+                    info->summary = "Calculate the member fee for a member";
+                    info->description = "This endpoint calculates the membership fee for a member based on their department.";
+                    info->path = "/api/member/{memberId}/fee";
+                    info->method = "GET";
+                    info->addTag("Member");
+                    info->addTag("Fee");
+                    info->pathParams["memberId"].description = "ID of the member";
+                    info->addResponse<Object<UInt32Dto>>(Status::CODE_200, "application/json");
+                    info->addResponse<Object<StatusDto>>(Status::CODE_404, "application/json");
+                    info->addResponse<Object<StatusDto>>(Status::CODE_500, "application/json");
+                }
+
+                ENDPOINT("GET", "/api/member/{memberId}/list/{attribute}", endpoint_member_getListOfAttributeForMember,
                     PATH(oatpp::UInt32, memberId), PATH(oatpp::String, attribute), QUERY(oatpp::UInt32, limit), QUERY(oatpp::UInt32, offset))
                 {
                     
@@ -740,11 +991,11 @@ namespace primus {
 
                         auto items = dbResult->fetch<oatpp::Vector<oatpp::Object<AddressDto>>>();
 
-                        auto page = PageDto<oatpp::Object<AddressDto>>::createShared();
+                        auto page = AddressPageDto::createShared();
 
                         page->offset = offset;
                         page->limit = limit;
-                        page->count = items->size();
+                        page->count = static_cast<uint32_t>(items->size());
                         page->items = items;
 
                         OATPP_LOGI(primus::constants::apicontroller::member_endpoint::logName, "Processed request to get a list of members with %s. Limit: %d, Offset: %d. Returned %d items", attribute->c_str(), limit.operator v_uint32(), offset.operator v_uint32(), page->count.operator v_uint32());
@@ -761,11 +1012,11 @@ namespace primus {
                         auto items = dbResult->fetch<oatpp::Vector<oatpp::Object<DepartmentDto>>>();
 
 
-                        auto page = PageDto<oatpp::Object<DepartmentDto>>::createShared();
+                        auto page = DepartmentPageDto::createShared();
 
                         page->offset = offset;
                         page->limit = limit;
-                        page->count = items->size();
+                        page->count = static_cast<uint32_t>(items->size());
                         page->items = items;
 
                         ret = createDtoResponse(Status::CODE_200, page);
@@ -779,11 +1030,11 @@ namespace primus {
 
                         auto items = dbResult->fetch<oatpp::Vector<oatpp::Object<DateDto>>>();
 
-                        auto page = PageDto<oatpp::Object<DateDto>>::createShared();
+                        auto page = DatePageDto::createShared();
 
                         page->offset = offset;
                         page->limit = limit;
-                        page->count = items->size();
+                        page->count = static_cast<uint32_t>(items->size());
                         page->items = items;
 
                         ret = createDtoResponse(Status::CODE_200, page);
@@ -810,7 +1061,7 @@ namespace primus {
                     return ret;
                 }
 
-                ENDPOINT("GET", "api/member/{memberId}/weaponpurchase/", canMemberBuyWeapon,
+                ENDPOINT("GET", "api/member/{memberId}/weaponpurchase/", endpoint_member_checkFirearmPurchasePermission,
                     PATH(oatpp::UInt32, memberId))
                 {
                     
@@ -868,232 +1119,8 @@ namespace primus {
                         return createDtoResponse(Status::CODE_200, ret);
                     }
                 }
-                // Endpoint Infos
 
-                ENDPOINT_INFO(getMembersList)
-                {
-                    info->name = "getMembersList";
-                    info->summary = "Get a list of members based on attribute";
-                    info->description = "This endpoint retrieves a list of members based on the provided attribute. Available attributes are: all, active, inactive, birthday.";
-                    info->path = "/api/members/list/{attribute}";
-                    info->method = "GET";
-                    info->addTag("Members");
-                    info->addTag("List");
-                    info->pathParams["attribute"].description = "Attribute to filter members (options: all, active, inactive, birthday)";
-                    info->queryParams["limit"].description = "Maximum number of items to return";
-                    info->queryParams["offset"].description = "Number of items to skip before starting to collect the response items";
-                    info->addResponse<oatpp::Object<PageDto<oatpp::Vector<oatpp::Object<MemberDto>>>>>(Status::CODE_200, "application/json");
-                    info->addResponse<Object<StatusDto>>(Status::CODE_404, "application/json");
-                    info->addResponse<Object<StatusDto>>(Status::CODE_500, "application/json");
-                }
-
-                ENDPOINT_INFO(activateMember) {
-                    info->name = "activateMember";
-                    info->summary = "Activate a member by ID";
-                    info->description = "This endpoint activates a member with the provided ID.";
-                    info->path = "/api/member/{id}/activate";
-                    info->method = "UPDATE";
-                    info->addTag("Member");
-                    info->pathParams["id"].description = "Identifier of the member to activate";
-                    info->addResponse<Object<StatusDto>>(Status::CODE_200, "application/json");
-                    info->addResponse<Object<StatusDto>>(Status::CODE_500, "application/json");
-                }
-
-                ENDPOINT_INFO(deactivateMember) {
-                    info->name = "deactivateMember";
-                    info->summary = "Deactivate a member by ID";
-                    info->description = "This endpoint deactivates a member with the provided ID.";
-                    info->path = "/api/member/{id}/deactivate";
-                    info->method = "UPDATE";
-                    info->addTag("Member");
-                    info->pathParams["id"].description = "Identifier of the member to deactivate";
-                    info->addResponse<Object<StatusDto>>(Status::CODE_200, "application/json");
-                    info->addResponse<Object<StatusDto>>(Status::CODE_500, "application/json");
-                }
-
-                ENDPOINT_INFO(getMemberById) {
-                    info->name = "getMemberById";
-                    info->summary = "Get a member by ID";
-                    info->description = "This endpoint retrieves a member with the provided ID.";
-                    info->path = "/api/member/{id}";
-                    info->method = "GET";
-                    info->addTag("Member");
-                    info->pathParams["id"].description = "Identifier of the member to retrieve";
-                    info->addResponse<oatpp::Vector<oatpp::Object<MemberDto>>>(Status::CODE_200, "application/json");
-                    info->addResponse<Object<StatusDto>>(Status::CODE_404, "application/json");
-                    info->addResponse<Object<StatusDto>>(Status::CODE_500, "application/json");
-                }
-
-                ENDPOINT_INFO(createMember)
-                {
-                    info->name = "createMember";
-                    info->summary = "Create a new member";
-                    info->description = "This endpoint creates a new member with the provided data.";
-                    info->path = "/api/member";
-                    info->method = "POST";
-                    info->addTag("Member");
-                    info->bodyContentType = "application/json";
-                    info->addResponse<oatpp::Object<MemberDto>>(Status::CODE_200, "application/json");
-                    info->addResponse<Object<StatusDto>>(Status::CODE_500, "application/json");
-                }
-
-                ENDPOINT_INFO(updateMember)
-                {
-                    info->name = "updateMember";
-                    info->summary = "Update an existing member";
-                    info->description = "This endpoint updates an existing member with the provided data.";
-                    info->path = "/api/member";
-                    info->method = "PUT";
-                    info->addTag("Member");
-                    info->bodyContentType = "application/json";
-                    info->addResponse<oatpp::Object<MemberDto>>(Status::CODE_200, "application/json");
-                    info->addResponse<Object<StatusDto>>(Status::CODE_500, "application/json");
-                }
-
-                ENDPOINT_INFO(getMemberCount)
-                {
-                    info->name = "getMemberCount";
-                    info->summary = "Get the count of members based on attribute";
-                    info->description = "This endpoint retrieves the count of members based on the provided attribute. Available attributes are: all, active, inactive.";
-                    info->path = "/api/members/count/{attribute}";
-                    info->method = "GET";
-                    info->addTag("Members");
-                    info->addTag("Counts");
-                    info->queryParams["attribute"].description = "Attribute to filter members (options: all, active, inactive)";
-                    info->addResponse<Object<UInt32Dto>>(Status::CODE_200, "application/json");
-                    info->addResponse<Object<StatusDto>>(Status::CODE_404, "application/json");
-                    info->addResponse<Object<StatusDto>>(Status::CODE_500, "application/json");
-                }
-
-                ENDPOINT_INFO(createMemberDepartmentAssociation)
-                {
-                    info->name = "createMemberDepartmentAssociation";
-                    info->summary = "Create association between member and department";
-                    info->description = "This endpoint creates an association between a member and a department.";
-                    info->path = "/api/member/{memberId}/department/add/{departmentId}";
-                    info->method = "POST";
-                    info->addTag("Member");
-                    info->addTag("Department");
-                    info->pathParams["memberId"].description = "ID of the member";
-                    info->pathParams["departmentId"].description = "ID of the department";
-                    info->addResponse<Object<StatusDto>>(Status::CODE_200, "application/json");
-                    info->addResponse<Object<StatusDto>>(Status::CODE_404, "application/json");
-                    info->addResponse<Object<StatusDto>>(Status::CODE_500, "application/json");
-                }
-
-                ENDPOINT_INFO(deleteMemberDepartmentDisassociation)
-                {
-                    info->name = "deleteMemberDepartmentDisassociation";
-                    info->summary = "Remove association between member and department";
-                    info->description = "This endpoint removes the association between a member and a department.";
-                    info->path = "/api/member/{memberId}/department/remove/{departmentId}";
-                    info->method = "DELETE";
-                    info->addTag("Member");
-                    info->addTag("Department");
-                    info->pathParams["memberId"].description = "ID of the member";
-                    info->pathParams["departmentId"].description = "ID of the department";
-                    info->addResponse<Object<StatusDto>>(Status::CODE_200, "application/json");
-                    info->addResponse<Object<StatusDto>>(Status::CODE_404, "application/json");
-                    info->addResponse<Object<StatusDto>>(Status::CODE_500, "application/json");
-                }
-
-                ENDPOINT_INFO(createMemberAddressAssociation)
-                {
-                    info->name = "createMemberAddressAssociation";
-                    info->summary = "Create association between member and address";
-                    info->description = "This endpoint creates an association between a member and an address.";
-                    info->path = "/api/member/{memberId}/address/add";
-                    info->method = "POST";
-                    info->addTag("Member");
-                    info->addTag("Address");
-                    info->pathParams["memberId"].description = "ID of the member";
-                    info->addResponse<Object<AddressDto>>(Status::CODE_200, "application/json");
-                    info->addResponse<Object<StatusDto>>(Status::CODE_500, "application/json");
-                }
-
-                ENDPOINT_INFO(deleteMemberAddressDisassociation)
-                {
-                    info->name = "deleteMemberAddressDisassociation";
-                    info->summary = "Remove association between member and address";
-                    info->description = "This endpoint removes the association between a member and an address.";
-                    info->path = "/api/member/{memberId}/address/remove/{addressId}";
-                    info->method = "DELETE";
-                    info->addTag("Member");
-                    info->addTag("Address");
-                    info->pathParams["memberId"].description = "ID of the member";
-                    info->pathParams["addressId"].description = "ID of the address";
-                    info->addResponse<Object<StatusDto>>(Status::CODE_200, "application/json");
-                    info->addResponse<Object<StatusDto>>(Status::CODE_500, "application/json");
-                }
-
-                ENDPOINT_INFO(addMemberAttendance)
-                {
-                    info->name = "addMemberAttendance";
-                    info->summary = "Add attendance for a member on a specific date";
-                    info->description = "This endpoint adds attendance for a member on a specific date.";
-                    info->path = "/api/member/{memberId}/attendance/{dateOfAttendance}";
-                    info->method = "POST";
-                    info->addTag("Member");
-                    info->addTag("Attendance");
-                    info->pathParams["memberId"].description = "ID of the member";
-                    info->pathParams["dateOfAttendance"].description = "Date of the attendance (format: YYYY-MM-DD)";
-                    info->addResponse<Object<StatusDto>>(Status::CODE_200, "application/json");
-                    info->addResponse<Object<StatusDto>>(Status::CODE_404, "application/json");
-                    info->addResponse<Object<StatusDto>>(Status::CODE_500, "application/json");
-                }
-
-                ENDPOINT_INFO(deleteMemberAttendance)
-                {
-                    info->name = "deleteMemberAttendance";
-                    info->summary = "Remove attendance for a member on a specific date";
-                    info->description = "This endpoint removes attendance for a member on a specific date.";
-                    info->path = "/api/member/{memberId}/attendance/{dateOfAttendance}";
-                    info->method = "DELETE";
-                    info->addTag("Member");
-                    info->addTag("Attendance");
-                    info->pathParams["memberId"].description = "ID of the member";
-                    info->pathParams["dateOfAttendance"].description = "Date of the attendance (format: YYYY-MM-DD)";
-                    info->addResponse<Object<StatusDto>>(Status::CODE_200, "application/json");
-                    info->addResponse<Object<StatusDto>>(Status::CODE_404, "application/json");
-                    info->addResponse<Object<StatusDto>>(Status::CODE_500, "application/json");
-                }
-
-                ENDPOINT_INFO(getMemberFee)
-                {
-                    info->name = "getMemberFee";
-                    info->summary = "Calculate the member fee for a member";
-                    info->description = "This endpoint calculates the membership fee for a member based on their department.";
-                    info->path = "/api/member/{memberId}/fee";
-                    info->method = "GET";
-                    info->addTag("Member");
-                    info->addTag("Fee");
-                    info->pathParams["memberId"].description = "ID of the member";
-                    info->addResponse<Object<UInt32Dto>>(Status::CODE_200, "application/json");
-                    info->addResponse<Object<StatusDto>>(Status::CODE_404, "application/json");
-                    info->addResponse<Object<StatusDto>>(Status::CODE_500, "application/json");
-                }
-
-                ENDPOINT_INFO(getMemberList)
-                {
-                    info->name = "getMemberList";
-                    info->summary = "Get a list of information associated with a member";
-                    info->description = "This endpoint retrieves a list of information associated with a member, such as addresses, departments, or attendances.";
-                    info->path = "/api/member/{memberId}/list/{attribute}";
-                    info->method = "GET";
-                    info->addTag("Member");
-                    info->addTag("List");
-                    info->pathParams["memberId"].description = "ID of the member";
-                    info->pathParams["attribute"].description = "Attribute to retrieve (addresses, departments, attendances)";
-                    info->queryParams["limit"].description = "Limit of items to retrieve (default is 0)";
-                    info->queryParams["offset"].description = "Offset for pagination (default is 0)";
-                    info->addResponse<Object<PageDto<oatpp::Object<AddressDto>>>>(Status::CODE_200, "application/json");
-                    info->addResponse<Object<PageDto<oatpp::Object<DepartmentDto>>>>(Status::CODE_200, "application/json");
-                    info->addResponse<Object<PageDto<oatpp::Object<DateDto>>>>(Status::CODE_200, "application/json");
-                    info->addResponse<Object<StatusDto>>(Status::CODE_404, "application/json");
-                    info->addResponse<Object<StatusDto>>(Status::CODE_500, "application/json");
-                }
-
-                ENDPOINT_INFO(canMemberBuyWeapon)
+                ENDPOINT_INFO(endpoint_member_checkFirearmPurchasePermission)
                 {
                     info->name = "canMemberBuyWeapon";
                     info->summary = "Check if a member is allowed to purchase a weapon";
@@ -1107,11 +1134,9 @@ namespace primus {
                     info->addResponse<Object<StatusDto>>(Status::CODE_404, "application/json");
                     info->addResponse<Object<StatusDto>>(Status::CODE_500, "application/json");
                 }
-
-
             };
 
-#include OATPP_CODEGEN_END(ApiController) // End API Controller codegen
+#include OATPP_CODEGEN_END(ApiController)
 
         } // namespace member_endpoint
     } // apicontroller
