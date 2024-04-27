@@ -6,25 +6,20 @@ namespace primus
 	namespace constants
 	{
 		const bool useSwagger = true;
-		const std::size_t logNameLength = 20;
+		constexpr std::size_t logNameLength = 20;
 
-		namespace errorManagement
-		{
-			enum Errorcode : unsigned int
-			{
-				NotFound,
-				InternalError,
-			};
-		}
-
-		namespace main				  {	const char logName[logNameLength] = "Startup            ";} // Namespace main
+		namespace main				  { constexpr char logName[logNameLength] = "Startup            ";} // Namespace main
 									  
-		namespace databaseclient	  {	const char logName[logNameLength] = "DatabaseClient     ";} // Namespace databaseclient
+		namespace databaseclient	  { constexpr char logName[logNameLength] = "DatabaseClient     ";} // Namespace databaseclient
+
+		namespace managers {
+			namespace manager_member { constexpr char logName[logNameLength] = "MemberManager      "; } // Namespace manager_member
+			namespace manager_static { constexpr char logName[logNameLength] = "StaticManager      "; } // Namespace manager_static
+		} // Namespace managers
 
 		namespace apicontroller { 
-			namespace static_endpoint {	const char logName[logNameLength] = "StaticController   ";} // Namespace static_endpoint
-
-			namespace member_endpoint { const char logName[logNameLength] = "MemberController   ";} // Namespace member_endpoint
+			namespace static_endpoint { constexpr char logName[logNameLength] = "StaticEndpoint     ";} // Namespace static_endpoint
+			namespace member_endpoint { constexpr char logName[logNameLength] = "MemberEndpoint     ";} // Namespace member_endpoint
 		} // Namespace apicontroller
 
 	} // Namespace constants

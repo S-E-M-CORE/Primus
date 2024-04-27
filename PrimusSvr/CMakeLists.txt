@@ -17,7 +17,7 @@ set(SOURCES
     src/App.cpp
 )
 # Create a library target
-add_library(PrimusSvrLibrary ${SOURCES})
+add_library(PrimusSvrLibrary ${SOURCES} "src/managers/MemberMamanger.cpp")
 
 # Find required packages
 find_package(oatpp 1.3.0 REQUIRED)
@@ -57,7 +57,7 @@ endif()
 target_include_directories(PrimusSvrLibrary PUBLIC src)
 
 # Create an executable target
-add_executable(PrimusSvr src/App.cpp)
+add_executable(PrimusSvr src/App.cpp "src/managers/MemberMamanger.cpp")
 
 target_compile_definitions(PrimusSvr
     PUBLIC OATPP_SWAGGER_RES_PATH="${oatpp-swagger_INCLUDE_DIRS}/../bin/oatpp-swagger/res"

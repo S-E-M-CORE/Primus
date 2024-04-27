@@ -11,6 +11,7 @@
 // App specific headers
 #include "database/DatabaseComponent.hpp"
 #include "swagger-ui/SwaggerComponent.hpp"
+#include "managers/MemberManager.hpp"
 
 namespace primus
 {
@@ -34,6 +35,9 @@ namespace primus
                 return oatpp::network::tcp::server::ConnectionProvider::createShared({ "0.0.0.0", 8000, oatpp::network::Address::IP_4 });
                 }());
 
+            OATPP_CREATE_COMPONENT(std::shared_ptr<primus::managers::Members::MemberManager>, memberManager)([] {
+                return primus::managers::Members::MemberManager::createShared();
+                }());
 
             // Create Router component
             OATPP_CREATE_COMPONENT(std::shared_ptr<oatpp::web::server::HttpRouter>, httpRouter)([] {
