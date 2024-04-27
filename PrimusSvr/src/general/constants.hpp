@@ -8,15 +8,12 @@ namespace primus
 		const bool useSwagger = true;
 		const std::size_t logNameLength = 20;
 
-		namespace pricing
+		namespace errorManagement
 		{
-			enum DepartmentPrices
+			enum Errorcode : unsigned int
 			{
-				Bogenschiessen = 8,
-				Luftdruck = 10,
-				Schusswaffen = 15,
-				Multiple = 20,
-				None = 0
+				NotFound,
+				InternalError,
 			};
 		}
 
