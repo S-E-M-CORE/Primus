@@ -97,7 +97,6 @@
 
     <script>
         var addresses = [];
-        var currentAddressIndex = 0;
         var attendances = [];
         var currentAttendanceIndex = 0;
         var totalAttendances = 0;
@@ -111,7 +110,7 @@
                 return;
             }
 
-            fetch('http://localhost:8000/api/member/' + memberId)
+            fetch('http://localhost:8000/api/v1/member/' + memberId)
                 .then(response => {
                     if (!response.ok) {
                         throw new Error('Failed to fetch member details.');
@@ -150,7 +149,7 @@
 
         // Function to fetch member addresses
         function fetchAddresses(memberId) {
-            fetch('http://localhost:8000/api/member/' + memberId + '/list/addresses?limit=10&offset=0')
+            fetch('http://localhost:8000/api/v1/member/' + memberId + '/list/addresses?limit=1&offset=0')
                 .then(response => {
                     if (!response.ok) {
                         throw new Error('Failed to fetch member addresses.');
@@ -158,9 +157,7 @@
                     return response.json();
                 })
                 .then(data => {
-                    addresses = data.items;
-                    displayAddress(addresses[currentAddressIndex]);
-                    updateAddressNavigationButtons();
+                    displayAddress(data.items[0]);
                 })
                 .catch(error => {
                     console.error('Error fetching member addresses:', error);
@@ -182,7 +179,7 @@
 
         // Function to fetch member departments
         function fetchDepartments(memberId) {
-            fetch('http://localhost:8000/api/member/' + memberId + '/list/departments?limit=10&offset=0')
+            fetch('http://localhost:8000/api/v1/member/' + memberId + '/list/departments?limit=10&offset=0')
                 .then(response => {
                     if (!response.ok) {
                         throw new Error('Failed to fetch member departments.');
@@ -209,7 +206,7 @@
 
         // Function to fetch membership fee
         function fetchMembershipFee(memberId) {
-            fetch('http://localhost:8000/api/member/' + memberId + '/fee')
+            fetch('http://localhost:8000/api/v1/member/' + memberId + '/fee')
                 .then(response => {
                     if (!response.ok) {
                         throw new Error('Failed to fetch membership fee.');
@@ -232,7 +229,7 @@
 
         // Function to fetch can buy weapon status
         function fetchCanBuyWeapon(memberId) {
-            fetch('http://localhost:8000/api/member/' + memberId + '/weaponpurchase/')
+            fetch('http://localhost:8000/api/v1/member/' + memberId + '/weaponpurchase/')
                 .then(response => {
                     if (!response.ok) {
                         throw new Error('Failed to fetch weapon purchase status.');
@@ -255,7 +252,7 @@
         }
         
         function fetchTotalAttendances(memberId) {
-            fetch('http://localhost:8000/api/member/' + memberId + '/count/attendances')
+            fetch('http://localhost:8000/api/v1/member/' + memberId + '/count/attendances')
                 .then(response => {
                     if (!response.ok) {
                         throw new Error('Failed to fetch total attendances count.');
@@ -273,7 +270,7 @@
         }
 
         function fetchAttendances(memberId, offset = 0, limit = 5) {
-            fetch('http://localhost:8000/api/member/' + memberId + '/list/attendances?limit=' + limit + '&offset=' + offset)
+            fetch('http://localhost:8000/api/v1/member/' + memberId + '/list/attendances?limit=' + limit + '&offset=' + offset)
                 .then(response => {
                     if (!response.ok) {
                         throw new Error('Failed to fetch member attendances.');
@@ -342,7 +339,7 @@
         function markAttendance() {
             var today = new Date();
             var formattedDate = today.toISOString().split('T')[0]; // Format date as YYYY-MM-DD
-            fetch('http://localhost:8000/api/member/' + memberId + '/attendance/' + formattedDate, {
+            fetch('http://localhost:8000/api/v1/member/' + memberId + '/attendance/' + formattedDate, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

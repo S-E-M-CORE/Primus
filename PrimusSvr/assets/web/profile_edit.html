@@ -149,7 +149,7 @@
 
         // Populate form fields with member data using memberId
         // Make API request to fetch member data based on memberId
-        fetch('http://localhost:8000/api/member/' + memberId)
+        fetch('http://localhost:8000/api/v1/member/' + memberId)
             .then(response => response.json())
             .then(data => {
                 $('#firstName').val(data.firstName);
@@ -160,7 +160,7 @@
                 $('#notes').val(data.notes);
                 $('#active').val(data.active.toString());
                 // Load member address
-                fetch('http://localhost:8000/api/member/' + memberId + '/list/addresses?limit=1&offset=0')
+                fetch('http://localhost:8000/api/v1/member/' + memberId + '/list/addresses?limit=1&offset=0')
                     .then(response => response.json())
                     .then(addressData => {
                         if (addressData.count > 0) {
@@ -176,7 +176,7 @@
 
         // Function to load member departments and pre-check checkboxes
 function loadMemberDepartments() {
-    fetch('http://localhost:8000/api/member/' + memberId + '/list/departments?limit=3&offset=0')
+    fetch('http://localhost:8000/api/v1/member/' + memberId + '/list/departments?limit=3&offset=0')
         .then(response => {
             if (!response.ok) {
                 throw new Error('Failed to load member departments');
@@ -222,7 +222,7 @@ function loadMemberDepartments() {
             };
 
             // Make API request to update member information
-            fetch('http://localhost:8000/api/member', {
+            fetch('http://localhost:8000/api/v1/member', {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'
@@ -245,7 +245,7 @@ function loadMemberDepartments() {
                     var originalCountry = ''; // Hier sollten die ursprünglichen Adressdaten gespeichert werden
                     var originalHouseNumber = ''; // Hier sollten die ursprünglichen Adressdaten gespeichert werden
                     var originalStreet = ''; // Hier sollten die ursprünglichen Adressdaten gespeichert werden
-                    fetch('http://localhost:8000/api/member/' + formData.id + '/list/addresses?limit=1&offset=0')
+                    fetch('http://localhost:8000/api/v1/member/' + formData.id + '/list/addresses?limit=1&offset=0')
                         .then(response => response.json())
                         .then(addressData => {
                             if (addressData.count > 0) {
@@ -263,7 +263,7 @@ function loadMemberDepartments() {
                                 formData.address.houseNumber !== originalHouseNumber ||
                                 formData.address.street !== originalStreet) {
                                 // Delete the old address
-                                fetch('http://localhost:8000/api/member/' + formData.id + '/address/remove/' + address.id, {
+                                fetch('http://localhost:8000/api/v1/member/' + formData.id + '/address/remove/' + address.id, {
                                     method: 'DELETE'
                                 })
                                     .then(response => {
@@ -271,7 +271,7 @@ function loadMemberDepartments() {
                                             throw new Error('Error removing old address');
                                         }
                                         // Add the updated address
-                                        fetch('http://localhost:8000/api/member/' + formData.id + '/address/add', {
+                                        fetch('http://localhost:8000/api/v1/member/' + formData.id + '/address/add', {
                                             method: 'POST',
                                             headers: {
                                                 'Content-Type': 'application/json'
@@ -315,7 +315,7 @@ function loadMemberDepartments() {
             // Make API request to add or remove member from department based on checkbox state
             if (isChecked) {
                 // Add member to department
-                fetch('http://localhost:8000/api/member/' + memberId + '/department/add/' + departmentId, {
+                fetch('http://localhost:8000/api/v1/member/' + memberId + '/department/add/' + departmentId, {
                     method: 'POST'
                 })
                     .then(response => {
@@ -332,7 +332,7 @@ function loadMemberDepartments() {
                     });
             } else {
                 // Remove member from department
-                fetch('http://localhost:8000/api/member/' + memberId + '/department/remove/' + departmentId, {
+                fetch('http://localhost:8000/api/v1/member/' + memberId + '/department/remove/' + departmentId, {
                     method: 'DELETE'
                 })
                     .then(response => {

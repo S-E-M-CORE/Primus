@@ -62,15 +62,15 @@ namespace primus {
                     PATH(oatpp::String, attribute), QUERY(oatpp::UInt32, limit), QUERY(oatpp::UInt32, offset))
                 {
                     try {
-                        auto page = MemberPageDto::createShared();
-                        m_memberManager->getList(page, attribute, limit, offset);
+                      auto page = MemberPageDto::createShared();
+                      m_memberManager->getList(page, attribute, limit, offset);
 
-                        return createDtoResponse(Status::CODE_200, page);
+                      return createDtoResponse(Status::CODE_200, Object<MemberPageDto>(page));
                     }
-                    catch (primus::exceptions::StatusException excep)
-                    {
-                        return createDtoResponse(Status::Status(excep.getStatusDto()->code, nullptr), excep.getStatusDto());
-                    }
+                     catch (primus::exceptions::StatusException excep)
+                     {
+                         return createDtoResponse(Status::Status(excep.getStatusDtoObject()->code, excep.getStatusDtoObject()->status->c_str()), Object<primus::dto::StatusDto>(excep.getStatusDtoObject()));
+                     }
                 }
 
                 ENDPOINT_INFO(endpoint_member_getMemberListOfAttribute)
@@ -1012,7 +1012,7 @@ namespace primus {
                     return ret;
                 }
 
-                ENDPOINT("GET", "api/member/{memberId}/weaponpurchase/", endpoint_member_checkFirearmPurchasePermission,
+                ENDPOINT("GET", "api/v1/member/{memberId}/weaponpurchase/", endpoint_member_checkFirearmPurchasePermission,
                     PATH(oatpp::UInt32, memberId))
                 {
                     

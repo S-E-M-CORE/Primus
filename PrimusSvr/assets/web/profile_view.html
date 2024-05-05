@@ -86,7 +86,7 @@
     <script>
         // Function to fetch member profile data
         function fetchMemberProfile(memberId) {
-            return fetch(`/api/member/${memberId}`)
+            return fetch(`/api/v1/member/${memberId}`)
                 .then(response => response.json())
                 .then(data => {
                     displayMemberProfile(data);
@@ -137,7 +137,7 @@
             // Profile picture
             const profilePicture = document.getElementById('profile-picture');
             const img = document.createElement('img');
-            img.src = `/api/member/${profileData.id}/assets/profilepicture`;
+            img.src = `/api/v1/member/${profileData.id}/assets/profilepicture`;
             img.alt = 'Profile Picture';
             img.classList.add('img-fluid');
             profilePicture.appendChild(img);

@@ -86,7 +86,7 @@
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             // Fetch upcoming birthdays
-            fetch('http://localhost:8000/api/members/list/birthday?limit=7&offset=0')
+            fetch('http://localhost:8000/api/v1/members/list/birthday?limit=7&offset=0')
                 .then(response => response.json())
                 .then(data => {
                     console.log('Received birthday data:', data);
@@ -104,7 +104,7 @@
                 });
 
             // Fetch member counts
-            fetch('http://localhost:8000/api/members/count/active')
+            fetch('http://localhost:8000/api/v1/members/count/active')
                 .then(response => response.json())
                 .then(data => {
                     console.log('Received active members count:', data);
@@ -115,7 +115,7 @@
                     console.error('Error fetching active members count:', error);
                 });
 
-            fetch('http://localhost:8000/api/members/count/all')
+            fetch('http://localhost:8000/api/v1/members/count/all')
                 .then(response => response.json())
                 .then(data => {
                     console.log('Received total members count:', data);
@@ -127,14 +127,14 @@
                 });
 
             // Fetch members with most trainings
-            fetch('http://localhost:8000/api/members/list/training-most-often?limit=10&offset=0')
+            fetch('http://localhost:8000/api/v1/members/list/attendance?limit=10&offset=0')
                 .then(response => response.json())
                 .then(data => {
                     console.log('Received most trainings data:', data);
                     const mostTrainingsTable = document.getElementById('most-trainings');
                     if (data.items) {
                         data.items.forEach(member => {
-                            fetch('http://localhost:8000/api/member/' + member.id + '/count/attendances')
+                            fetch('http://localhost:8000/api/v1/member/' + member.id + '/count/attendances')
                                 .then(response => response.json())
                                 .then(trainingsData => {
                                     console.log('Received trainings count data for member ' + member.id + ':', trainingsData);
@@ -165,7 +165,7 @@
             function markPresent(memberId) {
                 const today = new Date().toISOString().split('T')[0];
                 const memberIdString = memberId.toString();
-                fetch('http://localhost:8000/api/member/' + memberIdString + '/attendance/' + today, {
+                fetch('http://localhost:8000/api/v1/member/' + memberIdString + '/attendance/' + today, {
                     method: 'POST'
                 })
                     .then(response => response.json())

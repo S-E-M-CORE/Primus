@@ -115,7 +115,7 @@ void MemberManager::getList(ObjMemberPageDto& list, const String& attribute, con
             sprintf_s(errorMsg, "Received request to get a list of members with %s, which is not an available attribute", attribute->c_str());
             OATPP_LOGD(MemberManager::logName, errorMsg);
 
-            PRIMUS_THROW_STATUS_EXCEP(400, "ATTRIBUTE NOT FOUND", "Received request to get a list of members with invalid attribute. Available options: birthday, all, active or inactive");
+            PRIMUS_THROW_STATUS_EXCEP(400, "ATTRIBUTE NOT FOUND", errorMsg);
         }
     }
 }

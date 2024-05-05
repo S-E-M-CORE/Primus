@@ -37,7 +37,7 @@ namespace primus {
                 m_status->message = message;
             }
 
-            oatpp::Object<StatusDto> getStatusDto(void)
+            oatpp::Object<StatusDto>& getStatusDtoObject(void)
             {
                 return m_status;
             }

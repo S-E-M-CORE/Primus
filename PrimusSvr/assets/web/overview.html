@@ -139,7 +139,7 @@ let memberStatus = 'all'; // Variable to keep track of selected member status
 
 // Function to fetch total count of members
 function fetchMemberCount() {
-    const url = `http://localhost:8000/api/members/count/${memberStatus}`;
+    const url = `http://localhost:8000/api/v1/members/count/${memberStatus}`;
 
     fetch(url)
         .then(response => response.json())
@@ -154,7 +154,7 @@ function fetchMemberCount() {
 // Function to fetch member data with limit and offset
 function fetchMembers() {
     const offset = (currentPage - 1) * limit;
-    const url = `http://localhost:8000/api/members/list/${memberStatus}?limit=${limit}&offset=${offset}`;
+    const url = `http://localhost:8000/api/v1/members/list/${memberStatus}?limit=${limit}&offset=${offset}`;
 
     fetch(url)
         .then(response => response.json())
@@ -284,7 +284,7 @@ function toggleMemberStatus() {
     }
 
     // Fetch the member data first
-    const url = `http://localhost:8000/api/member/${selectedMemberId}`;
+    const url = `http://localhost:8000/api/v1/member/${selectedMemberId}`;
     fetch(url)
         .then(response => response.json())
         .then(memberData => {
@@ -302,7 +302,7 @@ function toggleMemberStatus() {
 
 // Function to update member data on the server
 function updateMemberData(updatedMemberData) {
-    const url = `http://localhost:8000/api/member/`;
+    const url = `http://localhost:8000/api/v1/member/`;
     fetch(url, {
         method: 'PUT',
         headers: {
@@ -326,7 +326,7 @@ function updateMemberData(updatedMemberData) {
 
 // Function to set button text based on selected member status
 function setButtonText(memberId) {
-    const url = `http://localhost:8000/api/member/${memberId}`;
+    const url = `http://localhost:8000/api/v1/member/${memberId}`;
     fetch(url)
         .then(response => response.json())
         .then(memberData => {
@@ -373,7 +373,7 @@ fetchMemberCount();
 
 	
         // Fetch member counts
-        fetch('http://localhost:8000/api/members/count/active')
+        fetch('http://localhost:8000/api/v1/members/count/active')
             .then(response => response.json())
             .then(data => {
                 console.log('Received active members count:', data);
@@ -384,7 +384,7 @@ fetchMemberCount();
                 console.error('Error fetching active members count:', error);
             });
 
-        fetch('http://localhost:8000/api/members/count/all')
+        fetch('http://localhost:8000/api/v1/members/count/all')
             .then(response => response.json())
             .then(data => {
                 console.log('Received total members count:', data);

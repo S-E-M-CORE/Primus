@@ -19,6 +19,9 @@ namespace primus
         */
         class StatusDto : public oatpp::DTO
         {
+            using Int32 = oatpp::Int32;
+            using String = oatpp::String;
+
             DTO_INIT(StatusDto, DTO); /**< Macro to initialize the DTO. */
 
             DTO_FIELD(Int32, code); /**< HTML status code field. */

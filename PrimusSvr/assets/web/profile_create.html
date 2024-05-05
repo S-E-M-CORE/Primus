@@ -101,7 +101,7 @@
                 };
 
                 // Submit the form using Fetch API
-                fetch('http://localhost:8000/api/member', {
+                fetch('http://localhost:8000/api/v1/member', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -130,7 +130,7 @@
                         };
 
 						// Call the API to add address
-                        fetch('http://localhost:8000/api/member/' + memberId + '/address/add', {
+                        fetch('http://localhost:8000/api/v1/member/' + memberId + '/address/add', {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json'
@@ -164,7 +164,7 @@
 
                         // Call the API to add departments
                         departments.forEach(departmentId => {
-                            fetch('http://localhost:8000/api/member/' + memberId + '/department/add/' + departmentId, {
+                            fetch('http://localhost:8000/api/v1/member/' + memberId + '/department/add/' + departmentId, {
                                 method: 'POST',
                                 headers: {
                                     'Content-Type': 'application/json'
